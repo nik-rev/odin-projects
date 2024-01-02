@@ -1,9 +1,45 @@
 body {
   background-color: bisque;
+  text-align: center;
+}
+
+ul,
+ol {
+  display: inline-block;
+  width: 250px;
+  text-align: center;
+}
+
+ul {
+  list-style-position: inside;
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+ol {
+  list-style-position: inside;
+  padding-inline-start: 0px;
+  width: 750px;
+}
+
+body p {
+  margin: 0 auto;
+  padding: 0;
+  width: 330px;
+}
+
+ul li {
+  padding: 10px;
+  text-align: center;
 }
 
 li {
   background-color: blanchedalmond;
+  margin-bottom: 15px;
+  padding: 10px;
+  padding-left: 0;
+  text-align: left;
+  padding: 20px;
 }
 
 a {
