@@ -42,8 +42,22 @@ li {
   padding: 20px;
 }
 
+.navigation {
+  text-align: center;
+}
+
 a {
-  color: black;
+  color: blue;
+  background-color: blanchedalmond;
+  margin: 8px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.navigation a {
+  font-weight: 1000;
+  color: white;
+  text-shadow: 1px 1px 4px rgb(0, 0, 0);
 }
 
 * {
