@@ -9,7 +9,7 @@
 
 body {
   height: 100vw;
-  width: 60vw;
+  width: 1300px;
   margin: 0 auto;
 }
 
@@ -24,4 +24,48 @@ ul {
   list-style-type: none;
   gap: 10px;
   align-items: center;
+}
+
+/* HERO */
+
+.hero {
+  height: 200px;
+  background-color: rgb(212, 212, 212);
+  justify-content: center;
+}
+
+.hero-content {
+  align-self: center;
+  width: 80%;
+  height: 80%;
+  background-color: darkseagreen;
+}
+
+.hero-text-block {
+  background-color: lightpink;
+  flex-direction: column;
+}
+
+/* ROCK EXAMPLES */
+
+.example-img {
+  height: 100px;
+  width: 100px;
+}
+
+.rock-example {
+  flex-direction: column;
+  /* background-color: wheat; */
+  border: 4px solid blue;
+}
+
+.rock-examples {
+  background-color: lemonchiffon;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.rock-examples .rock-examples-main {
+  background-color: tomato;
 }
