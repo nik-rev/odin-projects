@@ -69,3 +69,19 @@ ul {
 .rock-examples .rock-examples-main {
   background-color: tomato;
 }
+
+/* QUOTE */
+
+.quote {
+  justify-content: center;
+  align-items: center;
+  background-color: cadetblue;
+}
+
+.quote-box {
+  width: 800px;
+}
+
+.quote-author {
+  float: right;
+}
