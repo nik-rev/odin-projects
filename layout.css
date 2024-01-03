@@ -7,6 +7,11 @@
   display: flex;
 }
 
+.flex-container-generic {
+  display: flex;
+  justify-content: space-between;
+}
+
 body.flex-container {
   flex-direction: column;
   justify-content: flex-start;
@@ -14,14 +19,19 @@ body.flex-container {
 
 body {
   height: 100vw;
-  width: 1300px;
   margin: 0 auto;
 }
 
 /* HEADER */
 
-.header {
+.header .the-content {
+  width: 1200px;
   justify-content: space-between;
+  /* border: 2px solid red; */
+}
+
+.header {
+  justify-content: space-around;
 }
 
 ul {
@@ -32,19 +42,52 @@ ul {
 
 /* HERO */
 
+.hero-text-block {
+  width: 40%;
+  flex-direction: column;
+  /* border: 2px solid red; */
+}
+
+.hero-picture {
+  object-fit: cover;
+  width: 50%;
+  height: 250px;
+  background-color: white;
+  /* border: 2px solid red; */
+}
+
+.hero .the-content {
+  justify-content: space-between;
+  width: 1200px;
+  /* border: 2px solid red; */
+  margin: 100px 0;
+}
+
+.sign-up.hero-button {
+  margin-top: 8px;
+  width: 30%;
+  height: 30px;
+  /* border: 2px solid red; */
+}
+
+.text.hero-text {
+  margin: 18px 0;
+  /* border: 2px solid red; */
+}
+
 .hero {
-  height: 200px;
   justify-content: center;
+  /* border: 2px solid red; */
 }
 
 .hero-content {
   align-self: center;
+  justify-content: space-between;
+  align-items: center;
   width: 80%;
   height: 80%;
-}
-
-.hero-text-block {
-  flex-direction: column;
+  margin: 100px;
+  /* border: 2px solid red; */
 }
 
 /* ROCK EXAMPLES */
