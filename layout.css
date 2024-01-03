@@ -7,6 +7,11 @@
   display: flex;
 }
 
+body.flex-container {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 body {
   height: 100vw;
   width: 1300px;
@@ -16,7 +21,6 @@ body {
 /* HEADER */
 
 .header {
-  background-color: antiquewhite;
   justify-content: space-between;
 }
 
@@ -30,7 +34,6 @@ ul {
 
 .hero {
   height: 200px;
-  background-color: rgb(212, 212, 212);
   justify-content: center;
 }
 
@@ -38,11 +41,9 @@ ul {
   align-self: center;
   width: 80%;
   height: 80%;
-  background-color: darkseagreen;
 }
 
 .hero-text-block {
-  background-color: lightpink;
   flex-direction: column;
 }
 
@@ -55,19 +56,12 @@ ul {
 
 .rock-example {
   flex-direction: column;
-  /* background-color: wheat; */
-  border: 4px solid blue;
 }
 
 .rock-examples {
-  background-color: lemonchiffon;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.rock-examples .rock-examples-main {
-  background-color: tomato;
 }
 
 /* QUOTE */
@@ -75,7 +69,6 @@ ul {
 .quote {
   justify-content: center;
   align-items: center;
-  background-color: cadetblue;
 }
 
 .quote-box {
@@ -89,13 +82,11 @@ ul {
 /* FREE TRIAL */
 
 .free-trial {
-  background-color: antiquewhite;
   justify-content: center;
   align-items: center;
 }
 
 .free-trial-box {
-  background-color: aquamarine;
 }
 
 /* FOOTER */
@@ -103,5 +94,8 @@ ul {
 .footer {
   justify-content: center;
   align-items: center;
-  background-color: rgb(111, 173, 111);
+}
+
+.test1 {
+  justify-self: flex-end;
 }

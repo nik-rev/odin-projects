@@ -1,0 +1,48 @@
+* {
+  font-family: Arial;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: bolder;
+  color: #f9faf8;
+}
+
+.header,
+.footer,
+.hero {
+  background-color: #1f2937;
+}
+
+.link-text,
+.hero-text,
+.footer-text {
+  font-size: 18px;
+  color: #e5e7eb;
+}
+
+.logo {
+  font-size: 24px;
+  color: #f9faf8;
+}
+
+.rock-examples-heading {
+  font-size: 36px;
+  font-weight: bolder;
+  color: #1f2937;
+}
+
+.sign-up,
+.free-trial {
+  color: #3882f6;
+}
+
+.quote {
+  background-color: #e5e7eb;
+}
+
+.quote-text {
+  font-size: 36px;
+  font-weight: lighter;
+  color: #1f2937;
+}
