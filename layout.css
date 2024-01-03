@@ -26,6 +26,11 @@ body {
 .header .the-content {
   width: 1200px;
   justify-content: space-between;
+  /* border: 2px solid red; */
+}
+
+.logo {
+  margin-top: 0px;
 }
 
 .header {
@@ -34,8 +39,9 @@ body {
 
 ul {
   list-style-type: none;
-  gap: 10px;
+  gap: 24px;
   align-items: center;
+  /* border: 2px solid red; */
 }
 
 /* HERO */

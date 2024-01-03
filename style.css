@@ -8,6 +8,22 @@
   color: #f9faf8;
 }
 
+a {
+  text-decoration: none;
+}
+
+.hero-button.sign-up {
+  color: #f9faf8;
+  background-color: #3882f6;
+  border: 3px solid #3882f6;
+}
+
+.action-button.sign-up {
+  color: #f9faf8;
+  background-color: #3882f6;
+  border: 3px solid #f9faf8;
+}
+
 button {
   border-radius: 10px;
 }
