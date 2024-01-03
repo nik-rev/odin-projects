@@ -3,15 +3,25 @@
   padding: 0;
 }
 
-body {
-  height: 100vw;
+.flex-container {
+  display: flex;
 }
 
-.header,
-.hero,
-.rock-examples,
-.quote,
-.free-trial,
-.footer {
-  height: 100px;
+body {
+  height: 100vw;
+  width: 60vw;
+  margin: 0 auto;
+}
+
+/* HEADER */
+
+.header {
+  background-color: antiquewhite;
+  justify-content: space-between;
+}
+
+ul {
+  list-style-type: none;
+  gap: 10px;
+  align-items: center;
 }
