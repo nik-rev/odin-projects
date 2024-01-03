@@ -51,8 +51,26 @@
   background-color: #e5e7eb;
 }
 
+.free-trial .the-content {
+  width: 1200px;
+  background-color: #3882f6;
+}
+
 .quote-text {
   font-size: 36px;
   font-weight: lighter;
   color: #1f2937b4;
+}
+
+.action-text {
+  color: #f9faf8;
+  font-size: 24px;
+}
+
+.button-text {
+  font-size: 20px;
+}
+
+.bold {
+  font-weight: ;
 }

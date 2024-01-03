@@ -170,12 +170,21 @@ ul {
 
 /* FREE TRIAL */
 
+.free-trial .the-content {
+  width: 1200px;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 50px 0;
+  margin: 100px 0;
+}
+
 .free-trial {
   justify-content: center;
   align-items: center;
 }
 
-.free-trial-box {
+.the-content .action-button {
+  padding: 5px 30px;
 }
 
 /* FOOTER */
