@@ -93,8 +93,8 @@ ul {
 /* ROCK EXAMPLES */
 
 .example-img {
-  height: 160px;
-  width: 160px;
+  height: 180px;
+  width: 180px;
   object-fit: cover;
   margin-bottom: 12px;
 }
@@ -123,7 +123,7 @@ ul {
 }
 
 .rock-examples-main {
-  gap: 30px;
+  gap: 38px;
   justify-content: center;
 }
 
@@ -140,13 +140,33 @@ ul {
   align-items: center;
 }
 
-.quote-box {
-  width: 800px;
+.quote .flex-container {
+  flex-direction: column;
+}
+
+.flex-quote {
+  margin: 200px 0;
 }
 
 .quote-author {
-  float: right;
+  align-self: flex-end;
 }
+
+.quote .the-content {
+  justify-content: space-between;
+  width: 800px;
+  /* border: 2px solid red; */
+  margin-top: 100px 0;
+}
+
+.quote-text.main-text {
+  width: 800px;
+  display: block;
+}
+
+/* .quote-author {
+  float: right;
+} */
 
 /* FREE TRIAL */
 
