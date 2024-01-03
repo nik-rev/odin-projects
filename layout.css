@@ -85,3 +85,15 @@ ul {
 .quote-author {
   float: right;
 }
+
+/* FREE TRIAL */
+
+.free-trial {
+  background-color: antiquewhite;
+  justify-content: center;
+  align-items: center;
+}
+
+.free-trial-box {
+  background-color: aquamarine;
+}
