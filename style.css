@@ -8,6 +8,10 @@
   color: #f9faf8;
 }
 
+button {
+  border-radius: 10px;
+}
+
 .header,
 .footer,
 .hero {
@@ -54,6 +58,10 @@
 .free-trial .the-content {
   width: 1200px;
   background-color: #3882f6;
+}
+
+.free-trial .the-content {
+  border-radius: 15px;
 }
 
 .quote-text {

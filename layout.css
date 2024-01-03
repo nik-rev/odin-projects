@@ -50,6 +50,7 @@ ul {
   width: 50%;
   height: 250px;
   background-color: white;
+  border-radius: 60px;
 }
 
 .hero .the-content {
@@ -88,6 +89,9 @@ ul {
   width: 180px;
   object-fit: cover;
   margin-bottom: 12px;
+  border-radius: 15px;
+  border: 5px dashed #3882f6;
+  padding: 5px;
 }
 
 .rock-example {
