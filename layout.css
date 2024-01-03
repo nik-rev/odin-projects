@@ -97,3 +97,11 @@ ul {
 .free-trial-box {
   background-color: aquamarine;
 }
+
+/* FOOTER */
+
+.footer {
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(111, 173, 111);
+}
