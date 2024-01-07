@@ -1,11 +1,26 @@
 .main-content {
   display: flex;
   flex-wrap: wrap;
+  border: 20px solid blue;
+  margin: 0;
+  box-sizing: border-box;
+  height: 1000px;
+  width: 1000px;
 }
 
-/* .cell-div {
-  height: 100px;
-  width: 100px;
-  flex-wrap: wrap;
-  border: 2px solid red;
-} */
+.cell-div:nth-child(3n) {
+  background-color: aliceblue;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.percentage-to-pixels {
+  width: 100%;
+}
