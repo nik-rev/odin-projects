@@ -12,6 +12,9 @@
   min-height: 1000px;
   min-width: 1000px;
   align-content: stretch;
+  padding: 50px;
+  border-radius: 150px;
+  background-color: rgba(0, 0, 0, 0.257);
 }
 
 .red-highlight {
@@ -20,6 +23,16 @@
 
 .header {
   font-size: 100px;
+  color: white;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.reaction {
+  color: red;
+  font-weight: bold;
+  font-size: 120px;
+  background-color: white;
+  justify-self: flex-end;
 }
 
 button {
@@ -41,7 +54,10 @@ input {
   gap: 50px;
   margin-top: 50px;
 }
-
+.attribution {
+  background-color: white;
+  font-size: 30px;
+}
 body {
   margin: 0;
   margin-top: 100px;
@@ -49,7 +65,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 1100px;
+  height: 1200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(./niceimg.jpg);
 }
 
 .header {
