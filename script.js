@@ -3,6 +3,8 @@ let getConverterWidth = window
   .getComputedStyle(document.querySelector(".percentage-to-pixels"))
   .getPropertyValue("width");
 
+const btnReset = document.querySelector(".reset-btn");
+
 // Select all cell-divs
 
 function extractNumbers(string) {
@@ -35,18 +37,34 @@ function calculateHeight(length) {
   return heightWidth;
 }
 
-function setDivStyle(length) {
+function configureEachDiv(length) {
   let allDivs = document.querySelectorAll(".cell-div");
   for (let i = 0; i < allDivs.length; i++) {
     allDivs[i].style.width = `${calculateWidth(length)}`;
     allDivs[i].style.height = `${calculateHeight(length)}px`;
     allDivs[i].style.boxSizing = "border-box";
+    allDivs[i].addEventListener("mouseover", function () {
+      allDivs[i].classList.add("red-highlight");
+    });
   }
 }
 
-function test(length = 16) {
+function createCanvas(length = 16) {
   createCellDivs(length);
-  setDivStyle(length);
+  configureEachDiv(length);
 }
 
-test();
+function deleteCanvas() {
+  let allDivs = document.querySelectorAll(".cell-div");
+  for (let i = 0; i < allDivs.length; i++) {
+    allDivs[i].remove();
+  }
+}
+
+btnReset.addEventListener("click", function () {
+  let resetInput = document.querySelector(".reset-input").value;
+  deleteCanvas();
+  createCanvas(resetInput);
+});
+
+createCanvas();
