@@ -11,6 +11,7 @@
   /* box-sizing: border-box; */
   min-height: 1000px;
   min-width: 1000px;
+  align-content: stretch;
 }
 
 .red-highlight {
@@ -58,4 +59,8 @@ body {
 .percentage-to-pixels {
   width: 100%;
   max-height: 0;
+}
+
+.cell-div {
+  box-sizing: border-box;
 }

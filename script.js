@@ -43,9 +43,15 @@ function configureEachDiv(length) {
     allDivs[i].style.width = `${calculateWidth(length)}`;
     allDivs[i].style.height = `${calculateHeight(length)}px`;
     allDivs[i].style.boxSizing = "border-box";
+    let passOverAmt = 0;
     allDivs[i].addEventListener("mouseover", function () {
-      allDivs[i].classList.add("red-highlight");
+      passOverAmt++;
+      allDivs[i].style.backgroundColor = setRandomColor(passOverAmt);
+      allDivs[i].style.border = `${
+        Math.random() * 10
+      }px dashed ${setRandomColor(passOverAmt)}`;
     });
+    allDivs[i].style.borderRadius = `${Math.random() * 100}px`;
   }
 }
 
@@ -59,6 +65,18 @@ function deleteCanvas() {
   for (let i = 0; i < allDivs.length; i++) {
     allDivs[i].remove();
   }
+}
+
+function randomNum() {
+  return Math.floor(Math.random() * 256);
+}
+
+function setRandomColor(passOverAmt = 0) {
+  let randomColor = `rgb(${randomNum() - 25 * passOverAmt}, ${
+    randomNum() - 25 * passOverAmt
+  }, ${randomNum() - 25 * passOverAmt})`;
+
+  return randomColor;
 }
 
 btnReset.addEventListener("click", function () {
