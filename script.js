@@ -4,7 +4,7 @@
 
 const inputField = document.querySelector(".input-field");
 const noteField = document.querySelector(".sub-text");
-const allButtonsContainer = document.querySelector(".all-buttons");
+const allButtonsContainer = document.querySelector(".calculator");
 const allButtonsArray = Array.from(
   allButtonsContainer.querySelectorAll("button")
 );
@@ -47,6 +47,10 @@ let operatorSingle;
 ///
 
 function calculator() {
+  // add code here to check if input1 or input2 contain
+  // the letter "e" or "Infinity", if so they should be
+  // immediately reset
+
   if (operator && operatorSingle === true) {
     input1 = inputField.textContent;
     if (operator === "factorial") {
@@ -99,6 +103,10 @@ function equals() {
 ///
 /// ADDING BUTTON EVENT LISTENERS
 ///
+btnReverseSign.addEventListener("click", function () {
+  inputField.textContent = -+inputField.textContent;
+});
+
 btnAdd.addEventListener("click", function () {
   operator = "add";
   operatorSingle = false;
@@ -229,16 +237,21 @@ btnAc.addEventListener("click", function () {
 function factorial(input) {
   if (input === 0) {
     return 1;
+  } else if (input < 0) {
+    noteField.textContent = "Factorial undefined for negative values";
+    return "ERROR";
   } else if (input % 1 !== 0) {
     noteField.textContent = "Factorial undefined for non-integer values";
     return "ERROR";
-  } else if (input > 99) {
-    noteField.textContent = "Cannot take factorial of value above 1e100";
-    return "ERROR";
   }
   storedInput = input;
+
   for (let i = input - 1; i > 0; i--) {
     storedInput *= i;
+    if (storedInput >= 1e100) {
+      noteField.textContent = "Answer exceeds 1e100";
+      return "ERROR";
+    }
   }
   return storedInput;
 }
@@ -256,14 +269,26 @@ function tan(input) {
 }
 
 function add(input1, input2) {
+  if (input1 + input2 >= 1e100) {
+    noteField.textContent = "Answer exceeds 1e100";
+    return "ERROR";
+  }
   return input1 + input2;
 }
 
 function subtract(input1, input2) {
+  if (input1 - input2 <= -1e100) {
+    noteField.textContent = "Answer is below -1e100";
+    return "ERROR";
+  }
   return input1 - input2;
 }
 
 function multiply(input1, input2) {
+  if (input1 * input2 >= 1e100) {
+    noteField.textContent = "Answer exceeds -1e100";
+    return "ERROR";
+  }
   return input1 * input2;
 }
 
