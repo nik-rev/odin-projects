@@ -125,6 +125,15 @@ btnTan.addEventListener("click", function () {
 });
 
 btnPeriod.addEventListener("click", function () {
+  // First let's check if inputField.textContent contains period
+  if (inputField.textContent.includes(".")) {
+    let index = inputField.textContent.indexOf(".");
+    let split = inputField.textContent.split("");
+    split.splice(index, 1);
+    let test123 = split.join("");
+    inputField.textContent = test123;
+  }
+
   inputField.textContent += ".";
 });
 
