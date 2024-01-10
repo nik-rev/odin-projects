@@ -25,15 +25,13 @@ const btnMultiply = document.querySelector(".multiply");
 const btnPower = document.querySelector(".power");
 
 let input1 = 0;
-let input2 = 0;
+let input2;
 let operator;
 let operatorSingle;
 
 function calculator() {
-  input1 = inputField.textContent;
-  input2 = input1;
-
   if (operator && operatorSingle === true) {
+    input1 = inputField.textContent;
     if (operator === "factorial") {
       inputField.textContent = factorial(input1);
     } else if (operator === "sin") {
@@ -43,11 +41,64 @@ function calculator() {
     } else if (operator === "tan") {
       inputField.textContent = tan(input1);
     }
-    // if (operator && operatorSingle === false) {
-    //   if
-    // }
+  } else if (operator && input2 !== undefined) {
+    if (operator === "add") {
+      inputField.textContent = add(+input1, +input2);
+    } else if (operator === "subtract") {
+      inputField.textContent = subtract(+input1, +input2);
+    } else if (operator === "multiply") {
+      inputField.textContent = multiply(+input1, +input2);
+    } else if (operator === "divide") {
+      inputField.textContent = divide(+input1, +input2);
+    } else if (operator === "power") {
+      inputField.textContent = power(+input1, +input2);
+    }
   }
 }
+
+btnAdd.addEventListener("click", function () {
+  operator = "add";
+  operatorSingle = false;
+  defineInput();
+});
+
+btnSubtract.addEventListener("click", function () {
+  operator = "subtract";
+  operatorSingle = false;
+  defineInput();
+});
+
+btnMultiply.addEventListener("click", function () {
+  operator = "multiply";
+  operatorSingle = false;
+  defineInput();
+});
+
+btnDivide.addEventListener("click", function () {
+  operator = "divide";
+  operatorSingle = false;
+  defineInput();
+});
+
+btnPower.addEventListener("click", function () {
+  operator = "power";
+  operatorSingle = false;
+  defineInput();
+});
+
+function defineInput() {
+  input1 = inputField.textContent;
+  inputField.textContent = "";
+}
+
+function equals() {
+  input2 = inputField.textContent;
+  calculator();
+}
+
+btnEquals.addEventListener("click", function () {
+  equals();
+});
 
 btnFactorial.addEventListener("click", function () {
   operator = "factorial";
@@ -71,6 +122,10 @@ btnTan.addEventListener("click", function () {
   operator = "tan";
   operatorSingle = true;
   calculator();
+});
+
+btnPeriod.addEventListener("click", function () {
+  inputField.textContent += ".";
 });
 
 btnNine.addEventListener("click", function () {
