@@ -36,7 +36,16 @@ function calculator() {
   if (operator && operatorSingle === true) {
     if (operator === "factorial") {
       inputField.textContent = factorial(input1);
+    } else if (operator === "sin") {
+      inputField.textContent = sin(input1);
+    } else if (operator === "cos") {
+      inputField.textContent = cos(input1);
+    } else if (operator === "tan") {
+      inputField.textContent = tan(input1);
     }
+    // if (operator && operatorSingle === false) {
+    //   if
+    // }
   }
 }
 
@@ -46,8 +55,70 @@ btnFactorial.addEventListener("click", function () {
   calculator();
 });
 
+btnSin.addEventListener("click", function () {
+  operator = "sin";
+  operatorSingle = true;
+  calculator();
+});
+
+btnCos.addEventListener("click", function () {
+  operator = "cos";
+  operatorSingle = true;
+  calculator();
+});
+
+btnTan.addEventListener("click", function () {
+  operator = "tan";
+  operatorSingle = true;
+  calculator();
+});
+
 btnNine.addEventListener("click", function () {
   inputField.textContent += "9";
+});
+
+btnEight.addEventListener("click", function () {
+  inputField.textContent += "8";
+});
+
+btnSeven.addEventListener("click", function () {
+  inputField.textContent += "7";
+});
+
+btnSix.addEventListener("click", function () {
+  inputField.textContent += "6";
+});
+
+btnFive.addEventListener("click", function () {
+  inputField.textContent += "5";
+});
+
+btnFour.addEventListener("click", function () {
+  inputField.textContent += "4";
+});
+
+btnThree.addEventListener("click", function () {
+  inputField.textContent += "3";
+});
+
+btnTwo.addEventListener("click", function () {
+  inputField.textContent += "2";
+});
+
+btnOne.addEventListener("click", function () {
+  inputField.textContent += "1";
+});
+
+btnZero.addEventListener("click", function () {
+  inputField.textContent += "0";
+});
+
+btnDel.addEventListener("click", function () {
+  inputField.textContent = inputField.textContent.slice(0, -1);
+});
+
+btnAc.addEventListener("click", function () {
+  inputField.textContent = "";
 });
 
 // At first, I will only add support for "9" and "add"
