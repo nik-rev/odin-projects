@@ -232,6 +232,9 @@ function factorial(input) {
   } else if (input % 1 !== 0) {
     noteField.textContent = "Factorial undefined for non-integer values";
     return "ERROR";
+  } else if (input > 99) {
+    noteField.textContent = "Cannot take factorial of value above 1e100";
+    return "ERROR";
   }
   storedInput = input;
   for (let i = input - 1; i > 0; i--) {
