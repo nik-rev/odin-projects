@@ -17,16 +17,15 @@ body {
 .calculator {
   display: flex;
   flex-direction: column;
-  width: 1400px;
-  gap: 20px;
-  padding: 40px;
-  /* From https://css.glass */
+  width: 700px;
+  gap: 10px;
+  padding: 20px;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 80px;
+  border-radius: 40px;
   backdrop-filter: blur(5px) saturate(140%);
-  filter: drop-shadow(10px 10px 10px #424252);
-  -webkit-backdrop-filter: blur(5px) saturate(140%);
-  box-shadow: inset 0px 0px 10px 10px rgba(255, 255, 255, 0.3);
+  filter: drop-shadow(5px 5px 5px #424252);
+  -webkit-backdrop-filter: blur(2.5px) saturate(140%);
+  box-shadow: inset 0px 0px 5px 5px rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease-in-out;
 }
 
@@ -46,27 +45,27 @@ body {
   align-self: center;
   background-color: #00000010;
   width: 95%;
-  height: 250px;
-  border-radius: 70px;
-  box-shadow: inset 0px 0px 8px 8px rgba(255, 255, 255, 0.3);
+  height: 125px;
+  border-radius: 35px;
+  box-shadow: inset 0px 0px 4px 4px rgba(255, 255, 255, 0.3);
   color: white;
-  font-size: 80px;
+  font-size: 40px;
   display: flex;
   flex-direction: column;
 }
 
 .row-one p {
-  margin-right: 35px;
+  margin-right: 17.5px;
 }
 
 .row-two {
-  height: 225px;
+  height: 112.5px;
   align-items: center;
 }
 
 .row-two button {
-  width: 275px;
-  height: 200px;
+  width: 137.5px;
+  height: 100px;
   border-radius: 50%;
   transition: all 0.2s ease;
 }
@@ -74,40 +73,40 @@ body {
 .storage-input {
   /* border: 2px solid red; */
   text-align: right;
-  height: 128.6px;
+  height: 64.3px;
   /* margin-top: 20px; */
 }
 
 .input .storage {
   /* border: 2px solid red; */
-  font-size: 80px;
+  font-size: 40px;
   color: #d7d7d7b0;
   display: inline-block;
-  margin-top: 20px;
-  margin-right: 22px;
+  margin-top: 10px;
+  margin-right: 11px;
 }
 
 .input .input-field {
   /* border: 2px solid red; */
-  margin-top: 20px;
+  margin-top: 10px;
   align-self: flex-end;
-  height: 128.6px;
+  height: 64.3px;
   display: inline-block;
   float: right;
 }
 
 .input .sub-text {
   align-self: flex-end;
-  height: 128.6px;
+  height: 64.3px;
   color: rgb(255, 189, 189);
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 button {
-  height: 250px;
-  width: 250px;
-  font-size: 100px;
+  height: 125px;
+  width: 125px;
+  font-size: 50px;
   border: none;
   border-radius: 30%;
   background-color: #00000010;
@@ -119,7 +118,7 @@ button {
 
 button:hover {
   background-color: rgba(255, 255, 255, 0.16);
-  border: 3px solid white;
+  border: 1.5px solid white;
   transform: scale(0.95);
 }
 
