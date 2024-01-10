@@ -9,6 +9,7 @@ const allButtonsArray = Array.from(
   allButtonsContainer.querySelectorAll("button")
 );
 const btnNine = document.querySelector(".nine");
+const storage = document.querySelector(".storage");
 const btnEight = document.querySelector(".eight");
 const btnSeven = document.querySelector(".seven");
 const btnSix = document.querySelector(".six");
@@ -37,6 +38,7 @@ let input1 = 0;
 let input2;
 let operator;
 let operatorSingle;
+let temporary;
 
 ///
 ///
@@ -46,6 +48,28 @@ let operatorSingle;
 /// MAIN PROGRAM LOGIC
 ///
 
+storage.textContent = "Welcome to my calculator!";
+
+function evaluateStorage() {
+  if (storage.textContent === "Welcome to my calculator!") {
+    storage.textContent = "";
+  }
+}
+
+function evaluateInput() {
+  if (
+    inputField.textContent.includes("e") ||
+    inputField.textContent.includes("Infinity") ||
+    inputField.textContent.includes("NaN")
+  ) {
+    input1 = 0;
+    input2 = undefined;
+    operator = undefined;
+    operatorSingle = undefined;
+    inputField.textContent = "";
+  }
+}
+
 function calculator() {
   // add code here to check if input1 or input2 contain
   // the letter "e" or "Infinity", if so they should be
@@ -53,7 +77,7 @@ function calculator() {
 
   if (operator && operatorSingle === true) {
     input1 = inputField.textContent;
-    if (operator === "factorial") {
+    if (operator === "!") {
       inputField.textContent = factorial(input1);
     } else if (operator === "sin") {
       inputField.textContent = sin(input1);
@@ -63,15 +87,15 @@ function calculator() {
       inputField.textContent = tan(input1);
     }
   } else if (operator && input2 !== undefined) {
-    if (operator === "add") {
+    if (operator === "+") {
       inputField.textContent = add(+input1, +input2);
-    } else if (operator === "subtract") {
+    } else if (operator === "-") {
       inputField.textContent = subtract(+input1, +input2);
-    } else if (operator === "multiply") {
+    } else if (operator === "*") {
       inputField.textContent = multiply(+input1, +input2);
-    } else if (operator === "divide") {
+    } else if (operator === "/") {
       inputField.textContent = divide(+input1, +input2);
-    } else if (operator === "power") {
+    } else if (operator === "**") {
       inputField.textContent = power(+input1, +input2);
     }
   }
@@ -79,7 +103,11 @@ function calculator() {
 
 for (button in allButtonsArray) {
   allButtonsArray[button].addEventListener("click", function () {
+    evaluateInput();
+    evaluateStorage();
     noteField.textContent = "";
+
+    // If not for these 2 lines, inputting "ERROR77" would be possible and that would lead to NaN plague
     if (inputField.textContent === "ERROR") {
       inputField.textContent = "";
     }
@@ -88,11 +116,13 @@ for (button in allButtonsArray) {
 
 function defineInput() {
   input1 = inputField.textContent;
+  storage.textContent = `${input1} ${operator}`;
   inputField.textContent = ``;
 }
 
 function equals() {
   input2 = inputField.textContent;
+  storage.textContent = ``;
   calculator();
 }
 
@@ -108,31 +138,31 @@ btnReverseSign.addEventListener("click", function () {
 });
 
 btnAdd.addEventListener("click", function () {
-  operator = "add";
+  operator = "+";
   operatorSingle = false;
   defineInput();
 });
 
 btnSubtract.addEventListener("click", function () {
-  operator = "subtract";
+  operator = "-";
   operatorSingle = false;
   defineInput();
 });
 
 btnMultiply.addEventListener("click", function () {
-  operator = "multiply";
+  operator = "*";
   operatorSingle = false;
   defineInput();
 });
 
 btnDivide.addEventListener("click", function () {
-  operator = "divide";
+  operator = "/";
   operatorSingle = false;
   defineInput();
 });
 
 btnPower.addEventListener("click", function () {
-  operator = "power";
+  operator = "**";
   operatorSingle = false;
   defineInput();
 });
@@ -142,7 +172,7 @@ btnEquals.addEventListener("click", function () {
 });
 
 btnFactorial.addEventListener("click", function () {
-  operator = "factorial";
+  operator = "!";
   operatorSingle = true;
   calculator();
 });
