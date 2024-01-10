@@ -88,7 +88,7 @@ for (button in allButtonsArray) {
 
 function defineInput() {
   input1 = inputField.textContent;
-  inputField.textContent = "";
+  inputField.textContent = ``;
 }
 
 function equals() {
