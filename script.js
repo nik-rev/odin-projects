@@ -1,4 +1,13 @@
+///
+/// DECLARING ALL GLOBAL VARIABLES
+///
+
 const inputField = document.querySelector(".input-field");
+const noteField = document.querySelector(".sub-text");
+const allButtonsContainer = document.querySelector(".all-buttons");
+const allButtonsArray = Array.from(
+  allButtonsContainer.querySelectorAll("button")
+);
 const btnNine = document.querySelector(".nine");
 const btnEight = document.querySelector(".eight");
 const btnSeven = document.querySelector(".seven");
@@ -29,6 +38,14 @@ let input2;
 let operator;
 let operatorSingle;
 
+///
+///
+///
+
+///
+/// MAIN PROGRAM LOGIC
+///
+
 function calculator() {
   if (operator && operatorSingle === true) {
     input1 = inputField.textContent;
@@ -56,6 +73,32 @@ function calculator() {
   }
 }
 
+for (button in allButtonsArray) {
+  allButtonsArray[button].addEventListener("click", function () {
+    noteField.textContent = "";
+    if (inputField.textContent === "ERROR") {
+      inputField.textContent = "";
+    }
+  });
+}
+
+function defineInput() {
+  input1 = inputField.textContent;
+  inputField.textContent = "";
+}
+
+function equals() {
+  input2 = inputField.textContent;
+  calculator();
+}
+
+///
+///
+///
+
+///
+/// ADDING BUTTON EVENT LISTENERS
+///
 btnAdd.addEventListener("click", function () {
   operator = "add";
   operatorSingle = false;
@@ -85,16 +128,6 @@ btnPower.addEventListener("click", function () {
   operatorSingle = false;
   defineInput();
 });
-
-function defineInput() {
-  input1 = inputField.textContent;
-  inputField.textContent = "";
-}
-
-function equals() {
-  input2 = inputField.textContent;
-  calculator();
-}
 
 btnEquals.addEventListener("click", function () {
   equals();
@@ -185,12 +218,19 @@ btnAc.addEventListener("click", function () {
   inputField.textContent = "";
 });
 
-// At first, I will only add support for "9" and "add"
+///
+///
+///
+
+///
+/// MATHEMATICAL OPERATORS LOGIC
+///
 
 function factorial(input) {
   if (input === 0) {
     return 1;
   } else if (input % 1 !== 0) {
+    noteField.textContent = "Factorial undefined for non-integer values";
     return "ERROR";
   }
   storedInput = input;
@@ -225,9 +265,18 @@ function multiply(input1, input2) {
 }
 
 function divide(input1, input2) {
-  return input1 / input2;
+  if (input2 === 0) {
+    noteField.textContent = "Cannot divide by 0";
+    return "ERROR";
+  } else {
+    return input1 / input2;
+  }
 }
 
 function power(input1, input2) {
   return input1 ** input2;
 }
+
+///
+///
+///
