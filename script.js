@@ -106,7 +106,7 @@ function configureAllButtons() {
 }
 
 function createNumberButtons() {
-  for (let i = 9; i > -1; i--) {
+  for (let i = 0; i < 10; i++) {
     const button = document.createElement("button");
     const buttonValue = document.createTextNode(`${i}`);
     button.appendChild(buttonValue);
