@@ -1,24 +1,10 @@
-///
-/// DECLARING ALL GLOBAL VARIABLES
-///
-
 const inputField = document.querySelector(".input-field");
 const noteField = document.querySelector(".sub-text");
+const storage = document.querySelector(".storage");
 const allButtonsContainer = document.querySelector(".calculator");
 const allButtonsArray = Array.from(
   allButtonsContainer.querySelectorAll("button")
 );
-const btnNine = document.querySelector(".nine");
-const storage = document.querySelector(".storage");
-const btnEight = document.querySelector(".eight");
-const btnSeven = document.querySelector(".seven");
-const btnSix = document.querySelector(".six");
-const btnFive = document.querySelector(".five");
-const btnFour = document.querySelector(".four");
-const btnThree = document.querySelector(".three");
-const btnTwo = document.querySelector(".two");
-const btnOne = document.querySelector(".one");
-const btnZero = document.querySelector(".zero");
 const btnDel = document.querySelector(".del");
 const btnAc = document.querySelector(".ac");
 const btnReverseSign = document.querySelector(".reverse-sign");
@@ -33,21 +19,23 @@ const btnSubtract = document.querySelector(".subtract");
 const btnDivide = document.querySelector(".divide");
 const btnMultiply = document.querySelector(".multiply");
 const btnPower = document.querySelector(".power");
+const rowThree = document.querySelector(".row-three");
+const rowFour = document.querySelector(".row-four");
+const rowFive = document.querySelector(".row-five");
+const rowSix = document.querySelector(".row-six");
+let input1, input2, operator, operatorSingle;
 
-let input1 = 0;
-let input2;
-let operator;
-let operatorSingle;
+function programConstructor() {
+  configureAllButtons();
+  createNumberButtons();
+}
 
-///
-///
-///
+function calculator() {
+  singleOperatorManager();
+  doubleOperatorManager();
+}
 
-///
-/// MAIN PROGRAM LOGIC
-///
-
-storage.textContent = "Welcome to my calculator!";
+programConstructor();
 
 function evaluateStorage() {
   if (storage.textContent === "Welcome to my calculator!") {
@@ -66,14 +54,14 @@ function evaluateInput() {
     operator = undefined;
     operatorSingle = undefined;
     inputField.textContent = "";
+    noteField.textContent = "";
+  } else if (inputField.textContent.includes("ERROR")) {
+    inputField.textContent = inputField.textContent.replace("ERROR", "");
+    noteField.textContent = "";
   }
 }
 
-function calculator() {
-  // add code here to check if input1 or input2 contain
-  // the letter "e" or "Infinity", if so they should be
-  // immediately reset
-
+function singleOperatorManager() {
   if (operator && operatorSingle === true) {
     input1 = inputField.textContent;
     if (operator === "!") {
@@ -85,7 +73,11 @@ function calculator() {
     } else if (operator === "tan") {
       inputField.textContent = tan(input1);
     }
-  } else if (operator && input2 !== undefined) {
+  }
+}
+
+function doubleOperatorManager() {
+  if (operator && input2 !== undefined) {
     if (operator === "+") {
       inputField.textContent = add(+input1, +input2);
     } else if (operator === "-") {
@@ -100,24 +92,18 @@ function calculator() {
   }
 }
 
-configureAllButtons();
-
 function configureAllButtons() {
   for (button in allButtonsArray) {
     allButtonsArray[button].addEventListener("click", function () {
       evaluateInput();
       evaluateStorage();
       noteField.textContent = "";
-
-      // If not for these 2 lines, inputting "ERROR77" would be possible and that would lead to NaN plague
       if (inputField.textContent === "ERROR") {
         inputField.textContent = "";
       }
     });
   }
 }
-
-createNumberButtons();
 
 function createNumberButtons() {
   for (let i = 9; i > -1; i--) {
@@ -126,13 +112,9 @@ function createNumberButtons() {
     button.appendChild(buttonValue);
     button.addEventListener("click", function () {
       inputField.textContent += `${i}`;
+      evaluateInput();
+      evaluateStorage();
     });
-    const rowThree = document.querySelector(".row-three");
-    const rowFour = document.querySelector(".row-four");
-    const rowFive = document.querySelector(".row-five");
-    const rowSix = document.querySelector(".row-six");
-
-    rowThree.appendChild(button);
 
     if (i === 0) {
       rowSix.insertBefore(button, btnReverseSign);
@@ -158,13 +140,6 @@ function equals() {
   calculator();
 }
 
-///
-///
-///
-
-///
-/// ADDING BUTTON EVENT LISTENERS
-///
 btnReverseSign.addEventListener("click", function () {
   inputField.textContent = -+inputField.textContent;
 });
@@ -240,61 +215,14 @@ btnPeriod.addEventListener("click", function () {
   inputField.textContent += ".";
 });
 
-// btnNine.addEventListener("click", function () {
-//   inputField.textContent += "9";
-// });
-
-// btnEight.addEventListener("click", function () {
-//   inputField.textContent += "8";
-// });
-
-// btnSeven.addEventListener("click", function () {
-//   inputField.textContent += "7";
-// });
-
-// btnSix.addEventListener("click", function () {
-//   inputField.textContent += "6";
-// });
-
-// btnFive.addEventListener("click", function () {
-//   inputField.textContent += "5";
-// });
-
-// btnFour.addEventListener("click", function () {
-//   inputField.textContent += "4";
-// });
-
-// btnThree.addEventListener("click", function () {
-//   inputField.textContent += "3";
-// });
-
-// btnTwo.addEventListener("click", function () {
-//   inputField.textContent += "2";
-// });
-
-// btnOne.addEventListener("click", function () {
-//   inputField.textContent += "1";
-// });
-
-// btnZero.addEventListener("click", function () {
-//   inputField.textContent += "0";
-// });
-
 btnDel.addEventListener("click", function () {
   inputField.textContent = inputField.textContent.slice(0, -1);
 });
 
 btnAc.addEventListener("click", function () {
   inputField.textContent = "";
+  storage.textContent = "";
 });
-
-///
-///
-///
-
-///
-/// MATHEMATICAL OPERATORS LOGIC
-///
 
 function factorial(input) {
   if (input === 0) {
@@ -366,7 +294,3 @@ function divide(input1, input2) {
 function power(input1, input2) {
   return input1 ** input2;
 }
-
-///
-///
-///

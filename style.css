@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   font-family: "Abel";
-  /* border: 1px solid red; */
 }
 
 body {
@@ -29,12 +28,7 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-.row-one,
-.row-two,
-.row-three,
-.row-four,
-.row-five,
-.row-six {
+.row {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -71,14 +65,11 @@ body {
 }
 
 .storage-input {
-  /* border: 2px solid red; */
   text-align: right;
   height: 64.3px;
-  /* margin-top: 20px; */
 }
 
 .input .storage {
-  /* border: 2px solid red; */
   font-size: 40px;
   color: #d7d7d7b0;
   display: inline-block;
@@ -87,11 +78,9 @@ body {
 }
 
 .input .input-field {
-  /* border: 2px solid red; */
   margin-top: 10px;
   align-self: flex-end;
   height: 64.3px;
-  display: inline-block;
   float: right;
 }
 
@@ -121,16 +110,3 @@ button:hover {
   border: 1.5px solid white;
   transform: scale(0.95);
 }
-
-/* .input {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 500px;
-  height: 30px;
-  padding: 5px;
-  margin: 10px;
-  text-align: end;
-  background-color: #ededed;
-  border: 1px solid grey;
-} */
