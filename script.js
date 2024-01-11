@@ -38,7 +38,6 @@ let input1 = 0;
 let input2;
 let operator;
 let operatorSingle;
-let temporary;
 
 ///
 ///
@@ -101,17 +100,50 @@ function calculator() {
   }
 }
 
-for (button in allButtonsArray) {
-  allButtonsArray[button].addEventListener("click", function () {
-    evaluateInput();
-    evaluateStorage();
-    noteField.textContent = "";
+configureAllButtons();
 
-    // If not for these 2 lines, inputting "ERROR77" would be possible and that would lead to NaN plague
-    if (inputField.textContent === "ERROR") {
-      inputField.textContent = "";
+function configureAllButtons() {
+  for (button in allButtonsArray) {
+    allButtonsArray[button].addEventListener("click", function () {
+      evaluateInput();
+      evaluateStorage();
+      noteField.textContent = "";
+
+      // If not for these 2 lines, inputting "ERROR77" would be possible and that would lead to NaN plague
+      if (inputField.textContent === "ERROR") {
+        inputField.textContent = "";
+      }
+    });
+  }
+}
+
+createNumberButtons();
+
+function createNumberButtons() {
+  for (let i = 9; i > -1; i--) {
+    const button = document.createElement("button");
+    const buttonValue = document.createTextNode(`${i}`);
+    button.appendChild(buttonValue);
+    button.addEventListener("click", function () {
+      inputField.textContent += `${i}`;
+    });
+    const rowThree = document.querySelector(".row-three");
+    const rowFour = document.querySelector(".row-four");
+    const rowFive = document.querySelector(".row-five");
+    const rowSix = document.querySelector(".row-six");
+
+    rowThree.appendChild(button);
+
+    if (i === 0) {
+      rowSix.insertBefore(button, btnReverseSign);
+    } else if (i < 4) {
+      rowFive.insertBefore(button, btnAdd);
+    } else if (i < 7) {
+      rowFour.insertBefore(button, btnMultiply);
+    } else if (i < 10) {
+      rowThree.insertBefore(button, btnDel);
     }
-  });
+  }
 }
 
 function defineInput() {
@@ -208,45 +240,45 @@ btnPeriod.addEventListener("click", function () {
   inputField.textContent += ".";
 });
 
-btnNine.addEventListener("click", function () {
-  inputField.textContent += "9";
-});
+// btnNine.addEventListener("click", function () {
+//   inputField.textContent += "9";
+// });
 
-btnEight.addEventListener("click", function () {
-  inputField.textContent += "8";
-});
+// btnEight.addEventListener("click", function () {
+//   inputField.textContent += "8";
+// });
 
-btnSeven.addEventListener("click", function () {
-  inputField.textContent += "7";
-});
+// btnSeven.addEventListener("click", function () {
+//   inputField.textContent += "7";
+// });
 
-btnSix.addEventListener("click", function () {
-  inputField.textContent += "6";
-});
+// btnSix.addEventListener("click", function () {
+//   inputField.textContent += "6";
+// });
 
-btnFive.addEventListener("click", function () {
-  inputField.textContent += "5";
-});
+// btnFive.addEventListener("click", function () {
+//   inputField.textContent += "5";
+// });
 
-btnFour.addEventListener("click", function () {
-  inputField.textContent += "4";
-});
+// btnFour.addEventListener("click", function () {
+//   inputField.textContent += "4";
+// });
 
-btnThree.addEventListener("click", function () {
-  inputField.textContent += "3";
-});
+// btnThree.addEventListener("click", function () {
+//   inputField.textContent += "3";
+// });
 
-btnTwo.addEventListener("click", function () {
-  inputField.textContent += "2";
-});
+// btnTwo.addEventListener("click", function () {
+//   inputField.textContent += "2";
+// });
 
-btnOne.addEventListener("click", function () {
-  inputField.textContent += "1";
-});
+// btnOne.addEventListener("click", function () {
+//   inputField.textContent += "1";
+// });
 
-btnZero.addEventListener("click", function () {
-  inputField.textContent += "0";
-});
+// btnZero.addEventListener("click", function () {
+//   inputField.textContent += "0";
+// });
 
 btnDel.addEventListener("click", function () {
   inputField.textContent = inputField.textContent.slice(0, -1);
