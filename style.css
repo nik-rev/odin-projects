@@ -1,6 +1,25 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  font-size: 2rem;
+}
+
+:root {
+  --default-text-color: white;
+  --default-dashboard-bg-color: #1992d4;
+}
+
+.material-icons {
+  color: var(--default-text-color);
+}
+
+p {
+  color: var(--default-text-color);
 }
 
 body {
@@ -19,7 +38,8 @@ body {
   .dashboard {
     grid-area: dashboard;
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 1fr 12fr;
+    background-color: var(--default-dashboard-bg-color);
   }
 
   .header {
@@ -44,10 +64,50 @@ body {
 
 .dashboard {
   .logo {
-    background-color: rgb(25, 0, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35em;
   }
   .menu {
-    background-color: rgb(255, 0, 0);
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.logo {
+  h1 {
+    color: var(--default-text-color);
+    letter-spacing: -0.15rem;
+    font-size: 1.3em;
+  }
+  .material-icons {
+    font-size: 1.3em;
+  }
+}
+
+.menu {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    margin-top: 1.3em;
+  }
+
+  li {
+    display: flex;
+    gap: 1em;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 90%;
+  }
+
+  .material-icons {
+    font-size: 1em;
   }
 }
 
