@@ -133,7 +133,9 @@ body {
   }
   .greeting {
     grid-area: greeting;
-    background-color: crimson;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
   .buttons {
     grid-area: buttons;
@@ -189,4 +191,38 @@ body {
     font-weight: bold;
     font-size: 70%;
   }
+}
+
+.greeting {
+  img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+  }
+  h1,
+  p {
+    color: var(--default-header-icon-color);
+  }
+
+  h1 {
+    font-size: 0.9em;
+  }
+
+  p {
+    font-size: 0.6em;
+  }
+}
+
+.greeting-div {
+  display: flex;
+  gap: 0.6em;
+  width: 85%;
+  margin: auto;
+}
+
+.greeting-text-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
