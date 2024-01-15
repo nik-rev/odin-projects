@@ -226,3 +226,20 @@ body {
   justify-content: center;
   align-items: flex-start;
 }
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  button {
+    border: none;
+    background-color: var(--default-dashboard-bg-color);
+    color: white;
+    font-weight: bold;
+    font-size: 0.7em;
+    padding: 20px;
+    width: 5em;
+    border-radius: 50px;
+  }
+}
