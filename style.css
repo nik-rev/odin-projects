@@ -12,6 +12,9 @@ html {
 :root {
   --default-text-color: white;
   --default-dashboard-bg-color: #1992d4;
+  --default-header-bg-color: #ffffff;
+  --default-header-icon-color: #2b2b2b;
+  --dashboard-size: 330px;
 }
 
 .material-icons {
@@ -28,7 +31,7 @@ body {
 
 .main-container {
   display: grid;
-  grid-template: 2fr 11fr / 1fr 4fr;
+  grid-template: 2fr 11fr / var(--dashboard-size) 4fr;
   grid-template-areas:
     "dashboard header"
     "dashboard main-content";
@@ -49,6 +52,7 @@ body {
     grid-template-areas:
       "search-bar notifications"
       "greeting   buttons";
+    background-color: var(--default-header-bg-color);
   }
 
   .main-content {
@@ -114,7 +118,12 @@ body {
 .header {
   .search-bar {
     grid-area: search-bar;
-    background-color: #5bc;
+    display: grid;
+    grid-template-columns: 50px 80%;
+    grid-auto-rows: 35%;
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
   }
   .notifications {
     grid-area: notifications;
@@ -143,4 +152,20 @@ body {
     grid-area: trending;
     background-color: violet;
   }
+}
+
+.search-bar {
+  .material-icons {
+    font-size: 100%;
+    margin: auto;
+  }
+  input {
+    border: none;
+    background-color: #e2e8f0;
+    border-radius: 20px;
+  }
+}
+
+.header .material-icons {
+  color: var(--default-header-icon-color);
 }
