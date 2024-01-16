@@ -5,8 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <p class="console"></p>
+    <dialog>
+      <button autofocus>Close</button>
+      <p>This modal dialog has a groovy backdrop!</p>
+      <input type="text" class=".book-title-input" placeholder="Harry Potter" />
+      <input type="text" class=".book-page-count-input" placeholder="315" />
+      <input type="text" class=".book-read-input" placeholder="True" />
+      <input
+        type="text"
+        class=".book-author-input"
+        placeholder="J.K. Rowling"
+      />
+    </dialog>
+    <button class="add">Add</button>
+    <div class="book">
+      <article class="page page-one">
+        <h1 class="book-title">Book Title</h1>
+        <p class="book-dummy-content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+          quisquam doloremque ut repudiandae qui cupiditate placeat officia
+          impedit eaque nostrum. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. <br /><br />
+
+          Dolore laudantium aliquam a nemo, itaque praesentium doloribus
+          consectetur eligendi harum consequuntur? <br /><br />Tenetur facere
+          soluta odio molestiae dicta dolore minima quibusdam earum.
+        </p>
+        <h1 class="book-page-count">275</h1>
+      </article>
+      <article class="page page-two">
+        <h1 class="book-read">Read?</h1>
+        <p class="book-dummy-content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+          quisquam doloremque ut repudiandae qui cupiditate placeat officia
+          impedit eaque nostrum. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. <br /><br />
+
+          Dolore laudantium aliquam a nemo, itaque praesentium doloribus
+          consectetur eligendi harum consequuntur? <br /><br />Tenetur facere
+          soluta odio molestiae dicta dolore minima quibusdam earum.
+        </p>
+        <h1 class="book-author">by Lorem</h1>
+      </article>
+    </div>
   </body>
 </html>

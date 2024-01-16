@@ -1,4 +1,13 @@
-const CONSOLE = document.querySelector(".console");
+const BOOK_TITLE = document.querySelector(".book-title");
+const BOOK_PAGE_COUNT = document.querySelector(".book-page-count");
+const BOOK_READ = document.querySelector(".book-read");
+const BOOK_AUTHOR = document.querySelector(".book-author");
+
+const ADD_BUTTON = document.querySelector(".add");
+const DIALOG = document.querySelector("dialog");
+const SHOW_BUTTON = document.querySelector("dialog + button");
+const CLOSE_BUTTON = document.querySelector("dialog button");
+
 const myLibrary = [];
 
 function Book(title, author, pageCount, read) {
@@ -22,10 +31,6 @@ function addBookToLibrary(title, author, pageCount, read) {
 }
 
 addBookToLibrary("Harry Pottah", "Jk rowling", 300, false);
-addBookToLibrary("Js in 100s", "Fireship", 124, true);
-addBookToLibrary("Plants vs Zombies: The Guide", "George Gordon", 56, true);
-addBookToLibrary("Top 100 Pictures of 2024", "Aaan Ron", 104, false);
-addBookToLibrary("Insane Cool Space Pics", "Vladimir Solovel", 24, false);
 
 function loopThroughBooks() {
   for (Book of myLibrary) {
@@ -33,8 +38,21 @@ function loopThroughBooks() {
     Book.read
       ? (hasRead = "I have read this book")
       : (hasRead = "I haven't read this book");
-    CONSOLE.textContent += `${Book.title} by ${Book.author} has ${Book.pageCount} pages & ${hasRead}`;
+
+    BOOK_TITLE.textContent = Book.title;
+    BOOK_PAGE_COUNT.textContent = Book.pageCount;
+    BOOK_READ.textContent = hasRead;
+    BOOK_AUTHOR.textContent = Book.author;
   }
 }
+
+SHOW_BUTTON.addEventListener("click", () => {
+  DIALOG.showModal();
+  ADD_BUTTON.classList.toggle("hidden");
+});
+CLOSE_BUTTON.addEventListener("click", () => {
+  DIALOG.close();
+  ADD_BUTTON.classList.toggle("hidden");
+});
 
 loopThroughBooks();

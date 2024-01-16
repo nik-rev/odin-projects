@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+}
+
+.hidden {
+  display: none;
+  background-color: red;
+}
+
+:root {
+  --book-pink: 90deg;
+  --book-purple: 30deg;
+  --book-red: 115deg;
+  --book-green: 220deg;
+  --book-cyan: 280deg;
+  --book-blue: 330deg;
+  --default-book-height: 793px;
+  --default-book-width: 1280px;
+  --book-shrink-constant: 0.6;
+}
+
+.book {
+  height: calc(var(--default-book-height) * var(--book-shrink-constant));
+  width: calc(var(--default-book-width) * var(--book-shrink-constant));
+  background-image: url(./img/book-open.png);
+  background-size: contain;
+  display: grid;
+  grid-template-columns: 10% 1fr 5% 1fr 10%;
+  grid-template-areas: ". page1 . page2 .";
+  align-items: start;
+  overflow: hidden;
+  font-size: 100%;
+}
+
+.page {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 85%;
+}
+
+.page-one {
+  grid-area: page1;
+}
+
+.page-two {
+  grid-area: page2;
+}
+
+::backdrop {
+  opacity: 0.6;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+button {
+  height: 100px;
+  width: 150px;
+  border: none;
+  padding: 40px;
+  border-radius: 20px;
+}
+
+dialog {
+  background-color: red;
+  margin: auto;
+}
