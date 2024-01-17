@@ -23,6 +23,8 @@
 }
 
 .book {
+  position: absolute;
+  margin: auto auto auto 0;
   height: calc(var(--default-book-height) * var(--book-shrink-constant));
   width: calc(var(--default-book-width) * var(--book-shrink-constant));
   background-image: url(./img/book-open.png);
@@ -33,6 +35,17 @@
   align-items: start;
   overflow: hidden;
   font-size: 100%;
+}
+
+.book.initial {
+  left: 100vw;
+  background-color: red;
+  transition: all 2s ease-in-out;
+}
+
+.book.transition {
+  left: 0;
+  background-color: green;
 }
 
 .page {
@@ -56,6 +69,7 @@
 }
 
 body {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,14 +78,42 @@ body {
 }
 
 button {
-  height: 100px;
-  width: 150px;
   border: none;
-  padding: 40px;
+  padding: 5px;
   border-radius: 20px;
 }
 
 dialog {
-  background-color: red;
+  position: absolute;
   margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  margin: auto;
+  border: 15px solid rgb(231, 92, 92);
+  border-radius: 20px;
+  gap: 15px;
+  background-color: rgb(214, 163, 163);
+}
+
+dialog > input {
+  border: none;
+  background-color: rgb(219, 126, 126);
+}
+
+dialog > button[autofocus] {
+  position: absolute;
+  right: -2.8%;
+  top: -3%;
+  width: min-content;
+  height: min-content;
+  background: rgb(231, 92, 92);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
+
+.create-book-title {
+  font-weight: bold;
+  border-bottom: 2px solid black;
 }
