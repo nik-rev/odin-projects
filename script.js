@@ -38,7 +38,7 @@ const myLibrary = [
   "empty",
 ];
 
-function Book(title, author, pageCount, read) {
+function myBook(title, author, pageCount, read) {
   this.title = title;
   this.author = author;
   this.pageCount = pageCount;
@@ -54,7 +54,7 @@ function Book(title, author, pageCount, read) {
 }
 
 function addBookToLibrary(title, author, pageCount, read) {
-  const newBook = new Book(title, author, pageCount, read);
+  const newBook = new myBook(title, author, pageCount, read);
   for (let i = 0; i < myLibrary.length; i++) {
     if (myLibrary[i] === "empty") {
       myLibrary[i] = newBook;
@@ -63,10 +63,36 @@ function addBookToLibrary(title, author, pageCount, read) {
   }
 }
 
-function displayLibraryBooks(array) {
-  for (book of array) {
-    if (book === "empty") {
+function updateLibraryDisplay() {
+  const imgsInLibrary = document.querySelectorAll(".shelf>img");
+  const imgsInLibraryArray = Array.from(imgsInLibrary);
+
+  for (img of imgsInLibraryArray) {
+    img.remove();
+  }
+  const firstSlice = myLibrary.slice(0, 5);
+  const secondSlice = myLibrary.slice(5, 10);
+  const thirdSlice = myLibrary.slice(10, 15);
+  displayRowBooks(firstSlice, ROW_ONE);
+  displayRowBooks(secondSlice, ROW_TWO);
+  displayRowBooks(thirdSlice, ROW_THREE);
+}
+
+function displayRowBooks(array, row) {
+  for (Book of array) {
+    if (Book === "empty") {
       const EMPTY_IMG = document.createElement("img");
+      row.appendChild(EMPTY_IMG);
+    } else {
+      const OUR_NEW_BOOK = document.createElement("img");
+      row.appendChild(OUR_NEW_BOOK);
+      OUR_NEW_BOOK.classList.add(
+        `title-${Book.title}`,
+        `author-${Book.author}`,
+        `page-count-${Book.pageCount}`,
+        `read-${Book.read}`
+      );
+      OUR_NEW_BOOK.setAttribute("src", "./img/book.png");
     }
   }
 }
@@ -157,5 +183,6 @@ function createDOMBook(title, author, pageCount, read) {
     DOM_BOOK.classList.toggle("transition-two");
     addBookToLibrary(title, author, pageCount, read);
     console.log(myLibrary);
+    updateLibraryDisplay();
   }, 2000);
 }
