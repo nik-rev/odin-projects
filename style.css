@@ -10,6 +10,58 @@
   background-color: red;
 }
 
+.bookshelf {
+  display: grid;
+  margin-bottom: 2vh;
+  margin-left: 3vw;
+  background-image: url(./img/bookshelf.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: calc(
+    var(--default-bookshelf-width) * var(--bookshelf-shrink-constant)
+  );
+  height: calc(
+    var(--default-bookshelf-height) * var(--bookshelf-shrink-constant)
+  );
+
+  grid-template: 7% 1fr 10% 1fr 10% 1fr 16% / 60%;
+  justify-content: center;
+  grid-template-areas:
+    "."
+    "shelf-one"
+    "."
+    "shelf-two"
+    "."
+    "shelf-three"
+    ".";
+}
+
+.shelf-1,
+.shelf-2,
+.shelf-3 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-content: end;
+}
+
+.shelf-1 {
+  grid-area: shelf-one;
+}
+
+.shelf-2 {
+  grid-area: shelf-two;
+}
+
+.shelf-3 {
+  grid-area: shelf-three;
+}
+
+img[src="./img/book.png"] {
+  transform: rotate(270deg);
+  height: 100%;
+  width: 100%;
+}
+
 :root {
   --book-pink: 90deg;
   --book-purple: 30deg;
@@ -19,6 +71,9 @@
   --book-blue: 330deg;
   --default-book-height: 793px;
   --default-book-width: 1280px;
+  --default-bookshelf-height: 1920px;
+  --default-bookshelf-width: 1832px;
+  --bookshelf-shrink-constant: 0.55;
   --book-shrink-constant: 0.6;
 }
 
@@ -38,14 +93,24 @@
 }
 
 .book.initial {
+  transform: scale(0.9);
   left: 100vw;
-  background-color: red;
   transition: all 2s ease-in-out;
+  top: calc(
+    50vh - (var(--default-book-height) * var(--book-shrink-constant) / 2)
+  );
 }
 
 .book.transition {
-  left: 0;
-  background-color: green;
+  transform: scale(1.1);
+  left: calc(
+    50vw - (var(--default-book-width) * var(--book-shrink-constant) / 2)
+  );
+}
+
+.book.transition-two {
+  transform: scale(0);
+  left: 10vw;
 }
 
 .page {
@@ -69,18 +134,27 @@
 }
 
 body {
+  background-color: #c4e6e8;
+  background-image: url(/img/background.jpg);
+  background-size: 100vw 50%;
+  background-position: bottom;
+  background-repeat: no-repeat;
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-start;
   height: 100vh;
   flex-direction: column;
 }
 
 button {
+  margin-left: 14vw;
+  margin-bottom: 5vh;
   border: none;
-  padding: 5px;
+  padding: 0.5em;
   border-radius: 20px;
+  font-size: 2rem;
+  background-color: rgb(214, 163, 163);
 }
 
 dialog {

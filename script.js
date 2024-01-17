@@ -13,10 +13,30 @@ const CONSOLE = document.querySelector(".console");
 const BOOK_TITLE_INPUT = document.querySelector(".book-title-input");
 const BOOK_PAGE_COUNT_INPUT = document.querySelector(".book-page-count-input");
 const BOOK_READ_INPUT = document.querySelector(".book-read-input");
-const BOOK_AUTHOR_INPUT = document.querySelector("book-author-input");
+const BOOK_AUTHOR_INPUT = document.querySelector(".book-author-input");
+
+const ROW_ONE = document.querySelector(".shelf-1");
+const ROW_TWO = document.querySelector(".shelf-2");
+const ROW_THREE = document.querySelector(".shelf-3");
 
 const BODY = document.querySelector("body");
-const myLibrary = [];
+const myLibrary = [
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+  "empty",
+];
 
 function Book(title, author, pageCount, read) {
   this.title = title;
@@ -35,10 +55,21 @@ function Book(title, author, pageCount, read) {
 
 function addBookToLibrary(title, author, pageCount, read) {
   const newBook = new Book(title, author, pageCount, read);
-  myLibrary.push(newBook);
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (myLibrary[i] === "empty") {
+      myLibrary[i] = newBook;
+      break;
+    }
+  }
 }
 
-addBookToLibrary("Harry Pottah", "Jk rowling", 300, false);
+function displayLibraryBooks(array) {
+  for (book of array) {
+    if (book === "empty") {
+      const EMPTY_IMG = document.createElement("img");
+    }
+  }
+}
 
 // function loopThroughBooks() {
 //   for (Book of myLibrary) {
@@ -63,7 +94,12 @@ CLOSE_BUTTON.addEventListener("click", () => {
   ADD_BUTTON.classList.toggle("hidden");
 });
 CREATE_BOOK.addEventListener("click", () => {
-  createDOMBook();
+  createDOMBook(
+    BOOK_TITLE_INPUT.value,
+    BOOK_AUTHOR_INPUT.value,
+    BOOK_PAGE_COUNT_INPUT.value,
+    BOOK_READ_INPUT.value
+  );
   DIALOG.classList.toggle("hidden");
   ADD_BUTTON.classList.toggle("hidden");
 });
@@ -80,7 +116,7 @@ function createDOMBook(title, author, pageCount, read) {
 
   const PAGE_ONE_TITLE = document.createElement("h1");
   PAGE_ONE_TITLE.classList.add("book-title");
-  PAGE_ONE_TITLE.textContent = "test title";
+  PAGE_ONE_TITLE.textContent = `Title: ${title}`;
   PAGE_ONE.appendChild(PAGE_ONE_TITLE);
 
   const PAGE_ONE_CONTENT = document.createElement("p");
@@ -90,7 +126,7 @@ function createDOMBook(title, author, pageCount, read) {
 
   const PAGE_ONE_COUNT = document.createElement("h1");
   PAGE_ONE_COUNT.classList.add("book-page-count");
-  PAGE_ONE_COUNT.textContent = "test page count";
+  PAGE_ONE_COUNT.textContent = `Page: ${pageCount}`;
   PAGE_ONE.appendChild(PAGE_ONE_COUNT);
 
   // Creating second page
@@ -100,7 +136,7 @@ function createDOMBook(title, author, pageCount, read) {
 
   const PAGE_TWO_READ = document.createElement("h1");
   PAGE_TWO_READ.classList.add("book-read");
-  PAGE_TWO_READ.textContent = "test read";
+  PAGE_TWO_READ.textContent = `I've ${read} it`;
   PAGE_TWO.appendChild(PAGE_TWO_READ);
 
   const PAGE_TWO_CONTENT = document.createElement("p");
@@ -110,10 +146,16 @@ function createDOMBook(title, author, pageCount, read) {
 
   const PAGE_TWO_AUTHOR = document.createElement("h1");
   PAGE_TWO_AUTHOR.classList.add("book-author");
-  PAGE_TWO_AUTHOR.textContent = "test author";
+  PAGE_TWO_AUTHOR.textContent = `Author: ${author}`;
   PAGE_TWO.appendChild(PAGE_TWO_AUTHOR);
 
+  // DOM_BOOK.classList.toggle("transition");
   setTimeout(function () {
     DOM_BOOK.classList.toggle("transition");
-  }, 1000);
+  }, 0);
+  setTimeout(function () {
+    DOM_BOOK.classList.toggle("transition-two");
+    addBookToLibrary(title, author, pageCount, read);
+    console.log(myLibrary);
+  }, 2000);
 }
