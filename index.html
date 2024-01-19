@@ -25,39 +25,37 @@
       <p class="create-book-title">Create Book</p>
       <label class="create-input-title">What is the title of your book?</label>
       <input
+        minlength="3"
         maxlength="25"
         type="text"
         class="book-title-input"
-        placeholder="Harry Potter"
+        placeholder="Enter book title..."
       />
       <label class="create-input-pages"
         >How many pages does your book have?</label
       >
       <input
-        maxlength="25"
-        type="text"
+        min="1"
+        maxlength="7"
+        type="number"
         class="book-page-count-input"
-        placeholder="315"
+        placeholder="Enter amount of pages your book has..."
       />
       <label class="create-input-read">Have you read your book?</label>
-      <input
-        maxlength="25"
-        type="text"
-        class="book-read-input"
-        placeholder="True"
-      />
+      <input type="checkbox" class="book-read-input" />
       <label class="create-input-author">Who is the author of your book?</label>
       <input
+        minlength="2"
         maxlength="25"
         type="text"
         class="book-author-input"
-        placeholder="J.K. Rowling"
+        placeholder="Enter the author of your book..."
       />
       <button class="create-book">Create Book</button>
     </dialog>
     <label class="switch">
       <input type="checkbox" />
-      <span class="slider round"> <p>Delete book</p></span>
+      <span class="slider round"> <p class="no-highlight">Delete book</p></span>
     </label>
     <button class="add">Add</button>
     <div class="bookshelf">

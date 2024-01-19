@@ -5,6 +5,10 @@
   font-family: Roboto;
 }
 
+.no-highlight {
+  user-select: none;
+}
+
 .hidden {
   display: none;
   background-color: red;

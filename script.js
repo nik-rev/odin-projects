@@ -17,28 +17,27 @@ const OPEN_BUTTON = document.querySelector(".open");
 const ROW_ONE = document.querySelector(".shelf-1");
 const ROW_TWO = document.querySelector(".shelf-2");
 const ROW_THREE = document.querySelector(".shelf-3");
-let temporary;
 let CURRENT_BOOK;
 let openedBook;
 const SLIDER = document.querySelector(".switch > input");
 const BODY = document.querySelector("body");
 const SLIDER_PARA = document.querySelector(".slider.round > p");
 const myLibrary = [
-  new myBook("a", "", "", ""),
+  new myBook("Echoes of the Cosmos", "Lila Thornfield", "321", "True"),
   "empty",
-  new myBook("b", "", "", ""),
+  new myBook("Galactic Rhythms", "Jasper M. Huxley", "415", "False"),
   "empty",
-  new myBook("c", "", "", ""),
-  new myBook("d", "", "", ""),
-  "empty",
-  "empty",
-  new myBook("e", "", "", ""),
-  new myBook("f", "", "", ""),
-  "empty",
-  new myBook("g", "", "", ""),
+  new myBook("Stellar Shadows", "Aurora Blackwood", "387", "True"),
+  new myBook("Nebula Whispers", "Ian Griffiths", "290", "False"),
   "empty",
   "empty",
-  new myBook("h", "", "", ""),
+  new myBook("Quantum Reverie", "Harriet R. Eldridge", "350", "True"),
+  new myBook("The Celestial Tapestry", "Felix J. Morrow", "402", "False"),
+  "empty",
+  new myBook("Orbiting Dreams", "Sophia Hartnett", "468", "True"),
+  "empty",
+  "empty",
+  new myBook("Void Wanderers", "Marcus P. Yale", "276", "False"),
 ];
 
 function myBook(title, author, pageCount, read) {
@@ -82,51 +81,16 @@ function displayRowBooks(array, row) {
       const OUR_NEW_BOOK = document.createElement("img");
       row.appendChild(OUR_NEW_BOOK);
       OUR_NEW_BOOK.classList.add(
-        `title-${Book.title}`,
-        `author-${Book.author}`,
-        `page-count-${Book.pageCount}`,
-        `read-${Book.read}`
+        `title-${Book.title.replace(/\s/g, "")}`,
+        `author-${Book.author.replace(/\s/g, "")}`,
+        `page-count-${Book.pageCount.replace(/\s/g, "")}`,
+        `read-${Book.read.replace(/\s/g, "")}`
       );
 
       OUR_NEW_BOOK.setAttribute("src", "./img/book.png");
-      let storedBook = Book;
     }
   }
 }
-
-let temporaryExist;
-
-let thisBook;
-
-// SLIDER.addEventListener("click", function () {
-//   for (const Book of myLibrary) {
-//     if (Book !== "empty") {
-//       const thisBook = Book;
-//       const CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
-
-//       const testObject = {
-//         fn() {
-//           openCurrentBook(thisBook);
-//         },
-//       };
-
-//       console.log(testObject.fn);
-//       // function fn() {
-//       //   openCurrentBook(thisBook);
-//       // };
-
-//       if (SLIDER.checked) {
-//         SLIDER_PARA.textContent = "Read book";
-//         CURRENT_BOOK.removeEventListener("click", removeBook);
-//         CURRENT_BOOK.addEventListener("click", testObject.fn);
-//       } else {
-//         SLIDER_PARA.textContent = "Close book";
-//         CURRENT_BOOK.removeEventListener("click", testObject.fn);
-//         CURRENT_BOOK.addEventListener("click", removeBook);
-//       }
-//     }
-//   }
-// });
 
 function openCurrentBook(currentBook) {
   openBook(currentBook);
@@ -147,6 +111,14 @@ function removeOpenBook() {
   }
 }
 
+SLIDER.addEventListener("click", () => {
+  if (SLIDER.checked) {
+    SLIDER_PARA.textContent = "Open book";
+  } else {
+    SLIDER_PARA.textContent = "Delete book";
+  }
+});
+
 ADD_BUTTON.addEventListener("click", () => {
   DIALOG.classList.toggle("hidden");
   ADD_BUTTON.classList.toggle("hidden");
@@ -158,6 +130,18 @@ CLOSE_BUTTON.addEventListener("click", () => {
 });
 
 CREATE_BOOK.addEventListener("click", () => {
+  for (const BOOK of myLibrary) {
+    switch (BOOK.title) {
+      case BOOK_TITLE_INPUT.value:
+        CREATE_BOOK.textContent = "Title already exists";
+        setTimeout(function () {
+          CREATE_BOOK.textContent = "Create Book";
+        }, 3000);
+        return;
+    }
+  }
+  console.log(BOOK_TITLE_INPUT.value.length);
+
   createNewBook = true;
   createDOMBook(
     BOOK_TITLE_INPUT.value,
@@ -193,14 +177,15 @@ function createDOMBook(title, author, pageCount, read) {
   }
 
   createNewBook = false;
-  // DOM_BOOK.classList.toggle("transition");
 }
 
 function updateSwitchListener() {
   for (const Book of myLibrary) {
     if (Book !== "empty") {
       const thisBook = Book;
-      const CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
+      const CURRENT_BOOK = document.querySelector(
+        `.title-${Book.title.replace(/\s/g, "")}`
+      );
       CURRENT_BOOK.addEventListener("click", function () {
         if (SLIDER.checked) {
           openCurrentBook(thisBook);
@@ -220,7 +205,6 @@ function removeBook(thisBook) {
 }
 
 function createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK) {
-  // Creating first page
   const PAGE_ONE = document.createElement("article");
   PAGE_ONE.classList.add("page", "page-one");
   DOM_BOOK.appendChild(PAGE_ONE);
@@ -232,7 +216,8 @@ function createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK) {
 
   const PAGE_ONE_CONTENT = document.createElement("p");
   PAGE_ONE_CONTENT.classList.add("book-dummy-content");
-  PAGE_ONE_CONTENT.textContent = "test dummy content";
+  PAGE_ONE_CONTENT.textContent =
+    "In the vast expanse of the universe, stars twinkle like cosmic beacons, guiding the way for lost travellers. The universe, a grand tapestry of galaxies and nebulae, whispers ancient secrets to those who listen. Within this endless void, black holes dance in a delicate balance, pulling and distorting the very fabric of space-time. Each planet, a unique jewel, orbits its star in a celestial ballet, painting a picture of harmony and chaos intertwined.";
   PAGE_ONE.appendChild(PAGE_ONE_CONTENT);
 
   const PAGE_ONE_COUNT = document.createElement("h1");
@@ -240,7 +225,6 @@ function createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK) {
   PAGE_ONE_COUNT.textContent = `Page: ${pageCount}`;
   PAGE_ONE.appendChild(PAGE_ONE_COUNT);
 
-  // Creating second page
   const PAGE_TWO = document.createElement("article");
   PAGE_TWO.classList.add("page", "page-two");
   DOM_BOOK.appendChild(PAGE_TWO);
@@ -252,7 +236,8 @@ function createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK) {
 
   const PAGE_TWO_CONTENT = document.createElement("p");
   PAGE_TWO_CONTENT.classList.add("book-dummy-content");
-  PAGE_TWO_CONTENT.textContent = "test dummy content again";
+  PAGE_TWO_CONTENT.textContent =
+    "As we delve deeper into the cosmos, we uncover mysteries that challenge our understanding of existence. The silent hum of the universe resonates with the echoes of billions of years of cosmic evolution. From the fiery birth of stars to the tranquil beauty of nebulae, each chapter of the universe's story is written in the light of distant suns. It's a never-ending journey through a realm where time and space converge, revealing the extraordinary tapestry of the cosmos.";
   PAGE_TWO.appendChild(PAGE_TWO_CONTENT);
 
   const PAGE_TWO_AUTHOR = document.createElement("h1");
@@ -282,5 +267,6 @@ function bookTransition(domBook, author, pageCount, title, read) {
   }, 4000);
 }
 
+// Startup
 updateLibraryDisplay();
 updateSwitchListener();
