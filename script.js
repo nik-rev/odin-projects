@@ -5,7 +5,6 @@ const BOOK_AUTHOR = document.querySelector(".book-author");
 
 const ADD_BUTTON = document.querySelector(".add");
 const DIALOG = document.querySelector("dialog");
-const SHOW_BUTTON = document.querySelector("dialog + button");
 const CLOSE_BUTTON = document.querySelector("dialog button");
 const CREATE_BOOK = document.querySelector(".create-book");
 let createNewBook;
@@ -21,7 +20,10 @@ const ROW_THREE = document.querySelector(".shelf-3");
 let temporary;
 let CURRENT_BOOK;
 let openedBook;
+const SLIDER = document.querySelector(".switch > input");
 const BODY = document.querySelector("body");
+const SLIDER_PARA = document.querySelector(".slider.round > p");
+
 const myLibrary = [
   "empty",
   "empty",
@@ -112,21 +114,30 @@ function onBookClick() {
 
 let temporaryExist;
 
-OPEN_BUTTON.addEventListener("click", function () {
-  for (Book of myLibrary) {
-    if (Book !== "empty") {
-      let currentBook = Book;
+SLIDER.addEventListener("click", function () {
+  if (SLIDER.checked) {
+    SLIDER_PARA.textContent = "Open book";
+    for (Book of myLibrary) {
+      if (Book !== "empty") {
+        const someObject = { aProperty: Book };
 
-      let CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
+        let CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
 
-      CURRENT_BOOK.removeEventListener("click", onBookClick);
-      CURRENT_BOOK.addEventListener("click", () => {
-        openBook(currentBook);
-        BODY.addEventListener("click", removeOpenBook);
-      });
+        CURRENT_BOOK.removeEventListener("click", onBookClick);
+        CURRENT_BOOK.addEventListener("click", () => {
+          openCurrentBook(someObject.aProperty);
+        });
+      }
     }
+  } else {
+    SLIDER_PARA.textContent = "Delete book";
   }
 });
+
+function openCurrentBook(currentBook) {
+  openBook(currentBook);
+  BODY.addEventListener("click", removeOpenBook);
+}
 
 function openBook({ title, author, pageCount, read }) {
   openDOMBook(title, author, pageCount, read);
@@ -142,14 +153,16 @@ function removeOpenBook() {
   }
 }
 
-SHOW_BUTTON.addEventListener("click", () => {
+ADD_BUTTON.addEventListener("click", () => {
   DIALOG.classList.toggle("hidden");
   ADD_BUTTON.classList.toggle("hidden");
 });
+
 CLOSE_BUTTON.addEventListener("click", () => {
   DIALOG.classList.toggle("hidden");
   ADD_BUTTON.classList.toggle("hidden");
 });
+
 CREATE_BOOK.addEventListener("click", () => {
   createNewBook = true;
   createDOMBook(
