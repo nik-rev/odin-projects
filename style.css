@@ -151,10 +151,6 @@ img[src="./img/book.png"]:hover {
   grid-area: page2;
 }
 
-::backdrop {
-  opacity: 0.6;
-}
-
 body {
   background-color: #c4e6e8;
   background-image: url(/img/background.jpg);
@@ -167,6 +163,7 @@ body {
   align-items: flex-start;
   height: 100vh;
   flex-direction: column;
+  overflow: hidden;
 }
 
 button {
@@ -176,40 +173,213 @@ button {
   padding: 0.5em;
   border-radius: 20px;
   font-size: 2rem;
-  background-color: rgb(214, 163, 163);
+  background-color: rgba(255, 0, 0, 0);
 }
 
 dialog {
+  background-color: rgba(255, 0, 0, 0);
   position: absolute;
-  margin: auto;
+  height: calc(var(--default-book-height) * var(--book-shrink-constant));
+  width: calc(var(--default-book-width) * var(--book-shrink-constant));
+  background-image: url(./img/book-open.png);
+  background-size: contain;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  margin: auto;
-  border: 15px solid rgb(231, 92, 92);
+  grid-template-columns: repeat(2, 40%);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas:
+    "create-book-title     ."
+    "create-input-title    create-input-read"
+    "book-title-input      book-read-input"
+    "create-input-pages    create-input-author"
+    "book-page-count-input book-author-input"
+    "create-book           create-book";
+  justify-content: center;
+  font-family: "Kalam", cursive;
+  font-weight: 300;
+  font-style: normal;
+  align-items: start;
+  font-size: 100%;
+  border: none;
+  left: 50vw;
+  bottom: 40vh;
   border-radius: 20px;
   gap: 15px;
-  background-color: rgb(214, 163, 163);
+}
+
+.add {
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  background-image: url(./img/wood.jpg);
+  background-size: cover;
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  text-shadow: 4px 0px 5px black;
+}
+
+.switch {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  display: inline-block;
+  width: 140px;
+  height: 34px;
+  top: 6.3vh;
+  left: 40vw;
+  background-image: url(./img/wood.jpg);
+  background-size: cover;
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  text-shadow: 4px 0px 5px black;
+}
+
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  padding: 20px;
+  transform: scale(1.1);
+}
+
+.create-book-title {
+  grid-area: create-book-title;
+}
+.create-input-title {
+  grid-area: create-input-title;
+}
+.book-title-input {
+  grid-area: book-title-input;
+}
+.create-input-pages {
+  grid-area: create-input-pages;
+}
+.book-page-count-input {
+  grid-area: book-page-count-input;
+}
+.create-input-read {
+  grid-area: create-input-read;
+}
+.book-read-input {
+  grid-area: book-read-input;
+}
+.create-input-author {
+  grid-area: create-input-author;
+}
+.book-author-input {
+  grid-area: book-author-input;
+}
+.create-book {
+  grid-area: create-book;
+}
+
+dialog > label,
+dialog > input {
+  font-size: 1.2rem;
 }
 
 dialog > input {
   border: none;
-  background-color: rgb(219, 126, 126);
+  background-color: rgba(255, 0, 0, 0);
+  transition: all 0.4s ease-in-out;
 }
 
 dialog > button[autofocus] {
+  color: red;
+  font-weight: bold;
   position: absolute;
-  right: -2.8%;
-  top: -3%;
+  right: 10%;
+  top: 5%;
   width: min-content;
   height: min-content;
-  background: rgb(231, 92, 92);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0px;
 }
 
+input:hover {
+  font-size: 1.4rem;
+}
+
+input:focus {
+  font-size: 1.4rem;
+  border: none;
+  outline: none;
+}
+
+button[autofocus]:hover {
+  transform: scale(1.2);
+}
+
 .create-book-title {
   font-weight: bold;
   border-bottom: 2px solid black;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  transform: scale(2);
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(./img/wood.jpg);
+  background-size: cover;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0px 0px 4px black;
+}
+
+/* input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+} */
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+  margin: auto;
+}
+
+.slider p {
+  margin-left: 75px;
+  font-size: 0.9rem;
+  text-shadow: 2px 2px 3px black;
 }
