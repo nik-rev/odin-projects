@@ -23,15 +23,15 @@ const SLIDER = document.querySelector(".switch > input");
 const BODY = document.querySelector("body");
 const SLIDER_PARA = document.querySelector(".slider.round > p");
 const myLibrary = [
-  new myBook("Echoes of the Cosmos", "Lila Thornfield", "321", "True", "pink"),
+  new myBook("Echoes of the Cosmos", "Lila Thornfield", "321", "on", "pink"),
   "empty",
-  new myBook("Galactic Rhythms", "Jasper M. Huxley", "415", "False", "purple"),
+  new myBook("Galactic Rhythms", "Jasper M. Huxley", "415", "off", "purple"),
   "empty",
-  new myBook("Stellar Shadows", "Aurora Blackwood", "387", "True", "red"),
-  new myBook("Nebula Whispers", "Ian Griffiths", "290", "False", "green"),
+  new myBook("Stellar Shadows", "Aurora Blackwood", "387", "on", "red"),
+  new myBook("Nebula Whispers", "Ian Griffiths", "290", "off", "green"),
   "empty",
   "empty",
-  new myBook("Quantum Reverie", "Harriet R. Eldridge", "350", "True", "cyan"),
+  new myBook("Quantum Reverie", "Harriet R. Eldridge", "350", "on", "cyan"),
   new myBook(
     "The Celestial Tapestry",
     "Felix J. Morrow",
@@ -40,17 +40,21 @@ const myLibrary = [
     "blue"
   ),
   "empty",
-  new myBook("Orbiting Dreams", "Sophia Hartnett", "468", "True", "purple"),
+  new myBook("Orbiting Dreams", "Sophia Hartnett", "468", "on", "purple"),
   "empty",
   "empty",
-  new myBook("Void Wanderers", "Marcus P. Yale", "276", "False", "green"),
+  new myBook("Void Wanderers", "Marcus P. Yale", "276", "off", "green"),
 ];
 
 function myBook(title, author, pageCount, read, color) {
   this.title = title;
   this.author = author;
   this.pageCount = pageCount;
-  this.read = read;
+  if (read === "on") {
+    this.read = "read this book";
+  } else {
+    this.read = "not read this book yet";
+  }
   this.color = color;
 }
 
@@ -100,13 +104,8 @@ function displayRowBooks(array, row) {
   }
 }
 
-function openCurrentBook(currentBook) {
-  openBook(currentBook);
-  BODY.addEventListener("click", removeOpenBook);
-}
-
-function openBook({ title, author, pageCount, read }) {
-  openDOMBook(title, author, pageCount, read);
+function openBook({ title, author, pageCount, read, color }) {
+  openDOMBook(title, author, pageCount, read, color);
   BODY.addEventListener("click", removeOpenBook);
 }
 
@@ -121,7 +120,11 @@ function removeOpenBook() {
     document.querySelectorAll(".book.initial-open.transition-open")
   );
   for (openedBook of allOpenBooks) {
-    BODY.removeChild(openedBook);
+    openedBook.classList.toggle("hidden");
+    openedBook.classList.toggle("opening-book");
+    setTimeout(function () {
+      BODY.removeChild(openedBook);
+    }, 2000);
   }
 }
 
@@ -134,6 +137,7 @@ SLIDER.addEventListener("click", () => {
 });
 
 ADD_BUTTON.addEventListener("click", () => {
+  DIALOG.classList.toggle("animate-dialog");
   DIALOG.classList.toggle("hidden");
   ADD_BUTTON.classList.toggle("hidden");
 });
@@ -164,13 +168,14 @@ CREATE_BOOK.addEventListener("click", () => {
     chooseRandomColor()
   );
   DIALOG.classList.toggle("hidden");
+  DIALOG.classList.toggle("animate-dialog");
   ADD_BUTTON.classList.toggle("hidden");
 });
 
-function openDOMBook(title, author, pageCount, read) {
+function openDOMBook(title, author, pageCount, read, color) {
   const DOM_BOOK = document.createElement("div");
   BODY.appendChild(DOM_BOOK);
-  DOM_BOOK.classList.add("book", "initial-open");
+  DOM_BOOK.classList.add("book", "initial-open", `${color}-book`);
 
   createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK);
 
@@ -202,7 +207,7 @@ function updateSwitchListener() {
       );
       CURRENT_BOOK.addEventListener("click", function () {
         if (SLIDER.checked) {
-          openCurrentBook(thisBook);
+          openBook(thisBook);
         } else {
           removeBook(thisBook);
         }
@@ -219,6 +224,7 @@ function removeBook(thisBook) {
 }
 
 function createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK) {
+  console.log(read);
   const PAGE_ONE = document.createElement("article");
   PAGE_ONE.classList.add("page", "page-one");
   DOM_BOOK.appendChild(PAGE_ONE);
@@ -245,7 +251,7 @@ function createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK) {
 
   const PAGE_TWO_READ = document.createElement("h1");
   PAGE_TWO_READ.classList.add("book-read");
-  PAGE_TWO_READ.textContent = `I've ${read} it`;
+  PAGE_TWO_READ.textContent = `I've ${read}`;
   PAGE_TWO.appendChild(PAGE_TWO_READ);
 
   const PAGE_TWO_CONTENT = document.createElement("p");

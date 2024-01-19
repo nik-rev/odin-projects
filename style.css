@@ -10,8 +10,7 @@
 }
 
 .hidden {
-  display: none;
-  background-color: red;
+  opacity: 0;
 }
 
 .bookshelf {
@@ -204,7 +203,12 @@ button {
   background-color: rgba(255, 0, 0, 0);
 }
 
+.animate-dialog {
+  left: 50vw;
+}
+
 dialog {
+  transition: all 2s ease-in-out;
   background-color: rgba(255, 0, 0, 0);
   position: absolute;
   height: calc(var(--default-book-height) * var(--book-shrink-constant));
@@ -228,13 +232,14 @@ dialog {
   align-items: start;
   font-size: 100%;
   border: none;
-  left: 50vw;
+  left: 100vw;
   bottom: 40vh;
   border-radius: 20px;
   gap: 15px;
 }
 
 .add {
+  transition: all 0.4s ease-in-out;
   position: absolute;
   top: 5vh;
   left: 5vw;
