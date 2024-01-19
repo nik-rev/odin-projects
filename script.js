@@ -23,32 +23,39 @@ const SLIDER = document.querySelector(".switch > input");
 const BODY = document.querySelector("body");
 const SLIDER_PARA = document.querySelector(".slider.round > p");
 const myLibrary = [
-  new myBook("Echoes of the Cosmos", "Lila Thornfield", "321", "True"),
+  new myBook("Echoes of the Cosmos", "Lila Thornfield", "321", "True", "pink"),
   "empty",
-  new myBook("Galactic Rhythms", "Jasper M. Huxley", "415", "False"),
+  new myBook("Galactic Rhythms", "Jasper M. Huxley", "415", "False", "purple"),
   "empty",
-  new myBook("Stellar Shadows", "Aurora Blackwood", "387", "True"),
-  new myBook("Nebula Whispers", "Ian Griffiths", "290", "False"),
-  "empty",
-  "empty",
-  new myBook("Quantum Reverie", "Harriet R. Eldridge", "350", "True"),
-  new myBook("The Celestial Tapestry", "Felix J. Morrow", "402", "False"),
-  "empty",
-  new myBook("Orbiting Dreams", "Sophia Hartnett", "468", "True"),
+  new myBook("Stellar Shadows", "Aurora Blackwood", "387", "True", "red"),
+  new myBook("Nebula Whispers", "Ian Griffiths", "290", "False", "green"),
   "empty",
   "empty",
-  new myBook("Void Wanderers", "Marcus P. Yale", "276", "False"),
+  new myBook("Quantum Reverie", "Harriet R. Eldridge", "350", "True", "cyan"),
+  new myBook(
+    "The Celestial Tapestry",
+    "Felix J. Morrow",
+    "402",
+    "False",
+    "blue"
+  ),
+  "empty",
+  new myBook("Orbiting Dreams", "Sophia Hartnett", "468", "True", "purple"),
+  "empty",
+  "empty",
+  new myBook("Void Wanderers", "Marcus P. Yale", "276", "False", "green"),
 ];
 
-function myBook(title, author, pageCount, read) {
+function myBook(title, author, pageCount, read, color) {
   this.title = title;
   this.author = author;
   this.pageCount = pageCount;
   this.read = read;
+  this.color = color;
 }
 
-function addBookToLibrary(title, author, pageCount, read) {
-  const newBook = new myBook(title, author, pageCount, read);
+function addBookToLibrary(title, author, pageCount, read, color) {
+  const newBook = new myBook(title, author, pageCount, read, color);
   for (let i = 0; i < myLibrary.length; i++) {
     if (myLibrary[i] === "empty") {
       myLibrary[i] = newBook;
@@ -84,7 +91,8 @@ function displayRowBooks(array, row) {
         `title-${Book.title.replace(/\s/g, "")}`,
         `author-${Book.author.replace(/\s/g, "")}`,
         `page-count-${Book.pageCount.replace(/\s/g, "")}`,
-        `read-${Book.read.replace(/\s/g, "")}`
+        `read-${Book.read.replace(/\s/g, "")}`,
+        `${Book.color}-book`
       );
 
       OUR_NEW_BOOK.setAttribute("src", "./img/book.png");
@@ -100,6 +108,12 @@ function openCurrentBook(currentBook) {
 function openBook({ title, author, pageCount, read }) {
   openDOMBook(title, author, pageCount, read);
   BODY.addEventListener("click", removeOpenBook);
+}
+
+function chooseRandomColor() {
+  colorArray = ["pink", "purple", "red", "green", "cyan", "blue"];
+  randomIndex = Math.floor(Math.random() * 6);
+  return colorArray[randomIndex];
 }
 
 function removeOpenBook() {
@@ -140,14 +154,14 @@ CREATE_BOOK.addEventListener("click", () => {
         return;
     }
   }
-  console.log(BOOK_TITLE_INPUT.value.length);
 
   createNewBook = true;
   createDOMBook(
     BOOK_TITLE_INPUT.value,
     BOOK_AUTHOR_INPUT.value,
     BOOK_PAGE_COUNT_INPUT.value,
-    BOOK_READ_INPUT.value
+    BOOK_READ_INPUT.value,
+    chooseRandomColor()
   );
   DIALOG.classList.toggle("hidden");
   ADD_BUTTON.classList.toggle("hidden");
@@ -165,15 +179,15 @@ function openDOMBook(title, author, pageCount, read) {
   return DOM_BOOK;
 }
 
-function createDOMBook(title, author, pageCount, read) {
+function createDOMBook(title, author, pageCount, read, color) {
   const DOM_BOOK = document.createElement("div");
   BODY.appendChild(DOM_BOOK);
-  DOM_BOOK.classList.add("book", "initial");
+  DOM_BOOK.classList.add("book", "initial", `${color}-book`);
 
   createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK);
 
   if (createNewBook) {
-    bookTransition(DOM_BOOK, author, pageCount, title, read);
+    bookTransition(DOM_BOOK, author, pageCount, title, read, color);
   }
 
   createNewBook = false;
@@ -252,13 +266,13 @@ function bookTransitionOpen(domBook) {
   }, 0);
 }
 
-function bookTransition(domBook, author, pageCount, title, read) {
+function bookTransition(domBook, author, pageCount, title, read, color) {
   setTimeout(function () {
     domBook.classList.toggle("transition");
   }, 0);
   setTimeout(function () {
     domBook.classList.toggle("transition-two");
-    addBookToLibrary(title, author, pageCount, read);
+    addBookToLibrary(title, author, pageCount, read, color);
     updateLibraryDisplay();
     updateSwitchListener();
   }, 2000);
