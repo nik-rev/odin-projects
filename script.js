@@ -8,17 +8,19 @@ const DIALOG = document.querySelector("dialog");
 const SHOW_BUTTON = document.querySelector("dialog + button");
 const CLOSE_BUTTON = document.querySelector("dialog button");
 const CREATE_BOOK = document.querySelector(".create-book");
-
+let createNewBook;
 const CONSOLE = document.querySelector(".console");
 const BOOK_TITLE_INPUT = document.querySelector(".book-title-input");
 const BOOK_PAGE_COUNT_INPUT = document.querySelector(".book-page-count-input");
 const BOOK_READ_INPUT = document.querySelector(".book-read-input");
 const BOOK_AUTHOR_INPUT = document.querySelector(".book-author-input");
-
+const OPEN_BUTTON = document.querySelector(".open");
 const ROW_ONE = document.querySelector(".shelf-1");
 const ROW_TWO = document.querySelector(".shelf-2");
 const ROW_THREE = document.querySelector(".shelf-3");
-
+let temporary;
+let CURRENT_BOOK;
+let openedBook;
 const BODY = document.querySelector("body");
 const myLibrary = [
   "empty",
@@ -63,6 +65,10 @@ function addBookToLibrary(title, author, pageCount, read) {
   }
 }
 
+function removeBook() {
+  updateLibraryDisplay();
+}
+
 function updateLibraryDisplay() {
   const imgsInLibrary = document.querySelectorAll(".shelf>img");
   const imgsInLibraryArray = Array.from(imgsInLibrary);
@@ -92,24 +98,49 @@ function displayRowBooks(array, row) {
         `page-count-${Book.pageCount}`,
         `read-${Book.read}`
       );
+
       OUR_NEW_BOOK.setAttribute("src", "./img/book.png");
+      let storedBook = Book;
+      OUR_NEW_BOOK.addEventListener("click", onBookClick);
     }
   }
 }
 
-// function loopThroughBooks() {
-//   for (Book of myLibrary) {
-//     let hasRead;
-//     Book.read
-//       ? (hasRead = "I have read this book")
-//       : (hasRead = "I haven't read this book");
+function onBookClick() {
+  console.log("Later, this will delete the book");
+}
 
-//     BOOK_TITLE.textContent = Book.title;
-//     BOOK_PAGE_COUNT.textContent = Book.pageCount;
-//     BOOK_READ.textContent = hasRead;
-//     BOOK_AUTHOR.textContent = Book.author;
-//   }
-// }
+let temporaryExist;
+
+OPEN_BUTTON.addEventListener("click", function () {
+  for (Book of myLibrary) {
+    if (Book !== "empty") {
+      let currentBook = Book;
+
+      let CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
+
+      CURRENT_BOOK.removeEventListener("click", onBookClick);
+      CURRENT_BOOK.addEventListener("click", () => {
+        openBook(currentBook);
+        BODY.addEventListener("click", removeOpenBook);
+      });
+    }
+  }
+});
+
+function openBook({ title, author, pageCount, read }) {
+  openDOMBook(title, author, pageCount, read);
+  BODY.addEventListener("click", removeOpenBook);
+}
+
+function removeOpenBook() {
+  let allOpenBooks = Array.from(
+    document.querySelectorAll(".book.initial-open.transition-open")
+  );
+  for (openedBook of allOpenBooks) {
+    BODY.removeChild(openedBook);
+  }
+}
 
 SHOW_BUTTON.addEventListener("click", () => {
   DIALOG.classList.toggle("hidden");
@@ -120,6 +151,7 @@ CLOSE_BUTTON.addEventListener("click", () => {
   ADD_BUTTON.classList.toggle("hidden");
 });
 CREATE_BOOK.addEventListener("click", () => {
+  createNewBook = true;
   createDOMBook(
     BOOK_TITLE_INPUT.value,
     BOOK_AUTHOR_INPUT.value,
@@ -130,11 +162,34 @@ CREATE_BOOK.addEventListener("click", () => {
   ADD_BUTTON.classList.toggle("hidden");
 });
 
+function openDOMBook(title, author, pageCount, read) {
+  const DOM_BOOK = document.createElement("div");
+  BODY.appendChild(DOM_BOOK);
+  DOM_BOOK.classList.add("book", "initial-open");
+
+  createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK);
+
+  bookTransitionOpen(DOM_BOOK);
+
+  return DOM_BOOK;
+}
+
 function createDOMBook(title, author, pageCount, read) {
   const DOM_BOOK = document.createElement("div");
   BODY.appendChild(DOM_BOOK);
   DOM_BOOK.classList.add("book", "initial");
 
+  createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK);
+
+  if (createNewBook) {
+    bookTransition(DOM_BOOK, author, pageCount, title, read);
+  }
+
+  createNewBook = false;
+  // DOM_BOOK.classList.toggle("transition");
+}
+
+function createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK) {
   // Creating first page
   const PAGE_ONE = document.createElement("article");
   PAGE_ONE.classList.add("page", "page-one");
@@ -174,15 +229,24 @@ function createDOMBook(title, author, pageCount, read) {
   PAGE_TWO_AUTHOR.classList.add("book-author");
   PAGE_TWO_AUTHOR.textContent = `Author: ${author}`;
   PAGE_TWO.appendChild(PAGE_TWO_AUTHOR);
+}
 
-  // DOM_BOOK.classList.toggle("transition");
+function bookTransitionOpen(domBook) {
   setTimeout(function () {
-    DOM_BOOK.classList.toggle("transition");
+    domBook.classList.toggle("transition-open");
+  }, 0);
+}
+
+function bookTransition(domBook, author, pageCount, title, read) {
+  setTimeout(function () {
+    domBook.classList.toggle("transition");
   }, 0);
   setTimeout(function () {
-    DOM_BOOK.classList.toggle("transition-two");
+    domBook.classList.toggle("transition-two");
     addBookToLibrary(title, author, pageCount, read);
-    console.log(myLibrary);
     updateLibraryDisplay();
   }, 2000);
+  setTimeout(function () {
+    BODY.removeChild(domBook);
+  }, 4000);
 }

@@ -62,6 +62,11 @@ img[src="./img/book.png"] {
   width: 100%;
 }
 
+img[src="./img/book.png"]:hover {
+  opacity: 0.4;
+  cursor: url("./img/remove.png"), auto;
+}
+
 :root {
   --book-pink: 90deg;
   --book-purple: 30deg;
@@ -90,6 +95,23 @@ img[src="./img/book.png"] {
   align-items: start;
   overflow: hidden;
   font-size: 100%;
+}
+
+.book.initial-open {
+  transition: all 2s ease-in-out;
+  transform: scale(0);
+  left: calc(
+    50vw - (var(--default-book-width) * var(--book-shrink-constant) / 2)
+  );
+  top: calc(
+    50vh - (var(--default-book-height) * var(--book-shrink-constant) / 2)
+  );
+}
+.book.transition-open {
+  transform: scale(1.1);
+  left: calc(
+    50vw - (var(--default-book-width) * var(--book-shrink-constant) / 2)
+  );
 }
 
 .book.initial {
