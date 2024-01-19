@@ -137,7 +137,6 @@ SLIDER.addEventListener("click", () => {
 });
 
 ADD_BUTTON.addEventListener("click", () => {
-  DIALOG.classList.toggle("animate-dialog");
   DIALOG.classList.toggle("hidden");
   ADD_BUTTON.classList.toggle("hidden");
 });
@@ -148,6 +147,7 @@ CLOSE_BUTTON.addEventListener("click", () => {
 });
 
 CREATE_BOOK.addEventListener("click", () => {
+  let emptyCounter = 0;
   for (const BOOK of myLibrary) {
     switch (BOOK.title) {
       case BOOK_TITLE_INPUT.value:
@@ -157,6 +157,17 @@ CREATE_BOOK.addEventListener("click", () => {
         }, 3000);
         return;
     }
+    if (BOOK === "empty") {
+      emptyCounter++;
+    }
+  }
+
+  if (emptyCounter === 0) {
+    CREATE_BOOK.textContent = "You have too many books";
+    setTimeout(function () {
+      CREATE_BOOK.textContent = "Create Book";
+    }, 3000);
+    return;
   }
 
   createNewBook = true;
