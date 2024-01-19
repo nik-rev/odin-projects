@@ -120,7 +120,6 @@ img[src="./img/book.png"]:hover {
   grid-template-columns: 10% 1fr 5% 1fr 10%;
   grid-template-areas: ". page1 . page2 .";
   align-items: start;
-  overflow: hidden;
   font-size: 100%;
 }
 
