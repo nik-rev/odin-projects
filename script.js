@@ -23,38 +23,46 @@ let openedBook;
 const SLIDER = document.querySelector(".switch > input");
 const BODY = document.querySelector("body");
 const SLIDER_PARA = document.querySelector(".slider.round > p");
-
 const myLibrary = [
+  new myBook("a", "", "", ""),
+  "empty",
+  new myBook("b", "", "", ""),
+  "empty",
+  new myBook("c", "", "", ""),
+  new myBook("d", "", "", ""),
   "empty",
   "empty",
+  new myBook("e", "", "", ""),
+  new myBook("f", "", "", ""),
+  "empty",
+  new myBook("g", "", "", ""),
   "empty",
   "empty",
-  "empty",
-  "empty",
-  "empty",
-  "empty",
-  "empty",
-  "empty",
-  "empty",
-  "empty",
-  "empty",
-  "empty",
-  "empty",
+  new myBook("h", "", "", ""),
 ];
+// const myLibrary = [
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+//   "empty",
+// ];
 
 function myBook(title, author, pageCount, read) {
   this.title = title;
   this.author = author;
   this.pageCount = pageCount;
   this.read = read;
-  this.info = function () {
-    let information = `${this.title} by ${this.author}, ${this.pageCount} pages`;
-    if (read) {
-      return `${information}, I've read the book.`;
-    } else {
-      return `${information}, not read yet.`;
-    }
-  };
 }
 
 function addBookToLibrary(title, author, pageCount, read) {
@@ -68,7 +76,7 @@ function addBookToLibrary(title, author, pageCount, read) {
 }
 
 function removeBook() {
-  updateLibraryDisplay();
+  console.log("Later, this will remove the book from the library");
 }
 
 function updateLibraryDisplay() {
@@ -103,34 +111,37 @@ function displayRowBooks(array, row) {
 
       OUR_NEW_BOOK.setAttribute("src", "./img/book.png");
       let storedBook = Book;
-      OUR_NEW_BOOK.addEventListener("click", onBookClick);
+      OUR_NEW_BOOK.addEventListener("click", removeBook);
     }
   }
 }
 
-function onBookClick() {
-  console.log("Later, this will delete the book");
-}
-
 let temporaryExist;
+
+let thisBook;
 
 SLIDER.addEventListener("click", function () {
   if (SLIDER.checked) {
     SLIDER_PARA.textContent = "Open book";
     for (Book of myLibrary) {
       if (Book !== "empty") {
-        const someObject = { aProperty: Book };
-
-        let CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
-
-        CURRENT_BOOK.removeEventListener("click", onBookClick);
-        CURRENT_BOOK.addEventListener("click", () => {
-          openCurrentBook(someObject.aProperty);
-        });
+        const thisBook = Book;
+        const CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
+        const fn = () => openCurrentBook(thisBook);
+        CURRENT_BOOK.removeEventListener("click", removeBook);
+        CURRENT_BOOK.addEventListener("click", fn);
       }
     }
   } else {
+    // TODO: Remove event listener correctly, this doesn't work
     SLIDER_PARA.textContent = "Delete book";
+    for (Book of myLibrary) {
+      if (Book !== "empty") {
+        const CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
+        CURRENT_BOOK.addEventListener("click", removeBook);
+        CURRENT_BOOK.removeEventListener("click", fn);
+      }
+    }
   }
 });
 
