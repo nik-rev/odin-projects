@@ -40,23 +40,6 @@ const myLibrary = [
   "empty",
   new myBook("h", "", "", ""),
 ];
-// const myLibrary = [
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-//   "empty",
-// ];
 
 function myBook(title, author, pageCount, read) {
   this.title = title;
@@ -73,10 +56,6 @@ function addBookToLibrary(title, author, pageCount, read) {
       break;
     }
   }
-}
-
-function removeBook() {
-  console.log("Later, this will remove the book from the library");
 }
 
 function updateLibraryDisplay() {
@@ -111,7 +90,6 @@ function displayRowBooks(array, row) {
 
       OUR_NEW_BOOK.setAttribute("src", "./img/book.png");
       let storedBook = Book;
-      OUR_NEW_BOOK.addEventListener("click", removeBook);
     }
   }
 }
@@ -120,30 +98,35 @@ let temporaryExist;
 
 let thisBook;
 
-SLIDER.addEventListener("click", function () {
-  if (SLIDER.checked) {
-    SLIDER_PARA.textContent = "Open book";
-    for (Book of myLibrary) {
-      if (Book !== "empty") {
-        const thisBook = Book;
-        const CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
-        const fn = () => openCurrentBook(thisBook);
-        CURRENT_BOOK.removeEventListener("click", removeBook);
-        CURRENT_BOOK.addEventListener("click", fn);
-      }
-    }
-  } else {
-    // TODO: Remove event listener correctly, this doesn't work
-    SLIDER_PARA.textContent = "Delete book";
-    for (Book of myLibrary) {
-      if (Book !== "empty") {
-        const CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
-        CURRENT_BOOK.addEventListener("click", removeBook);
-        CURRENT_BOOK.removeEventListener("click", fn);
-      }
-    }
-  }
-});
+// SLIDER.addEventListener("click", function () {
+//   for (const Book of myLibrary) {
+//     if (Book !== "empty") {
+//       const thisBook = Book;
+//       const CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
+
+//       const testObject = {
+//         fn() {
+//           openCurrentBook(thisBook);
+//         },
+//       };
+
+//       console.log(testObject.fn);
+//       // function fn() {
+//       //   openCurrentBook(thisBook);
+//       // };
+
+//       if (SLIDER.checked) {
+//         SLIDER_PARA.textContent = "Read book";
+//         CURRENT_BOOK.removeEventListener("click", removeBook);
+//         CURRENT_BOOK.addEventListener("click", testObject.fn);
+//       } else {
+//         SLIDER_PARA.textContent = "Close book";
+//         CURRENT_BOOK.removeEventListener("click", testObject.fn);
+//         CURRENT_BOOK.addEventListener("click", removeBook);
+//       }
+//     }
+//   }
+// });
 
 function openCurrentBook(currentBook) {
   openBook(currentBook);
@@ -213,6 +196,29 @@ function createDOMBook(title, author, pageCount, read) {
   // DOM_BOOK.classList.toggle("transition");
 }
 
+function updateSwitchListener() {
+  for (const Book of myLibrary) {
+    if (Book !== "empty") {
+      const thisBook = Book;
+      const CURRENT_BOOK = document.querySelector(`.title-${Book.title}`);
+      CURRENT_BOOK.addEventListener("click", function () {
+        if (SLIDER.checked) {
+          openCurrentBook(thisBook);
+        } else {
+          removeBook(thisBook);
+        }
+      });
+    }
+  }
+}
+
+function removeBook(thisBook) {
+  index = myLibrary.findIndex((book) => book === thisBook);
+  myLibrary[index] = "empty";
+  updateLibraryDisplay();
+  updateSwitchListener();
+}
+
 function createFirstAndSecondPage(title, author, pageCount, read, DOM_BOOK) {
   // Creating first page
   const PAGE_ONE = document.createElement("article");
@@ -269,8 +275,12 @@ function bookTransition(domBook, author, pageCount, title, read) {
     domBook.classList.toggle("transition-two");
     addBookToLibrary(title, author, pageCount, read);
     updateLibraryDisplay();
+    updateSwitchListener();
   }, 2000);
   setTimeout(function () {
     BODY.removeChild(domBook);
   }, 4000);
 }
+
+updateLibraryDisplay();
+updateSwitchListener();
