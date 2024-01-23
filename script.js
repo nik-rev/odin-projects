@@ -22,6 +22,21 @@ let openedBook;
 const SLIDER = document.querySelector(".switch > input");
 const BODY = document.querySelector("body");
 const SLIDER_PARA = document.querySelector(".slider.round > p");
+
+class myBook {
+  constructor(title, author, pageCount, read, color) {
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.color = color;
+    if (read === "on") {
+      this.read = "read this book";
+    } else {
+      this.read = "not read this book yet";
+    }
+  }
+}
+
 const myLibrary = [
   new myBook("Echoes of the Cosmos", "Lila Thornfield", "321", "on", "pink"),
   "empty",
@@ -45,18 +60,6 @@ const myLibrary = [
   "empty",
   new myBook("Void Wanderers", "Marcus P. Yale", "276", "off", "green"),
 ];
-
-function myBook(title, author, pageCount, read, color) {
-  this.title = title;
-  this.author = author;
-  this.pageCount = pageCount;
-  if (read === "on") {
-    this.read = "read this book";
-  } else {
-    this.read = "not read this book yet";
-  }
-  this.color = color;
-}
 
 function addBookToLibrary(title, author, pageCount, read, color) {
   const newBook = new myBook(title, author, pageCount, read, color);
@@ -299,5 +302,6 @@ function bookTransition(domBook, author, pageCount, title, read, color) {
 }
 
 // Startup
+scrollTo(0, 0);
 updateLibraryDisplay();
 updateSwitchListener();
