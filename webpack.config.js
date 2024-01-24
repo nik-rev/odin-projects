@@ -19,12 +19,17 @@ module.exports = {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
+    publicPath: "/",
   },
   module: {
     rules: [
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.html$/,
+        use: ["html-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
