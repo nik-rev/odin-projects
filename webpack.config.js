@@ -5,7 +5,6 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/scripts/index.js",
-    print: "./src/scripts/print.js",
   },
   devtool: "inline-source-map",
   devServer: {
@@ -13,7 +12,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Development",
       template: path.resolve(__dirname, "src", "template.html"),
     }),
   ],
