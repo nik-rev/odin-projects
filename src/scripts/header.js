@@ -1,16 +1,13 @@
-export const createHeader = (body) => {
-  const home = document.createElement("button");
-  const menu = document.createElement("button");
-  const contact = document.createElement("button");
+import configureButtonLogic from "./button-logic.js";
+export const createHeader = (parent, arrayOfButtons) => {
   const nav = document.createElement("nav");
   const header = document.createElement("header");
-  home.textContent = "Home";
-  menu.textContent = "Menu";
-  contact.textContent = "Contact";
-  body.appendChild(header);
+  parent.appendChild(header);
   header.appendChild(nav);
-  nav.appendChild(home);
-  nav.appendChild(menu);
-  nav.appendChild(contact);
-  return [home, menu, contact];
+  for (const button of arrayOfButtons) {
+    const domButton = document.createElement("button");
+    domButton.textContent = button;
+    nav.appendChild(domButton);
+    configureButtonLogic(domButton);
+  }
 };

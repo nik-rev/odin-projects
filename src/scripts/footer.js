@@ -1,5 +1,5 @@
-export default function createFooter(text, body) {
+export default function createFooter(text, parent) {
   const footer = document.createElement("footer");
   footer.textContent = text;
-  body.appendChild(footer);
+  parent.appendChild(footer);
 }

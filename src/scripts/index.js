@@ -6,19 +6,27 @@ importAllCSS(require.context("../styles/", true, /\.css$/));
 
 // Images
 function importAllImages(r) {
-  r.keys().forEach(r);
+  let images = {};
+  r.keys().forEach((item) => {
+    images[item.replace("./", "")] = r(item);
+  });
+  return images;
 }
-importAllImages(
+
+const images = importAllImages(
   require.context("../assets/img/", false, /\.(png|svg|jpe?g|gif)$/)
 );
 
 // DOM CREATION
 
 const body = document.querySelector("body");
+const mainContent = document.querySelector("main");
 
 import createFooter from "./footer.js";
 createFooter("Copyright 2053 The Skating Company", body);
 
 import { createHeader } from "./header.js";
-import configureButtonsLogic from "./nav-bar-logic.js";
-configureButtonsLogic(createHeader(body));
+createHeader(body, ["Home", "Menu", "Contact"]);
+
+import createHome from "./createHome.js";
+createHome(mainContent);
