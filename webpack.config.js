@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
   mode: "development",
@@ -19,7 +20,7 @@ module.exports = {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
-    publicPath: "/",
+    publicPath: isProduction ? "/[repository-name]/" : "/",
   },
   module: {
     rules: [
