@@ -3,6 +3,7 @@ export default function (parent, schedule) {
   section.setAttribute("id", "hours");
   const ul = document.createElement("ul");
   const h4 = document.createElement("h4");
+  h4.textContent = "Our schedule";
   parent.appendChild(section);
   section.appendChild(h4);
   section.appendChild(ul);
