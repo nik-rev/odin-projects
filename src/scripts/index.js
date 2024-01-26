@@ -1,5 +1,4 @@
 export { importAllImages, images };
-export { mainContent };
 
 function importAllCSS(r) {
   r.keys().forEach(r);
@@ -16,3 +15,14 @@ function importAllImages(r) {
 const images = importAllImages(
   require.context("../assets/img/", false, /\.(png|svg|jpe?g|gif)$/)
 );
+
+import todo from "./todo-class";
+const todoToday = new todo(
+  "Birthday",
+  "Happy birthday to me",
+  "14 August",
+  "Blue",
+  "Events",
+  true
+);
+console.table(todoToday);
