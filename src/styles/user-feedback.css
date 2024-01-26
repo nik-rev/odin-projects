@@ -1,0 +1,15 @@
+button:active {
+  background-color: var(--d);
+}
+button:hover {
+  background-color: rgb(67, 161, 255);
+  cursor: pointer;
+  transform: scale(1.1);
+}
+img:hover {
+  transform: translateX(100px);
+}
+
+li:hover {
+  color: rgb(109, 71, 0);
+}

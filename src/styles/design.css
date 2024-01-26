@@ -1,0 +1,46 @@
+:root {
+  --a: darkslategrey;
+  --b: dodgerblue;
+  --c: #92c9b17d;
+  --d: #2f3a9f;
+  --e: #98fff6c2;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url(../assets/img/ice-skating.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+main {
+  background-color: var(--e);
+  border-radius: 150px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0px 0px 15px rgb(255, 255, 255);
+  transition: all 0.4s ease-in-out;
+}
+
+nav > button {
+  background-color: var(--b);
+  transition: all 0.4s ease-in-out;
+}
+
+header,
+footer {
+  background-color: var(--c);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 0 5px 10px var(--c);
+}
+
+section {
+  border-radius: 50px;
+  background: linear-gradient(145deg, #36fdc170, #2dd4a270);
+  box-shadow: 23px 23px 46px #1a785c70, -23px -23px 46px #4bffff70;
+}
+
+img {
+  transition: all 0.2s ease-in-out;
+}
