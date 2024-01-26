@@ -1,10 +1,9 @@
-export default function (parent, schedule) {
+export default function (schedule) {
   const section = document.createElement("section");
   section.setAttribute("id", "hours");
   const ul = document.createElement("ul");
   const h4 = document.createElement("h4");
   h4.textContent = "Our schedule";
-  parent.appendChild(section);
   section.appendChild(h4);
   section.appendChild(ul);
   for (const [key, value] of Object.entries(schedule)) {
@@ -13,4 +12,5 @@ export default function (parent, schedule) {
     daySchedule.textContent = `${key}: ${value.at(0)}am - ${value.at(1)}pm`;
     ul.appendChild(daySchedule);
   }
+  return section;
 }

@@ -2,7 +2,7 @@ import destroyContent from "./destroy-content";
 import createHome from "./createHome.js";
 import createContact from "./createContact.js";
 import createMenu from "./createMenu.js";
-const mainContent = document.querySelector("main");
+import { mainContent } from "./index.js";
 
 export default function configureButtonLogic(button) {
   button.addEventListener("click", () => {
