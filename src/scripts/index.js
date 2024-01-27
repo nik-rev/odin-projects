@@ -30,9 +30,17 @@ import clearProject from "./clear-project";
 import updateProject from "./update-project";
 import populateDomProject from "./populate-project";
 import createProjectsList from "./create-projects-list";
+import addProject from "./add-project";
 // createDomProject("a");
 
 // updateProject();
 
 populateDomProject("events");
 createProjectsList();
+
+const addProjectsBtn = document.querySelector(".add-project");
+
+addProjectsBtn.addEventListener("click", () => {
+  const userInput = prompt("What do you want to call the new project?");
+  addProject(userInput);
+});
