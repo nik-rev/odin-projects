@@ -4,15 +4,16 @@ import updateProject from "./update-project";
 import toggleImportant from "./toggle-important";
 import updateProjectsList from "./update-projects-list";
 import updateTodo from "./update-todo";
+import { format, toDate } from "date-fns";
 
-export default function domTodoCreate(
+const domTodoCreate = (
   parent,
   todoTitle,
   todoDescription,
   todoDate,
   project,
   id
-) {
+) => {
   const div = document.createElement("div");
   const h2 = document.createElement("h2");
   const pDescription = document.createElement("p");
@@ -29,6 +30,7 @@ export default function domTodoCreate(
   imgEdit.classList.add("edit");
 
   imgFavorite.src = images["star-fill.svg"];
+
   if (JSON.parse(localStorage[`${project}`])[id]["favorite"] === false) {
     imgFavorite.src = images["star.svg"];
   }
@@ -40,7 +42,7 @@ export default function domTodoCreate(
   h2.textContent = `${todoTitle}`;
   pDescription.textContent = `${todoDescription}`;
   pDate.textContent = `${todoDate}`;
-  parent.appendChild(div);
+  parent.prepend(div);
   div.append(h2, pDescription, pDate, imgFavorite, imgEdit, imgDelete);
 
   imgDelete.addEventListener("click", () => {
@@ -66,6 +68,10 @@ export default function domTodoCreate(
     const inputTitle = document.createElement("input");
     const inputDescription = document.createElement("input");
     const inputDate = document.createElement("input");
+    inputTitle.placeholder = "Please enter title";
+    inputDescription.placeholder = "Enter description of your todo";
+    inputDate.placeholder = "What was the date?";
+    inputDate.type = "Date";
 
     inputTitle.classList.add("title");
     inputDescription.classList.add("description");
@@ -85,9 +91,9 @@ export default function domTodoCreate(
   }
 
   function editState2() {
-    const inputTitle = document.querySelector(".title");
-    const inputDescription = document.querySelector(".description");
-    const inputDate = document.querySelector(".date");
+    const inputTitle = div.querySelector(".title");
+    const inputDescription = div.querySelector(".description");
+    const inputDate = div.querySelector(".date");
 
     updateTodo(
       project,
@@ -104,11 +110,14 @@ export default function domTodoCreate(
 
     h2.textContent = inputTitle.value;
     pDescription.textContent = inputDescription.value;
-    pDate.textContent = inputDate.value;
+    console.log(toDate(inputDate.value));
+    pDate.textContent = format(inputDate.value);
 
     h2.classList.add("title");
     pDescription.classList.add("description");
     pDate.classList.add("date");
+
+    console.log(div, inputTitle, inputDescription, inputDate);
 
     div.removeChild(inputTitle);
     div.removeChild(inputDescription);
@@ -121,4 +130,8 @@ export default function domTodoCreate(
     imgEdit.removeEventListener("click", editState2);
     imgEdit.addEventListener("click", editState1);
   }
-}
+
+  return imgEdit;
+};
+
+export default domTodoCreate;

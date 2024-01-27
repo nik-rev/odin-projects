@@ -36,7 +36,6 @@ export default function populateDomProject(project) {
     );
 
     i++;
-    console.log(i);
   }
-  addTodoButton(article);
+  addTodoButton(article, project);
 }

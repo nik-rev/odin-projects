@@ -52,7 +52,7 @@ article {
   grid-area: article;
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 800px) {
   header > img[src] {
     display: inline-block;
   }

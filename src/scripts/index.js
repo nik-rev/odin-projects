@@ -35,6 +35,8 @@ import addProject from "./add-project";
 
 // updateProject();
 
+// interpretData(data);
+
 populateDomProject("events");
 createProjectsList();
 

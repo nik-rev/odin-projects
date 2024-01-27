@@ -4,6 +4,16 @@
   --shade: rgba(0, 0, 0, 0.127);
 }
 
+::placeholder {
+  color: rgb(235, 235, 235);
+}
+
+input {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+}
+
 body {
   font-family: "Single Day", sans-serif;
   font-size: 2rem;

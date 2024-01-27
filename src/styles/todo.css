@@ -1,6 +1,6 @@
 article {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-auto-rows: 250px;
   overflow: scroll;
   gap: var(--generic-spacing);
@@ -34,6 +34,38 @@ article {
   border-radius: 40px;
   color: white;
   font-size: 4rem;
+  /* display: grid;
+  grid-template: 50px 1fr 50px 50px / 1fr repeat(4, 50px);
+  grid-template-areas:
+    "title title title title title"
+    "description description description description description"
+    "date priority-1 priority-2 priority-3 important"
+    "create create create create create"; */
+}
+
+.add-todo-button .input-title {
+  grid-area: title;
+}
+.add-todo-button .input-description {
+  grid-area: description;
+}
+.add-todo-button .input-create-button {
+  grid-area: create;
+}
+.add-todo-button .priority-1 {
+  outline: 2px solid green;
+  grid-area: priority-1;
+  color: green;
+}
+.add-todo-button .priority-2 {
+  outline: 2px solid orange;
+  grid-area: priority-2;
+  color: orange;
+}
+.add-todo-button .priority-3 {
+  outline: 2px solid red;
+  grid-area: priority-3;
+  color: red;
 }
 
 .todo .title {
