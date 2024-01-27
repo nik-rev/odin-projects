@@ -42,6 +42,7 @@ const domTodoCreate = (
   h2.textContent = `${todoTitle}`;
   pDescription.textContent = `${todoDescription}`;
   pDate.textContent = `${todoDate}`;
+  // format(inputDate.value, "Due MMMM Qo")
   parent.prepend(div);
   div.append(h2, pDescription, pDate, imgFavorite, imgEdit, imgDelete);
 
@@ -57,6 +58,9 @@ const domTodoCreate = (
   imgEdit.addEventListener("click", editState1);
 
   function editState1() {
+    const h2 = div.querySelector("h2");
+    const pDescription = div.querySelector("p.description");
+    const pDate = div.querySelector("p.date");
     const savedTitle = h2.textContent;
     const savedDescription = pDescription.textContent;
     const savedDate = pDate.textContent;
@@ -91,44 +95,75 @@ const domTodoCreate = (
   }
 
   function editState2() {
+    // inputTitle.value;
+    // inputDescription.value;
+
     const inputTitle = div.querySelector(".title");
     const inputDescription = div.querySelector(".description");
     const inputDate = div.querySelector(".date");
 
-    updateTodo(
-      project,
-      id,
-      inputTitle.value,
-      inputDescription.value,
-      inputDate.value,
-      "blue"
-    );
+    if (inputTitle.value === "") {
+      const temporary = inputDescription.value;
+      inputDescription.value = "";
+      inputDescription.placeholder = "Please enter a title";
+      inputDescription.classList.toggle("red-text");
+      setTimeout(() => {
+        inputDescription.classList.toggle("red-text");
+        inputDescription.value = temporary;
+      }, 2000);
+    } else if (inputDescription.value === "") {
+      const temporary = inputDescription.value;
+      inputDescription.value = "";
+      inputDescription.placeholder = "Please enter a description";
+      inputDescription.classList.toggle("red-text");
+      setTimeout(() => {
+        inputDescription.classList.toggle("red-text");
+        inputDescription.value = temporary;
+      }, 2000);
+    } else if (inputDate.value === "") {
+      const temporary = inputDescription.value;
+      inputDescription.value = "";
+      inputDescription.placeholder = "Please enter a date";
+      inputDescription.classList.toggle("red-text");
+      setTimeout(() => {
+        inputDescription.classList.toggle("red-text");
+        inputDescription.value = temporary;
+      }, 2000);
+    } else {
+      updateTodo(
+        project,
+        id,
+        inputTitle.value,
+        inputDescription.value,
+        inputDate.value,
+        "blue"
+      );
 
-    const h2 = document.createElement("h2");
-    const pDescription = document.createElement("p");
-    const pDate = document.createElement("p");
+      const h2 = document.createElement("h2");
+      const pDescription = document.createElement("p");
+      const pDate = document.createElement("p");
 
-    h2.textContent = inputTitle.value;
-    pDescription.textContent = inputDescription.value;
-    console.log(toDate(inputDate.value));
-    pDate.textContent = format(inputDate.value);
+      h2.textContent = inputTitle.value;
+      pDescription.textContent = inputDescription.value;
+      pDate.textContent = inputDate.value;
 
-    h2.classList.add("title");
-    pDescription.classList.add("description");
-    pDate.classList.add("date");
+      h2.classList.add("title");
+      pDescription.classList.add("description");
+      pDate.classList.add("date");
 
-    console.log(div, inputTitle, inputDescription, inputDate);
+      console.log(div, inputTitle, inputDescription, inputDate);
 
-    div.removeChild(inputTitle);
-    div.removeChild(inputDescription);
-    div.removeChild(inputDate);
-    div.append(h2, pDescription, pDate);
+      div.removeChild(inputTitle);
+      div.removeChild(inputDescription);
+      div.removeChild(inputDate);
+      div.append(h2, pDescription, pDate);
 
-    imgEdit.src = images["edit.svg"];
-    imgDelete.classList.toggle("hidden");
-    imgFavorite.classList.toggle("hidden");
-    imgEdit.removeEventListener("click", editState2);
-    imgEdit.addEventListener("click", editState1);
+      imgEdit.src = images["edit.svg"];
+      imgDelete.classList.toggle("hidden");
+      imgFavorite.classList.toggle("hidden");
+      imgEdit.removeEventListener("click", editState2);
+      imgEdit.addEventListener("click", editState1);
+    }
   }
 
   return imgEdit;

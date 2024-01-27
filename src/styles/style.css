@@ -4,6 +4,12 @@
   --shade: rgba(0, 0, 0, 0.127);
 }
 
+.red-text {
+  background-color: rgb(255, 0, 0);
+  border-radius: 16px;
+  padding: 4px;
+}
+
 ::placeholder {
   color: rgb(235, 235, 235);
 }
