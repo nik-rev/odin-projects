@@ -22,3 +22,17 @@ import addTodo from "./add-todo";
 import removeTodo from "./remove-todo";
 import toggleImportant from "./toggle-important";
 import updateTodo from "./update-todo";
+import domTodoCreate from "./dom-todo-create";
+import createDomProject from "./populate-project";
+import interpretData from "./data";
+import { data } from "./data";
+import clearProject from "./clear-project";
+import updateProject from "./update-project";
+import populateDomProject from "./populate-project";
+import createProjectsList from "./create-projects-list";
+// createDomProject("a");
+
+// updateProject();
+
+populateDomProject("events");
+createProjectsList();
