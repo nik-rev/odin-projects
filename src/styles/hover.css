@@ -1,0 +1,14 @@
+.delete:hover {
+  filter: invert(22%) sepia(87%) saturate(7389%) hue-rotate(357deg)
+    brightness(102%) contrast(117%);
+}
+
+.favorite:hover {
+  filter: invert(71%) sepia(24%) saturate(6897%) hue-rotate(2deg)
+    brightness(105%) contrast(104%);
+}
+
+.menu:hover {
+  filter: invert(48%) sepia(100%) saturate(3948%) hue-rotate(230deg)
+    brightness(85%) contrast(86%);
+}

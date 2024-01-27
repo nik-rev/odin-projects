@@ -1,20 +1,74 @@
+:root {
+  --border-style: 4px solid rgba(255, 255, 255, 0.3);
+  --generic-spacing: 20px;
+  --shade: rgba(0, 0, 0, 0.127);
+}
+
 body {
   font-family: "Single Day", sans-serif;
   font-size: 2rem;
   color: white;
 }
 
+img {
+  filter: invert(100);
+}
+
+header > img {
+  display: none;
+  height: 40px;
+  width: auto;
+  margin-right: 50px;
+}
+
+header {
+  border-bottom: var(--border-style);
+}
+
+aside {
+  border-right: var(--border-style);
+}
+
+aside > div:nth-child(1) {
+  margin-top: var(--generic-spacing);
+}
+
+aside > div {
+  width: 80%;
+  background-color: var(--shade);
+  border-radius: var(--generic-spacing);
+  padding: 0 var(--generic-spacing);
+}
+
+h1 {
+  margin-left: 50px;
+  font-size: 60px;
+}
+
+.add-project {
+  width: 100%;
+  padding: 10px;
+}
+
+#project-names > div {
+  width: 100%;
+}
+
+aside button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+}
+
 main {
   height: 720px;
   width: 1320px;
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.8s ease-in-out;
+  border: var(--border-style);
 }
 
 @media only screen and (max-width: 1400px) {

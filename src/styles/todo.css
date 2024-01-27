@@ -1,0 +1,44 @@
+article {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-auto-rows: 250px;
+  overflow: scroll;
+  gap: var(--generic-spacing);
+  margin: var(--generic-spacing);
+}
+
+.todo {
+  background-color: var(--shade);
+  font-size: 1.4rem;
+  border-radius: 40px;
+  padding: 15px 25px;
+  display: grid;
+  grid-template: 20px 1fr 20px / 1fr 1fr;
+  grid-template-areas:
+    "title       delete"
+    "description description"
+    "date        favorite";
+}
+
+.todo .title {
+  grid-area: title;
+}
+
+.todo .description {
+  grid-area: description;
+  align-self: center;
+}
+
+.todo .date {
+  grid-area: date;
+}
+
+.todo .delete {
+  grid-area: delete;
+  justify-self: end;
+}
+
+.todo .favorite {
+  grid-area: favorite;
+  justify-self: end;
+}

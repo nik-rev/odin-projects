@@ -14,30 +14,68 @@
   </head>
   <body>
     <main>
-      <header>hey</header>
+      <header>
+        <h1>myTodo</h1>
+        <img src="./assets/img/menu.svg" alt="menu" class="menu" />
+      </header>
       <aside>
         <div>
           <p class="sidebar-text">Home</p>
-          <p class="tasks-count">8</p>
+          <button class="tasks-count-home">8</button>
         </div>
         <div>
-          <p class="sidebar-text">Today</p>
-          <p class="tasks-count">6</p>
+          <button class="sidebar-text">Today</button>
+          <p class="tasks-count-today">6</p>
         </div>
         <div>
-          <p class="sidebar-text">Week</p>
-          <p class="tasks-count">3</p>
+          <button class="sidebar-text">Week</button>
+          <p class="tasks-count-week">3</p>
         </div>
         <div>
-          <p class="sidebar-text">Projects</p>
-          <p class="tasks-count">8</p>
+          <button class="sidebar-text">Projects</button>
+          <p class="dropdown">v</p>
+        </div>
+        <div id="project-names">
+          <div>
+            <button class="project">Physics</button>
+            <p class="tasks-count-week">3</p>
+          </div>
+          <div>
+            <button class="project">Math</button>
+            <p class="tasks-count-week">8</p>
+          </div>
+          <div>
+            <button class="project">Chemistry</button>
+            <p class="tasks-count-week">5</p>
+          </div>
+          <div>
+            <button class="project">Physics</button>
+            <p class="tasks-count-week">2</p>
+          </div>
+          <div>
+            <button class="project">Biology</button>
+            <p class="tasks-count-week">1</p>
+          </div>
+          <button class="add-project">+</button>
         </div>
         <div>
-          <p class="sidebar-text">Notes</p>
-          <p class="tasks-count">4</p>
+          <button class="sidebar-text">Notes</button>
+          <p class="notes-count">4</p>
         </div>
       </aside>
-      <article></article>
+      <article id="home">
+        <div class="todo">
+          <h2 class="title">Birthday</h2>
+          <p class="description">
+            Today will be my birthday, It will be a grandiose day, I will do a
+            lot of things on this day, I think this day will be awesome, I can't
+            wait for this day
+          </p>
+          <p class="date">14 August</p>
+          <img src="./assets/img/star.svg" class="favorite" />
+          <img src="./assets/img/delete.svg" class="delete" />
+        </div>
+      </article>
     </main>
   </body>
 </html>
