@@ -16,13 +16,9 @@ const images = importAllImages(
   require.context("../assets/img/", false, /\.(png|svg|jpe?g|gif)$/)
 );
 
-import todo from "./todo-class";
-const todoToday = new todo(
-  "Birthday",
-  "Happy birthday to me",
-  "14 August",
-  "Blue",
-  "Events",
-  true
-);
-console.table(todoToday);
+// other stuff
+
+import addTodo from "./add-todo";
+import removeTodo from "./remove-todo";
+import toggleImportant from "./toggle-important";
+import updateTodo from "./update-todo";
