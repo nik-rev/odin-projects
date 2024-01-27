@@ -6,7 +6,17 @@ export default function populateDomProject(project) {
   main.append(article);
   const myProj = JSON.parse(localStorage[`${project}`]);
 
+  let i = 0;
   for (const todo of myProj) {
-    domTodoCreate(article, todo["title"], todo["description"], todo["date"]);
+    domTodoCreate(
+      article,
+      todo["title"],
+      todo["description"],
+      todo["date"],
+      project,
+      i
+    );
+
+    i++;
   }
 }
