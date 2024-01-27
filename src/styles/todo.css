@@ -7,17 +7,33 @@ article {
   margin: var(--generic-spacing);
 }
 
+.delete-project {
+  height: 100%;
+  width: 100%;
+  background-color: var(--shade);
+  border: var(--border-style);
+  color: white;
+}
+
 .todo {
   background-color: var(--shade);
   font-size: 1.4rem;
   border-radius: 40px;
   padding: 15px 25px;
   display: grid;
-  grid-template: 20px 1fr 20px / 1fr 1fr;
+  grid-template: 20px 1fr 20px / 1fr 50px;
   grid-template-areas:
     "title       delete"
-    "description description"
+    "description edit"
     "date        favorite";
+}
+
+.add-todo-button {
+  background-color: var(--shade);
+  border: none;
+  border-radius: 40px;
+  color: white;
+  font-size: 4rem;
 }
 
 .todo .title {
@@ -29,6 +45,12 @@ article {
   align-self: center;
 }
 
+.todo .edit {
+  grid-area: edit;
+  justify-self: end;
+  align-self: center;
+}
+
 .todo .date {
   grid-area: date;
 }
@@ -36,9 +58,11 @@ article {
 .todo .delete {
   grid-area: delete;
   justify-self: end;
+  align-self: center;
 }
 
 .todo .favorite {
   grid-area: favorite;
   justify-self: end;
+  align-self: center;
 }

@@ -3,8 +3,8 @@ export default function updateTodo(
   idToUpdate,
   title,
   description,
-  priority,
-  favorite
+  date,
+  priority
 ) {
   const temp = JSON.parse(localStorage[`${projectName}`]);
 
@@ -13,7 +13,7 @@ export default function updateTodo(
     description,
     date,
     priority,
-    favorite,
+    favorite: temp[idToUpdate]["favorite"],
   };
 
   temp[idToUpdate] = newTodo;

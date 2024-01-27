@@ -1,9 +1,17 @@
+.delete:hover,
+.favorite:hover,
+.edit:hover,
+.menu:hover {
+  cursor: pointer;
+}
+
 .delete:hover {
   filter: invert(22%) sepia(87%) saturate(7389%) hue-rotate(357deg)
     brightness(102%) contrast(117%);
 }
 
-.favorite:hover {
+.favorite:hover,
+.edit:hover {
   filter: invert(71%) sepia(24%) saturate(6897%) hue-rotate(2deg)
     brightness(105%) contrast(104%);
 }

@@ -1,4 +1,6 @@
+import addTodoButton from "./add-todo-button";
 import domTodoCreate from "./dom-todo-create";
+import updateProjectsList from "./update-projects-list";
 
 export default function populateDomProject(project) {
   const main = document.querySelector("main");
@@ -7,6 +9,22 @@ export default function populateDomProject(project) {
   const myProj = JSON.parse(localStorage[`${project}`]);
 
   let i = 0;
+
+  if (myProj.length === 0) {
+    const main = document.querySelector("main");
+    const article = document.querySelector("article");
+    const deleteProjectButton = document.createElement("button");
+    deleteProjectButton.classList.add("delete-project");
+    deleteProjectButton.textContent = "delete project";
+    article.append(deleteProjectButton);
+    deleteProjectButton.addEventListener("click", () => {
+      localStorage.removeItem(project);
+      updateProjectsList();
+      main.removeChild(article);
+      populateDomProject("events");
+    });
+  }
+
   for (const todo of myProj) {
     domTodoCreate(
       article,
@@ -18,5 +36,7 @@ export default function populateDomProject(project) {
     );
 
     i++;
+    console.log(i);
   }
+  addTodoButton(article);
 }
