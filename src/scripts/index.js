@@ -31,6 +31,7 @@ import updateProject from "./update-project";
 import populateDomProject from "./populate-project";
 import createProjectsList from "./create-projects-list";
 import addProject from "./add-project";
+import validateTodos from "./validate-todo";
 // createDomProject("a");
 
 // updateProject();
@@ -39,6 +40,8 @@ import addProject from "./add-project";
 
 populateDomProject("events");
 createProjectsList();
+
+sessionStorage.setItem("is_reloaded", true);
 
 const addProjectsBtn = document.querySelector(".add-project");
 

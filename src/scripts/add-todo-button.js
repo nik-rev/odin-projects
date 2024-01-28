@@ -4,6 +4,7 @@ import findLastEdit from "./find-last-edit";
 import populateDomProject from "./populate-project";
 import updateProject from "./update-project";
 import updateProjectsList from "./update-projects-list";
+import validateTodos from "./validate-todo";
 
 export default function addTodoButton(parent, project) {
   const createButton = document.createElement("button");
@@ -18,5 +19,6 @@ export default function addTodoButton(parent, project) {
     updateProjectsList();
     const lastEdit = findLastEdit();
     lastEdit.click();
+    validateTodos();
   });
 }

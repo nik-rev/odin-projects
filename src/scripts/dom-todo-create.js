@@ -95,9 +95,6 @@ const domTodoCreate = (
   }
 
   function editState2() {
-    // inputTitle.value;
-    // inputDescription.value;
-
     const inputTitle = div.querySelector(".title");
     const inputDescription = div.querySelector(".description");
     const inputDate = div.querySelector(".date");
