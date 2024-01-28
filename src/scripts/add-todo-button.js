@@ -13,12 +13,21 @@ export default function addTodoButton(parent, project) {
   createButton.textContent = "+";
 
   createButton.addEventListener("click", () => {
-    parent.removeChild(createButton);
-    addTodo(`${project}`, "", "", "", "blue", false);
-    updateProject(project);
-    updateProjectsList();
-    const lastEdit = findLastEdit();
-    lastEdit.click();
-    validateTodos();
+    console.log(!Boolean(JSON.parse(localStorage[project]).at(-1)["title"]));
+    if (Boolean(JSON.parse(localStorage[project]).at(-1)["title"])) {
+      parent.removeChild(createButton);
+      addTodo(`${project}`, "", "", "", "blue", false);
+      updateProject(project);
+      updateProjectsList();
+      const lastEdit = findLastEdit();
+      lastEdit.click();
+    } else {
+      createButton.textContent = "You already have a new todo open!";
+      createButton.id = "small-text";
+      setTimeout(function () {
+        createButton.textContent = "+";
+        createButton.id = "";
+      }, 1000);
+    }
   });
 }

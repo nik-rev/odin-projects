@@ -41,11 +41,20 @@ import validateTodos from "./validate-todo";
 populateDomProject("events");
 createProjectsList();
 
-sessionStorage.setItem("is_reloaded", true);
-
 const addProjectsBtn = document.querySelector(".add-project");
 
 addProjectsBtn.addEventListener("click", () => {
   const userInput = prompt("What do you want to call the new project?");
-  addProject(userInput);
+  const projectsList = [];
+  for (const key of Object.keys(localStorage)) {
+    projectsList.push(key.toLowerCase());
+  }
+
+  if (projectsList.includes(userInput.toLowerCase())) {
+    alert("You already have a project of the same name!");
+  } else if (Boolean(userInput)) {
+    addProject(userInput);
+  } else {
+    alert("Please enter a valid project name!");
+  }
 });

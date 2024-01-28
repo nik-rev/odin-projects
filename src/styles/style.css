@@ -10,6 +10,12 @@
   padding: 4px;
 }
 
+#small-text {
+  font-size: 2rem;
+  color: rgb(255, 0, 0);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.468);
+}
+
 ::placeholder {
   color: rgb(235, 235, 235);
 }

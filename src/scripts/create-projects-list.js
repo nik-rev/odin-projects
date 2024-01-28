@@ -1,5 +1,6 @@
 import updateProject from "./update-project";
 import updateProjectsList from "./update-projects-list";
+import validateTodos from "./validate-todo";
 
 export default function createProjectsList() {
   const projectNames = document.querySelector("#project-names");
@@ -17,6 +18,7 @@ export default function createProjectsList() {
 
     button.addEventListener("click", () => {
       updateProject(`${key}`);
+      validateTodos();
       updateProjectsList();
     });
   }

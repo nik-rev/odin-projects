@@ -5,6 +5,7 @@ import toggleImportant from "./toggle-important";
 import updateProjectsList from "./update-projects-list";
 import updateTodo from "./update-todo";
 import { format, toDate } from "date-fns";
+import validateTodos from "./validate-todo";
 
 const domTodoCreate = (
   parent,
@@ -58,6 +59,7 @@ const domTodoCreate = (
   imgEdit.addEventListener("click", editState1);
 
   function editState1() {
+    // reload page before state 2 is active
     const h2 = div.querySelector("h2");
     const pDescription = div.querySelector("p.description");
     const pDate = div.querySelector("p.date");
@@ -95,6 +97,7 @@ const domTodoCreate = (
   }
 
   function editState2() {
+    console.log("Hello");
     const inputTitle = div.querySelector(".title");
     const inputDescription = div.querySelector(".description");
     const inputDate = div.querySelector(".date");

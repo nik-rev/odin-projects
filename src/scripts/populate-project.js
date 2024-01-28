@@ -1,7 +1,6 @@
 import addTodoButton from "./add-todo-button";
 import domTodoCreate from "./dom-todo-create";
 import updateProjectsList from "./update-projects-list";
-import validateTodos from "./validate-todo";
 
 export default function populateDomProject(project) {
   const main = document.querySelector("main");
