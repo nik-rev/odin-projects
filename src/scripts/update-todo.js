@@ -6,7 +6,12 @@ export default function updateTodo(
   date,
   priority
 ) {
-  const temp = JSON.parse(localStorage[`${projectName}`]);
+  let temp;
+  try {
+    temp = JSON.parse(localStorage[`${projectName}`]);
+  } catch (err) {
+    temp = JSON.parse(project);
+  }
 
   const newTodo = {
     title,

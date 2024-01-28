@@ -32,6 +32,8 @@ import populateDomProject from "./populate-project";
 import createProjectsList from "./create-projects-list";
 import addProject from "./add-project";
 import validateTodos from "./validate-todo";
+import allFavorite from "./all-favorite";
+import domFavoriteBtn from "./dom-favorite-btn";
 // createDomProject("a");
 
 // updateProject();
@@ -58,3 +60,5 @@ addProjectsBtn.addEventListener("click", () => {
     alert("Please enter a valid project name!");
   }
 });
+
+domFavoriteBtn();

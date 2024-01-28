@@ -13,7 +13,8 @@ const domTodoCreate = (
   todoDescription,
   todoDate,
   project,
-  id
+  id,
+  isNotProject
 ) => {
   const div = document.createElement("div");
   const h2 = document.createElement("h2");
@@ -32,9 +33,11 @@ const domTodoCreate = (
 
   imgFavorite.src = images["star-fill.svg"];
 
-  if (JSON.parse(localStorage[`${project}`])[id]["favorite"] === false) {
-    imgFavorite.src = images["star.svg"];
-  }
+  try {
+    if (JSON.parse(localStorage[`${project}`])[id]["favorite"] === false) {
+      imgFavorite.src = images["star.svg"];
+    }
+  } catch (err) {}
 
   imgEdit.src = images["edit.svg"];
 
@@ -45,7 +48,13 @@ const domTodoCreate = (
   pDate.textContent = `${todoDate}`;
   // format(inputDate.value, "Due MMMM Qo")
   parent.prepend(div);
-  div.append(h2, pDescription, pDate, imgFavorite, imgEdit, imgDelete);
+
+  console.log(isNotProject);
+  if (isNotProject) {
+    div.append(h2, pDescription, pDate);
+  } else {
+    div.append(h2, pDescription, pDate, imgFavorite, imgEdit, imgDelete);
+  }
 
   imgDelete.addEventListener("click", () => {
     removeTodo(`${project}`, id);
@@ -55,6 +64,7 @@ const domTodoCreate = (
   imgFavorite.addEventListener("click", () => {
     toggleImportant(`${project}`, id);
     updateProject(project);
+    updateProjectsList();
   });
   imgEdit.addEventListener("click", editState1);
 

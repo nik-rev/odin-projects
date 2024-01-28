@@ -9,13 +9,6 @@ export default function validateTodos() {
         const indexToRemove = todos.indexOf(todo);
         indexesToRemove.push(indexToRemove);
       }
-
-      // if (doesInclude === true) {
-      //   const indexToExclude = todos.indexOf(todo);
-      //   // console.log(todos, indexToExclude);
-      //   todos.splice(indexToExclude, 1);
-      //   console.log("a");
-      // console.log(todos);
     }
     indexesToRemove.reverse();
     for (const index of indexesToRemove) {
@@ -23,5 +16,4 @@ export default function validateTodos() {
     }
     localStorage[key] = JSON.stringify(todos);
   }
-  // console.log(todos);
 }

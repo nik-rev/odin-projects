@@ -6,7 +6,14 @@ export default function populateDomProject(project) {
   const main = document.querySelector("main");
   const article = document.createElement("article");
   main.append(article);
-  const myProj = JSON.parse(localStorage[`${project}`]);
+  let myProj;
+  let isNotProject = false;
+  try {
+    myProj = JSON.parse(localStorage[`${project}`]);
+  } catch (err) {
+    myProj = JSON.parse(project);
+    isNotProject = true;
+  }
 
   let i = 0;
 
@@ -32,10 +39,13 @@ export default function populateDomProject(project) {
       todo["description"],
       todo["date"],
       project,
-      i
+      i,
+      isNotProject
     );
 
     i++;
   }
-  addTodoButton(article, project);
+  if (!isNotProject) {
+    addTodoButton(article, project);
+  }
 }
