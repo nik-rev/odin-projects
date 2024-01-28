@@ -15,7 +15,8 @@ const domTodoCreate = (
   todoDate,
   project,
   id,
-  isNotProject
+  isNotProject,
+  priority
 ) => {
   const div = document.createElement("div");
   const h2 = document.createElement("h2");
@@ -25,6 +26,7 @@ const domTodoCreate = (
   const imgDelete = document.createElement("img");
   const imgEdit = document.createElement("img");
   div.classList.add("todo");
+  div.classList.add(`${priority}-priority`);
   h2.classList.add("title");
   pDescription.classList.add("description");
   pDate.classList.add("date");
@@ -71,6 +73,7 @@ const domTodoCreate = (
 
   function editState1() {
     // reload page before state 2 is active
+
     const h2 = div.querySelector("h2");
     const pDescription = div.querySelector("p.description");
     const pDate = div.querySelector("p.date");
@@ -81,6 +84,56 @@ const domTodoCreate = (
     div.removeChild(h2);
     div.removeChild(pDescription);
     div.removeChild(pDate);
+
+    // Creating input with 3 radio elements
+    const inputPriority = document.createElement("div");
+    const inputLow = document.createElement("input");
+    const inputMid = document.createElement("input");
+    const inputHigh = document.createElement("input");
+    const inputLowLabel = document.createElement("p");
+    const inputMidLabel = document.createElement("p");
+    const inputHighLabel = document.createElement("p");
+
+    imgEdit.id = "test";
+    inputPriority.classList.add("priority-div");
+    inputLow.name = "priority";
+    inputMid.name = "priority";
+    inputHigh.name = "priority";
+    inputLow.type = "radio";
+    inputMid.type = "radio";
+    inputHigh.type = "radio";
+    inputLow.value = "Low";
+    inputMid.value = "Mid";
+    inputHigh.value = "High";
+    inputLowLabel.textContent = "Low";
+    inputMidLabel.textContent = "Mid";
+    inputHighLabel.textContent = "High";
+    inputPriority.append(
+      inputLow,
+      inputLowLabel,
+      inputMid,
+      inputMidLabel,
+      inputHigh,
+      inputHighLabel
+    );
+
+    if (div.classList.contains("Mid-priority")) {
+      inputMid.checked = true;
+    } else if (div.classList.contains("High-priority")) {
+      inputHigh.checked = true;
+    } else {
+      inputLow.checked = true;
+    }
+
+    if (div.classList.contains("Low-priority")) {
+      div.classList.remove("Low-priority");
+    }
+    if (div.classList.contains("Mid-priority")) {
+      div.classList.remove("Mid-priority");
+    }
+    if (div.classList.contains("High-priority")) {
+      div.classList.remove("High-priority");
+    }
 
     const inputTitle = document.createElement("input");
     const inputDescription = document.createElement("input");
@@ -98,7 +151,7 @@ const domTodoCreate = (
     inputDescription.value = savedDescription;
     inputDate.value = savedDate;
 
-    div.append(inputTitle, inputDescription, inputDate);
+    div.append(inputTitle, inputDescription, inputDate, inputPriority);
 
     imgEdit.src = images["finished.svg"];
     imgDelete.classList.toggle("hidden");
@@ -108,9 +161,27 @@ const domTodoCreate = (
   }
 
   function editState2() {
+    imgEdit.id = "";
+    const inputPriority = document.querySelector(".priority-div");
+
+    const radioButtonsArray = Array.from(
+      inputPriority.querySelectorAll("input")
+    );
+
+    let checkedInput;
+
+    for (const radioButton in radioButtonsArray) {
+      if (radioButtonsArray[radioButton].checked) {
+        checkedInput = radioButtonsArray[radioButton].value;
+      }
+    }
+
+    div.removeChild(inputPriority);
+
     const inputTitle = div.querySelector(".title");
     const inputDescription = div.querySelector(".description");
     const inputDate = div.querySelector(".date");
+    div.classList.add(`${checkedInput}-priority`);
 
     if (inputTitle.value === "") {
       const temporary = inputDescription.value;
@@ -146,7 +217,7 @@ const domTodoCreate = (
         inputTitle.value,
         inputDescription.value,
         inputDate.value,
-        "blue"
+        checkedInput
       );
 
       const h2 = document.createElement("h2");

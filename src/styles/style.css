@@ -1,7 +1,5 @@
 :root {
-  --border-style: 4px solid rgba(255, 255, 255, 0.3);
   --generic-spacing: 20px;
-  --shade: rgba(0, 0, 0, 0.127);
 }
 
 .red-text {
@@ -36,10 +34,17 @@ img {
   filter: invert(100);
 }
 
-header > img {
+header .menu {
   display: none;
   height: 40px;
   width: auto;
+  margin-right: 50px;
+}
+
+header #theme {
+  height: 40px;
+  margin-top: auto;
+  margin-bottom: auto;
   margin-right: 50px;
 }
 
@@ -83,9 +88,9 @@ aside button {
 }
 
 main {
-  height: 720px;
+  height: 1000px;
   width: 1320px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--main-background);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);

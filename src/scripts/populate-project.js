@@ -1,5 +1,6 @@
 import addTodoButton from "./add-todo-button";
 import domTodoCreate from "./dom-todo-create";
+import { shouldBeOpen } from "./open-aside";
 import updateProjectsList from "./update-projects-list";
 
 export default function populateDomProject(project, state) {
@@ -46,7 +47,8 @@ export default function populateDomProject(project, state) {
       todo["date"],
       project,
       i,
-      isNotProject
+      isNotProject,
+      todo["priority"]
     );
 
     i++;

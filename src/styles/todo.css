@@ -21,11 +21,46 @@ article {
   border-radius: 40px;
   padding: 15px 25px;
   display: grid;
-  grid-template: 20px 1fr 20px / 1fr 50px;
+  grid-template: 40px 1fr 20px / 1fr 50px;
   grid-template-areas:
     "title       delete"
     "description edit"
     "date        favorite";
+}
+
+div[class="todo"] {
+  grid-template-areas:
+    "title       delete"
+    "description edit"
+    "date        date";
+}
+
+input[class="title"] {
+  font-size: 2.1rem;
+  font-weight: bold;
+}
+
+#test {
+  grid-area: delete;
+}
+
+.priority-div {
+  display: grid;
+  height: 60%;
+  grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+  grid-area: edit;
+  font-size: 1.2rem;
+  justify-items: start;
+  align-items: center;
+  align-self: center;
+}
+
+input[type="date"] {
+  color-scheme: dark;
+}
+
+.priority-div > input {
+  height: 18px;
 }
 
 .add-todo-button {

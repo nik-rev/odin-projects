@@ -1,0 +1,23 @@
+.dark-theme {
+  --background-gradient-1: #2a0061;
+  --background-gradient-2: #0003be;
+  --background-gradient-3: #0030a9;
+  --shade: rgba(0, 0, 0, 0.46);
+  --border-style: 4px solid rgba(6, 0, 112, 0.563);
+  --main-background: rgba(0, 0, 0, 0.303);
+  --priority-low: rgb(0, 84, 0);
+  --priority-mid: rgb(78, 72, 0);
+  --priority-high: rgb(40, 0, 0);
+}
+
+.light-theme {
+  --background-gradient-1: #7188ff;
+  --background-gradient-2: #c850c0;
+  --background-gradient-3: #ffcc70;
+  --shade: rgba(0, 0, 0, 0.127);
+  --border-style: 4px solid rgba(255, 255, 255, 0.3);
+  --main-background: rgba(255, 255, 255, 0.2);
+  --priority-low: rgba(0, 255, 0, 0.665);
+  --priority-mid: rgba(255, 234, 0, 0.831);
+  --priority-high: rgba(255, 0, 0, 0.774);
+}

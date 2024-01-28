@@ -1,0 +1,11 @@
+.Low-priority {
+  border-left: 10px groove var(--priority-low);
+}
+
+.Mid-priority {
+  border-left: 10px groove var(--priority-mid);
+}
+
+.High-priority {
+  border-left: 10px groove var(--priority-high);
+}

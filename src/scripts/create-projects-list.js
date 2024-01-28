@@ -1,11 +1,11 @@
 import allFavorite from "./all-favorite";
+import toggleAsideArticleClasses from "./toggle-aside-article-classes";
 import updateProject from "./update-project";
 import updateProjectsList from "./update-projects-list";
 import validateTodos from "./validate-todo";
 
 export default function createProjectsList() {
   const projectNames = document.querySelector("#project-names");
-
   // Favorite counter
   const favoriteCounter = document.createElement("p");
   favoriteCounter.classList.add("favorite-counter");
@@ -29,6 +29,7 @@ export default function createProjectsList() {
       updateProject(`${key}`);
       validateTodos();
       updateProjectsList();
+      toggleAsideArticleClasses();
     });
   }
 }

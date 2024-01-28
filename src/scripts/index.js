@@ -27,6 +27,11 @@ import allFavorite from "./all-favorite";
 import domFavoriteBtn from "./dom-favorite-btn";
 import domDatesBtns from "./dom-dates-btns";
 import updateDates from "./update-dates";
+import { themeSwitcher } from "./theme-switcher";
+import openAside from "./open-aside";
+import toggleAsideArticleClasses from "./toggle-aside-article-classes";
+
+// interpretData(data);
 
 createDomProject(allFavorite(), "in favorite");
 createProjectsList();
@@ -34,16 +39,17 @@ createProjectsList();
 const addProjectsBtn = document.querySelector(".add-project");
 
 addProjectsBtn.addEventListener("click", () => {
-  const userInput = prompt("What do you want to call the new project?");
+  let userInput = prompt("What do you want to call the new project?");
   const projectsList = [];
   for (const key of Object.keys(localStorage)) {
     projectsList.push(key.toLowerCase());
   }
-
+  if (userInput === null) userInput = "";
   if (projectsList.includes(userInput.toLowerCase())) {
     alert("You already have a project of the same name!");
   } else if (Boolean(userInput)) {
     addProject(userInput);
+    toggleAsideArticleClasses();
   } else {
     alert("Please enter a valid project name!");
   }
@@ -52,3 +58,5 @@ addProjectsBtn.addEventListener("click", () => {
 domFavoriteBtn();
 domDatesBtns();
 updateDates();
+themeSwitcher();
+openAside();
