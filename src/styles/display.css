@@ -26,6 +26,7 @@ aside {
   justify-content: flex-start;
   grid-area: aside;
   gap: var(--generic-spacing);
+  overflow: scroll;
 }
 
 aside > div {
@@ -50,6 +51,19 @@ aside > div > p {
 
 article {
   grid-area: article;
+}
+
+.dates {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dates p {
+  display: inline-block;
+}
+.dates div {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media only screen and (max-width: 800px) {

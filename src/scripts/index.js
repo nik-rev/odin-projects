@@ -18,29 +18,17 @@ const images = importAllImages(
 
 // other stuff
 
-import addTodo from "./add-todo";
-import removeTodo from "./remove-todo";
-import toggleImportant from "./toggle-important";
-import updateTodo from "./update-todo";
-import domTodoCreate from "./dom-todo-create";
 import createDomProject from "./populate-project";
 import interpretData from "./data";
 import { data } from "./data";
-import clearProject from "./clear-project";
-import updateProject from "./update-project";
-import populateDomProject from "./populate-project";
 import createProjectsList from "./create-projects-list";
 import addProject from "./add-project";
-import validateTodos from "./validate-todo";
 import allFavorite from "./all-favorite";
 import domFavoriteBtn from "./dom-favorite-btn";
-// createDomProject("a");
+import domDatesBtns from "./dom-dates-btns";
+import updateDates from "./update-dates";
 
-// updateProject();
-
-// interpretData(data);
-
-populateDomProject("events");
+createDomProject(allFavorite(), "in favorite");
 createProjectsList();
 
 const addProjectsBtn = document.querySelector(".add-project");
@@ -62,3 +50,5 @@ addProjectsBtn.addEventListener("click", () => {
 });
 
 domFavoriteBtn();
+domDatesBtns();
+updateDates();

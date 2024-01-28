@@ -6,6 +6,7 @@ import updateProjectsList from "./update-projects-list";
 import updateTodo from "./update-todo";
 import { format, toDate } from "date-fns";
 import validateTodos from "./validate-todo";
+import updateDates from "./update-dates";
 
 const domTodoCreate = (
   parent,
@@ -49,7 +50,6 @@ const domTodoCreate = (
   // format(inputDate.value, "Due MMMM Qo")
   parent.prepend(div);
 
-  console.log(isNotProject);
   if (isNotProject) {
     div.append(h2, pDescription, pDate);
   } else {
@@ -60,6 +60,7 @@ const domTodoCreate = (
     removeTodo(`${project}`, id);
     updateProjectsList();
     updateProject(project);
+    updateDates();
   });
   imgFavorite.addEventListener("click", () => {
     toggleImportant(`${project}`, id);
@@ -107,7 +108,6 @@ const domTodoCreate = (
   }
 
   function editState2() {
-    console.log("Hello");
     const inputTitle = div.querySelector(".title");
     const inputDescription = div.querySelector(".description");
     const inputDate = div.querySelector(".date");
@@ -161,8 +161,6 @@ const domTodoCreate = (
       pDescription.classList.add("description");
       pDate.classList.add("date");
 
-      console.log(div, inputTitle, inputDescription, inputDate);
-
       div.removeChild(inputTitle);
       div.removeChild(inputDescription);
       div.removeChild(inputDate);
@@ -173,6 +171,7 @@ const domTodoCreate = (
       imgFavorite.classList.toggle("hidden");
       imgEdit.removeEventListener("click", editState2);
       imgEdit.addEventListener("click", editState1);
+      updateDates();
     }
   }
 

@@ -2,7 +2,7 @@ import addTodoButton from "./add-todo-button";
 import domTodoCreate from "./dom-todo-create";
 import updateProjectsList from "./update-projects-list";
 
-export default function populateDomProject(project) {
+export default function populateDomProject(project, state) {
   const main = document.querySelector("main");
   const article = document.createElement("article");
   main.append(article);
@@ -22,14 +22,20 @@ export default function populateDomProject(project) {
     const article = document.querySelector("article");
     const deleteProjectButton = document.createElement("button");
     deleteProjectButton.classList.add("delete-project");
-    deleteProjectButton.textContent = "delete project";
-    article.append(deleteProjectButton);
-    deleteProjectButton.addEventListener("click", () => {
-      localStorage.removeItem(project);
-      updateProjectsList();
-      main.removeChild(article);
-      populateDomProject("events");
-    });
+
+    if (!isNotProject) {
+      deleteProjectButton.textContent = "delete project";
+      article.append(deleteProjectButton);
+      deleteProjectButton.addEventListener("click", () => {
+        localStorage.removeItem(project);
+        updateProjectsList();
+        main.removeChild(article);
+        populateDomProject("events");
+      });
+    } else {
+      deleteProjectButton.textContent = `Looks like you have nothing set for ${state.toLowerCase()}!`;
+      article.append(deleteProjectButton);
+    }
   }
 
   for (const todo of myProj) {
