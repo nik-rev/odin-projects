@@ -1,5 +1,4 @@
 import allFavorite from "./all-favorite";
-import populateDomProject from "./populate-project";
 import toggleAsideArticleClasses from "./toggle-aside-article-classes";
 import updateProject from "./update-project";
 

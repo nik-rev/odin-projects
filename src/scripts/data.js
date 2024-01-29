@@ -280,12 +280,3 @@ export default function interpretData(data) {
     }
   }
 }
-
-// addTodo(
-//   projectName,
-//   todoTitle,
-//   todoDescription,
-//   todoDate,
-//   todoPriority,
-//   todoFavorite
-// );

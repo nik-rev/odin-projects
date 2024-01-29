@@ -1,12 +1,5 @@
 import { images } from ".";
 
-// if (
-//   window.matchMedia &&
-//   window.matchMedia("(prefers-color-scheme: dark)").matches
-// ) {
-//   // dark mode
-// }
-
 const themeSwitcher = () => {
   const themeIcon = document.querySelector("#theme");
   const body = document.querySelector("body");

@@ -4,8 +4,6 @@ import updateProject from "./update-project";
 import toggleImportant from "./toggle-important";
 import updateProjectsList from "./update-projects-list";
 import updateTodo from "./update-todo";
-import { format, toDate } from "date-fns";
-import validateTodos from "./validate-todo";
 import updateDates from "./update-dates";
 import toggleChecked from "./toggle-checked";
 
@@ -59,7 +57,6 @@ const domTodoCreate = (
   h2.textContent = `${todoTitle}`;
   pDescription.textContent = `${todoDescription}`;
   pDate.textContent = `${todoDate}`;
-  // format(inputDate.value, "Due MMMM Qo")
   parent.prepend(div);
 
   if (isNotProject) {
@@ -116,7 +113,6 @@ const domTodoCreate = (
     div.removeChild(pDescription);
     div.removeChild(pDate);
 
-    // Creating input with 3 radio elements
     const inputPriority = document.createElement("div");
     const inputLow = document.createElement("input");
     const inputMid = document.createElement("input");
@@ -186,13 +182,14 @@ const domTodoCreate = (
     inputDate.value = savedDate;
 
     div.append(inputTitle, inputDescription, inputDate, inputPriority);
-
-    imgEdit.src = images["finished.svg"];
     imgDelete.classList.toggle("hidden");
     imgFavorite.classList.toggle("hidden");
     imgCheck.classList.toggle("hidden");
+
+    // stays here
     imgEdit.removeEventListener("click", editState1);
     imgEdit.addEventListener("click", editState2);
+    imgEdit.src = images["finished.svg"];
   }
 
   function editState2() {
