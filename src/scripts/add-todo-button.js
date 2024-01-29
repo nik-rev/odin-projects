@@ -1,11 +1,8 @@
 import addTodo from "./add-todo";
-import domTodoCreate from "./dom-todo-create";
 import findLastEdit from "./find-last-edit";
-import populateDomProject from "./populate-project";
 import updateDates from "./update-dates";
 import updateProject from "./update-project";
 import updateProjectsList from "./update-projects-list";
-import validateTodos from "./validate-todo";
 
 export default function addTodoButton(parent, project) {
   const createButton = document.createElement("button");
@@ -17,7 +14,7 @@ export default function addTodoButton(parent, project) {
     try {
       if (Boolean(JSON.parse(localStorage[project]).at(-1)["title"])) {
         parent.removeChild(createButton);
-        addTodo(`${project}`, "", "", "", "blue", false);
+        addTodo(`${project}`, "", "", "", "", false, false);
         updateProject(project);
         updateProjectsList();
         updateDates();
@@ -32,7 +29,7 @@ export default function addTodoButton(parent, project) {
         }, 1000);
       }
     } catch {
-      addTodo(`${project}`, "", "", "", "blue", false);
+      addTodo(`${project}`, "", "", "", "", false, false);
       updateProject(project);
       updateProjectsList();
       updateDates();
