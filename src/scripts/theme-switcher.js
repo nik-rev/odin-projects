@@ -1,24 +1,32 @@
 import { images } from ".";
 
-const themeSwitcher = () => {
+export default function themeSwitcher() {
+  console.log("test");
   const themeIcon = document.querySelector("#theme");
   const body = document.querySelector("body");
-  let theme = "light";
 
-  try {
-    if (sessionStorage["theme"] === "dark") {
-      body.classList.remove("light-theme");
-      body.classList.add("dark-theme");
-      themeIcon.addEventListener("click", themeIconState2);
-    }
-    if (sessionStorage["theme"] === "light") {
-      body.classList.add("light-theme");
-      body.classList.remove("dark-theme");
-      themeIcon.addEventListener("click", themeIconState1);
-    }
-  } catch {
+  sessionStorage["theme"] === "light";
+
+  if (sessionStorage["theme"] === "dark") {
+    body.classList.remove("light-theme");
+    body.classList.add("dark-theme");
+    themeIcon.src = images["dark-theme.svg"];
+    themeIcon.addEventListener("click", themeIconState2);
+  }
+  if (sessionStorage["theme"] === "light") {
+    body.classList.add("light-theme");
+    body.classList.remove("dark-theme");
     themeIcon.addEventListener("click", themeIconState1);
   }
+  if (sessionStorage["theme"] === undefined) {
+    themeIcon.addEventListener("click", themeIconState1);
+  }
+
+  // try {
+
+  // } catch {
+  //   themeIcon.addEventListener("click", themeIconState1);
+  // }
 
   function themeIconState1() {
     themeIcon.removeEventListener("click", themeIconState1);
@@ -37,8 +45,4 @@ const themeSwitcher = () => {
     body.classList.toggle("dark-theme");
     sessionStorage["theme"] = "light";
   }
-
-  return theme;
-};
-
-export { themeSwitcher };
+}

@@ -22,24 +22,43 @@ import createDomProject from "./populate-project";
 import interpretData from "./data";
 import { data } from "./data";
 import createProjectsList from "./create-projects-list";
+import addProject from "./add-project";
 import allFavorite from "./all-favorite";
 import domFavoriteBtn from "./dom-favorite-btn";
 import domDatesBtns from "./dom-dates-btns";
 import updateDates from "./update-dates";
-import { themeSwitcher } from "./theme-switcher";
+import themeSwitcher from "./theme-switcher";
 import openAside from "./open-aside";
-import addProjectsBtn from "./add-projects-btn";
+import toggleAsideArticleClasses from "./toggle-aside-article-classes";
 
-const startup = (() => {
-  if (localStorage.length === 0) {
-    interpretData(data);
+if (localStorage.length === 0) {
+  interpretData(data);
+}
+
+createDomProject(allFavorite(), "in favorite");
+createProjectsList();
+
+const addProjectsBtn = document.querySelector(".add-project");
+
+addProjectsBtn.addEventListener("click", () => {
+  let userInput = prompt("What do you want to call the new project?");
+  const projectsList = [];
+  for (const key of Object.keys(localStorage)) {
+    projectsList.push(key.toLowerCase());
   }
-  createDomProject(allFavorite(), "in favorite");
-  createProjectsList();
-  addProjectsBtn();
-  domFavoriteBtn();
-  domDatesBtns();
-  updateDates();
-  themeSwitcher();
-  openAside();
-})();
+  if (userInput === null) userInput = "";
+  if (projectsList.includes(userInput.toLowerCase())) {
+    alert("You already have a project of the same name!");
+  } else if (Boolean(userInput)) {
+    addProject(userInput);
+    toggleAsideArticleClasses();
+  } else {
+    alert("Please enter a valid project name!");
+  }
+});
+
+domFavoriteBtn();
+domDatesBtns();
+updateDates();
+themeSwitcher();
+openAside();
