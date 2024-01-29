@@ -142,6 +142,9 @@ const domTodoCreate = (
     inputDescription.placeholder = "Enter description of your todo";
     inputDate.placeholder = "What was the date?";
     inputDate.type = "Date";
+    inputTitle.type = "text";
+    inputDescription.maxLength = "25";
+    inputTitle.maxLength = "16";
 
     inputTitle.classList.add("title");
     inputDescription.classList.add("description");
