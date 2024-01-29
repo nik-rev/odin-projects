@@ -18,7 +18,8 @@
 .edit:hover,
 .menu:hover,
 #theme:hover,
-.add-todo-button:hover {
+.add-todo-button:hover,
+.check:hover {
   cursor: pointer;
 }
 
@@ -31,7 +32,8 @@
 .edit:hover,
 .project-name > button:hover,
 .add-project:hover,
-.dates > div > button:hover {
+.dates > div > button:hover,
+.check:hover {
   filter: invert(71%) sepia(24%) saturate(6897%) hue-rotate(2deg)
     brightness(105%) contrast(104%);
 }

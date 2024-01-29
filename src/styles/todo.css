@@ -79,10 +79,6 @@ input[type="date"] {
     "create create create create create"; */
 }
 
-.add-todo-button .check {
-  grid-area: check;
-}
-
 .add-todo-button .input-title {
   grid-area: title;
 }
@@ -135,6 +131,12 @@ input[type="date"] {
 
 .todo .favorite {
   grid-area: favorite;
+  justify-self: end;
+  align-self: center;
+}
+
+.check {
+  grid-area: check;
   justify-self: end;
   align-self: center;
 }

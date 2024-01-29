@@ -31,7 +31,9 @@ import { themeSwitcher } from "./theme-switcher";
 import openAside from "./open-aside";
 import toggleAsideArticleClasses from "./toggle-aside-article-classes";
 
-// interpretData(data);
+if (localStorage.length === 0) {
+  interpretData(data);
+}
 
 createDomProject(allFavorite(), "in favorite");
 createProjectsList();

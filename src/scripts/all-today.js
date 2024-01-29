@@ -27,6 +27,7 @@ export default function allToday() {
         monthArray.push(todo);
       }
       if (DATE_IN_MILLISECONDS < MS_IN_YEAR) {
+        console.log(todo);
         yearArray.push(todo);
       }
     }
