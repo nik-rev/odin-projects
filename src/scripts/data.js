@@ -8,6 +8,7 @@ export const data = {
       date: "2024-08-14",
       priority: "Low",
       favorite: true,
+      checked: false,
     },
     {
       title: "Physics Exam",
@@ -15,6 +16,7 @@ export const data = {
       date: "2024-05-25",
       priority: "High",
       favorite: false,
+      checked: true,
     },
     {
       title: "Coding Workshop",
@@ -22,6 +24,7 @@ export const data = {
       date: "2024-09-05",
       priority: "Mid",
       favorite: false,
+      checked: false,
     },
     {
       title: "Hackathon",
@@ -29,6 +32,7 @@ export const data = {
       date: "2024-11-11",
       priority: "Low",
       favorite: true,
+      checked: false,
     },
     {
       title: "Project Deadline",
@@ -36,6 +40,7 @@ export const data = {
       date: "2024-11-30",
       priority: "Mid",
       favorite: false,
+      checked: true,
     },
     {
       title: "New Year Celebration",
@@ -43,6 +48,7 @@ export const data = {
       date: "2024-12-31",
       priority: "High",
       favorite: true,
+      checked: false,
     },
   ],
   learning: [
@@ -53,6 +59,7 @@ export const data = {
       priority: "Low",
       project: "Learning",
       favorite: true,
+      checked: false,
     },
     {
       title: "Maths Tutorial",
@@ -61,6 +68,7 @@ export const data = {
       priority: "High",
       project: "Learning",
       favorite: false,
+      checked: true,
     },
     {
       title: "JavaScript Course",
@@ -69,6 +77,7 @@ export const data = {
       priority: "Low",
       project: "Learning",
       favorite: true,
+      checked: false,
     },
     {
       title: "Physics Conference",
@@ -77,6 +86,7 @@ export const data = {
       priority: "Low",
       project: "Learning",
       favorite: false,
+      checked: true,
     },
     {
       title: "Group Study",
@@ -85,6 +95,7 @@ export const data = {
       priority: "Mid",
       project: "Learning",
       favorite: false,
+      checked: true,
     },
     {
       title: "Online Webinar",
@@ -93,6 +104,7 @@ export const data = {
       priority: "Low",
       project: "Learning",
       favorite: true,
+      checked: false,
     },
   ],
   leisure: [
@@ -103,6 +115,7 @@ export const data = {
       priority: "Low",
       project: "Leisure",
       favorite: false,
+      checked: true,
     },
     {
       title: "Family Trip",
@@ -111,6 +124,7 @@ export const data = {
       priority: "Low",
       project: "Leisure",
       favorite: true,
+      checked: false,
     },
     {
       title: "Movie Marathon",
@@ -119,6 +133,7 @@ export const data = {
       priority: "Mid",
       project: "Leisure",
       favorite: true,
+      checked: false,
     },
     {
       title: "Beach Day",
@@ -127,6 +142,7 @@ export const data = {
       priority: "Low",
       project: "Leisure",
       favorite: false,
+      checked: false,
     },
     {
       title: "Book Club Meeting",
@@ -135,6 +151,7 @@ export const data = {
       priority: "Mid",
       project: "Leisure",
       favorite: true,
+      checked: true,
     },
     {
       title: "Gaming Tournament",
@@ -143,6 +160,7 @@ export const data = {
       priority: "Low",
       project: "Leisure",
       favorite: false,
+      checked: false,
     },
   ],
   fitness: [
@@ -152,6 +170,7 @@ export const data = {
       date: "2024-01-02",
       priority: "Low",
       favorite: false,
+      checked: true,
     },
     {
       title: "Half Marathon",
@@ -159,6 +178,7 @@ export const data = {
       date: "2024-04-16",
       priority: "High",
       favorite: true,
+      checked: false,
     },
     {
       title: "Yoga Workshop",
@@ -166,6 +186,7 @@ export const data = {
       date: "2024-07-21",
       priority: "Low",
       favorite: false,
+      checked: true,
     },
     {
       title: "Bike Race",
@@ -173,6 +194,7 @@ export const data = {
       date: "2024-09-03",
       priority: "High",
       favorite: true,
+      checked: true,
     },
     {
       title: "Hiking Trip",
@@ -180,6 +202,7 @@ export const data = {
       date: "2024-05-28",
       priority: "Low",
       favorite: false,
+      checked: false,
     },
     {
       title: "Swimming Lessons",
@@ -187,6 +210,7 @@ export const data = {
       date: "2024-08-12",
       priority: "Low",
       favorite: true,
+      checked: true,
     },
   ],
   work: [
@@ -196,6 +220,7 @@ export const data = {
       date: "2024-02-10",
       priority: "Mid",
       favorite: true,
+      checked: true,
     },
     {
       title: "Team Building",
@@ -203,6 +228,7 @@ export const data = {
       date: "2024-05-26",
       priority: "Low",
       favorite: false,
+      checked: true,
     },
     {
       title: "Client Meeting",
@@ -210,6 +236,7 @@ export const data = {
       date: "2024-07-15",
       priority: "Mid",
       favorite: true,
+      checked: false,
     },
     {
       title: "Annual Review",
@@ -217,6 +244,7 @@ export const data = {
       date: "2024-10-20",
       priority: "High",
       favorite: false,
+      checked: true,
     },
     {
       title: "Conference Attendance",
@@ -224,6 +252,7 @@ export const data = {
       date: "2024-03-11",
       priority: "Low",
       favorite: true,
+      checked: false,
     },
     {
       title: "Deadline for Report",
@@ -231,6 +260,7 @@ export const data = {
       date: "2024-01-31",
       priority: "Low",
       favorite: false,
+      checked: true,
     },
   ],
 };
@@ -244,7 +274,8 @@ export default function interpretData(data) {
         todo["description"],
         todo["date"],
         todo["priority"],
-        todo["favorite"]
+        todo["favorite"],
+        todo["checked"]
       );
     }
   }

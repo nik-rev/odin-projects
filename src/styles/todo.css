@@ -21,10 +21,11 @@ article {
   border-radius: 40px;
   padding: 15px 25px;
   display: grid;
-  grid-template: 40px 1fr 20px / 1fr 50px;
+  grid-template: 40px 1fr 1fr 20px / 1fr 50px;
   grid-template-areas:
     "title       delete"
     "description edit"
+    "description check"
     "date        favorite";
 }
 
@@ -76,6 +77,10 @@ input[type="date"] {
     "description description description description description"
     "date priority-1 priority-2 priority-3 important"
     "create create create create create"; */
+}
+
+.add-todo-button .check {
+  grid-area: check;
 }
 
 .add-todo-button .input-title {

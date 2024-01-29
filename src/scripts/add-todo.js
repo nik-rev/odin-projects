@@ -4,7 +4,8 @@ export default function addTodo(
   todoDescription,
   todoDate,
   todoPriority,
-  todoFavorite
+  todoFavorite,
+  todoChecked
 ) {
   if (localStorage[`${projectName}`] === undefined) {
     localStorage[`${projectName}`] = "[]";
@@ -16,6 +17,7 @@ export default function addTodo(
     date: todoDate,
     priority: todoPriority,
     favorite: todoFavorite,
+    checked: todoChecked,
   });
   localStorage[`${projectName}`] = JSON.stringify(temp);
 }

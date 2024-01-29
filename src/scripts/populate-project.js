@@ -48,7 +48,8 @@ export default function populateDomProject(project, state) {
       project,
       i,
       isNotProject,
-      todo["priority"]
+      todo["priority"],
+      todo["checked"]
     );
 
     i++;

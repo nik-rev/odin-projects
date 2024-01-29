@@ -41,6 +41,15 @@ header .menu {
   margin-right: 50px;
 }
 
+.checked {
+  text-decoration: line-through;
+  color: rgb(210, 210, 210);
+}
+
+.checked-todo {
+  border: none;
+}
+
 header #theme {
   height: 40px;
   margin-top: auto;

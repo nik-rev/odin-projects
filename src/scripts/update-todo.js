@@ -19,6 +19,7 @@ export default function updateTodo(
     date,
     priority,
     favorite: temp[idToUpdate]["favorite"],
+    checked: temp[idToUpdate]["checked"],
   };
 
   temp[idToUpdate] = newTodo;

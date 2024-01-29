@@ -7,6 +7,7 @@ import updateTodo from "./update-todo";
 import { format, toDate } from "date-fns";
 import validateTodos from "./validate-todo";
 import updateDates from "./update-dates";
+import toggleChecked from "./toggle-checked";
 
 const domTodoCreate = (
   parent,
@@ -16,7 +17,8 @@ const domTodoCreate = (
   project,
   id,
   isNotProject,
-  priority
+  priority,
+  checked
 ) => {
   const div = document.createElement("div");
   const h2 = document.createElement("h2");
@@ -25,6 +27,7 @@ const domTodoCreate = (
   const imgFavorite = document.createElement("img");
   const imgDelete = document.createElement("img");
   const imgEdit = document.createElement("img");
+  const imgCheck = document.createElement("img");
   div.classList.add("todo");
   div.classList.add(`${priority}-priority`);
   h2.classList.add("title");
@@ -33,12 +36,19 @@ const domTodoCreate = (
   imgFavorite.classList.add("favorite");
   imgDelete.classList.add("delete");
   imgEdit.classList.add("edit");
+  imgCheck.classList.add("check");
 
   imgFavorite.src = images["star-fill.svg"];
+  imgCheck.src = images["checkbox-checked.svg"];
 
   try {
     if (JSON.parse(localStorage[`${project}`])[id]["favorite"] === false) {
       imgFavorite.src = images["star.svg"];
+    }
+  } catch (err) {}
+  try {
+    if (JSON.parse(localStorage[`${project}`])[id]["checked"] === false) {
+      imgCheck.src = images["checkbox-empty.svg"];
     }
   } catch (err) {}
 
@@ -55,7 +65,23 @@ const domTodoCreate = (
   if (isNotProject) {
     div.append(h2, pDescription, pDate);
   } else {
-    div.append(h2, pDescription, pDate, imgFavorite, imgEdit, imgDelete);
+    if (checked) {
+      h2.classList.add("checked");
+      pDescription.classList.add("checked");
+      pDate.classList.add("checked");
+      div.classList.add("checked-todo");
+      div.append(h2, pDescription, pDate, imgFavorite, imgCheck, imgDelete);
+    } else {
+      div.append(
+        h2,
+        pDescription,
+        pDate,
+        imgFavorite,
+        imgCheck,
+        imgEdit,
+        imgDelete
+      );
+    }
   }
 
   imgDelete.addEventListener("click", () => {
@@ -66,6 +92,11 @@ const domTodoCreate = (
   });
   imgFavorite.addEventListener("click", () => {
     toggleImportant(`${project}`, id);
+    updateProject(project);
+    updateProjectsList();
+  });
+  imgCheck.addEventListener("click", () => {
+    toggleChecked(`${project}`, id);
     updateProject(project);
     updateProjectsList();
   });
@@ -159,6 +190,7 @@ const domTodoCreate = (
     imgEdit.src = images["finished.svg"];
     imgDelete.classList.toggle("hidden");
     imgFavorite.classList.toggle("hidden");
+    imgCheck.classList.toggle("hidden");
     imgEdit.removeEventListener("click", editState1);
     imgEdit.addEventListener("click", editState2);
   }
@@ -243,6 +275,7 @@ const domTodoCreate = (
       imgEdit.src = images["edit.svg"];
       imgDelete.classList.toggle("hidden");
       imgFavorite.classList.toggle("hidden");
+      imgCheck.classList.toggle("hidden");
       imgEdit.removeEventListener("click", editState2);
       imgEdit.addEventListener("click", editState1);
       updateDates();
