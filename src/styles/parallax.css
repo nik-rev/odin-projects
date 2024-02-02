@@ -1,25 +1,20 @@
+html {
+  margin: auto;
+}
+
 body {
-  position: relative;
   height: 100vh;
+  width: 120vw;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   background-color: #58dcd4;
+  position: relative;
 }
-
-body > img {
-  position: absolute;
-  height: 100%;
-  width: auto;
-}
-
-/* #layer-5 {
-  left: 500px;
-} */
 
 span {
-  position: relative;
+  position: absolute;
   height: 80%;
   min-width: 200vw;
 }
@@ -35,6 +30,7 @@ div {
 
 #layer-11 {
   background-image: url("../assets/img/11_background.png");
+  outline: 20px solid #58dcd4;
 }
 
 #layer-10 {
@@ -71,6 +67,7 @@ div {
 
 #layer-2 {
   background-image: url("../assets/img/02_trees and bushes.png");
+  /* transform: translateX(30px) translateY(-100px); */
 }
 
 #layer-1 {

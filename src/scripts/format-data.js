@@ -2,6 +2,8 @@ import requestData from "./request-data";
 import formatArray from "./format-array";
 
 export async function getDataForSevenDays(input, imperial) {
+  imperial = imperial === "OFF" ? undefined : true;
+
   const data = await requestData(input);
   const sevenDaysArray = [];
   const modifiedSevenDaysArray = [];

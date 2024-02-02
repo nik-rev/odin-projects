@@ -3,7 +3,9 @@
 //   getDataForSevenDays,
 //   getDataTodayHours,
 // } from "./format-data";
+import domWeatherCreate from "./dom-weather-create";
 import parallax from "./parallax";
+import weatherSearch from "./submit-form";
 // import requestData from "./request-data"; // remove later
 
 function importAllCSS(r) {
@@ -26,5 +28,15 @@ const images = importAllImages(
 // getDataForSevenDays("London").then((result) => console.log(result));
 // getDataTodayHours("London").then((resolve) => console.log(resolve));
 document.addEventListener("mousemove", parallax);
+document.querySelector("form").addEventListener("submit", weatherSearch);
+
+navigator.geolocation.getCurrentPosition((position) => {
+  domWeatherCreate(`${position.coords.latitude}, ${position.coords.longitude}`);
+});
+
+document.querySelector("#imperial").addEventListener("click", () => {
+  const imperialP = document.querySelector("#imperial > p");
+  imperialP.textContent = imperialP.textContent === "OFF" ? "ON" : "OFF";
+});
 
 export { importAllImages, images };
