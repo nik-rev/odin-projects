@@ -9,6 +9,11 @@ main {
   gap: 30px;
 }
 
+/* don't mind the important, its for testing purposes */
+body {
+  justify-content: center !important;
+}
+
 article > p {
   background-color: rgba(0, 0, 0, 0.089);
   padding: 4px;
