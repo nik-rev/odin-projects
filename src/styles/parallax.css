@@ -7,7 +7,7 @@ body {
   width: 120vw;
   overflow: hidden;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   background-color: #58dcd4;
   position: relative;
