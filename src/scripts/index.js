@@ -1,5 +1,9 @@
-export { importAllImages, images };
-export { mainContent };
+import {
+  getDataToday,
+  getDataForSevenDays,
+  getDataTodayHours,
+} from "./format-data";
+import requestData from "./request-data"; // remove later
 
 function importAllCSS(r) {
   r.keys().forEach(r);
@@ -7,7 +11,7 @@ function importAllCSS(r) {
 importAllCSS(require.context("../styles/", true, /\.css$/));
 
 function importAllImages(r) {
-  let images = {};
+  const images = {};
   r.keys().forEach((item) => {
     images[item.replace("./", "")] = r(item);
   });
@@ -16,3 +20,11 @@ function importAllImages(r) {
 const images = importAllImages(
   require.context("../assets/img/", false, /\.(png|svg|jpe?g|gif)$/)
 );
+
+// requestData("London").then((resolve) => console.log(resolve));
+
+// getDataForSevenDays("London").then((result) => console.log(result));
+
+// getDataTodayHours("London").then((resolve) => console.log(resolve));
+
+export { importAllImages, images };
