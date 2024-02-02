@@ -82,6 +82,12 @@ async function domWeatherReportCreate(
 export default async function domWeatherCreate(input, imperial) {
   const data = await getDataForSevenDays(input, imperial);
 
+  const weatherReportTitle = document.createElement("h1");
+  weatherReportTitle.classList.add("report-title");
+  weatherReportTitle.textContent = `${input}`;
+  const main = document.querySelector("main");
+  main.appendChild(weatherReportTitle);
+
   data.forEach((day) => {
     domWeatherReportCreate(
       day.snowChance,
@@ -93,7 +99,8 @@ export default async function domWeatherCreate(input, imperial) {
       day.sunrise,
       day.temperature,
       day.icon.icon,
-      day.windSpeed
+      day.windSpeed,
+      input
     );
   });
 }

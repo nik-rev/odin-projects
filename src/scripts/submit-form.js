@@ -16,9 +16,14 @@ export default function weatherSearch(e) {
   try {
     const weather = Array.from(document.querySelectorAll("main > article"));
     const main = document.querySelector("main");
+
     weather.forEach((article) => {
       main.removeChild(article);
     });
+
+    const mainHeading = document.querySelector(".report-title");
+    // console.log(main, mainHeading);
+    main.removeChild(mainHeading);
   } catch {}
   // getDataForSevenDays(search.value).then((resolve) => console.log(resolve));
   // getDataToday(search.value).then((resolve) => console.log(resolve));
