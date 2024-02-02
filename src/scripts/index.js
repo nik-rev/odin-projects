@@ -1,9 +1,10 @@
-import {
-  getDataToday,
-  getDataForSevenDays,
-  getDataTodayHours,
-} from "./format-data";
-import requestData from "./request-data"; // remove later
+// import {
+//   getDataToday,
+//   getDataForSevenDays,
+//   getDataTodayHours,
+// } from "./format-data";
+import parallax from "./parallax";
+// import requestData from "./request-data"; // remove later
 
 function importAllCSS(r) {
   r.keys().forEach(r);
@@ -22,9 +23,8 @@ const images = importAllImages(
 );
 
 // requestData("London").then((resolve) => console.log(resolve));
-
 // getDataForSevenDays("London").then((result) => console.log(result));
-
 // getDataTodayHours("London").then((resolve) => console.log(resolve));
+document.addEventListener("mousemove", parallax);
 
 export { importAllImages, images };
