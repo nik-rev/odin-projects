@@ -4,16 +4,40 @@ export default async function requestData(input) {
   const dateThreeDaysAgo = new Date(Date.now() - 3 * 24 * 3600 * 1000);
   const dateFourDaysAgo = new Date(Date.now() - 4 * 24 * 3600 * 1000);
 
+  try {
+    const errorTest = await fetch(
+      `https://api.weatherapi.com/v1/history.json?key=9c9abdde645d4967bb9162009240102&q=${input}&dt=${dateOneDayAgo.getFullYear()}-${
+        dateOneDayAgo.getMonth() + 1
+      }-${dateOneDayAgo.getDate()}`
+    );
+
+    if (!errorTest.ok) {
+      throw new Error("HTTP error, status = " + errorTest.status);
+    }
+
+    console.log("Response is successful");
+  } catch (err) {
+    const main = document.querySelector("main");
+    const h2text = document.createElement("h2");
+    const img = document.querySelector(".loading");
+    main.removeChild(img);
+    main.appendChild(h2text);
+    h2text.textContent = "Invalid request";
+    return undefined;
+  }
+
   const oneDayAgo = await fetch(
     `https://api.weatherapi.com/v1/history.json?key=9c9abdde645d4967bb9162009240102&q=${input}&dt=${dateOneDayAgo.getFullYear()}-${
       dateOneDayAgo.getMonth() + 1
     }-${dateOneDayAgo.getDate()}`
   );
+
   const twoDaysAgo = await fetch(
     `https://api.weatherapi.com/v1/history.json?key=9c9abdde645d4967bb9162009240102&q=${input}&dt=${dateTwoDaysAgo.getFullYear()}-${
       dateTwoDaysAgo.getMonth() + 1
     }-${dateTwoDaysAgo.getDate()}`
   );
+
   const threeDaysAgo = await fetch(
     `https://api.weatherapi.com/v1/history.json?key=9c9abdde645d4967bb9162009240102&q=${input}&dt=${dateThreeDaysAgo.getFullYear()}-${
       dateThreeDaysAgo.getMonth() + 1

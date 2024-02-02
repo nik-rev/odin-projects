@@ -87,7 +87,8 @@ export default async function domWeatherCreate(input, imperial) {
   weatherReportTitle.textContent = `${input}`;
   const main = document.querySelector("main");
   main.appendChild(weatherReportTitle);
-
+  const loading = document.querySelector(".loading");
+  main.removeChild(loading);
   data.forEach((day) => {
     domWeatherReportCreate(
       day.snowChance,

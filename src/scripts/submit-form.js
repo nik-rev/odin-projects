@@ -1,3 +1,4 @@
+import { images } from ".";
 import domWeatherCreate from "./dom-weather-create";
 // import {
 //   getDataForSevenDays,
@@ -10,12 +11,20 @@ export default function weatherSearch(e) {
   // const imperial = document.getElementById("#imperial");
   const search = document.querySelector("form > input");
   const imperialP = document.querySelector("#imperial > p");
+  const loading = document.createElement("img");
+  loading.classList.add("loading");
+  // console.log(images);
+  loading.src = images["clock-icon.svg"];
 
   // imperialP.textContent = imperialP.textContent === "OFF" ? "ON" : "OFF";
 
   try {
     const weather = Array.from(document.querySelectorAll("main > article"));
     const main = document.querySelector("main");
+    if (document.querySelector("h2")) {
+      main.removeChild(document.querySelector("h2"));
+    }
+    main.append(loading);
 
     weather.forEach((article) => {
       main.removeChild(article);
