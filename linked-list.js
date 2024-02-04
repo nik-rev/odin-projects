@@ -15,6 +15,20 @@ class LinkedList {
   pop() {
     this.at(this.size() - 2).next = null;
   }
+  insertAt(value, index) {
+    this.at(index).next = new Node(value, this.at(index + 1));
+  }
+  // removeAt(value, index) {}
+  toString() {
+    let stringify = "";
+    for (let i = 0; i < this.size(); i++) {
+      if (this.at(i).next === null) {
+        stringify += `( null )`;
+        return stringify;
+      }
+      stringify += `( ${this.at(i).value} ) --> `;
+    }
+  }
   at(index, counter = 0, obj = this) {
     const self = this;
 
@@ -23,6 +37,14 @@ class LinkedList {
     }
 
     return obj;
+  }
+  find(value) {
+    if (!this.contains(value)) return null;
+    for (let i = 0; i < this.size(); i++) {
+      if (this.at(i).value === value) {
+        return i;
+      }
+    }
   }
   contains(value, obj = this) {
     const self = this;
@@ -72,4 +94,4 @@ list.append("hello BROO");
 list.append("AYOOOOOO LETS GOOOOO");
 // list.append("goodbye");
 // list.append("yo bro");
-console.log(list.tail());
+// console.log(list.tail());
