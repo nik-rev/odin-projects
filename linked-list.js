@@ -8,6 +8,14 @@ class LinkedList {
     this.next = current;
     this.value = value;
   }
+  getLastElement(obj = this) {
+    const self = this;
+    if (obj.next === null) {
+      return obj;
+    } else {
+      return self.getLastElement(obj.next);
+    }
+  }
   // append(value) {}
 }
 
@@ -25,14 +33,4 @@ list.prepend("4");
 list.prepend("5");
 // list.append("goodbye");
 // list.append("yo bro");
-
-function getLastElement(obj) {
-  if (obj.next === null) {
-    console.log(obj);
-    return obj;
-  } else {
-    getLastElement(obj.next);
-  }
-}
-
-console.log(getLastElement(list));
+console.log(list);
