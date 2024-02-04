@@ -18,7 +18,9 @@ class LinkedList {
   insertAt(value, index) {
     this.at(index).next = new Node(value, this.at(index + 1));
   }
-  // removeAt(value, index) {}
+  removeAt(index) {
+    this.at(index - 1).next = this.at(index + 1);
+  }
   toString() {
     let stringify = "";
     for (let i = 0; i < this.size(); i++) {
@@ -84,14 +86,3 @@ class Node {
     this.next = next;
   }
 }
-
-const list = new LinkedList("1");
-list.prepend("2");
-list.prepend("3");
-list.prepend("4");
-list.prepend("5");
-list.append("hello BROO");
-list.append("AYOOOOOO LETS GOOOOO");
-// list.append("goodbye");
-// list.append("yo bro");
-// console.log(list.tail());
