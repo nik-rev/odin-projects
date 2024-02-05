@@ -7,13 +7,13 @@ class HashMap {
   }
 
   growBuckets() {
-    for (let i = 0; i++; i < 16) {
+    for (let i = 0; i < 16; i++) {
       this.array.push(new Bucket());
     }
   }
 
   shouldGrowBuckets() {
-    loadFactor = 0.75;
+    const loadFactor = 0.75;
     let counter = 0;
     this.array.forEach((bucket) => {
       if (bucket.key !== null) {
@@ -36,16 +36,66 @@ class HashMap {
     return hashCode;
   }
 
+  get(key) {
+    const index = this.getIndex(key);
+    return this.array[index].findValue(key);
+  }
+
   set(key, value) {
-    const hashedKey = hash(key);
-    const index = hashedKey % this.array.length;
-    if (this.array[index] !== null) {
+    const index = this.getIndex(key);
+    if (this.array[index].key !== null) {
       this.array[index].append(key, value);
     } else {
       this.array[index].set(key, value);
     }
+    this.shouldGrowBuckets();
+  }
+
+  has(key) {
+    const index = this.getIndex(key);
+    return this.array[index].contains(key);
+  }
+
+  remove(key) {
+    const indexOfBucket = this.getIndex(key);
+    const indexOfNode = this.array[indexOfBucket].findIndex(key);
+    if (indexOfNode === null) {
+      return false;
+    } else {
+      this.array[indexOfBucket].removeAt(indexOfNode);
+      return true;
+    }
+  }
+
+  getIndex(key) {
+    const hashedKey = this.hash(key);
+    const index = hashedKey % this.array.length;
+    if (index < 0 || index >= this.array.length) {
+      throw new Error("Trying to access index out of bound");
+    }
+    return index;
+  }
+
+  length() {
+    return this.array.reduce((accumulator, current) => {
+      return accumulator + current.size();
+    }, 0);
   }
 }
+
+const myHashMap = new HashMap();
+myHashMap.set("Logan", "Davis");
+myHashMap.set("Isabella", "Garcia");
+myHashMap.set("Mason", "Black");
+myHashMap.set("Lucas", "Smith");
+myHashMap.set("Oliver", "Martinez");
+myHashMap.set("Richard", "Jones");
+myHashMap.set("Ava", "Brown");
+myHashMap.set("Harper", "Miller");
+myHashMap.set("Noah", "Jones");
+
+console.log(myHashMap);
+console.log(myHashMap.length());
 
 // if (index < 0 || index >= buckets.length) {
 //   throw new Error("Trying to access index out of bound");

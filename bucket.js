@@ -8,7 +8,9 @@ export class Bucket {
   size(obj = this, counter = 0) {
     const self = this;
     if (obj.next === null) {
-      counter++;
+      if (obj.value !== null && obj.key !== null) {
+        counter++;
+      }
       return counter;
     } else {
       return self.size(obj.next, ++counter);
@@ -28,7 +30,17 @@ export class Bucket {
     }
   }
   removeAt(index) {
-    this.at(index - 1).next = this.at(index + 1);
+    if (index === 0 && this.next === null) {
+      this.key = null;
+      this.value = null;
+    } else if (index === 0) {
+      this.key = this.next.key;
+      this.value = this.next.value;
+      this.next = this.next.next;
+      // new Bucket(this.next.key, this.next.value, this.next.next);
+    } else {
+      this.at(index - 1).next = this.at(index + 1);
+    }
   }
   toString() {
     let stringify = "";
@@ -49,23 +61,32 @@ export class Bucket {
 
     return obj;
   }
-  find(value) {
-    if (!this.contains(value)) return null;
+  findIndex(key) {
+    if (!this.contains(key)) return null;
     for (let i = 0; i < this.size(); i++) {
-      if (this.at(i).value === value) {
+      if (this.at(i).key === key) {
         return i;
       }
     }
   }
-  contains(value, obj = this) {
+  findValue(key) {
+    if (!this.contains(key)) return null;
+    // For every node in the bucket
+    for (let i = 0; i < this.size(); i++) {
+      if (this.at(i).key === key) {
+        return this.at(i).value;
+      }
+    }
+  }
+  contains(key, obj = this) {
     const self = this;
-    if (obj.value === value) {
+    if (obj.key === key) {
       return true;
     }
     if (obj.next === null) {
       return false;
     } else {
-      return self.contains(value, obj.next);
+      return self.contains(key, obj.next);
     }
   }
   prepend(key, value) {
