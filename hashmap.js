@@ -81,6 +81,47 @@ class HashMap {
       return accumulator + current.size();
     }, 0);
   }
+
+  clear() {
+    for (let i = 0; i < this.array.length; i++) {
+      this.array[i] = new Bucket();
+    }
+    // this.array.forEach((bucket) => {
+    //   bucket = new Node();
+    // });
+    // this.array.forEach((bucket) => {
+    //   if (this.keys().includes(bucket.key)) {
+    //     this.remove(bucket.key);
+    //   }
+    // });
+  }
+  entries() {
+    const totalEntriesArray = [];
+    this.keys().forEach((key, index) => {
+      totalEntriesArray.push([this.keys().at(index), this.values().at(index)]);
+    });
+    return totalEntriesArray;
+  }
+  keys() {
+    let totalKeysArray = [];
+    this.array.forEach((bucket) => {
+      const bucketArray = bucket.keysToArray();
+      if (Array.isArray(bucketArray)) {
+        totalKeysArray = [...totalKeysArray, ...bucketArray];
+      }
+    });
+    return totalKeysArray;
+  }
+  values() {
+    let totalValuesArray = [];
+    this.array.forEach((bucket) => {
+      const bucketArray = bucket.valuesToArray();
+      if (Array.isArray(bucketArray)) {
+        totalValuesArray = [...totalValuesArray, ...bucketArray];
+      }
+    });
+    return totalValuesArray;
+  }
 }
 
 const myHashMap = new HashMap();
@@ -94,8 +135,7 @@ myHashMap.set("Ava", "Brown");
 myHashMap.set("Harper", "Miller");
 myHashMap.set("Noah", "Jones");
 
-console.log(myHashMap);
-console.log(myHashMap.length());
+console.log(myHashMap.entries());
 
 // if (index < 0 || index >= buckets.length) {
 //   throw new Error("Trying to access index out of bound");

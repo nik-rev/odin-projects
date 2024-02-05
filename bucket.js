@@ -52,6 +52,24 @@ export class Bucket {
       stringify += `( ${this.at(i).key}, ${this.at(i).value} ) --> `;
     }
   }
+  keysToArray() {
+    let keysArray = [];
+    for (let i = 0; i < this.size(); i++) {
+      keysArray.push(this.at(i).key);
+      if (this.at(i).next === null) {
+        return keysArray;
+      }
+    }
+  }
+  valuesToArray() {
+    let valuesArray = [];
+    for (let i = 0; i < this.size(); i++) {
+      valuesArray.push(this.at(i).value);
+      if (this.at(i).next === null) {
+        return valuesArray;
+      }
+    }
+  }
   at(index, counter = 0, obj = this) {
     const self = this;
 
