@@ -1,9 +1,12 @@
 module.exports = {
+  parser: "@babel/eslint-parser",
   env: {
     browser: true,
     es2021: true,
+    "jest/globals": true,
   },
-  extends: ["airbnb-base", "prettier"],
+  extends: ["airbnb-base", "prettier", "plugin:jest/recommended"],
+  plugins: ["jest"],
   overrides: [
     {
       env: {
@@ -18,8 +21,10 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
+    requireConfigFile: false,
   },
   rules: {
-    "no-console": "off",
+    // "no-console": "off",
+    "no-plusplus": "off",
   },
 };
