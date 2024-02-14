@@ -1,6 +1,39 @@
 import Cell from "./cell";
 import isWithinBounds from "./is-within-bounds";
 
+function validatePlaceCoordinates(coords1, coords2) {
+  const [cx1, cy1, cx2, cy2] = coords1.concat(coords2);
+  const coords = [cx1, cy1, cx2, cy2];
+  coords.forEach((coord) => {
+    if (coord > 10 || coord < 1 || !Number.isInteger(coord)) {
+      throw new Error("Invalid ship placement");
+    }
+  });
+
+  const [shipWidth, shipHeight] = [
+    Math.abs(coords2[0] - coords1[0]) + 1,
+    Math.abs(coords2[1] - coords1[1]) + 1,
+  ];
+  if (shipWidth > 4 || shipHeight > 4 || shipWidth < 1 || shipHeight < 1) {
+    throw new Error("Invalid ship size");
+  }
+
+  const vectors = [];
+  if (coords1[1] === coords2[1]) {
+    for (let i = coords1[0]; i <= coords2[0]; i++) {
+      vectors.push([i, coords1[1]]);
+    }
+  } else if (coords1[0] === coords2[0]) {
+    for (let i = coords1[1]; i <= coords2[1]; i++) {
+      vectors.push([coords1[0], i]);
+    }
+  } else {
+    throw new Error("Invalid ship size");
+  }
+
+  return vectors;
+}
+
 class GameBoard {
   constructor() {
     this.createBoard();
@@ -28,45 +61,13 @@ class GameBoard {
     return adjacentCells;
   }
 
-  validatePlaceCoordinates(coords1, coords2) {
-    const [cx1, cy1, cx2, cy2] = coords1.concat(coords2);
-    const coords = [cx1, cy1, cx2, cy2];
-    coords.forEach((coord) => {
-      if (coord > 10 || coord < 1 || !Number.isInteger(coord)) {
-        throw new Error("Invalid ship placement");
-      }
-    });
-
-    const [shipWidth, shipHeight] = [
-      Math.abs(coords2[0] - coords1[0]) + 1,
-      Math.abs(coords2[1] - coords1[1]) + 1,
-    ];
-    if (shipWidth > 4 || shipHeight > 4 || shipWidth < 1 || shipHeight < 1) {
-      throw new Error("Invalid ship size");
-    }
-
-    const vectors = [];
-    if (coords1[1] === coords2[1]) {
-      for (let i = coords1[0]; i <= coords2[0]; i++) {
-        vectors.push([i, coords1[1]]);
-      }
-    } else if (coords1[0] === coords2[0]) {
-      for (let i = coords1[1]; i <= coords2[1]; i++) {
-        vectors.push([coords1[0], i]);
-      }
-    } else {
-      throw new Error("Invalid ship size");
-    }
-
-    return vectors;
-  }
-
   placeShip(coords1, coords2) {
     // coords2 needs to be 'bigger' than coords1
-    if (coords2[0] + coords2[1] < coords1[0] + coords1[1]) {
-      [coords2, coords1] = [coords1, coords2];
-    }
-    const vectors = this.validatePlaceCoordinates(coords1, coords2);
+    const vectors =
+      coords2[0] + coords2[1] < coords1[0] + coords1[1]
+        ? validatePlaceCoordinates(coords2, coords1)
+        : validatePlaceCoordinates(coords1, coords2);
+
     // Check that the area is empty and we are able to place a ship there
     vectors.forEach((vector) => {
       const target = this.coords(...vector);
