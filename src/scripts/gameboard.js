@@ -62,6 +62,10 @@ class GameBoard {
   }
 
   placeShip(coords1, coords2) {
+    // coords2 needs to be 'bigger' than coords1
+    if (coords2[0] + coords2[1] < coords1[0] + coords1[1]) {
+      [coords2, coords1] = [coords1, coords2];
+    }
     const vectors = this.validatePlaceCoordinates(coords1, coords2);
     // Check that the area is empty and we are able to place a ship there
     vectors.forEach((vector) => {
@@ -71,7 +75,6 @@ class GameBoard {
       );
       area.forEach((cell) => {
         if (cell.segment) {
-          console.log("WUBBA LUBBA DUB DUB");
           throw new Error("You cannot place your ship there");
         }
       });
