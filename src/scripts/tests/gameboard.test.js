@@ -290,13 +290,13 @@ describe("Testing gameboard class", () => {
       }).toThrow("You cannot place your ship there");
     });
 
-    // it("Does not allow to place ships near other ships", () => {
-    //   expect(() => {
-    //     testShipPlacement.placeShip([8, 6], [8, 5]);
-    //   }).toThrow("You cannot place your ship there");
-    //   expect(() => {
-    //     testShipPlacement.placeShip([3, 7], [4, 7]);
-    //   }).toThrow("You cannot place your ship there");
-    // });
+    it("Does not allow to place ships near other ships", () => {
+      expect(() => {
+        testShipPlacement.placeShip([8, 6], [8, 5]);
+      }).toThrow("You cannot place your ship there");
+      expect(() => {
+        testShipPlacement.placeShip([4, 7], [3, 7]);
+      }).toThrow("You cannot place your ship there");
+    });
   });
 });
