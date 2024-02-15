@@ -1,5 +1,32 @@
 import Player from "./player";
 
-class AI extends Player {}
+class Bot extends Player {
+  placeRandomShips() {
+    while (this.unplacedShips.length !== 0) {
+      try {
+        const randomX = Math.ceil(Math.random() * 10);
+        const randomY = Math.ceil(Math.random() * 10);
+        const randBool = Math.random() > 0.5;
+        const size = this.unplacedShips[0];
+        this.placeShip(size, randBool, [randomX, randomY]);
+      } catch {
+        //
+      }
+    }
+  }
+}
 
-export default AI;
+export default Bot;
+
+// if (this.unplacedShips.length === 0) {
+//   let prettyPrint = "";
+//   for (let y = 10; y > 0; y--) {
+//     let row = "";
+//     for (let x = 1; x <= 10; x++) {
+//       const identifier = this.board.coords(x, y).segment ? "█" : "░";
+//       row = row.concat(identifier + " ");
+//     }
+//     prettyPrint = prettyPrint.concat(row + "\n");
+//   }
+//   break;
+// }
