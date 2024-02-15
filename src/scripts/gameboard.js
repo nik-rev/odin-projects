@@ -140,11 +140,26 @@ class GameBoard {
       });
     });
     shipArray.sort((a, b) => a.x - b.x).sort((a, b) => a.y - b.y);
+
     return shipArray;
   }
 
   coords(x, y) {
     return this.board[10 - y][x - 1];
+  }
+
+  getShipArea(x, y) {
+    const ship = this.constructShip(x, y);
+    let area = [];
+    ship.forEach((segment) => {
+      area = area.concat(this.getAdjacent(segment.x, segment.y));
+    });
+    area = [...new Set(area)];
+    area = area.filter((cell) => cell !== null);
+    if (ship.length === 1) {
+      area.push(...ship);
+    }
+    return area;
   }
 
   isSegment(x, y) {
