@@ -1,0 +1,68 @@
+#board {
+  height: 1000px;
+  width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#ships {
+  height: 1000px;
+  width: 700px;
+  background-color: rgb(184, 223, 230);
+  display: grid;
+  gap: 40px;
+  padding: 40px;
+  grid-template-columns: repeat(auto-fill, 100px);
+  grid-auto-rows: 100px;
+  justify-content: space-evenly;
+  align-content: center;
+  overflow: scroll;
+}
+
+.ship {
+  background-color: gray;
+  cursor: pointer;
+}
+
+.ship.ship-4 {
+  grid-row: span 4 / auto;
+  margin: 60px 0;
+}
+
+.ship.ship-3 {
+  grid-row: span 3 / auto;
+  margin: 40px 0;
+}
+
+.ship.ship-2 {
+  grid-row: span 2 / auto;
+  margin: 20px 0;
+}
+
+.ship.ship-1 {
+  grid-row: span 1 / auto;
+}
+
+.cell {
+  width: 10%;
+  height: 10%;
+  background-color: rgb(105, 105, 246);
+  /* position: absolute; */
+}
+
+.highlight {
+  background-color: rgb(104, 53, 246);
+}
+
+.cell.cell-segment {
+  background-color: gray;
+}
+
+/* .cell.dead::after {
+  content: "x";
+  color: red;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  font-size: 2rem;
+} */
