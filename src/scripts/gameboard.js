@@ -36,6 +36,9 @@ function validatePlaceCoordinates(coords1, coords2) {
 
 class GameBoard {
   constructor() {
+    // for (let i = 0; i < 100; i++) {
+    //   console.log("This console.log statement was in a non-test file.");
+    // }
     this.createBoard();
   }
 
@@ -61,7 +64,7 @@ class GameBoard {
     return adjacentCells;
   }
 
-  placeShip(coords1, coords2) {
+  placeShip(coords1, coords2, mock) {
     // coords2 needs to be 'bigger' than coords1
     const vectors =
       coords2[0] + coords2[1] < coords1[0] + coords1[1]
@@ -80,6 +83,7 @@ class GameBoard {
         }
       });
     });
+    if (mock) return vectors;
     vectors.forEach((vector) => {
       this.coords(...vector).attach();
     });

@@ -71,13 +71,26 @@ class Player {
     return showGameBoard;
   }
 
-  placeShip(size, lay, coords) {
+  placeShip(size, lay, coords, mock = false) {
+    // if mock is true it will just return the vectors where the ship would've been placed, wont actually
+    // place the ship there
+    // its not recursive function, they just have the same name
+    let vectors;
     if (lay) {
-      this.board.placeShip([...coords], [coords[0] + size - 1, coords[1]]);
+      vectors = this.board.placeShip(
+        [...coords],
+        [coords[0] + size - 1, coords[1]],
+        mock
+      );
     } else {
-      this.board.placeShip([...coords], [coords[0], coords[1] + size - 1]);
+      vectors = this.board.placeShip(
+        [...coords],
+        [coords[0], coords[1] + size - 1],
+        mock
+      );
     }
     this.placeShipArrayManager(size);
+    return vectors;
   }
 
   canGameStart() {
