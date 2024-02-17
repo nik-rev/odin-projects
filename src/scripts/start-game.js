@@ -1,11 +1,27 @@
 import updateDomBoard from "./dom-board-manager";
 import { chatgpt } from ".";
+import updateDomShips from "./dom-ship-manager";
 
 function cleanUpAfterShipPlacement() {
   const ships = document.getElementById("ships");
   const originalBoard = document.getElementById("board");
   document.body.removeChild(ships);
   document.body.removeChild(originalBoard);
+}
+
+function domShipManager2(player2) {
+  cleanUpAfterShipPlacement();
+  const ships = document.createElement("div");
+  const board = document.createElement("div");
+  const rotateButton = document.createElement("button");
+  rotateButton.id = "rotate";
+  rotateButton.textContent = "Rotate Ships";
+  ships.id = "ships";
+  board.id = "board";
+  ships.append(rotateButton);
+  document.body.append(ships, board);
+  updateDomBoard(player2, board);
+  updateDomShips(player2.unplacedShips, ships);
 }
 
 function startGame(player1, player2 = chatgpt) {
@@ -24,3 +40,4 @@ function startGame(player1, player2 = chatgpt) {
 }
 
 export default startGame;
+export { domShipManager2 };

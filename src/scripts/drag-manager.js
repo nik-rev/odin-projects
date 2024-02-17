@@ -1,6 +1,8 @@
+import { bob, chatgpt } from ".";
+import Bot from "./ai";
 import updateDomBoard from "./dom-board-manager";
 import updateDomShips from "./dom-ship-manager";
-import startGame from "./start-game";
+import startGame, { domShipManager2 } from "./start-game";
 
 function ArrayIncludesArray(parentArray, subsetArray) {
   let counter = 0;
@@ -73,9 +75,15 @@ function onDrop(event, player) {
     updateDomBoard(player, board);
     updateDomShips(player.unplacedShips, ships);
     if (player.canGameStart()) {
-      // if (player.canGameStart() && player2.canGameStart()) {
-      // startGame(player, player2);
-      startGame(player);
+      // If its player vs player
+      if (!(chatgpt instanceof Bot)) {
+        domShipManager2(chatgpt);
+        if (chatgpt.canGameStart()) {
+          startGame(bob);
+        }
+      } else {
+        startGame(player);
+      }
     }
   } catch (error) {
     clearHighlightFromAllCellsExceptInputCells();

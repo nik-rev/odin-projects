@@ -55,6 +55,7 @@ function clearDomShips(parent) {
 
 function updateDomShips(shipsArray, parent) {
   const rotateButton = document.getElementById("rotate");
+  console.log(rotateButton);
   rotateButton.addEventListener("click", rotateAllShips);
   const lay = document.querySelector("#ships").className.includes("lay");
   clearDomShips(parent);
