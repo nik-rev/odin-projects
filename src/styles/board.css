@@ -1,4 +1,5 @@
-#board {
+#board,
+.board {
   height: 1000px;
   width: 1000px;
   display: flex;
@@ -52,6 +53,10 @@
 
 .highlight {
   background-color: rgb(104, 53, 246);
+}
+
+.invalid-placement {
+  background-color: rgb(246, 53, 53);
 }
 
 .cell.cell-segment {
