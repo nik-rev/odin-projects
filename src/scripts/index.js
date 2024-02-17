@@ -17,4 +17,4 @@ updateDomBoard(bob, domBoard);
 // updateDomBoard(bob, domBoard);
 updateDomShips(bob.unplacedShips, domShips);
 
-export default chatgpt;
+export { chatgpt, bob };

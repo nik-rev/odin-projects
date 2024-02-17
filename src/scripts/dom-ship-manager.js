@@ -28,9 +28,6 @@ function createDomShips(shipsArray, parent, lay) {
     if (lay) {
       domShip.classList.add("lay");
     }
-    // !
-    // domShip.classList.toggle("lay");
-    // !
     domShip.setAttribute("draggable", "true");
     domShip.addEventListener("dragstart", (event) => {
       onDragStart(event);

@@ -189,6 +189,7 @@ class GameBoard {
       adjacentArray = [...new Set(adjacentArray.flat())];
       adjacentArray = adjacentArray.filter((cell) => cell !== null);
       adjacentArray = adjacentArray.filter((cell) => !ship.includes(cell));
+      adjacentArray = adjacentArray.filter((cell) => cell.isAlive);
 
       adjacentArray.forEach((cell) => {
         cell.hit();

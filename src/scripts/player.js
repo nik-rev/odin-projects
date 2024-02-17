@@ -21,6 +21,9 @@ class Player {
   }
 
   hitEnemy(x, y) {
+    if (this.name === "bob") {
+      console.log(x, y);
+    }
     if (this.gameOver) {
       throw new Error("Game is over");
     }

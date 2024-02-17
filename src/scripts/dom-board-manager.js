@@ -1,4 +1,6 @@
+import Bot from "./ai";
 import setupDragEventListeners from "./drag-manager";
+import setupHitEventListeners from "./hit-event-listeners";
 
 function createDomBoard(player, parent, setup) {
   // function createDomBoard(player, player2, parent, setup) {
@@ -8,7 +10,14 @@ function createDomBoard(player, parent, setup) {
       const cell = document.createElement("div");
       cell.classList.add("cell-alive");
       cell.classList.add("cell");
-      const focus = player.board.coords(x, y);
+      let focus;
+      // if (player instanceof Bot) {
+      //   focus = player.showBoard().coords(x, y);
+      // } else {
+      //   focus = player.board.coords(x, y);
+      // }
+      focus = player.board.coords(x, y);
+
       if (Object.hasOwn(focus, "segment")) {
         cell.classList.add("cell-segment");
       }
@@ -17,7 +26,12 @@ function createDomBoard(player, parent, setup) {
         cell.classList.add("cell-dead");
       }
       // if (setup) setupDragEventListeners(cell, player, player2, [x, y]);
-      if (setup) setupDragEventListeners(cell, player, [x, y]);
+      if (setup) {
+        setupDragEventListeners(cell, player, [x, y]);
+      }
+      if (player instanceof Bot) {
+        setupHitEventListeners(cell, [x, y]);
+      }
 
       parent.append(cell);
     }

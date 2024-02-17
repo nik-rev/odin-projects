@@ -6,6 +6,16 @@ class Bot extends Player {
     this.placeRandomShips();
   }
 
+  randomHit() {
+    let x = Math.ceil(Math.random() * 10);
+    let y = Math.ceil(Math.random() * 10);
+    while (!this.enemy.board.coords(x, y).isAlive) {
+      x = Math.ceil(Math.random() * 10);
+      y = Math.ceil(Math.random() * 10);
+    }
+    this.hitEnemy(x, y);
+  }
+
   placeRandomShips() {
     while (this.unplacedShips.length !== 0) {
       try {

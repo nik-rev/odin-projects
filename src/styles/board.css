@@ -86,6 +86,14 @@
   background-color: gray;
 }
 
+.cell.cell-segment.cell-dead {
+  background-color: rgb(221, 152, 152);
+}
+
+.cell.cell-dead {
+  background-color: rgb(246, 105, 194);
+}
+
 /* .cell.dead::after {
   content: "x";
   color: red;
