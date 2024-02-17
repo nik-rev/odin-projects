@@ -1,15 +1,15 @@
 import Player from "./player";
+import Bot from "./ai";
 import updateDomBoard from "./dom-board-manager";
 import updateDomShips from "./dom-ship-manager";
-import Bot from "./ai";
 
-function importAllCSS(r) {
-  r.keys().forEach(r);
+function importAllCSS(require) {
+  require.keys().forEach(require);
 }
 importAllCSS(require.context("../styles/", true, /\.css$/));
 
 const battleshipPlayerOne = new Player("battleshipPlayerOne", null, true);
-const battleshipPlayerTwo = new Player(
+const battleshipPlayerTwo = new Bot(
   "battleshipPlayerTwo",
   battleshipPlayerOne,
   false

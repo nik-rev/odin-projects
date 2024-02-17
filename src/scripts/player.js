@@ -103,6 +103,4 @@ class Player {
   }
 }
 
-// class AI extends Player {}
-
 export default Player;
