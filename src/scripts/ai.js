@@ -1,6 +1,11 @@
 import Player from "./player";
 
 class Bot extends Player {
+  constructor(...args) {
+    super(...args);
+    this.placeRandomShips();
+  }
+
   placeRandomShips() {
     while (this.unplacedShips.length !== 0) {
       try {

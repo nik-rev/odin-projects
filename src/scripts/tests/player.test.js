@@ -16,7 +16,7 @@ describe("Testing player class", () => {
       const expected = 0;
       expect(actual).toBe(expected);
     });
-    it("Bot has an empty board", () => {
+    it("Bot doesn't have an empty board", () => {
       const chatgpt = new Bot("ChatGPT", null, false);
       let actual = 0;
       for (let y = 1; y <= 10; y++) {
@@ -25,7 +25,7 @@ describe("Testing player class", () => {
         }
       }
       const expected = 0;
-      expect(actual).toBe(expected);
+      expect(actual).not.toBe(expected);
     });
   });
   describe("Testing placeShip method with human player", () => {
