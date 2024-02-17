@@ -1,5 +1,5 @@
 import updateDomBoard from "./dom-board-manager";
-import { bob, chatgpt } from ".";
+import { battleshipPlayerOne, battleshipPlayerTwo } from ".";
 import Bot from "./ai";
 
 function setupHitEventListeners(cell, coordinates) {
@@ -7,28 +7,34 @@ function setupHitEventListeners(cell, coordinates) {
   const playerOneBoard = boards[0];
   const playerTwoBoard = boards[1];
   cell.addEventListener("click", () => {
-    if (bob instanceof Bot || chatgpt instanceof Bot) {
-      bob.hitEnemy(...coordinates);
-      chatgpt.randomHit();
-      if (bob.winner) {
-        alert("Bob won!");
+    if (
+      battleshipPlayerOne instanceof Bot ||
+      battleshipPlayerTwo instanceof Bot
+    ) {
+      battleshipPlayerOne.hitEnemy(...coordinates);
+      battleshipPlayerTwo.randomHit();
+      if (battleshipPlayerOne.winner) {
+        alert("BattleshipPlayerOne won!");
       }
     } else {
-      if (chatgpt.canHit) {
-        chatgpt.hitEnemy(...coordinates);
+      if (battleshipPlayerTwo.canHit) {
+        battleshipPlayerTwo.hitEnemy(...coordinates);
       } else {
-        bob.hitEnemy(...coordinates);
+        battleshipPlayerOne.hitEnemy(...coordinates);
       }
     }
-    if (bob instanceof Bot || chatgpt instanceof Bot) {
-      updateDomBoard(bob, playerOneBoard, false);
-      updateDomBoard(chatgpt, playerTwoBoard, false);
+    if (
+      battleshipPlayerOne instanceof Bot ||
+      battleshipPlayerTwo instanceof Bot
+    ) {
+      updateDomBoard(battleshipPlayerOne, playerOneBoard, false);
+      updateDomBoard(battleshipPlayerTwo, playerTwoBoard, false);
     } else {
       let hittingPlayer;
-      if (bob.canHit) {
-        hittingPlayer = bob;
+      if (battleshipPlayerOne.canHit) {
+        hittingPlayer = battleshipPlayerOne;
       } else {
-        hittingPlayer = chatgpt;
+        hittingPlayer = battleshipPlayerTwo;
       }
       [playerOneBoard.id, playerTwoBoard.id] = [
         playerTwoBoard.id,

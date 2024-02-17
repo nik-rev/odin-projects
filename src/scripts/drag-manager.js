@@ -1,4 +1,4 @@
-import { bob, chatgpt } from ".";
+import { battleshipPlayerOne, battleshipPlayerTwo } from ".";
 import Bot from "./ai";
 import updateDomBoard from "./dom-board-manager";
 import updateDomShips from "./dom-ship-manager";
@@ -76,10 +76,10 @@ function onDrop(event, player) {
     updateDomShips(player.unplacedShips, ships);
     if (player.canGameStart()) {
       // If its player vs player
-      if (!(chatgpt instanceof Bot)) {
-        domShipManager2(chatgpt);
-        if (chatgpt.canGameStart()) {
-          startGame(bob);
+      if (!(battleshipPlayerTwo instanceof Bot)) {
+        domShipManager2(battleshipPlayerTwo);
+        if (battleshipPlayerTwo.canGameStart()) {
+          startGame(battleshipPlayerOne);
         }
       } else {
         startGame(player);

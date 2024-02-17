@@ -1,4 +1,4 @@
-import { bob, chatgpt } from ".";
+import { battleshipPlayerOne, battleshipPlayerTwo } from ".";
 import Bot from "./ai";
 import setupDragEventListeners from "./drag-manager";
 import setupHitEventListeners from "./hit-event-listeners";
@@ -19,18 +19,21 @@ function createDomBoard(player, parent, setup) {
         focus = player.board.coords(x, y);
       }
       if (!setup) {
-        if (!(bob instanceof Bot) && !(chatgpt instanceof Bot)) {
-          if (player === bob && bob.canHit) {
+        if (
+          !(battleshipPlayerOne instanceof Bot) &&
+          !(battleshipPlayerTwo instanceof Bot)
+        ) {
+          if (player === battleshipPlayerOne && battleshipPlayerOne.canHit) {
             focus = player.board.coords(x, y);
           }
-          if (player === chatgpt && bob.canHit) {
+          if (player === battleshipPlayerTwo && battleshipPlayerOne.canHit) {
             focus = player.showBoard().coords(x, y);
             setupHitEventListeners(cell, [x, y]);
           }
-          if (player === chatgpt && chatgpt.canHit) {
+          if (player === battleshipPlayerTwo && battleshipPlayerTwo.canHit) {
             focus = player.board.coords(x, y);
           }
-          if (player === bob && chatgpt.canHit) {
+          if (player === battleshipPlayerOne && battleshipPlayerTwo.canHit) {
             focus = player.showBoard().coords(x, y);
             setupHitEventListeners(cell, [x, y]);
           }

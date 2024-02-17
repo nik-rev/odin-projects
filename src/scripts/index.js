@@ -8,14 +8,17 @@ function importAllCSS(r) {
 }
 importAllCSS(require.context("../styles/", true, /\.css$/));
 
-const bob = new Player("bob", null, true);
-const chatgpt = new Bot("chatgpt", bob, false);
-bob.enemy = chatgpt;
-// const chatgpt = new Bot("chatgpt", bob, false);
-// bob.enemy = chatgpt;
+const battleshipPlayerOne = new Player("battleshipPlayerOne", null, true);
+const battleshipPlayerTwo = new Player(
+  "battleshipPlayerTwo",
+  battleshipPlayerOne,
+  false
+);
+battleshipPlayerOne.enemy = battleshipPlayerTwo;
+
 const domBoard = document.querySelector("#board");
 const domShips = document.querySelector("#ships");
-updateDomBoard(bob, domBoard);
-updateDomShips(bob.unplacedShips, domShips);
+updateDomBoard(battleshipPlayerOne, domBoard);
+updateDomShips(battleshipPlayerOne.unplacedShips, domShips);
 
-export { chatgpt, bob };
+export { battleshipPlayerTwo, battleshipPlayerOne };
