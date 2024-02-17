@@ -26,14 +26,7 @@ class Player {
     }
     if (this.canHit) {
       this.enemy.board.coords(x, y).hit();
-      console.log(
-        "ATTACKER: ",
-        this.name,
-        "COORDS: ",
-        [x, y],
-        "SHIP: ",
-        this.enemy.board.coords(x, y)
-      );
+
       if (
         this.enemy.board.constructShip(x, y) !== null &&
         this.enemy.board.isShipDestroyed(x, y) === true
@@ -89,7 +82,9 @@ class Player {
         mock
       );
     }
-    this.placeShipArrayManager(size);
+    if (!mock) {
+      this.placeShipArrayManager(size);
+    }
     return vectors;
   }
 

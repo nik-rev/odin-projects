@@ -1,6 +1,7 @@
-import { onDragEnter, onDragLeave, onDrop } from "./drag-manager";
+import setupDragEventListeners from "./drag-manager";
 
-function createDomBoard(player, parent) {
+function createDomBoard(player, parent, setup) {
+  // function createDomBoard(player, player2, parent, setup) {
   // The board will be the GameBoard class, not the array of 10 arrays
   for (let y = 10; y >= 1; y--) {
     for (let x = 1; x <= 10; x++) {
@@ -15,20 +16,9 @@ function createDomBoard(player, parent) {
         cell.classList.remove("cell-alive");
         cell.classList.add("cell-dead");
       }
-      cell.addEventListener("dragenter", (event) => {
-        onDragEnter(event, player);
-      });
-      cell.addEventListener("dragleave", (event) => {
-        onDragLeave(event);
-      });
-      cell.addEventListener("drop", (event) => {
-        onDrop(event);
-      });
-      // Necessary to allow dropping
-      cell.addEventListener("dragover", (event) => {
-        event.preventDefault();
-      });
-      cell.setAttribute("id", `${x}-${y}`);
+      // if (setup) setupDragEventListeners(cell, player, player2, [x, y]);
+      if (setup) setupDragEventListeners(cell, player, [x, y]);
+
       parent.append(cell);
     }
   }
@@ -41,9 +31,11 @@ function clearDomBoard(parent) {
   });
 }
 
-function updateDomBoard(player, parent) {
+function updateDomBoard(player, parent, setup = true) {
+  // function updateDomBoard(player, player2, parent, setup = true) {
   clearDomBoard(parent);
-  createDomBoard(player, parent);
+  // createDomBoard(player, player2, parent, setup);
+  createDomBoard(player, parent, setup);
 }
 
 export default updateDomBoard;

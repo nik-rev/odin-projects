@@ -71,6 +71,9 @@ class GameBoard {
         ? validatePlaceCoordinates(coords2, coords1)
         : validatePlaceCoordinates(coords1, coords2);
 
+    if (mock) {
+      return vectors;
+    }
     // Check that the area is empty and we are able to place a ship there
     vectors.forEach((vector) => {
       const target = this.coords(...vector);
@@ -83,7 +86,6 @@ class GameBoard {
         }
       });
     });
-    if (mock) return vectors;
     vectors.forEach((vector) => {
       this.coords(...vector).attach();
     });
