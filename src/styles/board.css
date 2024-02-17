@@ -67,6 +67,11 @@
   grid-column: span 1 / auto;
 }
 
+#game-container {
+  display: flex;
+  gap: 50px;
+}
+
 .cell {
   width: 10%;
   height: 10%;
