@@ -99,6 +99,11 @@
   background-color: rgb(246, 105, 194);
 }
 
+#rotate {
+  height: 100%;
+  width: 100%;
+}
+
 /* .cell.dead::after {
   content: "x";
   color: red;

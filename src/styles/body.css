@@ -2,5 +2,35 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   gap: 50px;
+  background-image: url(../assets/img/mystery-1599527_1280.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.no-display,
+#game-container.no-display {
+  display: none;
+}
+
+h1 {
+  color: white;
+  font-size: 4rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+button,
+input {
+  width: 600px;
+  height: 200px;
+  font-size: 500px;
 }
