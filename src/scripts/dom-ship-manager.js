@@ -19,12 +19,18 @@ function shuffle(array) {
 
   return array;
 }
-function createDomShips(shipsArray, parent) {
+function createDomShips(shipsArray, parent, lay) {
   const shuffledShipsArray = shuffle(shipsArray);
   shuffledShipsArray.forEach((ship) => {
     const domShip = document.createElement("div");
     domShip.classList.add("ship");
     domShip.classList.add(`ship-${ship}`);
+    if (lay) {
+      domShip.classList.add("lay");
+    }
+    // !
+    // domShip.classList.toggle("lay");
+    // !
     domShip.setAttribute("draggable", "true");
     domShip.addEventListener("dragstart", (event) => {
       onDragStart(event);
@@ -36,6 +42,13 @@ function createDomShips(shipsArray, parent) {
   });
 }
 
+function rotateAllShips() {
+  document.querySelectorAll(".ship").forEach((ship) => {
+    ship.classList.toggle("lay");
+  });
+  document.getElementById("ships").classList.toggle("lay");
+}
+
 function clearDomShips(parent) {
   const domShips = [...parent.querySelectorAll(".ship")];
   domShips.forEach((domShip) => {
@@ -44,8 +57,11 @@ function clearDomShips(parent) {
 }
 
 function updateDomShips(shipsArray, parent) {
+  const rotateButton = document.getElementById("rotate");
+  rotateButton.addEventListener("click", rotateAllShips);
+  const lay = document.querySelector("#ships").className.includes("lay");
   clearDomShips(parent);
-  createDomShips(shipsArray, parent);
+  createDomShips(shipsArray, parent, lay);
 }
 
 export default updateDomShips;

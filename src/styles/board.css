@@ -27,21 +27,44 @@
 
 .ship.ship-4 {
   grid-row: span 4 / auto;
-  margin: 60px 0;
+  max-height: 400px;
+}
+
+.ship.ship-4.lay {
+  grid-row: auto;
+  grid-column: span 4 / auto;
+  max-width: 400px;
 }
 
 .ship.ship-3 {
   grid-row: span 3 / auto;
-  margin: 40px 0;
+  max-height: 300px;
+}
+
+.ship.ship-3.lay {
+  grid-row: auto;
+  grid-column: span 3 / auto;
+  max-width: 300px;
 }
 
 .ship.ship-2 {
   grid-row: span 2 / auto;
-  margin: 20px 0;
+  max-height: 200px;
+}
+
+.ship.ship-2.lay {
+  grid-row: auto;
+  grid-column: span 2 / auto;
+  max-width: 200px;
 }
 
 .ship.ship-1 {
   grid-row: span 1 / auto;
+}
+
+.ship.ship-1.lay {
+  grid-row: auto;
+  grid-column: span 1 / auto;
 }
 
 .cell {

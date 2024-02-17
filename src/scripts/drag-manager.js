@@ -41,15 +41,16 @@ function highlightCells(coordinates) {
     highlight.classList.add("highlight");
   });
 }
-
+// const lay = false;
 function onDragEnter(event, player) {
   const [x, y] = event.target.id.split("-").map((str) => Number(str));
   const sizeOfShip = document
     .querySelector(".draggable")
     .className.match(/\d+/)
     .map((el) => Number(el))[0];
+  const lay = document.querySelector(".draggable").className.includes("lay");
   try {
-    const coords = player.placeShip(sizeOfShip, false, [x, y], true);
+    const coords = player.placeShip(sizeOfShip, lay, [x, y], true);
     highlightCells(coords);
     clearHighlightFromAllCellsExceptInputCells(coords);
   } catch (error) {
@@ -64,8 +65,9 @@ function onDrop(event, player) {
     .querySelector(".draggable")
     .className.match(/\d+/)
     .map((el) => Number(el))[0];
+  const lay = document.querySelector(".draggable").className.includes("lay");
   try {
-    player.placeShip(sizeOfShip, false, [x, y]);
+    player.placeShip(sizeOfShip, lay, [x, y]);
     const board = document.getElementById("board");
     const ships = document.getElementById("ships");
     updateDomBoard(player, board);
