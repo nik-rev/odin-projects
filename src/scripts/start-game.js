@@ -30,8 +30,7 @@ function domShipManager2({ player2, playerOne, playerTwo }) {
   });
 }
 
-function startGame({ player1, player2, playerOne, playerTwo }) {
-  player2 ??= playerTwo;
+function startGame({ player1, playerOne, playerTwo }) {
   const gameContainer = document.getElementById("game-container");
   cleanUpAfterShipPlacement();
   const playerOneBoard = document.createElement("div");
@@ -40,11 +39,11 @@ function startGame({ player1, player2, playerOne, playerTwo }) {
   // status.textContent = `${player1.name}, your turn to strike!`;
   gameContainer.append(playerOneBoard, playerTwoBoard);
   playerOneBoard.id = `board-${player1.name}`;
-  playerTwoBoard.id = `board-${player2.name}`;
+  playerTwoBoard.id = `board-${playerTwo.name}`;
   playerOneBoard.classList.add("board");
   playerTwoBoard.classList.add("board");
   updateDomBoard({
-    player: player2,
+    player: playerTwo,
     parent: playerTwoBoard,
     setup: false,
     playerOne,

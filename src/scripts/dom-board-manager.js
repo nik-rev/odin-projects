@@ -19,29 +19,30 @@ function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
       }
       if (!setup) {
         if (!(playerOne instanceof Bot) && !(playerTwo instanceof Bot)) {
-          if (player === playerOne && playerOne.canHit) {
-            focus = player.board.coords(x, y);
-          }
-          if (player === playerTwo && playerOne.canHit) {
-            focus = player.showBoard().coords(x, y);
-            setupHitEventListeners({
-              cell,
-              coordinates: [x, y],
-              playerOne,
-              playerTwo,
-            });
-          }
-          if (player === playerTwo && playerTwo.canHit) {
-            focus = player.board.coords(x, y);
-          }
-          if (player === playerOne && playerTwo.canHit) {
-            focus = player.showBoard().coords(x, y);
-            setupHitEventListeners({
-              cell,
-              coordinates: [x, y],
-              playerOne,
-              playerTwo,
-            });
+          if (playerOne.canHit) {
+            if (player === playerOne) {
+              focus = player.board.coords(x, y);
+            } else {
+              focus = player.showBoard().coords(x, y);
+              setupHitEventListeners({
+                cell,
+                coordinates: [x, y],
+                playerOne,
+                playerTwo,
+              });
+            }
+          } else if (playerTwo.canHit) {
+            if (player === playerOne) {
+              focus = player.showBoard().coords(x, y);
+              setupHitEventListeners({
+                cell,
+                coordinates: [x, y],
+                playerOne,
+                playerTwo,
+              });
+            } else {
+              focus = player.board.coords(x, y);
+            }
           }
         }
       }
