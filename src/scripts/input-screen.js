@@ -12,6 +12,7 @@ const heading = document.querySelector("h1");
 const domBoard = document.querySelector("#board");
 const domShips = document.querySelector("#ships");
 const gameContainer = document.querySelector("#game-container");
+const status = document.querySelector("#status");
 
 function toggleOptionsMenu() {
   playerVsAiButton.classList.add("no-display");
@@ -22,6 +23,7 @@ function toggleOptionsMenu() {
 function submitForm(event) {
   event.preventDefault();
   gameContainer.classList.remove("no-display");
+  status.classList.remove("no-display");
   const botNames = ["TERMINATOR", "BEEP-BOOP", "KT-3000", "ROBOT"];
   // if playerTwoInput doesn't have no-display that means we have selected the Player vs Player option
   const gamemodeIsPVP = !playerTwoInput.className.includes("no-display");
@@ -41,6 +43,7 @@ function submitForm(event) {
     playerTwo = new Player(playerTwoInput.value, playerOne, false);
   }
   playerOne.enemy = playerTwo;
+
   updateDomBoard({
     player: playerOne,
     parent: domBoard,

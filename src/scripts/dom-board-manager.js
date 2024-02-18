@@ -5,7 +5,10 @@ import setupHitEventListeners from "./hit-event-listeners";
 function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
   // function createDomBoard(player, player2, parent, setup) {
   // The board will be the GameBoard class, not the array of 10 arrays
-
+  const status = document.querySelector("#status");
+  if (setup) {
+    status.textContent = `${player.name}'s turn to place ships!`;
+  }
   for (let y = 10; y >= 1; y--) {
     for (let x = 1; x <= 10; x++) {
       const cell = document.createElement("div");
@@ -20,6 +23,7 @@ function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
       if (!setup) {
         if (!(playerOne instanceof Bot) && !(playerTwo instanceof Bot)) {
           if (playerOne.canHit) {
+            status.textContent = `${playerOne.name}'s turn to strike!`;
             if (player === playerOne) {
               focus = player.board.coords(x, y);
             } else {
@@ -32,6 +36,7 @@ function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
               });
             }
           } else if (playerTwo.canHit) {
+            status.textContent = `${playerTwo.name}'s turn to strike!`;
             if (player === playerOne) {
               focus = player.showBoard().coords(x, y);
               setupHitEventListeners({
