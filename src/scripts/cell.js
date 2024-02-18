@@ -24,7 +24,6 @@ class Cell {
     if (this.isAlive === true) {
       this.isAlive = false;
     } else {
-      console.log(this.x, this.y);
       throw new Error("This cell has already been hit");
     }
     if (this.segment !== undefined) {

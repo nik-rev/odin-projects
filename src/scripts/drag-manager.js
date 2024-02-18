@@ -29,7 +29,7 @@ function clearHighlightFromAllCellsExceptInputCells(cells = []) {
   }
 }
 
-function onDragStart(event) {
+function onDragStart({ event }) {
   const target = event.currentTarget;
   setTimeout(() => target.classList.add("low-opacity"));
   setTimeout(() => target.classList.add("draggable"));
@@ -44,7 +44,7 @@ function highlightCells(coordinates) {
   });
 }
 // const lay = false;
-function onDragEnter(event, player) {
+function onDragEnter({ event, player }) {
   const [x, y] = event.target.id.split("-").map((str) => Number(str));
   const sizeOfShip = document
     .querySelector(".draggable")
@@ -60,7 +60,7 @@ function onDragEnter(event, player) {
   }
 }
 
-function onDrop(event, player) {
+function onDrop({ event, player }) {
   // function onDrop(event, player, player2) {
   const [x, y] = event.target.id.split("-").map((str) => Number(str));
   const sizeOfShip = document
@@ -72,17 +72,17 @@ function onDrop(event, player) {
     player.placeShip(sizeOfShip, lay, [x, y]);
     const board = document.getElementById("board");
     const ships = document.getElementById("ships");
-    updateDomBoard(player, board);
-    updateDomShips(player.unplacedShips, ships);
+    updateDomBoard({ player, parent: board });
+    updateDomShips({ shipsArray: player.unplacedShips, parent: ships });
     if (player.canGameStart()) {
       // If its player vs player
       if (!(battleshipPlayerTwo instanceof Bot)) {
-        domShipManager2(battleshipPlayerTwo);
+        domShipManager2({ player2: battleshipPlayerTwo });
         if (battleshipPlayerTwo.canGameStart()) {
-          startGame(battleshipPlayerOne);
+          startGame({ player1: battleshipPlayerOne });
         }
       } else {
-        startGame(player);
+        startGame({ player1: player });
       }
     }
   } catch (error) {
@@ -92,7 +92,7 @@ function onDrop(event, player) {
   // console.log(event.target);
 }
 
-function onDragEnd(event) {
+function onDragEnd({ event }) {
   const success = document.getElementById("ships");
 
   if (success !== null) {
@@ -103,14 +103,14 @@ function onDragEnd(event) {
   }
 }
 
-function setupDragEventListeners(cell, player, coords) {
+function setupDragEventListeners({ cell, player, coords }) {
   // function setupDragEventListeners(cell, player, player2, coords) {
   cell.addEventListener("dragenter", (event) => {
-    onDragEnter(event, player);
+    onDragEnter({ event, player });
   });
   cell.addEventListener("drop", (event) => {
     // onDrop(event, player, player2);
-    onDrop(event, player);
+    onDrop({ event, player });
   });
   // Necessary to allow dropping
   cell.addEventListener("dragover", (event) => {

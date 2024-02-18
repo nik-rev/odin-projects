@@ -3,7 +3,7 @@ import Bot from "./ai";
 import setupDragEventListeners from "./drag-manager";
 import setupHitEventListeners from "./hit-event-listeners";
 
-function createDomBoard(player, parent, setup) {
+function createDomBoard({ player, parent, setup }) {
   // function createDomBoard(player, player2, parent, setup) {
   // The board will be the GameBoard class, not the array of 10 arrays
 
@@ -28,14 +28,14 @@ function createDomBoard(player, parent, setup) {
           }
           if (player === battleshipPlayerTwo && battleshipPlayerOne.canHit) {
             focus = player.showBoard().coords(x, y);
-            setupHitEventListeners(cell, [x, y]);
+            setupHitEventListeners({ cell, coordinates: [x, y] });
           }
           if (player === battleshipPlayerTwo && battleshipPlayerTwo.canHit) {
             focus = player.board.coords(x, y);
           }
           if (player === battleshipPlayerOne && battleshipPlayerTwo.canHit) {
             focus = player.showBoard().coords(x, y);
-            setupHitEventListeners(cell, [x, y]);
+            setupHitEventListeners({ cell, coordinates: [x, y] });
           }
         }
       }
@@ -50,10 +50,10 @@ function createDomBoard(player, parent, setup) {
       }
       // if (setup) setupDragEventListeners(cell, player, player2, [x, y]);
       if (setup) {
-        setupDragEventListeners(cell, player, [x, y]);
+        setupDragEventListeners({ cell, player, coords: [x, y] });
       }
       if (player instanceof Bot) {
-        setupHitEventListeners(cell, [x, y]);
+        setupHitEventListeners({ cell, coordinates: [x, y] });
       }
 
       parent.append(cell);
@@ -61,18 +61,18 @@ function createDomBoard(player, parent, setup) {
   }
 }
 
-function clearDomBoard(parent) {
+function clearDomBoard({ parent }) {
   const domCells = [...parent.querySelectorAll(".cell")];
   domCells.forEach((domCell) => {
     parent.removeChild(domCell);
   });
 }
 
-function updateDomBoard(player, parent, setup = true) {
+function updateDomBoard({ player, parent, setup = true }) {
   // function updateDomBoard(player, player2, parent, setup = true) {
-  clearDomBoard(parent);
+  clearDomBoard({ parent });
   // createDomBoard(player, player2, parent, setup);
-  createDomBoard(player, parent, setup);
+  createDomBoard({ player, parent, setup });
 }
 
 export default updateDomBoard;

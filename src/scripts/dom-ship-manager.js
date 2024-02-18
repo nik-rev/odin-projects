@@ -19,7 +19,7 @@ function shuffle(array) {
 
   return array;
 }
-function createDomShips(shipsArray, parent, lay) {
+function createDomShips({ shipsArray, parent, lay, playerOne, playerTwo }) {
   const shuffledShipsArray = shuffle(shipsArray);
   shuffledShipsArray.forEach((ship) => {
     const domShip = document.createElement("div");
@@ -30,10 +30,10 @@ function createDomShips(shipsArray, parent, lay) {
     }
     domShip.setAttribute("draggable", "true");
     domShip.addEventListener("dragstart", (event) => {
-      onDragStart(event);
+      onDragStart({ event });
     });
     domShip.addEventListener("dragend", (event) => {
-      onDragEnd(event);
+      onDragEnd({ event });
     });
     parent.append(domShip);
   });
@@ -46,19 +46,19 @@ function rotateAllShips() {
   document.getElementById("ships").classList.toggle("lay");
 }
 
-function clearDomShips(parent) {
+function clearDomShips({ parent }) {
   const domShips = [...parent.querySelectorAll(".ship")];
   domShips.forEach((domShip) => {
     parent.removeChild(domShip);
   });
 }
 
-function updateDomShips(shipsArray, parent) {
+function updateDomShips({ shipsArray, parent }) {
   const rotateButton = document.getElementById("rotate");
   rotateButton.addEventListener("click", rotateAllShips);
   const lay = document.querySelector("#ships").className.includes("lay");
-  clearDomShips(parent);
-  createDomShips(shipsArray, parent, lay);
+  clearDomShips({ parent });
+  createDomShips({ shipsArray, parent, lay });
 }
 
 export default updateDomShips;

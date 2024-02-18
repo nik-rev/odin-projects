@@ -2,7 +2,7 @@ import updateDomBoard from "./dom-board-manager";
 import { battleshipPlayerOne, battleshipPlayerTwo } from ".";
 import Bot from "./ai";
 
-function setupHitEventListeners(cell, coordinates) {
+function setupHitEventListeners({ cell, coordinates }) {
   const boards = [...document.querySelectorAll(".board")];
   const playerOneBoard = boards[0];
   const playerTwoBoard = boards[1];
@@ -27,8 +27,16 @@ function setupHitEventListeners(cell, coordinates) {
       battleshipPlayerOne instanceof Bot ||
       battleshipPlayerTwo instanceof Bot
     ) {
-      updateDomBoard(battleshipPlayerOne, playerOneBoard, false);
-      updateDomBoard(battleshipPlayerTwo, playerTwoBoard, false);
+      updateDomBoard({
+        player: battleshipPlayerOne,
+        parent: playerOneBoard,
+        setup: false,
+      });
+      updateDomBoard({
+        player: battleshipPlayerTwo,
+        parent: playerTwoBoard,
+        setup: false,
+      });
     } else {
       let hittingPlayer;
       if (battleshipPlayerOne.canHit) {
@@ -40,8 +48,16 @@ function setupHitEventListeners(cell, coordinates) {
         playerTwoBoard.id,
         playerOneBoard.id,
       ];
-      updateDomBoard(hittingPlayer, playerOneBoard, false);
-      updateDomBoard(hittingPlayer.enemy, playerTwoBoard, false);
+      updateDomBoard({
+        player: hittingPlayer,
+        parent: playerOneBoard,
+        setup: false,
+      });
+      updateDomBoard({
+        player: hittingPlayer.enemy,
+        parent: playerTwoBoard,
+        setup: false,
+      });
     }
   });
 }

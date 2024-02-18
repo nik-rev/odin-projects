@@ -9,7 +9,7 @@ function importAllCSS(require) {
 importAllCSS(require.context("../styles/", true, /\.css$/));
 
 const battleshipPlayerOne = new Player("battleshipPlayerOne", null, true);
-const battleshipPlayerTwo = new Bot(
+const battleshipPlayerTwo = new Player(
   "battleshipPlayerTwo",
   battleshipPlayerOne,
   false
@@ -18,7 +18,14 @@ battleshipPlayerOne.enemy = battleshipPlayerTwo;
 
 const domBoard = document.querySelector("#board");
 const domShips = document.querySelector("#ships");
-updateDomBoard(battleshipPlayerOne, domBoard);
-updateDomShips(battleshipPlayerOne.unplacedShips, domShips);
+updateDomBoard({ player: battleshipPlayerOne, parent: domBoard });
+// const unplacedShips = battleshipPlayerOne.unplacedShips;
+// updateDomShips(battleshipPlayerOne.unplacedShips, domShips);
+updateDomShips({
+  shipsArray: battleshipPlayerOne.unplacedShips,
+  parent: domShips,
+  playerOne: battleshipPlayerOne,
+  playerTwo: battleshipPlayerTwo,
+});
 
 export { battleshipPlayerTwo, battleshipPlayerOne };
