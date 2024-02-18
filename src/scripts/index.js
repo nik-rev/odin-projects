@@ -18,7 +18,12 @@ battleshipPlayerOne.enemy = battleshipPlayerTwo;
 
 const domBoard = document.querySelector("#board");
 const domShips = document.querySelector("#ships");
-updateDomBoard({ player: battleshipPlayerOne, parent: domBoard });
+updateDomBoard({
+  player: battleshipPlayerOne,
+  parent: domBoard,
+  playerOne: battleshipPlayerOne,
+  playerTwo: battleshipPlayerTwo,
+});
 // const unplacedShips = battleshipPlayerOne.unplacedShips;
 // updateDomShips(battleshipPlayerOne.unplacedShips, domShips);
 updateDomShips({

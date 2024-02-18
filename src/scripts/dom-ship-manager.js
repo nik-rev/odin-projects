@@ -30,10 +30,10 @@ function createDomShips({ shipsArray, parent, lay, playerOne, playerTwo }) {
     }
     domShip.setAttribute("draggable", "true");
     domShip.addEventListener("dragstart", (event) => {
-      onDragStart({ event });
+      onDragStart({ event, playerOne, playerTwo });
     });
     domShip.addEventListener("dragend", (event) => {
-      onDragEnd({ event });
+      onDragEnd({ event, playerOne, playerTwo });
     });
     parent.append(domShip);
   });
@@ -46,19 +46,19 @@ function rotateAllShips() {
   document.getElementById("ships").classList.toggle("lay");
 }
 
-function clearDomShips({ parent }) {
+function clearDomShips({ parent, playerOne, playerTwo }) {
   const domShips = [...parent.querySelectorAll(".ship")];
   domShips.forEach((domShip) => {
     parent.removeChild(domShip);
   });
 }
 
-function updateDomShips({ shipsArray, parent }) {
+function updateDomShips({ shipsArray, parent, playerOne, playerTwo }) {
   const rotateButton = document.getElementById("rotate");
   rotateButton.addEventListener("click", rotateAllShips);
   const lay = document.querySelector("#ships").className.includes("lay");
   clearDomShips({ parent });
-  createDomShips({ shipsArray, parent, lay });
+  createDomShips({ shipsArray, parent, lay, playerOne, playerTwo });
 }
 
 export default updateDomShips;

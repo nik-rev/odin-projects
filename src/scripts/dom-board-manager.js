@@ -3,7 +3,7 @@ import Bot from "./ai";
 import setupDragEventListeners from "./drag-manager";
 import setupHitEventListeners from "./hit-event-listeners";
 
-function createDomBoard({ player, parent, setup }) {
+function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
   // function createDomBoard(player, player2, parent, setup) {
   // The board will be the GameBoard class, not the array of 10 arrays
 
@@ -28,14 +28,24 @@ function createDomBoard({ player, parent, setup }) {
           }
           if (player === battleshipPlayerTwo && battleshipPlayerOne.canHit) {
             focus = player.showBoard().coords(x, y);
-            setupHitEventListeners({ cell, coordinates: [x, y] });
+            setupHitEventListeners({
+              cell,
+              coordinates: [x, y],
+              playerOne,
+              playerTwo,
+            });
           }
           if (player === battleshipPlayerTwo && battleshipPlayerTwo.canHit) {
             focus = player.board.coords(x, y);
           }
           if (player === battleshipPlayerOne && battleshipPlayerTwo.canHit) {
             focus = player.showBoard().coords(x, y);
-            setupHitEventListeners({ cell, coordinates: [x, y] });
+            setupHitEventListeners({
+              cell,
+              coordinates: [x, y],
+              playerOne,
+              playerTwo,
+            });
           }
         }
       }
@@ -50,10 +60,21 @@ function createDomBoard({ player, parent, setup }) {
       }
       // if (setup) setupDragEventListeners(cell, player, player2, [x, y]);
       if (setup) {
-        setupDragEventListeners({ cell, player, coords: [x, y] });
+        setupDragEventListeners({
+          cell,
+          player,
+          coords: [x, y],
+          playerOne,
+          playerTwo,
+        });
       }
       if (player instanceof Bot) {
-        setupHitEventListeners({ cell, coordinates: [x, y] });
+        setupHitEventListeners({
+          cell,
+          coordinates: [x, y],
+          playerOne,
+          playerTwo,
+        });
       }
 
       parent.append(cell);
@@ -68,11 +89,17 @@ function clearDomBoard({ parent }) {
   });
 }
 
-function updateDomBoard({ player, parent, setup = true }) {
+function updateDomBoard({
+  player,
+  parent,
+  setup = true,
+  playerOne,
+  playerTwo,
+}) {
   // function updateDomBoard(player, player2, parent, setup = true) {
   clearDomBoard({ parent });
   // createDomBoard(player, player2, parent, setup);
-  createDomBoard({ player, parent, setup });
+  createDomBoard({ player, parent, setup, playerOne, playerTwo });
 }
 
 export default updateDomBoard;

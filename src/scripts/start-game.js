@@ -10,7 +10,7 @@ function cleanUpAfterShipPlacement() {
   gameContainer.removeChild(originalBoard);
 }
 
-function domShipManager2({ player2 }) {
+function domShipManager2({ player2, playerOne, playerTwo }) {
   const gameContainer = document.getElementById("game-container");
   cleanUpAfterShipPlacement();
   const ships = document.createElement("div");
@@ -22,11 +22,21 @@ function domShipManager2({ player2 }) {
   board.id = "board";
   ships.append(rotateButton);
   gameContainer.append(ships, board);
-  updateDomBoard({ player: player2, parent: board });
-  updateDomShips({ shipsArray: player2.unplacedShips, parent: ships });
+  updateDomBoard({ player: player2, parent: board, playerOne, playerTwo });
+  updateDomShips({
+    shipsArray: player2.unplacedShips,
+    parent: ships,
+    playerOne,
+    playerTwo,
+  });
 }
 
-function startGame({ player1, player2 = battleshipPlayerTwo }) {
+function startGame({
+  player1,
+  player2 = battleshipPlayerTwo,
+  playerOne,
+  playerTwo,
+}) {
   const gameContainer = document.getElementById("game-container");
   cleanUpAfterShipPlacement();
   const playerOneBoard = document.createElement("div");
@@ -38,8 +48,20 @@ function startGame({ player1, player2 = battleshipPlayerTwo }) {
   playerTwoBoard.id = `board-${player2.name}`;
   playerOneBoard.classList.add("board");
   playerTwoBoard.classList.add("board");
-  updateDomBoard({ player: player2, parent: playerTwoBoard, setup: false });
-  updateDomBoard({ player: player1, parent: playerOneBoard, setup: false });
+  updateDomBoard({
+    player: player2,
+    parent: playerTwoBoard,
+    setup: false,
+    playerOne,
+    playerTwo,
+  });
+  updateDomBoard({
+    player: player1,
+    parent: playerOneBoard,
+    setup: false,
+    playerOne,
+    playerTwo,
+  });
 }
 
 export default startGame;
