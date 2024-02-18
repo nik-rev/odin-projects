@@ -6,8 +6,11 @@ function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
   // function createDomBoard(player, player2, parent, setup) {
   // The board will be the GameBoard class, not the array of 10 arrays
   const status = document.querySelector("#status");
+  status.style.color = "white";
   if (setup) {
     status.textContent = `${player.name}'s turn to place ships!`;
+  } else {
+    status.textContent = `${playerOne.name}'s turn to strike!`;
   }
   for (let y = 10; y >= 1; y--) {
     for (let x = 1; x <= 10; x++) {
