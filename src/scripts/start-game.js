@@ -1,5 +1,4 @@
 import updateDomBoard from "./dom-board-manager";
-import { battleshipPlayerTwo } from ".";
 import updateDomShips from "./dom-ship-manager";
 
 function cleanUpAfterShipPlacement() {
@@ -31,12 +30,8 @@ function domShipManager2({ player2, playerOne, playerTwo }) {
   });
 }
 
-function startGame({
-  player1,
-  player2 = battleshipPlayerTwo,
-  playerOne,
-  playerTwo,
-}) {
+function startGame({ player1, player2, playerOne, playerTwo }) {
+  player2 ??= playerTwo;
   const gameContainer = document.getElementById("game-container");
   cleanUpAfterShipPlacement();
   const playerOneBoard = document.createElement("div");

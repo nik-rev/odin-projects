@@ -1,5 +1,4 @@
 import updateDomBoard from "./dom-board-manager";
-import { battleshipPlayerOne, battleshipPlayerTwo } from ".";
 import Bot from "./ai";
 
 function setupHitEventListeners({ cell, coordinates, playerOne, playerTwo }) {
@@ -7,35 +6,29 @@ function setupHitEventListeners({ cell, coordinates, playerOne, playerTwo }) {
   const playerOneBoard = boards[0];
   const playerTwoBoard = boards[1];
   cell.addEventListener("click", () => {
-    if (
-      battleshipPlayerOne instanceof Bot ||
-      battleshipPlayerTwo instanceof Bot
-    ) {
-      battleshipPlayerOne.hitEnemy(...coordinates);
-      battleshipPlayerTwo.randomHit();
-      if (battleshipPlayerOne.winner) {
+    if (playerOne instanceof Bot || playerTwo instanceof Bot) {
+      playerOne.hitEnemy(...coordinates);
+      playerTwo.randomHit();
+      if (playerOne.winner) {
         alert("BattleshipPlayerOne won!");
       }
     } else {
-      if (battleshipPlayerTwo.canHit) {
-        battleshipPlayerTwo.hitEnemy(...coordinates);
+      if (playerTwo.canHit) {
+        playerTwo.hitEnemy(...coordinates);
       } else {
-        battleshipPlayerOne.hitEnemy(...coordinates);
+        playerOne.hitEnemy(...coordinates);
       }
     }
-    if (
-      battleshipPlayerOne instanceof Bot ||
-      battleshipPlayerTwo instanceof Bot
-    ) {
+    if (playerOne instanceof Bot || playerTwo instanceof Bot) {
       updateDomBoard({
-        player: battleshipPlayerOne,
+        player: playerOne,
         parent: playerOneBoard,
         setup: false,
         playerOne,
         playerTwo,
       });
       updateDomBoard({
-        player: battleshipPlayerTwo,
+        player: playerTwo,
         parent: playerTwoBoard,
         setup: false,
         playerOne,
@@ -43,10 +36,10 @@ function setupHitEventListeners({ cell, coordinates, playerOne, playerTwo }) {
       });
     } else {
       let hittingPlayer;
-      if (battleshipPlayerOne.canHit) {
-        hittingPlayer = battleshipPlayerOne;
+      if (playerOne.canHit) {
+        hittingPlayer = playerOne;
       } else {
-        hittingPlayer = battleshipPlayerTwo;
+        hittingPlayer = playerTwo;
       }
       [playerOneBoard.id, playerTwoBoard.id] = [
         playerTwoBoard.id,

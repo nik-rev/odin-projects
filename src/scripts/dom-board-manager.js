@@ -1,4 +1,3 @@
-import { battleshipPlayerOne, battleshipPlayerTwo } from ".";
 import Bot from "./ai";
 import setupDragEventListeners from "./drag-manager";
 import setupHitEventListeners from "./hit-event-listeners";
@@ -19,14 +18,11 @@ function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
         focus = player.board.coords(x, y);
       }
       if (!setup) {
-        if (
-          !(battleshipPlayerOne instanceof Bot) &&
-          !(battleshipPlayerTwo instanceof Bot)
-        ) {
-          if (player === battleshipPlayerOne && battleshipPlayerOne.canHit) {
+        if (!(playerOne instanceof Bot) && !(playerTwo instanceof Bot)) {
+          if (player === playerOne && playerOne.canHit) {
             focus = player.board.coords(x, y);
           }
-          if (player === battleshipPlayerTwo && battleshipPlayerOne.canHit) {
+          if (player === playerTwo && playerOne.canHit) {
             focus = player.showBoard().coords(x, y);
             setupHitEventListeners({
               cell,
@@ -35,10 +31,10 @@ function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
               playerTwo,
             });
           }
-          if (player === battleshipPlayerTwo && battleshipPlayerTwo.canHit) {
+          if (player === playerTwo && playerTwo.canHit) {
             focus = player.board.coords(x, y);
           }
-          if (player === battleshipPlayerOne && battleshipPlayerTwo.canHit) {
+          if (player === playerOne && playerTwo.canHit) {
             focus = player.showBoard().coords(x, y);
             setupHitEventListeners({
               cell,

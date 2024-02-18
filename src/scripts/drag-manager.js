@@ -1,4 +1,3 @@
-import { battleshipPlayerOne, battleshipPlayerTwo } from ".";
 import Bot from "./ai";
 import updateDomBoard from "./dom-board-manager";
 import updateDomShips from "./dom-ship-manager";
@@ -81,10 +80,10 @@ function onDrop({ event, player, playerOne, playerTwo }) {
     });
     if (player.canGameStart()) {
       // If its player vs player
-      if (!(battleshipPlayerTwo instanceof Bot)) {
-        domShipManager2({ player2: battleshipPlayerTwo, playerOne, playerTwo });
-        if (battleshipPlayerTwo.canGameStart()) {
-          startGame({ player1: battleshipPlayerOne, playerOne, playerTwo });
+      if (!(playerTwo instanceof Bot)) {
+        domShipManager2({ player2: playerTwo, playerOne, playerTwo });
+        if (playerTwo.canGameStart()) {
+          startGame({ player1: playerOne, playerOne, playerTwo });
         }
       } else {
         startGame({ player1: player, playerOne, playerTwo });
