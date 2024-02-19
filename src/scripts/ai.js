@@ -7,13 +7,36 @@ class Bot extends Player {
   }
 
   randomHit() {
-    let x = Math.ceil(Math.random() * 10);
-    let y = Math.ceil(Math.random() * 10);
-    while (!this.enemy.board.coords(x, y).isAlive) {
-      x = Math.ceil(Math.random() * 10);
-      y = Math.ceil(Math.random() * 10);
+    let xCoord = Math.ceil(Math.random() * 10);
+    let yCoord = Math.ceil(Math.random() * 10);
+
+    while (!this.enemy.board.coords(xCoord, yCoord).isAlive) {
+      xCoord = Math.ceil(Math.random() * 10);
+      yCoord = Math.ceil(Math.random() * 10);
     }
-    this.hitEnemy(x, y);
+
+    intelligentGuess: for (let x = 1; x <= 10; x++) {
+      for (let y = 1; y <= 10; y++) {
+        const current = this.enemy.showBoard().coords(x, y);
+        const above = this.enemy.showBoard().coords(x, y + 1);
+        const left = this.enemy.showBoard().coords(x - 1, y);
+        const right = this.enemy.showBoard().coords(x + 1, y);
+        const below = this.enemy.showBoard().coords(x, y - 1);
+        const possibilities = [above, left, right, below].filter(
+          (possibility) => Boolean(possibility)
+        );
+        if (Object.hasOwn(current, "segment")) {
+          for (const possibility of possibilities) {
+            if (possibility.isAlive) {
+              xCoord = possibility.x;
+              yCoord = possibility.y;
+              break intelligentGuess;
+            }
+          }
+        }
+      }
+    }
+    this.hitEnemy(xCoord, yCoord);
   }
 
   placeRandomShips() {
@@ -32,16 +55,3 @@ class Bot extends Player {
 }
 
 export default Bot;
-
-// if (this.unplacedShips.length === 0) {
-//   let prettyPrint = "";
-//   for (let y = 10; y > 0; y--) {
-//     let row = "";
-//     for (let x = 1; x <= 10; x++) {
-//       const identifier = this.board.coords(x, y).segment ? "█" : "░";
-//       row = row.concat(identifier + " ");
-//     }
-//     prettyPrint = prettyPrint.concat(row + "\n");
-//   }
-//   break;
-// }

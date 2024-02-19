@@ -25,10 +25,14 @@ function setupHitEventListeners({ cell, coordinates, playerOne, playerTwo }) {
 
     const winner = playerOne.winner || playerTwo.winner;
 
-    if (playerOne.winner) {
-      alert("Player one won!");
-    } else if (playerTwo.winner) {
-      alert("Player two won!");
+    if (winner) {
+      document.body.removeChild(document.querySelector("#game-container"));
+      document.querySelector("#game-over").classList.remove("no-display");
+      if (playerOne.winner) {
+        status.textContent = `${playerOne.name} has won!`;
+      } else if (playerTwo.winner) {
+        status.textContent = `${playerTwo.name} has won!`;
+      }
     }
 
     if (!mistake && !winner) {

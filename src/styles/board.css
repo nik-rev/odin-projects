@@ -129,6 +129,7 @@
 }
 
 .cell.cell-segment.cell-dead::before {
+  pointer-events: none;
   content: "x";
   height: 100%;
   width: 100%;
@@ -140,6 +141,7 @@
 }
 
 .cell.cell-dead::before {
+  pointer-events: none;
   content: "x";
   height: 100%;
   width: 100%;
@@ -154,12 +156,3 @@
   height: 100%;
   width: 100%;
 }
-
-/* .cell.dead::after {
-  content: "x";
-  color: red;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  font-size: 2rem;
-} */

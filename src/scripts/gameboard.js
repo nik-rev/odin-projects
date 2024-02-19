@@ -151,6 +151,9 @@ class GameBoard {
   }
 
   coords(x, y) {
+    if (x > 10 || x < 1 || y > 10 || y < 1) {
+      return null;
+    }
     return this.board[10 - y][x - 1];
   }
 
