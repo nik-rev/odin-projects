@@ -35,8 +35,6 @@ function startGame({ player1, playerOne, playerTwo }) {
   cleanUpAfterShipPlacement();
   const playerOneBoard = document.createElement("div");
   const playerTwoBoard = document.createElement("div");
-  // const status = document.createElement("h1");
-  // status.textContent = `${player1.name}, your turn to strike!`;
   gameContainer.append(playerOneBoard, playerTwoBoard);
   playerOneBoard.id = `board-${player1.name}`;
   playerTwoBoard.id = `board-${playerTwo.name}`;

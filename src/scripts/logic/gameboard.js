@@ -36,9 +36,6 @@ function validatePlaceCoordinates(coords1, coords2) {
 
 class GameBoard {
   constructor() {
-    // for (let i = 0; i < 100; i++) {
-    //   console.log("This console.log statement was in a non-test file.");
-    // }
     this.createBoard();
   }
 
@@ -119,7 +116,6 @@ class GameBoard {
   }
 
   constructShip(x, y) {
-    // Get the focus cell
     const shipArray = [];
     const focusCell = this.coords(x, y);
     if (!Object.keys(focusCell).includes("segment")) {

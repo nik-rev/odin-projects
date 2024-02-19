@@ -1,5 +1,5 @@
-import Bot from "./ai";
-import Player from "./player";
+import Bot from "../logic/ai";
+import Player from "../logic/player";
 import updateDomBoard from "./dom-board-manager";
 import updateDomShips from "./dom-ship-manager";
 

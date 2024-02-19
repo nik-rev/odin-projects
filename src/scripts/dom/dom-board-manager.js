@@ -1,10 +1,8 @@
-import Bot from "./ai";
+import Bot from "../logic/ai";
 import setupDragEventListeners from "./drag-manager";
 import setupHitEventListeners from "./hit-event-listeners";
 
 function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
-  // function createDomBoard(player, player2, parent, setup) {
-  // The board will be the GameBoard class, not the array of 10 arrays
   const status = document.querySelector("#status");
   status.style.color = "white";
   if (setup) {
@@ -54,7 +52,6 @@ function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
           }
         }
       }
-      // focus = player.board.coords(x, y);
 
       if (Object.hasOwn(focus, "segment")) {
         cell.classList.add("cell-segment");
@@ -63,7 +60,6 @@ function createDomBoard({ player, parent, setup, playerOne, playerTwo }) {
         cell.classList.remove("cell-alive");
         cell.classList.add("cell-dead");
       }
-      // if (setup) setupDragEventListeners(cell, player, player2, [x, y]);
       if (setup) {
         setupDragEventListeners({
           cell,
@@ -101,9 +97,7 @@ function updateDomBoard({
   playerOne,
   playerTwo,
 }) {
-  // function updateDomBoard(player, player2, parent, setup = true) {
   clearDomBoard({ parent });
-  // createDomBoard(player, player2, parent, setup);
   createDomBoard({ player, parent, setup, playerOne, playerTwo });
 }
 

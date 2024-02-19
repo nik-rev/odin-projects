@@ -1,4 +1,4 @@
-import setupInputScreenEventListeners from "./input-screen";
+import setupInputScreenEventListeners from "./dom/input-screen";
 
 function importAllCSS(require) {
   require.keys().forEach(require);

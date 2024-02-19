@@ -1,4 +1,4 @@
-import Bot from "./ai";
+import Bot from "../logic/ai";
 import updateDomBoard from "./dom-board-manager";
 import updateDomShips from "./dom-ship-manager";
 import startGame, { domShipManager2 } from "./start-game";
@@ -42,8 +42,8 @@ function highlightCells(coordinates) {
     highlight.classList.add("highlight");
   });
 }
-// const lay = false;
-function onDragEnter({ event, player, playerOne, playerTwo }) {
+
+function onDragEnter({ event, player }) {
   const [x, y] = event.target.id.split("-").map((str) => Number(str));
   const sizeOfShip = document
     .querySelector(".draggable")
@@ -60,7 +60,6 @@ function onDragEnter({ event, player, playerOne, playerTwo }) {
 }
 
 function onDrop({ event, player, playerOne, playerTwo }) {
-  // function onDrop(event, player, player2) {
   const [x, y] = event.target.id.split("-").map((str) => Number(str));
   const sizeOfShip = document
     .querySelector(".draggable")
@@ -79,7 +78,6 @@ function onDrop({ event, player, playerOne, playerTwo }) {
       playerTwo,
     });
     if (player.canGameStart()) {
-      // If its player vs player
       if (!(playerTwo instanceof Bot)) {
         domShipManager2({ player2: playerTwo, playerOne, playerTwo });
         if (playerTwo.canGameStart()) {
@@ -92,8 +90,6 @@ function onDrop({ event, player, playerOne, playerTwo }) {
   } catch (error) {
     clearHighlightFromAllCellsExceptInputCells();
   }
-  // console.log(event.dataTransfer.getData("text"));
-  // console.log(event.target);
 }
 
 function onDragEnd({ event }) {
@@ -114,12 +110,10 @@ function setupDragEventListeners({
   playerOne,
   playerTwo,
 }) {
-  // function setupDragEventListeners(cell, player, player2, coords) {
   cell.addEventListener("dragenter", (event) => {
     onDragEnter({ event, player, playerOne, playerTwo });
   });
   cell.addEventListener("drop", (event) => {
-    // onDrop(event, player, player2);
     onDrop({ event, player, playerOne, playerTwo });
   });
   // Necessary to allow dropping

@@ -1,5 +1,5 @@
 import updateDomBoard from "./dom-board-manager";
-import Bot from "./ai";
+import Bot from "../logic/ai";
 
 function setupHitEventListeners({ cell, coordinates, playerOne, playerTwo }) {
   const boards = [...document.querySelectorAll(".board")];

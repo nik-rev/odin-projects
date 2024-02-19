@@ -1,5 +1,5 @@
-import Bot from "../ai";
-import Player from "../player";
+import Bot from "../logic/ai";
+import Player from "../logic/player";
 
 describe("Testing player class", () => {
   const john = new Player("John", null, true);

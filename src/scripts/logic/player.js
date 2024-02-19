@@ -65,8 +65,7 @@ class Player {
   }
 
   placeShip(size, lay, coords, mock = false) {
-    // if mock is true it will just return the vectors where the ship would've been placed, wont actually
-    // place the ship there
+    // if mock is true it will just return the vectors where the ship would've been placed, wont actually place the ship there
     // its not recursive function, they just have the same name
     let vectors;
     if (lay) {

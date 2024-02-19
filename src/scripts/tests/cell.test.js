@@ -1,6 +1,5 @@
-import Cell from "../cell";
-import GameBoard from "../gameboard";
-import Segment from "../segment";
+import Cell from "../logic/cell";
+import Segment from "../logic/segment";
 
 describe("Testing cell class", () => {
   const cell = new Cell(4, 9);

@@ -1,4 +1,4 @@
-import Segment from "../segment";
+import Segment from "../logic/segment";
 
 describe("Testing segment class", () => {
   const seg = new Segment();
