@@ -1,27 +1,8 @@
-## Template supports
-<p align="left">
-  <img src="https://img.shields.io/badge/-JavaScript-000?&logo=JavaScript" height="30" />
-  <img src="https://img.shields.io/badge/-HTML5-000?&logo=html5" height="30" />
-  <img src="https://img.shields.io/badge/-CSS3-000?&logo=css3" height="30" />
-  <img src="https://img.shields.io/badge/-npm-000?&logo=npm" height="30" />
-  <img src="https://img.shields.io/badge/-Webpack-000?&logo=webpack" height="30" />
-</p>
+### Battleship
 
-<br> <!-- Adjust the number of <br> tags to increase spacing -->
+Simple battleship game. Unique features:
+- Semi-intelligent AI
+- Two player mode
+- Drag and drop ships
 
-## Getting started 
-```
-npm install webpack webpack-cli --save-dev
-```
-```
-npm init @eslint/config
-```
-
-<br>
-
-## Commands
-`npm run build`: Runs the build itself creating the `dist` folder
-
-`npm run deploy`: Copies the contents of `dist` folder to the `gh-pages` branch
-
-`npm run start`: Starts the web server
+<img src='https://github.com/nikitarevenco/battleship/assets/154856872/3e1e9c82-3ef4-4874-a68c-99dd1d843934' height='500px' width='auto'>
