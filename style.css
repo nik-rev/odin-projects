@@ -1,7 +1,373 @@
 * {
   margin: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:root {
+  --common-margin: min(calc(6vw - 7px), 62px);
+}
+
+/* AUTHOR TAB */
+
+.author-container {
+  background-color: rgba(169, 169, 169, 0.084);
+
+  height: 700px;
+  margin-left: var(--common-margin);
+  margin-right: var(--common-margin);
+  margin-top: calc(var(--common-margin) + 200px);
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "img author-heading"
+    "img paragraph-1"
+    "paragraph-2 paragraph-2";
+}
+
+.paragraph-1,
+.paragraph-2 {
+  font-size: 2rem;
+  max-width: 60ch;
+}
+
+.about-text {
+  font-size: 4rem;
+  align-self: end;
+  justify-self: center;
+}
+
+.paragraph-1 {
+  grid-area: paragraph-1;
+  max-width: 90%;
+  align-self: end;
+  justify-self: center;
+}
+
+.paragraph-2 {
+  margin-top: 0.2em;
+  grid-area: paragraph-2;
+  max-width: 90%;
+}
+
+.links {
+  display: none;
+  justify-content: space-evenly;
+}
+
+.author > img {
+  object-position: top;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: bottom right;
+  transform: scale(1.05) scaleY(1.1);
+}
+
+.links {
+  margin-top: 20px;
+  height: 100px;
+  display: none;
+  gap: 50px;
+  justify-content: center;
+}
+.links > a {
+  height: 72px;
+  width: 72px;
+}
+.links > a > img {
+  height: 100%;
+  width: auto;
+}
+
+.author {
+  position: relative;
+  grid-area: img;
+}
+
+.author::after {
+  content: "Jane Doe";
+  font-size: 5rem;
+  color: white;
+  right: -180px;
+  font-weight: bold;
+  text-shadow: 3px 3px 3px black;
+  top: -60px;
+  position: absolute;
+}
+
+@media (min-width: 1000px) {
+  .author-container {
+    height: 600px;
+    margin-top: calc(var(--common-margin));
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+      "img author-heading"
+      "img paragraph-1"
+      "img paragraph-2"
+      "img links";
+  }
+  .author > img {
+    transform: scaleY(1.1);
+    transform-origin: right;
+  }
+  .paragraph-1 {
+    justify-self: center;
+    align-self: end;
+  }
+  .paragraph-2 {
+    justify-self: center;
+    align-self: start;
+  }
+  .links {
+    display: flex;
+    justify-self: end;
+    align-self: end;
+    grid-area: links;
+    gap: 10px;
+  }
+  .author::after {
+    top: auto;
+    left: auto;
+    right: auto;
+    left: 15px;
+    bottom: -10px;
+    font-size: 5rem;
+    color: white;
+    font-weight: bold;
+    text-shadow: 3px 3px 3px black;
+    position: absolute;
+  }
+}
+
+@media (max-width: 600px) {
+  .author-container {
+    height: min-content;
+    margin-top: var(--common-margin);
+    display: block;
+    background-color: #ffffff00;
+  }
+  .author > img {
+    transform: none;
+    height: 400px;
+  }
+  .about-text {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+  .paragraph-1,
+  .paragraph-2 {
+    font-size: 2.5rem;
+    max-width: 100%;
+  }
+  .author::after {
+    font-size: 3.6rem;
+    top: auto;
+    bottom: 10px;
+    left: 10px;
+    font-weight: bold;
+    position: absolute;
+    height: min-content;
+  }
+}
+
+/* CONTACT TAB */
+
+.contact-container {
+  background-color: antiquewhite;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  grid-auto-rows: min(calc(350px + 5vw), 450px);
+  padding-left: var(--common-margin);
+  padding-right: var(--common-margin);
+  row-gap: 40px;
+}
+
+.contact-picture {
+  background-color: teal;
+  /* transform: scale(1.19); */
+}
+
+.contact-information {
+  background-color: navajowhite;
+}
+
+/* PROJECTS TAB */
+
+.name-and-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.projects-title {
+  text-align: center;
+  margin: calc(0.5em + 3vw) 0;
+  font-size: 3rem;
+}
+
+.projects {
+  display: grid;
+  margin: var(--common-margin);
+  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+  grid-auto-rows: 700px;
+}
+
+.project {
+  background-color: navajowhite;
+  display: flex;
+  flex-direction: column;
+}
+
+.project > picture {
+  /* height: 100px; */
+  height: 70%;
+  width: 100%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name-and-links > h3 {
+  font-size: 3rem;
+  align-self: center;
+}
+
+.project > p {
+  font-size: 2rem;
+}
+
+.contact-information > div > img {
+  height: 54px;
+  width: 54px;
+}
+
+.contact-links > a > img {
+  height: 54px;
+  width: 54px;
+}
+
+/* 
+body {
+  max-width: fit-content;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about > h2 {
+  text-align: center;
+}
+
+.about > p {
+  margin: 5em 3em;
+  width: 70ch;
+  font-size: calc(0.5rem + 3vw);
+}
+
+.about > picture {
+  position: relative;
+}
+
+.about > picture > img {
+  display: flex;
+  justify-content: center;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
+.about > picture > p {
+  display: block;
+  color: #fff;
+  position: absolute;
+  bottom: 90px;
+  left: 90px;
+  font-size: 5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 10px #00000051;
+}
+
+picture > img {
+  display: inline-block;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  transform: scale(0.8);
+  transform-origin: center;
 }
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.project {
+  display: grid;
+  grid-template-columns: 1fr 50px 50px;
+  grid-template-rows: 200px 50px 70px;
+  grid-template-areas: "img img img" "name link1 link2" "description description description";
+  background-color: beige;
+}
+
+.contact-me {
+  display: flex;
+  background-color: #2596be;
+  min-width: 100%;
+}
+
+.contact-me .contact-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-me .contact-element {
+  display: flex;
+}
+
+.contact-me .links {
+  display: flex;
+}
+
+.project > a:nth-child(1) {
+  grid-area: link1;
+  justify-self: end;
+}
+.project > a:nth-child(2) {
+  grid-area: link2;
+  justify-self: end;
+}
+
+.project > picture {
+  grid-area: img;
+}
+
+.project > h3 {
+  grid-area: name;
+}
+
+.project > p {
+  grid-area: description;
+}
+
+.my-work {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 40px;
+} */
