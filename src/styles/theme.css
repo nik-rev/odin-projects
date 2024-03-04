@@ -1,0 +1,67 @@
+:root {
+  --hue: 100;
+  --inversion: 0;
+  --saturation: 1;
+
+  --adjusted-hue: calc(var(--hue) + (var(--inversion) * 180));
+
+  --hueComplement: calc(var(--adjusted-hue) + 180);
+  --hueRightAnalogous: calc(var(--adjusted-hue) + 30);
+  --hueLeftAnalogous: calc(var(--adjusted-hue) - 30);
+
+  --primary: hsl(
+    var(--adjusted-hue),
+    calc(25% * var(--saturation)),
+    calc((1 - var(--inversion)) * 95% + var(--inversion) * 5%)
+  );
+  --primaryDark500: hsl(
+    var(--adjusted-hue),
+    calc(20% * var(--saturation)),
+    calc((1 - var(--inversion)) * 85% + var(--inversion) * 15%)
+  );
+  --primaryDark600: hsl(
+    var(--adjusted-hue),
+    calc(20% * var(--saturation)),
+    calc((1 - var(--inversion)) * 75% + var(--inversion) * 25%)
+  );
+  --secondary: hsl(
+    var(--hueComplement),
+    calc(5% * var(--saturation)),
+    calc((1 - var(--inversion)) * 25% + var(--inversion) * 75%)
+  );
+  --secondaryLight500: hsl(
+    var(--hueComplement),
+    calc(5% * var(--saturation)),
+    calc((1 - var(--inversion)) * 30% + var(--inversion) * 70%)
+  );
+  --secondaryLight900: hsl(
+    var(--hueComplement),
+    calc(5% * var(--saturation)),
+    calc((1 - var(--inversion)) * 95% + var(--inversion) * 5%)
+  );
+  --secondaryDark500: hsl(
+    var(--hueComplement),
+    calc(5% * var(--saturation)),
+    calc((1 - var(--inversion)) * 20% + var(--inversion) * 80%)
+  );
+  --accentV1: hsl(
+    var(--hueRightAnalogous),
+    calc(40% * var(--saturation)),
+    calc((1 - var(--inversion)) * 40% + var(--inversion) * 60%)
+  );
+  --accentV1Light900: hsl(
+    var(--hueRightAnalogous),
+    calc(40% * var(--saturation)),
+    calc((1 - var(--inversion)) * 95% + var(--inversion) * 5%)
+  );
+  --accentV2: hsl(
+    var(--hueLeftAnalogous),
+    calc(40% * var(--saturation)),
+    calc((1 - var(--inversion)) * 40% + var(--inversion) * 60%)
+  );
+  --accentV2Light900: hsl(
+    var(--hueLeftAnalogous),
+    calc(40% * var(--saturation)),
+    calc((1 - var(--inversion)) * 90% + var(--inversion) * 10%)
+  );
+}
