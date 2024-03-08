@@ -1,0 +1,9 @@
+::selection {
+  background-color: var(--accentV1);
+  color: var(--accentV1Light900);
+}
+
+::highlight {
+  background-color: var(--accentV2);
+  color: var(--accentV2Light900);
+}
