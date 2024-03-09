@@ -1,19 +1,9 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 
-function ProductItem() {
-  const [productInfo, setProductInfo] = useState({});
-  const productId = useParams();
+function Item() {
+  const productInfo = useLoaderData();
+
   const { id, title, price, parentCategory, description, image } = productInfo;
-
-  useEffect(() => {
-    (async () => {
-      const data = await fetch(
-        `https://fakestoreapi.com/products/${productId}`
-      ).then((r) => r.json());
-      setProductInfo(data);
-    })();
-  }, [productId]);
 
   return (
     <div key={id}>
@@ -26,4 +16,4 @@ function ProductItem() {
   );
 }
 
-export default ProductItem;
+export default Item;
