@@ -22,9 +22,12 @@ function Router() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<App />} loader={categoryLoader}>
-        <Route path=":category" element={<Category />} loader={itemLoader}>
-          <Route path=":item" element={<Item />} loader={productLoader} />
-        </Route>
+        <Route path=":category" element={<Category />} loader={itemLoader} />
+        <Route
+          path=":category/:item"
+          element={<Item />}
+          loader={productLoader}
+        />
         <Route path="register" element={<Register />} />
         <Route path="faq" element={<FAQ />} />
         <Route path="contact" element={<Contact />} />

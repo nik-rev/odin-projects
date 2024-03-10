@@ -1,11 +1,7 @@
-import { Link, Outlet, useLoaderData, useParams } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 
 function Category() {
-  const { item } = useParams();
   const products = useLoaderData();
-
-  if (Number.isInteger(+item)) return <Outlet />;
 
   return (
     <div>
