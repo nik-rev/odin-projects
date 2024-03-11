@@ -3,9 +3,12 @@ import styled from "styled-components";
 
 const NavItem = styled.li`
   &:hover {
-    background-color: darkgray;
+    filter: brightness(1.1);
   }
-  background-color: gray;
+  & > a {
+    color: var(--accentV1);
+  }
+  background-color: var(--accentV1Light900);
   font-size: 0.8rem;
   padding: 1em 4em;
   display: grid;
@@ -16,10 +19,15 @@ const NavItem = styled.li`
 const NavBar = styled.ul`
   display: flex;
   justify-content: space-evenly;
+  background-color: var(--accentV2Light900);
+  padding: 1em;
 `;
 
 const Header = styled.header`
-  background-color: orange;
+  background-color: var(--primaryDark600);
+  & > a {
+    color: var(--primary);
+  }
 `;
 
 function App() {

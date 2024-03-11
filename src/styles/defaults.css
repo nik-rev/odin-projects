@@ -3,6 +3,12 @@
   color: var(--accentV1Light900);
 }
 
+#root {
+  background-color: var(--primary);
+  max-width: 100vw;
+  min-height: 100vh;
+}
+
 ::highlight {
   background-color: var(--accentV2);
   color: var(--accentV2Light900);

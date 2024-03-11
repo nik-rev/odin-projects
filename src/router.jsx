@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Route,
   RouterProvider,
@@ -19,20 +20,31 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import productLoader from "./pages/ProductItem/productLoader";
 
 function Router() {
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [orderedItems, setOrderedItems] = useState([]);
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<App />} loader={categoryLoader}>
         <Route path=":category" element={<Category />} loader={itemLoader} />
         <Route
           path=":category/:item"
-          element={<Item />}
+          element={
+            <Item
+              setTotalPrice={setTotalPrice}
+              setOrderedItems={setOrderedItems}
+            />
+          }
           loader={productLoader}
         />
         <Route path="register" element={<Register />} />
         <Route path="faq" element={<FAQ />} />
         <Route path="contact" element={<Contact />} />
         <Route path="history" element={<History />} />
-        <Route path="cart" element={<Cart />}>
+        <Route
+          path="cart"
+          element={<Cart totalPrice={totalPrice} orderedItems={orderedItems} />}
+        >
           <Route path="checkout" element={<Checkout />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
