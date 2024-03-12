@@ -11,8 +11,6 @@ function Cart({ orderedItems }) {
     }, 0)
   );
 
-  if (orderedItems.length === 0) return <h1>Your cart is empty</h1>;
-
   const handleClick = (e) => {
     const originalText = e.target.textContent;
     e.target.textContent = "This does nothing";

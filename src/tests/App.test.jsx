@@ -7,15 +7,18 @@ import {
   useLocation,
   Outlet,
 } from "react-router-dom";
-import { render } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 import Category from "../pages/Item/Category";
 
-const fakeLoader = (simulateError) => {
-  if (simulateError) {
-    throw new Error("Could not fetch the items");
-  }
+const fakeLoader = async (simulateError) => {
+  await setTimeout(() => {
+    // if (simulateError) {
+    //   throw new Error("Could not fetch the items");
+    // }
+    // Get every item [Object] in a category [Array]
+  }, 50);
 
-  // Get every item [Object] in a category [Array]
   return [
     {
       id: 123,
@@ -29,11 +32,10 @@ const fakeLoader = (simulateError) => {
   ];
 };
 
-function TestComponent() {
-  return <h3>OOO</h3>;
-}
+const mockLoader = vi.fn(() => Promise.resolve(5));
+
 describe("Testing app page", () => {
-  it("Jewelry page has certain jewel", () => {
+  it("Jewelry page has certain jewel", async () => {
     const testRouter = createMemoryRouter(
       createRoutesFromElements(
         <Route
@@ -45,15 +47,17 @@ describe("Testing app page", () => {
             </>
           }
         >
-          <Route path=":category" element={<h2>Also fake</h2>} />
+          <Route path=":category" element={<Category />} loader={fakeLoader} />
         </Route>
       ),
       {
         initialEntries: ["/jewelry"],
       }
     );
-
     const { debug } = render(<RouterProvider router={testRouter} />);
+    await waitFor(() => {
+      expect(screen.getByText("Title")).toBeInTheDocument();
+    });
 
     debug();
   });
