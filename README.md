@@ -4,6 +4,7 @@
 
 1. Run `pnpm install`
 1. Rename `.env.example` to `.env` and fill out the environmental variables.
+1. If you want to add more env variables, make sure to also add them in `env.ts`
 1. Change `prisma/schema.prisma` to conform to your project's requirements.
 1. Run `npx prisma migrate dev --name <name>` to migrate it.
 1. Run `npx prisma generate` to regenerate the prisma client.
