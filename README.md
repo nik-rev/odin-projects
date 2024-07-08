@@ -31,6 +31,20 @@ prisma
 
 # BaaS specific (I like supabase)
 supabase
+
+# eslint
+eslint-config-prettier
+eslint-plugin-const-case
+eslint-plugin-import
+eslint-plugin-jsx-a11y
+eslint-plugin-perfectionist
+eslint-plugin-prettier
+eslint-plugin-promise
+eslint-plugin-regexp
+eslint-plugin-security
+eslint-plugin-sonarjs
+eslint-plugin-tailwindcss
+eslint-plugin-unicorn
 ```
 
 ## Get Started

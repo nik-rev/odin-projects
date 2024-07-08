@@ -3,6 +3,34 @@
     "next/core-web-vitals",
     "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:tailwindcss/recommended"
-  ]
+    "plugin:tailwindcss/recommended",
+    "plugin:promise/recommended",
+    "plugin:regexp/recommended",
+    "plugin:security/recommended-legacy",
+    "plugin:import/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:sonarjs/recommended-legacy",
+    "plugin:perfectionist/recommended-line-length",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["const-case"],
+  "rules": {
+    "const-case/uppercase": "error",
+    "import/order": "off",
+    "sort-imports": "off",
+    "react/jsx-sort-props": "off",
+    "@typescript-eslint/adjacent-overload-signatures": "off",
+    "sort-keys": "off",
+    "@typescript-eslint/sort-type-constituents": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  }
 }
