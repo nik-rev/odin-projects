@@ -8,6 +8,8 @@
 1. Run `npx prisma migrate dev --name <name>` to migrate it.
 1. Run `npx prisma generate` to regenerate the prisma client.
 
+## Info
+
 ### Dependencies
 
 ```bash
