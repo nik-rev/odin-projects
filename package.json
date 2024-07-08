@@ -9,8 +9,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.4.1",
     "@prisma/client": "^5.16.1",
     "next": "14.2.4",
+    "next-auth": "5.0.0-beta.19",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
@@ -37,7 +39,6 @@
     "eslint-plugin-sonarjs": "^1.0.3",
     "eslint-plugin-tailwindcss": "^3.17.4",
     "eslint-plugin-unicorn": "^54.0.0",
-    "next-auth": "5.0.0-beta.19",
     "postcss": "^8",
     "prisma": "^5.16.1",
     "supabase": "^1.178.2",

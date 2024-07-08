@@ -45,6 +45,7 @@ next-auth@beta
 
 # prisma
 prisma
+@auth/prisma-adapter
 
 # BaaS specific (I like supabase)
 supabase
