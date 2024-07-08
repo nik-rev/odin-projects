@@ -1,3 +1,13 @@
+# NextJS Skeleton
+
+## Get Started
+
+1. Run `pnpm install`
+1. Rename `.env.example` to `.env` and fill out the environmental variables.
+1. Change `prisma/schema.prisma` to conform to your project's requirements.
+1. Run `npx prisma migrate dev --name <name>` to migrate it.
+1. Run `npx prisma generate` to regenerate the prisma client.
+
 ### Dependencies
 
 ```bash
@@ -46,12 +56,3 @@ eslint-plugin-sonarjs
 eslint-plugin-tailwindcss
 eslint-plugin-unicorn
 ```
-
-## Get Started
-
-1. Run `pnpm install`
-1. Rename `.env.example` to `.env` and fill out the environmental variables.
-
-Change `prisma/schema.prisma` to conform to your project's requirements.
-Run `npx prisma migrate dev --name <name>` to migrate it.
-Run `npx prisma generate` to regenerate the prisma client.
