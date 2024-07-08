@@ -21,6 +21,10 @@ next
 
 # prisma client
 @prisma/client
+
+# Utilites
+zod
+react-hook-form
 ```
 
 ### Dev Dependencies
