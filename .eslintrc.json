@@ -18,6 +18,8 @@
     "const-case/uppercase": "error",
     "import/order": "off",
     "unicorn/prevent-abbreviations": "off",
+    "unicorn/filename-case": "off",
+    "unicorn/no-empty-file": "off",
     "sort-imports": "off",
     "react/jsx-sort-props": "off",
     "@typescript-eslint/adjacent-overload-signatures": "off",
