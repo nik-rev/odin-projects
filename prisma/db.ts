@@ -1,10 +1,16 @@
 import { PrismaClient } from "@prisma/client/extension";
 
-// INFO: https://www.prisma.io/docs/orm/prisma-client/setup-and-configuration/databases-connections#prevent-hot-reloading-from-creating-new-instances-of-prismaclient
+const opts = {};
+
+// PrismaClient is attached to the `global` object in development to prevent
+// exhausting your database connection limit.
+//
+// Learn more:
+// https://pris.ly/d/help/next-js-best-practices
 
 const globalForPrisma = globalThis as unknown as { db: PrismaClient };
 
-const db = globalForPrisma.db || new PrismaClient();
+const db = globalForPrisma.db || new PrismaClient(opts);
 
 export default db;
 
