@@ -17,6 +17,7 @@
   "rules": {
     "const-case/uppercase": "error",
     "import/order": "off",
+    "unicorn/prevent-abbreviations": "off",
     "sort-imports": "off",
     "react/jsx-sort-props": "off",
     "@typescript-eslint/adjacent-overload-signatures": "off",
