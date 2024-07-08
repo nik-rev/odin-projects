@@ -25,6 +25,12 @@ next
 # Utilites
 zod
 react-hook-form
+
+# bcrypt for password hashing
+bcryptjs
+
+# icons
+react-icons
 ```
 
 ### Dev Dependencies
@@ -40,12 +46,16 @@ tailwindcss
 eslint
 eslint-config-next
 
+# types
+@types/bcryptjs
+
 # authentication
 next-auth@beta
 
 # prisma
 prisma
 @auth/prisma-adapter
+
 
 # BaaS specific (I like supabase)
 supabase
