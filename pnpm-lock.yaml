@@ -69,9 +69,6 @@ importers:
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.0)
-      eslint-plugin-const-case:
-        specifier: ^1.2.2
-        version: 1.2.2
       eslint-plugin-import:
         specifier: ^2.29.1
         version: 2.29.1(@typescript-eslint/parser@7.15.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0)
@@ -873,10 +870,6 @@ packages:
         optional: true
       eslint-import-resolver-webpack:
         optional: true
-
-  eslint-plugin-const-case@1.2.2:
-    resolution: {integrity: sha512-ON8VLOfGqXRW9Zck+lhgT5k6+jAW+lH7RRjH0YvA42trYhSq6Ayq8m3frqCJhlArDwfPKnjHVVyZhQurTDL3OQ==}
-    engines: {node: '>=10'}
 
   eslint-plugin-import@2.29.1:
     resolution: {integrity: sha512-BbPC0cuExzhiMo4Ff1BTVwHpjjv28C5R+btTOGaCRC7UEz801up0JadwkeSk5Ued6TG34uaczuVuH6qyy5YUxw==}
@@ -1833,10 +1826,6 @@ packages:
   regjsparser@0.10.0:
     resolution: {integrity: sha512-qx+xQGZVsy55CH0a1hiVwHmqjLryfh7wQyF5HO07XJ9f7dQMY/gPQHhlyDkIzJKC+x2fUCpCcUODUUUFrm7SHA==}
     hasBin: true
-
-  requireindex@1.2.0:
-    resolution: {integrity: sha512-L9jEkOi3ASd9PYit2cwRfyppc9NoABujTP8/5gFcbERmo5jUoAKovIC3fsF17pkTnGsrByysqX+Kxd2OTNI1ww==}
-    engines: {node: '>=0.10.5'}
 
   resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
@@ -3090,10 +3079,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-const-case@1.2.2:
-    dependencies:
-      requireindex: 1.2.0
-
   eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.15.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.8
@@ -4132,8 +4117,6 @@ snapshots:
   regjsparser@0.10.0:
     dependencies:
       jsesc: 0.5.0
-
-  requireindex@1.2.0: {}
 
   resolve-from@4.0.0: {}
 
