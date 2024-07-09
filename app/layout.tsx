@@ -1,6 +1,6 @@
-import { SessionProvider } from "next-auth/react";
+import ThemeProvider from "@/lib/wrapper/ThemeProvider";
+import ThemeSwitch from "@/components/ThemeSwitch";
 import Navbar from "@/components/Navbar";
-import { auth } from "@/auth";
 
 import "./globals.css";
 
@@ -9,16 +9,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
-
   return (
-    <SessionProvider session={session}>
-      <html lang="en">
-        <body>
+    <html lang="en">
+      <body>
+        <ThemeProvider>
           <Navbar />
           {children}
-        </body>
-      </html>
-    </SessionProvider>
+          <ThemeSwitch />
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

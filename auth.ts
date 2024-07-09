@@ -1,11 +1,11 @@
 import credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import github from "next-auth/providers/github";
+import env from "@/lib/schema/env";
 import nextAuth from "next-auth";
 import bcrypt from "bcryptjs";
-import env from "@/lib/env";
 
-import { saltAndHashPassword } from "./lib/utils/salt-and-hash-password";
+import { saltAndHashPassword } from "./lib/util/salt-and-hash-password";
 import db from "./prisma";
 
 export const {
