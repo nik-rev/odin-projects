@@ -1,6 +1,6 @@
+import ThemeSwitch from "@/components/theme/ThemeSwitch";
 import ThemeProvider from "@/lib/wrapper/ThemeProvider";
-import ThemeSwitch from "@/components/ThemeSwitch";
-import Navbar from "@/components/Navbar";
+import Nav from "@/components/Nav";
 
 import "./globals.css";
 
@@ -10,12 +10,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning /* next-themes updates <html> */ lang="en">
       <body>
         <ThemeProvider>
-          <Navbar />
-          {children}
           <ThemeSwitch />
+          <Nav />
+          {children}
         </ThemeProvider>
       </body>
     </html>

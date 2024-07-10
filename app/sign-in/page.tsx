@@ -1,11 +1,10 @@
-import LoginForm from "@/components/LoginForm";
-import LoginGithub from "@/components/LoginGithub";
+import LoginGithub from "@/components/auth/LoginGithub";
+import LoginCredentials from "@/components/auth/LoginCredentials";
 
 export default function SignIn() {
   return (
-    <div className="bg-green-200 p-10">
-      Sign In
-      <LoginForm />
+    <div>
+      <LoginCredentials />
       <LoginGithub />
     </div>
   );

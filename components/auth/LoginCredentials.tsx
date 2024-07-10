@@ -3,8 +3,9 @@
 import { loginWithCredentials } from "@/actions/auth";
 
 import AuthButton from "./AuthButton";
+
 // TODO: validate with zod
-export default function LoginForm() {
+export default function LoginCredentials() {
   return (
     <form action={loginWithCredentials} className="bg-orange-300">
       <label htmlFor="email">Email</label>

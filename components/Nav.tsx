@@ -1,16 +1,15 @@
 import { auth } from "@/auth";
 import Link from "next/link";
 
-import Logout from "./Logout";
+import Logout from "./auth/Logout";
 
-export default async function Navbar() {
+export default async function Nav() {
   const session = await auth();
 
   return (
     <>
       <Link href="/">Home</Link>
       <Link href="/protected">Protected</Link>
-      <Link href="/server">Server</Link>
 
       {session?.user ? (
         <>
@@ -18,7 +17,10 @@ export default async function Navbar() {
           <Logout />
         </>
       ) : (
-        <Link href="/sign-in">Sign In</Link>
+        <>
+          <Link href="/sign-in">Sign In</Link>
+          <Link href="/sign-up">Sign Up</Link>
+        </>
       )}
     </>
   );
