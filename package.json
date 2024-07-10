@@ -6,20 +6,25 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "prisma": "npx prisma generate && npx prisma migrate dev --name",
+    "email": "email dev"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.16.1",
+    "@react-email/components": "0.0.21",
     "bcryptjs": "^2.4.3",
     "next": "14.2.4",
     "next-auth": "5.0.0-beta.19",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-email": "2.1.5",
     "react-hook-form": "^7.52.1",
     "react-icons": "^5.2.1",
+    "resend": "^3.4.0",
     "tailwind-merge": "^2.4.0",
     "zod": "^3.23.8"
   },

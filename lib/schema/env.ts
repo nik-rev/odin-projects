@@ -7,6 +7,11 @@ const envVariables = [
   "DIRECT_URL",
   "AUTH_GITHUB_ID",
   "AUTH_GITHUB_SECRET",
+  "EMAIL_FROM",
+  "EMAIL_SERVER_PASSWORD",
+  "EMAIL_SERVER_USER",
+  "EMAIL_SERVER_HOST",
+  "EMAIL_SERVER_PORT",
 ] as const;
 
 const envSchema = z.object(

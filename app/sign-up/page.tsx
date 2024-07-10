@@ -32,7 +32,6 @@ export default function SignUp() {
 
     if (responseData.errors) {
       const errors = responseData.errors;
-      console.log(errors);
       if (errors.email) {
         setError("email", {
           message: errors.email,
