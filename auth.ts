@@ -26,9 +26,8 @@ export const {
         }
 
         const email = credentials.email as string;
-        const hash = await saltAndHashPassword(credentials.password as string);
 
-        let user = await db.user.findUnique({
+        const user = await db.user.findUnique({
           where: {
             email,
           },
@@ -42,16 +41,7 @@ export const {
           if (!isMatch) {
             throw new Error("Incorrect password");
           }
-        } else {
-          /* TODO: Implement sign up functionality */
-          user = await db.user.create({
-            data: {
-              password: hash,
-              email,
-            },
-          });
         }
-
         return user;
       },
       credentials: {
