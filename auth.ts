@@ -10,11 +10,6 @@ import bcrypt from "bcryptjs";
 import MagicLinkEmail from "./emails";
 import db from "./prisma";
 
-// Email Text body (fallback for email clients that don't render HTML, e.g. feature phones)
-// const text = ({ host, url }: { host: string; url: string }) => {
-//   return `Sign in to ${host}\n${url}\n\n`;
-// };
-
 export const {
   handlers: { POST, GET },
   signOut,
