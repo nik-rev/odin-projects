@@ -1,3 +1,5 @@
+"use server";
+
 import { render } from "@react-email/components";
 import { KoalaWelcomeEmail } from "@/emails";
 import env from "@/lib/schema/env";
