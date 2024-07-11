@@ -1,3 +1,4 @@
+import { generateVerificationToken } from "@/lib/util/verification-token";
 import { saltAndHashPassword } from "@/lib/util/salt-and-hash-password";
 import { signupSchema } from "@/lib/schema/signup";
 import { NextResponse } from "next/server";
@@ -10,14 +11,17 @@ export async function POST(request: Request) {
 
   let zodErrors = {};
   if (result.success) {
-    const hashedPassword = await saltAndHashPassword(result.data.password);
+    const password = await saltAndHashPassword(result.data.password);
+    const email = result.data.email;
 
     await db.user.create({
       data: {
-        email: result.data.email,
-        password: hashedPassword,
+        password,
+        email,
       },
     });
+
+    const verificationToken = await generateVerificationToken(email);
   } else {
     for (const issue of result.error.issues) {
       zodErrors = { ...zodErrors, [issue.path[0]]: issue.message };
