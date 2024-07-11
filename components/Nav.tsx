@@ -18,8 +18,8 @@ export default async function Nav() {
         </>
       ) : (
         <>
-          <Link href="/sign-in">Sign In</Link>
-          <Link href="/sign-up">Sign Up</Link>
+          <Link href="/login">Login</Link>
+          <Link href="/register">Register</Link>
         </>
       )}
     </>
