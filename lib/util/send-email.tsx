@@ -25,7 +25,7 @@ export const sendEmail = async (
 };
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const url = `${SOURCE}/auth/new-verification?token=${token}`;
+  const url = `${SOURCE}/new-verification?token=${token}`;
 
   await sendEmail(email, "Confirm your email", VerificationEmail({ url }));
 };

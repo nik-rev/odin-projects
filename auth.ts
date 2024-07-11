@@ -3,7 +3,6 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { render } from "@react-email/components";
 import github from "next-auth/providers/github";
 import resend from "next-auth/providers/resend";
-import { UserRole } from "@prisma/client";
 import env from "@/lib/schema/env";
 import nextAuth from "next-auth";
 import bcrypt from "bcryptjs";
@@ -127,6 +126,17 @@ export const {
       token.role = existingUser.role;
 
       return token;
+    },
+    signIn: async ({ account, user }) => {
+      // Allow OAuth without email verification
+      if (account?.provider !== "credentials") {
+        return true;
+      }
+
+      const existingUser = await db.user.findUnique({ where: { id: user.id } });
+
+      // Grant access if email is verified
+      return Boolean(existingUser?.emailVerified);
     },
   },
   events: {
