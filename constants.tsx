@@ -6,6 +6,7 @@ export const MINUTE = 60 * SECOND;
 export const HOUR = 60 * MINUTE;
 export const DAY = 24 * HOUR;
 
-// metadata
+// app
 export const APPLICATION_NAME = "NextJS Skeleton";
 export const SOURCE = "http://localhost:3000";
+export const UNAUTHENTICATED_REDIRECT = "/";
