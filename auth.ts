@@ -3,12 +3,23 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { render } from "@react-email/components";
 import github from "next-auth/providers/github";
 import resend from "next-auth/providers/resend";
+import { UserRole } from "@prisma/client";
 import env from "@/lib/schema/env";
 import nextAuth from "next-auth";
 import bcrypt from "bcryptjs";
 
-import MagicLinkEmail from "./emails";
+import MagicLinkEmail from "./emails/magic-link";
 import db from "./prisma";
+
+const getAccountByUserId = async (userId: string) => {
+  try {
+    return await db.account.findFirstOrThrow({
+      where: { userId },
+    });
+  } catch {
+    return null;
+  }
+};
 
 export const {
   handlers: { POST, GET },
@@ -96,6 +107,40 @@ export const {
       name: "Credentials",
     }),
   ],
+  callbacks: {
+    async jwt({ token }) {
+      if (!token.sub) return token;
+
+      const existingUser = await db.user.findUnique({
+        where: {
+          id: token.sub,
+        },
+      });
+
+      if (!existingUser) return token;
+
+      const existingAccount = await getAccountByUserId(existingUser.id);
+
+      token.isOAuth = Boolean(existingAccount);
+      token.name = existingUser.name;
+      token.email = existingUser.email;
+      token.role = existingUser.role;
+
+      return token;
+    },
+  },
+  events: {
+    async linkAccount({ user }) {
+      await db.user.update({
+        data: { emailVerified: new Date() },
+        where: { id: user.id },
+      });
+    },
+  },
+  pages: {
+    newUser: "/register",
+    signIn: "/login",
+  },
   session: { strategy: "jwt" },
   adapter: PrismaAdapter(db),
 });
