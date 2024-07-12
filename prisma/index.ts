@@ -7,7 +7,6 @@ import { PrismaClient } from "@prisma/client";
 // https://pris.ly/d/help/next-js-best-practices
 
 const globalForPrisma = globalThis as unknown as { db: PrismaClient };
-
 const db = globalForPrisma.db || new PrismaClient();
 
 export default db;

@@ -1,10 +1,12 @@
-import { forgotPassword } from "./actions";
+"use client";
 
-export default function ForgotPassword() {
+import { resetPassword } from "@/actions/reset-password";
+
+export default function ResetForm() {
   return (
-    <form action={forgotPassword}>
+    <form action={resetPassword}>
       <input placeholder="Email" name="email" type="text" />
-      <button type="submit">Send password change</button>
+      <button type="submit">Send Me Reset link</button>
     </form>
   );
 }

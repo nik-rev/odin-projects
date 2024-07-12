@@ -12,13 +12,7 @@ import {
 } from "@react-email/components";
 import { APPLICATION_NAME, CURRENT_YEAR } from "@/constants";
 
-export default function ForgotPasswordEmail({
-  host,
-  url,
-}: {
-  host: string;
-  url: string;
-}) {
+export default function ForgotPasswordEmail({ url }: { url: string }) {
   return (
     <Html>
       <Head />
@@ -29,7 +23,6 @@ export default function ForgotPasswordEmail({
             <Section className="my-[32px] text-center">
               <Text className="mb-8 text-[14px] font-medium leading-[24px] text-black">
                 Reset your password
-                {host}
               </Text>
 
               <Text className="text-[14px] font-medium leading-[24px] text-black">
@@ -38,7 +31,7 @@ export default function ForgotPasswordEmail({
                   target="_blank"
                   href={url}
                 >
-                  Your password
+                  Click here to reset your password
                 </Link>
               </Text>
             </Section>

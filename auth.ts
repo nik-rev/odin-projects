@@ -107,7 +107,7 @@ export const {
     }),
   ],
   callbacks: {
-    async jwt({ token }) {
+    jwt: async ({ token }) => {
       if (!token.sub) return token;
 
       const existingUser = await db.user.findUnique({
@@ -138,7 +138,7 @@ export const {
       // Grant access if email is verified
       return Boolean(existingUser?.emailVerified);
     },
-    async session({ session, token }) {
+    session: async ({ session, token }) => {
       const extraUserProperties = {
         isOAuth: token.isOAuth,
         role: token.role,
@@ -150,7 +150,7 @@ export const {
     },
   },
   events: {
-    async linkAccount({ user }) {
+    linkAccount: async ({ user }) => {
       await db.user.update({
         data: { emailVerified: new Date() },
         where: { id: user.id },

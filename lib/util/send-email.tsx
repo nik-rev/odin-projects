@@ -1,3 +1,4 @@
+import ForgotPasswordEmail from "@/emails/reset-password";
 import VerificationEmail from "@/emails/verify-email";
 import { render } from "@react-email/components";
 import { SOURCE } from "@/constants";
@@ -25,7 +26,21 @@ export const sendEmail = async (
 };
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const url = `${SOURCE}/new-verification?token=${token}`;
+  const confirmLink = `${SOURCE}/new-verification?token=${token}`;
 
-  await sendEmail(email, "Confirm your email", VerificationEmail({ url }));
+  await sendEmail(
+    email,
+    "Confirm your email",
+    VerificationEmail({ url: confirmLink }),
+  );
+};
+
+export const sendPasswordResetEmail = async (email: string, token: string) => {
+  const resetLink = `${SOURCE}/new-password?token=${token}`;
+
+  await sendEmail(
+    email,
+    "Reset your password",
+    ForgotPasswordEmail({ url: resetLink }),
+  );
 };
