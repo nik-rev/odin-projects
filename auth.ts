@@ -138,6 +138,16 @@ export const {
       // Grant access if email is verified
       return Boolean(existingUser?.emailVerified);
     },
+    async session({ session, token }) {
+      const extraUserProperties = {
+        isOAuth: token.isOAuth,
+        role: token.role,
+        id: token.sub,
+      };
+
+      const newUser = Object.assign({}, session.user, extraUserProperties);
+      return Object.assign({}, session, { user: newUser });
+    },
   },
   events: {
     async linkAccount({ user }) {
