@@ -1,0 +1,42 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+title: "feat: <brief description of the issue>"
+labels: "Status: Needs Review, Type: feat"
+body:
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: Would you like to work on this issue?
+          required: false
+  - type: textarea
+    id: chore-report
+    attributes:
+      label: Description of the Feature Request
+      description: |
+        A clear and concise description of what the feature or enhancement is, including how it would be useful/beneficial or what problem(s) it would solve.
+
+        When suggesting an entirely new feature, it can help to provide a statement that follows the "When EVENT occurs, I want SOMETHING to happen, to achieve RESULT" format.
+
+      placeholder: ex "When I visit the website, I want to be able to view it in dark mode, because its easier on my eyes."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: A list of checkbox items that explain the requirements needed to be met to resolve this request.
+      placeholder: |
+        - [ ] A theme toggle is present on the dashboard
+        - [ ] Clicking the theme toggle changes between light and dark
+        - [ ] A user's theme choice persists after leaving the website
+    validations:
+      required: true
+  - type: textarea
+    id: additional-comments
+    attributes:
+      label: Additional Comments
+      description: "Anything else you'd like to cover"
+    validations:
+      required: false
