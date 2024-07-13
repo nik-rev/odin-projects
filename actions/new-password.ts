@@ -3,24 +3,6 @@
 import { encryptPassword } from "@/lib/util/salt-and-hash-password";
 import db from "@/prisma";
 
-const changePassword = async (
-  userId: string,
-  tokenId: string,
-  newPassword: string,
-) => {
-  const [user, deletedToken] = await db.$transaction([
-    db.user.update({
-      data: { password: newPassword },
-      where: { id: userId },
-    }),
-    db.passwordResetToken.delete({
-      where: { id: tokenId },
-    }),
-  ]);
-
-  return [user, deletedToken];
-};
-
 export const newPassword = async (formData: FormData, token: string | null) => {
   if (!token) {
     throw new Error("Invalid token!");
@@ -62,7 +44,7 @@ export const newPassword = async (formData: FormData, token: string | null) => {
 
   const newPassword = await encryptPassword(password);
 
-  await changePassword(existingUser.id, existingToken.id, newPassword);
+  await db.user.changePassword(existingUser.id, existingToken.id, newPassword);
 
   return { success: "Password updated!" };
 };
