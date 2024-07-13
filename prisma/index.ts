@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 
-const extension = {
+const extension = Prisma.defineExtension({
   model: {
     user: {
       changePassword: async (
@@ -21,8 +21,28 @@ const extension = {
         return [user, deletedToken];
       },
     },
+    twoFactorConfirmation: {
+      verifyUserTwoFactorById: async (userId: string) => {
+        const twoFactorConfirmation = await db.twoFactorConfirmation.findUnique(
+          {
+            where: {
+              userId,
+            },
+          },
+        );
+
+        if (twoFactorConfirmation) {
+          // Delete two factor confirmation for next sign in
+          await db.twoFactorConfirmation.delete({
+            where: { id: twoFactorConfirmation.id },
+          });
+        }
+
+        return Boolean(twoFactorConfirmation);
+      },
+    },
   },
-};
+});
 
 const getExtendedPrismaClient = () => {
   return new PrismaClient().$extends(extension);

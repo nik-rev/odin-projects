@@ -4,9 +4,15 @@ import { loginWithCredentials } from "@/actions/auth";
 import Link from "next/link";
 
 import AuthButton from "./AuthButton";
+import { useState } from "react";
 
 // TODO: validate with zod
 export default function LoginCredentials() {
+  // const [showTwoFactor, setShowTwoFactor] = useState(false);
+
+  // TODO: two factor auth
+  // when user submits form, should show a different form where we ask for the code.
+
   return (
     <>
       <form action={loginWithCredentials} className="bg-orange-300">

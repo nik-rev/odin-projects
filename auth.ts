@@ -10,16 +10,6 @@ import bcrypt from "bcryptjs";
 import MagicLinkEmail from "./emails/magic-link";
 import db from "./prisma";
 
-const getAccountByUserId = async (userId: string) => {
-  try {
-    return await db.account.findFirstOrThrow({
-      where: { userId },
-    });
-  } catch {
-    return null;
-  }
-};
-
 export const {
   handlers: { POST, GET },
   signOut,
@@ -118,14 +108,28 @@ export const {
 
       if (!existingUser) return token;
 
-      const existingAccount = await getAccountByUserId(existingUser.id);
+      const existingAccount = await db.account.findUnique({
+        where: { id: existingUser.id },
+      });
 
       token.isOAuth = Boolean(existingAccount);
       token.name = existingUser.name;
       token.email = existingUser.email;
       token.role = existingUser.role;
+      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 
       return token;
+    },
+    session: async ({ session, token }) => {
+      const extraUserProperties = {
+        isTwoFactorEnabled: token.isTwoFactorEnabled,
+        isOAuth: token.isOAuth,
+        role: token.role,
+        id: token.sub,
+      };
+
+      const newUser = Object.assign({}, session.user, extraUserProperties);
+      return Object.assign({}, session, { user: newUser });
     },
     signIn: async ({ account, user }) => {
       // Allow OAuth without email verification
@@ -135,18 +139,15 @@ export const {
 
       const existingUser = await db.user.findUnique({ where: { id: user.id } });
 
+      if (
+        existingUser?.isTwoFactorEnabled &&
+        !db.twoFactorConfirmation.verifyUserTwoFactorById(existingUser.id)
+      ) {
+        return false;
+      }
+
       // Grant access if email is verified
       return Boolean(existingUser?.emailVerified);
-    },
-    session: async ({ session, token }) => {
-      const extraUserProperties = {
-        isOAuth: token.isOAuth,
-        role: token.role,
-        id: token.sub,
-      };
-
-      const newUser = Object.assign({}, session.user, extraUserProperties);
-      return Object.assign({}, session, { user: newUser });
     },
   },
   events: {

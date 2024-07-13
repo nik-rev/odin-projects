@@ -1,8 +1,10 @@
 import { z } from "zod";
 
-export const signinSchema = z.object({
-  password: z.string().min(10, "Password must be at least 10 characters"),
-  email: z.string().email(),
+export const LoginSchema = z.object({
+  password: z.string().min(1, { message: "Password is required" }),
+  email: z.string().email({
+    message: "Email is required",
+  }),
 });
 
-export type TSigninSchema = z.infer<typeof signinSchema>;
+export type TLoginSchema = z.infer<typeof LoginSchema>;

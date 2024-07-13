@@ -14,12 +14,12 @@ const envVariables = [
   "EMAIL_SERVER_PORT",
 ] as const;
 
-const envSchema = z.object(
+const EnvVariablesSchema = z.object(
   typeSafeObjectFromEntries(
     envVariables.map((envVariable) => [envVariable, z.string().min(1)]),
   ),
 );
 
-const env = envSchema.parse(process.env);
+const env = EnvVariablesSchema.parse(process.env);
 
 export default env;

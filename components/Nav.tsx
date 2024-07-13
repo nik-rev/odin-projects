@@ -13,6 +13,7 @@ export default async function Nav() {
 
       {session?.user ? (
         <>
+          <Link href="/settings">Settings</Link>
           <pre>{JSON.stringify(session)}</pre>
           <Logout />
         </>

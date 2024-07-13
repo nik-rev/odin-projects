@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-export const magicSchema = z.object({
-  email: z.string().email(),
+export const MagicLinkSchema = z.object({
+  email: z.string().email({ message: "Email is required" }),
 });
 
-export type TMagicSchema = z.infer<typeof magicSchema>;
+export type TMagicLinkSchema = z.infer<typeof MagicLinkSchema>;
