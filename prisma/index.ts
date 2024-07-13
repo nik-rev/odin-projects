@@ -1,13 +1,37 @@
 import { PrismaClient } from "@prisma/client";
 
-// PrismaClient is attached to the `global` object in development to prevent
-// exhausting your database connection limit.
-//
-// Learn more:
-// https://pris.ly/d/help/next-js-best-practices
+const extension = {
+  model: {
+    user: {
+      changePassword: async (
+        userId: string,
+        tokenId: string,
+        newPassword: string,
+      ) => {
+        const [user, deletedToken] = await db.$transaction([
+          db.user.update({
+            data: { password: newPassword },
+            where: { id: userId },
+          }),
+          db.passwordResetToken.delete({
+            where: { id: tokenId },
+          }),
+        ]);
 
-const globalForPrisma = globalThis as unknown as { db: PrismaClient };
-const db = globalForPrisma.db || new PrismaClient();
+        return [user, deletedToken];
+      },
+    },
+  },
+};
+
+const getExtendedPrismaClient = () => {
+  return new PrismaClient().$extends(extension);
+};
+
+type ExtendedPrismaClient = ReturnType<typeof getExtendedPrismaClient>;
+
+const globalForPrisma = globalThis as unknown as { db: ExtendedPrismaClient };
+const db = globalForPrisma.db || getExtendedPrismaClient();
 
 export default db;
 
