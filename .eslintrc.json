@@ -1,4 +1,5 @@
 {
+  "env": { "es2020": true },
   "root": true,
   "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
   "plugins": [
@@ -66,7 +67,7 @@
     "no-unsafe-optional-chaining": "error",
     "no-unused-private-class-members": "error",
     "no-unused-vars": "error",
-    "no-use-before-define": "error",
+    "no-use-before-define": "off",
     "no-useless-backreference": "error",
     "require-atomic-updates": "error",
     "use-isnan": "error",
@@ -617,10 +618,7 @@
     "@typescript-eslint/prefer-as-const": "error",
     "@typescript-eslint/prefer-enum-initializers": "error",
     "@typescript-eslint/prefer-readonly": "error",
-    "@typescript-eslint/prefer-readonly-parameter-types": [
-      "error",
-      { "ignoreInferredTypes": true }
-    ],
+    "@typescript-eslint/prefer-readonly-parameter-types": "off",
     "@typescript-eslint/prefer-regexp-exec": "error",
     "@typescript-eslint/prefer-return-this-type": "error",
     "@typescript-eslint/prefer-string-starts-ends-with": "error",
