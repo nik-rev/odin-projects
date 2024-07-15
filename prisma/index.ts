@@ -51,11 +51,9 @@ const getExtendedPrismaClient = () => {
 
 type ExtendedPrismaClient = ReturnType<typeof getExtendedPrismaClient>;
 
-const globalForPrisma = globalThis as unknown as { db: ExtendedPrismaClient };
+const globalForPrisma = globalThis as unknown as { db?: ExtendedPrismaClient };
 
-/* eslint @typescript-eslint/no-unnecessary-condition: "off" -- Is necessary to not instantiate more than 1 instance of prisma client. More info: https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices */
-
-const db = globalForPrisma.db || getExtendedPrismaClient();
+const db = globalForPrisma.db ?? getExtendedPrismaClient();
 
 export default db;
 
