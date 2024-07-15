@@ -560,7 +560,7 @@
     "@typescript-eslint/default-param-last": "error",
     "@typescript-eslint/dot-notation": "error",
     "@typescript-eslint/explicit-member-accessibility": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-array-constructor": "error",
     "@typescript-eslint/no-array-delete": "error",
     "@typescript-eslint/no-base-to-string": "error",
