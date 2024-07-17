@@ -16,8 +16,19 @@
     "plugin:sonarjs/recommended-legacy",
     "plugin:functional/no-mutations",
     "plugin:eslint-comments/recommended",
+    "plugin:deprecation/recommended",
+    "plugin:json/recommended-legacy",
+    "plugin:@getify/proper-arrows/getify-says",
+    "plugin:array-func/all",
+    "plugin:boundaries/strict",
     "plugin:prettier/recommended"
   ],
+  "plugins": ["import", "simple-import-sort"],
+  "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/order": "off"
+  },
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": "latest"
