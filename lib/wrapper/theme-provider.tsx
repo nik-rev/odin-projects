@@ -6,7 +6,7 @@ import { ThemeProvider } from "next-themes";
 export default function ThemeProviderWrapper({
   children,
 }: {
-  children: React.ReactNode;
+  readonly children: React.ReactNode;
 }) {
   return (
     <ThemeProvider defaultTheme="system" attribute="class" enableSystem>

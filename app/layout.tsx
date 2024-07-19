@@ -1,17 +1,29 @@
-import ThemeSwitch from "@/components/theme/ThemeSwitch";
-import ThemeProvider from "@/lib/wrapper/ThemeProvider";
-import Nav from "@/components/Nav";
+import Nav from "@/components/nav";
+import ThemeSwitch from "@/components/theme/theme-switch";
+import { cn } from "@/lib/utils";
+import ThemeProvider from "@/lib/wrapper/theme-provider";
+import { Inter as FontSans } from "next/font/google";
 
 import "./globals.css";
 
-export default async function RootLayout({
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  readonly children: React.ReactNode;
+}) {
   return (
-    <html suppressHydrationWarning /* next-themes updates <html> */ lang="en">
-      <body>
+    <html suppressHydrationWarning lang="en">
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
         <ThemeProvider>
           <ThemeSwitch />
           <Nav />

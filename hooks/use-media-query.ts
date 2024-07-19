@@ -5,8 +5,8 @@ export function useMediaQuery() {
     "desktop" | "mobile" | "tablet" | "sm" | null
   >(null);
   const [dimensions, setDimensions] = useState<{
-    height: number;
-    width: number;
+    readonly height: number;
+    readonly width: number;
   } | null>(null);
 
   useEffect(() => {

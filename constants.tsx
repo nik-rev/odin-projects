@@ -9,4 +9,7 @@ export const DAY = 24 * HOUR;
 // app
 export const APPLICATION_NAME = "NextJS Skeleton";
 export const SOURCE = "http://localhost:3000";
+
+// auth
+export const PASSWORD_MIN_LENGTH = 8;
 export const UNAUTHENTICATED_REDIRECT = "/";

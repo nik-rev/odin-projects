@@ -1,17 +1,17 @@
 import { SOURCE } from "@/constants";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
-type SiteConfig = {
-  links: {
-    twitter: string;
-    github: string;
+interface SiteConfig {
+  readonly links: {
+    readonly twitter: string;
+    readonly github: string;
   };
-  description: string;
-  mailSupport: string;
-  ogImage: string;
-  name: string;
-  url: string;
-};
+  readonly description: string;
+  readonly mailSupport: string;
+  readonly ogImage: string;
+  readonly name: string;
+  readonly url: string;
+}
 
 const site_url = SOURCE;
 
@@ -34,11 +34,11 @@ export function constructMetadata({
   icons = "/favicon.ico",
   noIndex = false,
 }: {
-  description?: string;
-  noIndex?: boolean;
-  title?: string;
-  image?: string;
-  icons?: string;
+  readonly description?: string;
+  readonly noIndex?: boolean;
+  readonly title?: string;
+  readonly image?: string;
+  readonly icons?: string;
 } = {}): Metadata {
   return {
     keywords: [

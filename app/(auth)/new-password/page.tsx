@@ -3,7 +3,7 @@
 import { newPassword } from "@/actions/new-password";
 import { useSearchParams } from "next/navigation";
 
-export default function NewPasswordForm() {
+export default function NewPassword() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 

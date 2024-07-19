@@ -1,6 +1,6 @@
 "use server";
 
-import { encryptPassword } from "@/lib/util/salt-and-hash-password";
+import { encryptPassword } from "@/lib/util/encrypt-password";
 import db from "@/prisma";
 
 export const newPassword = async (formData: FormData, token: string | null) => {
@@ -42,9 +42,13 @@ export const newPassword = async (formData: FormData, token: string | null) => {
     throw new Error("Email does not exist!");
   }
 
-  const newPassword = await encryptPassword(password);
+  const newEncryptedPassword = await encryptPassword(password);
 
-  await db.user.changePassword(existingUser.id, existingToken.id, newPassword);
+  await db.user.changePassword(
+    existingUser.id,
+    existingToken.id,
+    newEncryptedPassword,
+  );
 
   return { success: "Password updated!" };
 };

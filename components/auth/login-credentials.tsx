@@ -3,8 +3,7 @@
 import { loginWithCredentials } from "@/actions/auth";
 import Link from "next/link";
 
-import AuthButton from "./AuthButton";
-import { useState } from "react";
+import AuthButton from "./auth-button";
 
 // TODO: validate with zod
 export default function LoginCredentials() {

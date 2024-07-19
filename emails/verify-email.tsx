@@ -1,18 +1,22 @@
+import { APPLICATION_NAME, CURRENT_YEAR } from "@/constants";
 import {
-  Container,
-  Tailwind,
-  Preview,
-  Section,
   Body,
+  Container,
   Head,
+  Hr,
   Html,
   Link,
+  Preview,
+  Section,
+  Tailwind,
   Text,
-  Hr,
 } from "@react-email/components";
-import { APPLICATION_NAME, CURRENT_YEAR } from "@/constants";
 
-export default function VerificationEmail({ url }: { url: string }) {
+export default function VerificationEmail({
+  url,
+}: {
+  readonly url: string;
+}): Readonly<JSX.Element> {
   return (
     <Html>
       <Head />

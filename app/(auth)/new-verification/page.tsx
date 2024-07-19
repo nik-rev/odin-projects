@@ -1,10 +1,10 @@
 "use client";
 
 import { newVerification } from "@/actions/new-verification";
-import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
-export default function Page() {
+export default function NewVerification() {
   const [error, setError] = useState<undefined | string>();
   const [success, setSuccess] = useState<undefined | string>();
 
@@ -13,7 +13,9 @@ export default function Page() {
   const token = searchParams.get("token");
 
   const onSubmit = useCallback(async () => {
-    if (success || error) return;
+    if (success || error) {
+      return;
+    }
 
     if (!token) {
       setError("Missing token!");

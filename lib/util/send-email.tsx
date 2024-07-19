@@ -1,7 +1,7 @@
+import { SOURCE } from "@/constants";
 import ForgotPasswordEmail from "@/emails/reset-password";
 import VerificationEmail from "@/emails/verify-email";
 import { render } from "@react-email/components";
-import { SOURCE } from "@/constants";
 import { Resend } from "resend";
 
 import env from "../schema/env";

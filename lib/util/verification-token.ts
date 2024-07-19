@@ -1,6 +1,6 @@
-import { randomUUID } from "node:crypto";
 import { HOUR } from "@/constants";
 import db from "@/prisma";
+import { randomUUID } from "node:crypto";
 
 export const getVerificationTokenByToken = async (token: string) => {
   try {

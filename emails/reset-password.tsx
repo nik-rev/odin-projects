@@ -1,22 +1,28 @@
+import { APPLICATION_NAME, CURRENT_YEAR } from "@/constants";
 import {
-  Container,
-  Tailwind,
-  Preview,
-  Section,
   Body,
+  Container,
   Head,
+  Hr,
   Html,
   Link,
+  Preview,
+  Section,
+  Tailwind,
   Text,
-  Hr,
 } from "@react-email/components";
-import { APPLICATION_NAME, CURRENT_YEAR } from "@/constants";
 
-export default function ForgotPasswordEmail({ url }: { url: string }) {
+export default function ForgotPasswordEmail({
+  url,
+}: {
+  readonly url: string;
+}): Readonly<JSX.Element> {
   return (
     <Html>
       <Head />
+
       <Preview>Reset your password</Preview>
+
       <Tailwind>
         <Body className="m-auto bg-white font-sans">
           <Container className="mx-auto my-[40px] rounded border border-solid border-[#eaeaea] p-[20px]">

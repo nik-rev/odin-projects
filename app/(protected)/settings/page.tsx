@@ -5,7 +5,7 @@ export default async function SettingsPage() {
 
   return (
     <div>
-      <button>
+      <button type="button">
         {session?.user.isTwoFactorEnabled ? "Disable" : "Enable"} 2FA
       </button>
       <br />

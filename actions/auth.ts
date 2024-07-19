@@ -1,20 +1,20 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { signOut, signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
+import { revalidatePath } from "next/cache";
 
-export const login = async (provider: string) => {
+const login = async (provider: string) => {
   await signIn(provider, { redirectTo: "/" });
   revalidatePath("/");
 };
 
-export const logout = async () => {
+const logout = async () => {
   await signOut({ redirectTo: "/" });
   revalidatePath("/");
 };
 
-export const loginWithCredentials = async (formData: FormData) => {
+const loginWithCredentials = async (formData: FormData) => {
   const rawFormData = {
     password: formData.get("password"),
     email: formData.get("email"),
@@ -35,3 +35,5 @@ export const loginWithCredentials = async (formData: FormData) => {
   }
   revalidatePath("/");
 };
+
+export { login, logout, loginWithCredentials };

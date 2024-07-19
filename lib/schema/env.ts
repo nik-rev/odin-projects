@@ -1,4 +1,4 @@
-import typeSafeObjectFromEntries from "@/lib/wrapper/Object.fromEntries";
+import typeSafeObjectFromEntries from "@/lib/wrapper/object-from-entries";
 import { z } from "zod";
 
 const envVariables = [
@@ -16,7 +16,9 @@ const envVariables = [
 
 const EnvVariablesSchema = z.object(
   typeSafeObjectFromEntries(
-    envVariables.map((envVariable) => [envVariable, z.string().min(1)]),
+    envVariables.map((envVariable) => {
+      return [envVariable, z.string().min(1)];
+    }),
   ),
 );
 

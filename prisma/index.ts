@@ -51,7 +51,9 @@ const getExtendedPrismaClient = () => {
 
 type ExtendedPrismaClient = ReturnType<typeof getExtendedPrismaClient>;
 
-const globalForPrisma = globalThis as unknown as { db?: ExtendedPrismaClient };
+const globalForPrisma = globalThis as unknown as {
+  readonly db?: ExtendedPrismaClient;
+};
 
 const db = globalForPrisma.db ?? getExtendedPrismaClient();
 
