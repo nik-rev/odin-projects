@@ -1,6 +1,5 @@
 "use client";
 
-import { WarningCircle } from "@phosphor-icons/react";
 import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import * as React from "react";
@@ -34,14 +33,6 @@ function FormField<
   );
 }
 
-type FormItemContextValue = {
-  id: string;
-};
-
-const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
-);
-
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext);
   const itemContext = React.useContext(FormItemContext);
@@ -65,6 +56,14 @@ const useFormField = () => {
   };
 };
 
+type FormItemContextValue = {
+  id: string;
+};
+
+const FormItemContext = React.createContext<FormItemContextValue>(
+  {} as FormItemContextValue,
+);
+
 const FormItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -81,10 +80,17 @@ const FormItem = React.forwardRef<
 const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
->(function FormLabel({ ...props }, ref) {
-  const { formItemId } = useFormField();
+>(function FormLabel({ className, ...props }, ref) {
+  const { error, formItemId } = useFormField();
 
-  return <Label ref={ref} htmlFor={formItemId} {...props} />;
+  return (
+    <Label
+      ref={ref}
+      className={cn(error && "text-red-500 dark:text-red-900", className)}
+      htmlFor={formItemId}
+      {...props}
+    />
+  );
 });
 
 const FormControl = React.forwardRef<
@@ -117,7 +123,7 @@ const FormDescription = React.forwardRef<
     <p
       ref={ref}
       id={formDescriptionId}
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("text-sm text-slate-500 dark:text-slate-400", className)}
       {...props}
     />
   );
@@ -138,9 +144,10 @@ const FormMessage = React.forwardRef<
     <p
       ref={ref}
       id={formMessageId}
-      className={cn("text-xs flex flex-row items-center", className, {
-        "text-destructive font-medium": error,
-      })}
+      className={cn(
+        "text-sm font-medium text-red-500 dark:text-red-900",
+        className,
+      )}
       {...props}
     >
       {error && <WarningCircle weight="fill" size={14} className="mr-1" />}
