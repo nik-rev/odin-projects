@@ -1,4 +1,4 @@
-import { Eye, EyeClosed, EyeSlash } from "@phosphor-icons/react";
+import { Eye, EyeClosed } from "@phosphor-icons/react";
 import * as React from "react";
 
 import { useToggle } from "@/hooks/use-toggle";
