@@ -52,6 +52,8 @@
     ],
     "unicorn/no-keyword-prefix": "off",
     "react/prop-types": ["error", { "ignore": ["className"] }],
+    "react/jsx-max-depth": "off",
+    "react/no-unescaped-entities": "off",
     "multiline-comment-style": "off",
     "id-length": "off",
     "react/forbid-component-props": "off",
