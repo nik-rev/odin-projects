@@ -1,4 +1,3 @@
-import { APPLICATION_NAME, CURRENT_YEAR } from "@/constants";
 import {
   Body,
   Container,
@@ -12,24 +11,29 @@ import {
   Text,
 } from "@react-email/components";
 
-export default function MagicLinkEmail({
-  host,
+import { APPLICATION_NAME, CURRENT_YEAR } from "@/constants";
+
+export default function AuthEmail({
   url,
+  content: { preview, text, linkText },
 }: {
-  readonly host: string;
   readonly url: string;
+  readonly content: {
+    preview: string;
+    text: string;
+    linkText: string;
+  };
 }): Readonly<JSX.Element> {
   return (
     <Html>
       <Head />
-      <Preview>You&apos;ve been invited to a group!</Preview>
+      <Preview>{preview}</Preview>
       <Tailwind>
         <Body className="m-auto bg-white font-sans">
           <Container className="mx-auto my-[40px] rounded border border-solid border-[#eaeaea] p-[20px]">
             <Section className="my-[32px] text-center">
               <Text className="mb-8 text-[14px] font-medium leading-[24px] text-black">
-                Your magic link login is below, click to login.
-                {host}
+                {text}
               </Text>
 
               <Text className="text-[14px] font-medium leading-[24px] text-black">
@@ -38,7 +42,7 @@ export default function MagicLinkEmail({
                   target="_blank"
                   href={url}
                 >
-                  Login using Magic Link
+                  {linkText}
                 </Link>
               </Text>
             </Section>

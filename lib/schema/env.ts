@@ -1,5 +1,6 @@
-import typeSafeObjectFromEntries from "@/lib/wrapper/object-from-entries";
 import { z } from "zod";
+
+import typeSafeObjectFromEntries from "@/lib/wrapper/object-from-entries";
 
 const envVariables = [
   "NEXTAUTH_SECRET",

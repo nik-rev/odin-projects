@@ -1,8 +1,9 @@
 "use server";
 
-import { signIn, signOut } from "@/auth";
-import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
+import { AuthError } from "next-auth";
+
+import { signIn, signOut } from "@/auth";
 
 const login = async (provider: string) => {
   await signIn(provider, { redirectTo: "/" });
@@ -36,4 +37,4 @@ const loginWithCredentials = async (formData: FormData) => {
   revalidatePath("/");
 };
 
-export { login, logout, loginWithCredentials };
+export { login, loginWithCredentials, logout };

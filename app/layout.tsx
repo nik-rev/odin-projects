@@ -1,10 +1,11 @@
-import Nav from "@/components/nav";
-import ThemeSwitch from "@/components/theme/theme-switch";
-import { cn } from "@/lib/utils";
-import ThemeProvider from "@/lib/wrapper/theme-provider";
+import "./globals.css";
+
 import { Inter as FontSans } from "next/font/google";
 
-import "./globals.css";
+import Nav from "@/components/nav";
+import ThemeSwitch from "@/components/theme-switch";
+import { cn } from "@/lib/utils";
+import ThemeProvider from "@/lib/wrapper/theme-provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -19,10 +20,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
+        className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
       >
         <ThemeProvider>
           <ThemeSwitch />

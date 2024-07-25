@@ -13,3 +13,4 @@ export const SOURCE = "http://localhost:3000";
 // auth
 export const PASSWORD_MIN_LENGTH = 8;
 export const UNAUTHENTICATED_REDIRECT = "/";
+export const SALT_ROUNDS = 10;

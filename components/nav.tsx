@@ -1,5 +1,6 @@
-import { auth } from "@/auth";
 import Link from "next/link";
+
+import { auth } from "@/auth";
 
 import Logout from "./auth/logout";
 

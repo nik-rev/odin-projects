@@ -1,5 +1,5 @@
 const typeSafeObjectFromEntries = <
-  const T extends readonly (readonly [PropertyKey, unknown])[],
+  const T extends ReadonlyArray<readonly [PropertyKey, unknown]>,
 >(
   entries: T,
 ): { readonly [K in T[number] as K[0]]: K[1] } => {

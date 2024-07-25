@@ -1,8 +1,8 @@
-import { SOURCE } from "@/constants";
-import ForgotPasswordEmail from "@/emails/reset-password";
-import VerificationEmail from "@/emails/verify-email";
 import { render } from "@react-email/components";
 import { Resend } from "resend";
+
+import { SOURCE } from "@/constants";
+import AuthEmail from "@/emails/auth";
 
 import env from "../schema/env";
 
@@ -31,7 +31,14 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   await sendEmail(
     email,
     "Confirm your email",
-    VerificationEmail({ url: confirmLink }),
+    AuthEmail({
+      url: confirmLink,
+      content: {
+        preview: "Email verification",
+        text: "Verify your email",
+        linkText: "Click here to confirm email",
+      },
+    }),
   );
 };
 
@@ -41,6 +48,13 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
   await sendEmail(
     email,
     "Reset your password",
-    ForgotPasswordEmail({ url: resetLink }),
+    AuthEmail({
+      url: resetLink,
+      content: {
+        preview: "Password Reset",
+        text: "Reset your password",
+        linkText: "Click here to reset your password",
+      },
+    }),
   );
 };

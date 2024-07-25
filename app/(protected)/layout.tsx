@@ -1,6 +1,7 @@
+import { redirect } from "next/navigation";
+
 import { auth } from "@/auth";
 import { UNAUTHENTICATED_REDIRECT } from "@/constants";
-import { redirect } from "next/navigation";
 
 export default async function ProtectedLayout({
   children,

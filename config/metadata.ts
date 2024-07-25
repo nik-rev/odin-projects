@@ -1,7 +1,8 @@
-import { SOURCE } from "@/constants";
 import type { Metadata } from "next";
 
-interface SiteConfig {
+import { SOURCE } from "@/constants";
+
+type SiteConfig = {
   readonly links: {
     readonly twitter: string;
     readonly github: string;
@@ -11,7 +12,7 @@ interface SiteConfig {
   readonly ogImage: string;
   readonly name: string;
   readonly url: string;
-}
+};
 
 const site_url = SOURCE;
 

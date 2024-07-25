@@ -1,11 +1,13 @@
-// Why this approach is required to get correct type definitions: https://authjs.dev/getting-started/typescriptimport { DefaultSession } from "next-auth";
+/* eslint "@typescript-eslint/consistent-type-definitions": "off", "@typescript-eslint/no-empty-interface": "off" --
+ * This approach is required to get correct type definitions: https://authjs.dev/getting-started/typescript */
 import type { UserRole } from "@prisma/client";
+import type { DefaultSession } from "next-auth";
 
-interface CustomUserProperties {
+type CustomUserProperties = {
   readonly isTwoFactorEnabled: boolean;
   readonly isOAuth: boolean;
   readonly role: UserRole;
-}
+};
 
 declare module "next-auth" {
   interface JWT extends CustomUserProperties {}

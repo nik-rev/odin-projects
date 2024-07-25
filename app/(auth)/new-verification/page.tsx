@@ -1,8 +1,9 @@
 "use client";
 
-import { newVerification } from "@/actions/new-verification";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+
+import { newVerification } from "@/actions/new-verification";
 
 export default function NewVerification() {
   const [error, setError] = useState<undefined | string>();

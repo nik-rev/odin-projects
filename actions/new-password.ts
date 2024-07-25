@@ -1,6 +1,8 @@
 "use server";
 
-import { encryptPassword } from "@/lib/util/encrypt-password";
+import bcrypt from "bcryptjs";
+
+import { SALT_ROUNDS } from "@/constants";
 import db from "@/prisma";
 
 export const newPassword = async (formData: FormData, token: string | null) => {
@@ -42,7 +44,7 @@ export const newPassword = async (formData: FormData, token: string | null) => {
     throw new Error("Email does not exist!");
   }
 
-  const newEncryptedPassword = await encryptPassword(password);
+  const newEncryptedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
   await db.user.changePassword(
     existingUser.id,

@@ -1,7 +1,8 @@
 "use client";
 
-import { loginWithCredentials } from "@/actions/auth";
 import Link from "next/link";
+
+import { loginWithCredentials } from "@/actions/auth";
 
 import AuthButton from "./auth-button";
 

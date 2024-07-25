@@ -1,7 +1,8 @@
 "use client";
 
-import { newPassword } from "@/actions/new-password";
 import { useSearchParams } from "next/navigation";
+
+import { newPassword } from "@/actions/new-password";
 
 export default function NewPassword() {
   const searchParams = useSearchParams();

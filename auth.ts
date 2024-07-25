@@ -1,4 +1,3 @@
-import env from "@/lib/schema/env";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { render } from "@react-email/components";
 import bcrypt from "bcryptjs";
@@ -7,10 +6,10 @@ import Credentials from "next-auth/providers/credentials";
 import GitHub from "next-auth/providers/github";
 import Resend from "next-auth/providers/resend";
 
-import MagicLinkEmail from "./emails/magic-link";
-import database from "./prisma";
+import env from "@/lib/schema/env";
 
-console.log("Another reason why — this is why.");
+import AuthEmail from "./emails/auth";
+import database from "./prisma";
 
 export const {
   handlers: { POST, GET },
@@ -34,7 +33,16 @@ export const {
             }) => {
               return `Sign in to ${hostText}\n${urlText}\n\n`;
             },
-            html: render(MagicLinkEmail({ host, url })),
+            html: render(
+              AuthEmail({
+                url,
+                content: {
+                  preview: "Magic Link Login",
+                  text: "Your magic link is below, click to login.",
+                  linkText: "Login using Magic Link",
+                },
+              }),
+            ),
             subject: `Sign in to ${host}`,
             from: provider.from,
             to,
