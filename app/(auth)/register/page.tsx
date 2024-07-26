@@ -1,11 +1,12 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CircleNotch } from "@phosphor-icons/react";
+import { CircleNotch, GithubLogo } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
+import { login } from "@/actions/auth";
 import { register } from "@/actions/register";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input, PasswordInput } from "@/components/ui/input";
+import { PASSWORD_MIN_LENGTH } from "@/constants";
 import { useIsClient } from "@/hooks/use-is-client";
 import { useToggle } from "@/hooks/use-toggle";
 import type { TRegisterSchema } from "@/lib/schema/register";
@@ -49,7 +51,6 @@ export default function Register() {
 
   const handleSubmit = (values: TRegisterSchema) => {
     startTransition(() => {
-      /* eslint promise/prefer-await-to-then: "off", promise/catch-or-return: "off", @typescript-eslint/no-floating-promises: "off", promise/always-return: "off" -- startTransition function cannot take an async callback */
       register(values).then((data) => {
         if (data.success) {
           setSuccess(data.success);
@@ -69,73 +70,85 @@ export default function Register() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input {...field} disabled={isPending} type="email" required />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <PasswordInput
-                  {...field}
-                  disabled={isPending}
-                  onFocus={toggleFocused}
-                  onBlur={toggleFocused}
-                />
-              </FormControl>
-              <FormMessage>
-                <p className={cn({ invisible: !isFocused })}>
-                  Password must contain at least 8 characters
-                </p>
-              </FormMessage>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Repeat password</FormLabel>
-              <FormControl>
-                <PasswordInput {...field} disabled={isPending} />
-              </FormControl>
-              <FormMessage />
-              <Button variant="link" asChild>
-                <Link href="/forgot-password">Forgot password?</Link>
-              </Button>
-            </FormItem>
-          )}
-        />
-        {error}
-        {success}
-        <Button
-          type="submit"
-          onClick={() => setHasSubmittedForm(true)}
-          disabled={isPending}
-        >
-          Create account
-        </Button>
-        Already have an account?{" "}
-        <Link href="/login" className="text-blue-500 underline">
-          Sign in
-        </Link>
-      </form>
-    </Form>
+    <>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleSubmit)}>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input {...field} disabled={isPending} type="email" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <PasswordInput
+                    {...field}
+                    disabled={isPending}
+                    onFocus={toggleFocused}
+                    onBlur={toggleFocused}
+                  />
+                </FormControl>
+                <FormMessage>
+                  <span
+                    className={cn({
+                      invisible: !isFocused,
+                      "text-slate-500 dark:text-slate-400": false,
+                    })}
+                  >
+                    Password must contain at least {PASSWORD_MIN_LENGTH}{" "}
+                    characters
+                  </span>
+                </FormMessage>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Repeat password</FormLabel>
+                <FormControl>
+                  <PasswordInput {...field} disabled={isPending} />
+                </FormControl>
+                <FormMessage />
+                <Button variant="link" asChild>
+                  <Link href="/forgot-password">Forgot password?</Link>
+                </Button>
+              </FormItem>
+            )}
+          />
+          {error}
+          {success}
+          <Button
+            type="submit"
+            onClick={() => setHasSubmittedForm(true)}
+            disabled={isPending}
+          >
+            Create account
+          </Button>
+          Already have an account?{" "}
+          <Link href="/login" className="text-blue-500 underline">
+            Sign in
+          </Link>
+        </form>
+      </Form>
+      <Button onClick={async () => await login("github")}>
+        <GithubLogo />
+        Continue with GitHub
+      </Button>
+    </>
   );
 }
