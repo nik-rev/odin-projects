@@ -3,20 +3,18 @@
 import bcrypt from "bcryptjs";
 
 import { SALT_ROUNDS } from "@/constants";
+import type { TNewPasswordSchema } from "@/lib/schema/new-password";
 import db from "@/prisma";
 
-export const newPassword = async (formData: FormData, token: string | null) => {
+export const newPassword = async (
+  values: TNewPasswordSchema,
+  token: string | null,
+) => {
   if (!token) {
-    throw new Error("Invalid token!");
+    return { error: "Invalid token!" };
   }
-
-  const password = formData.get("password");
 
   /* add validation to password later */
-
-  if (!password || typeof password !== "string") {
-    throw new Error("Invalid password!");
-  }
 
   const existingToken = await db.passwordResetToken.findUnique({
     where: {
@@ -25,13 +23,13 @@ export const newPassword = async (formData: FormData, token: string | null) => {
   });
 
   if (!existingToken) {
-    throw new Error("Invalid token!");
+    return { error: "Invalid token!" };
   }
 
   const hasExpired = new Date(existingToken.expires) < new Date();
 
   if (hasExpired) {
-    throw new Error("Token has expired!");
+    return { error: "Token has expired!" };
   }
 
   const existingUser = await db.user.findUnique({
@@ -41,10 +39,10 @@ export const newPassword = async (formData: FormData, token: string | null) => {
   });
 
   if (!existingUser) {
-    throw new Error("Email does not exist!");
+    return { error: "Email does not exist!" };
   }
 
-  const newEncryptedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+  const newEncryptedPassword = await bcrypt.hash(values.password, SALT_ROUNDS);
 
   await db.user.changePassword(
     existingUser.id,
