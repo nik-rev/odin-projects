@@ -1,16 +1,12 @@
 import { z } from "zod";
 
-import { PASSWORD_MIN_LENGTH } from "@/constants";
-
-const passwordValidation = z.string().min(PASSWORD_MIN_LENGTH, {
-  message: `Password must contain at least ${PASSWORD_MIN_LENGTH} characters`,
-});
+import { EmailSchema, PasswordSchema } from "./fields";
 
 export const RegisterSchema = z
   .object({
-    email: z.string().email({ message: "Please enter a valid email address" }),
-    password: passwordValidation,
-    confirmPassword: passwordValidation,
+    email: EmailSchema,
+    password: PasswordSchema,
+    confirmPassword: PasswordSchema,
   })
   .refine(
     (data) => {

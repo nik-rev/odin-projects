@@ -1,10 +1,10 @@
 import { z } from "zod";
 
+import { EmailSchema, PasswordSchema } from "./fields";
+
 export const LoginSchema = z.object({
-  password: z.string().min(1, { message: "Password is required" }),
-  email: z.string().email({
-    message: "Email is required",
-  }),
+  password: PasswordSchema,
+  email: EmailSchema,
 });
 
 export type TLoginSchema = z.infer<typeof LoginSchema>;

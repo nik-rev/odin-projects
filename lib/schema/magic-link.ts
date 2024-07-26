@@ -1,7 +1,9 @@
 import { z } from "zod";
 
+import { EmailSchema } from "./fields";
+
 export const MagicLinkSchema = z.object({
-  email: z.string().email({ message: "Email is required" }),
+  email: EmailSchema,
 });
 
 export type TMagicLinkSchema = z.infer<typeof MagicLinkSchema>;
