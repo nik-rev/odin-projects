@@ -35,6 +35,7 @@ const PasswordInput = React.forwardRef<
       <Button
         type="button"
         variant="ghost"
+        tabIndex={-1}
         className="absolute right-2 top-1/2 -translate-y-1/2"
         onClick={toggleShowPassword}
       >
