@@ -18,6 +18,7 @@ export default function RootLayout({
   readonly children: React.ReactNode;
 }) {
   return (
+    // suppressHydrationWarning will only suppress <html> and not <body> or any descendants, this supression is required due to next-themes https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
     <html suppressHydrationWarning lang="en">
       <body
         className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
