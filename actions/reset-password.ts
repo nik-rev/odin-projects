@@ -1,26 +1,22 @@
 "use server";
 
+import type { TForgotPasswordSchema } from "@/lib/schema/forgot-password";
 import { sendPasswordResetEmail } from "@/lib/util/send-email";
 import { generatePasswordResetToken } from "@/lib/util/verification-token";
 import db from "@/prisma";
 
-export const resetPassword = async (formData: FormData) => {
-  const email = formData.get("email");
-  if (!email || typeof email !== "string") {
-    throw new Error("Invalid email!");
-  }
-
+export const resetPassword = async (formData: TForgotPasswordSchema) => {
   const existingUser = await db.user.findUnique({
     where: {
-      email,
+      email: formData.email,
     },
   });
 
   if (!existingUser) {
-    throw new Error("This email does not exist!");
+    return { error: "This email does not exist" };
   }
 
-  const passwordResetToken = await generatePasswordResetToken(email);
+  const passwordResetToken = await generatePasswordResetToken(formData.email);
 
   await sendPasswordResetEmail(
     passwordResetToken.email,

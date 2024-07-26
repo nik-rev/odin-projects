@@ -1,7 +1,9 @@
 "use server";
+import bcrypt from "bcryptjs";
+
+import { SALT_ROUNDS } from "@/constants";
 import type { TRegisterSchema } from "@/lib/schema/register";
 import { RegisterSchema } from "@/lib/schema/register";
-import { encryptPassword } from "@/lib/util/encrypt-password";
 import { sendVerificationEmail } from "@/lib/util/send-email";
 import { generateVerificationToken } from "@/lib/util/verification-token";
 import db from "@/prisma";
@@ -14,7 +16,7 @@ export const register = async (data: TRegisterSchema) => {
   }
 
   const { password, email } = validatedFields.data;
-  const hashedPassword = await encryptPassword(password);
+  const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
   const existingUser = await db.user.findUnique({
     where: {
