@@ -9,7 +9,8 @@ import Resend from "next-auth/providers/resend";
 import env from "@/lib/schema/env";
 
 import AuthEmail from "./emails/auth";
-import database from "./prisma";
+import { LoginSchema } from "./lib/schema/login";
+import db from "./prisma";
 
 export const {
   handlers: { POST, GET },
@@ -79,28 +80,32 @@ export const {
     }),
     Credentials({
       authorize: async (credentials) => {
-        if (!credentials.email || !credentials.password) {
-          return null;
-        }
+        const validatedCredentials = await LoginSchema.spa(credentials);
 
-        const email = credentials.email as string;
+        if (validatedCredentials.success) {
+          const { email, password } = validatedCredentials.data;
 
-        const user = await database.user.findUnique({
-          where: {
-            email,
-          },
-        });
+          const user = await db.user.findUnique({
+            where: {
+              email,
+            },
+          });
 
-        if (user && user.password) {
-          const isMatch = await bcrypt.compare(
-            credentials.password as string,
+          if (!user?.password) {
+            return null;
+          }
+
+          const isCorrectPassword = await bcrypt.compare(
+            password,
             user.password,
           );
-          if (!isMatch) {
-            throw new Error("Incorrect password");
+
+          if (isCorrectPassword) {
+            return user;
           }
         }
-        return user;
+
+        return null;
       },
       credentials: {
         password: {
@@ -112,7 +117,6 @@ export const {
           type: "email",
         },
       },
-      name: "Credentials",
     }),
   ],
   callbacks: {
@@ -121,7 +125,7 @@ export const {
         return token;
       }
 
-      const existingUser = await database.user.findUnique({
+      const existingUser = await db.user.findUnique({
         where: {
           id: token.sub,
         },
@@ -131,7 +135,7 @@ export const {
         return token;
       }
 
-      const existingAccount = await database.account.findUnique({
+      const existingAccount = await db.account.findUnique({
         where: { id: existingUser.id },
       });
 
@@ -162,13 +166,13 @@ export const {
         return true;
       }
 
-      const existingUser = await database.user.findUnique({
+      const existingUser = await db.user.findUnique({
         where: { id: user.id },
       });
 
       if (existingUser?.isTwoFactorEnabled) {
         const isTwoFactorVerified =
-          await database.twoFactorConfirmation.verifyUserTwoFactorById(
+          await db.twoFactorConfirmation.verifyUserTwoFactorById(
             existingUser.id,
           );
         if (!isTwoFactorVerified) {
@@ -182,7 +186,7 @@ export const {
   },
   events: {
     linkAccount: async ({ user }) => {
-      await database.user.update({
+      await db.user.update({
         data: { emailVerified: new Date() },
         where: { id: user.id },
       });
@@ -193,5 +197,5 @@ export const {
     signIn: "/login",
   },
   session: { strategy: "jwt" },
-  adapter: PrismaAdapter(database),
+  adapter: PrismaAdapter(db),
 });
