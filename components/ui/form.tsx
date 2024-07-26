@@ -1,5 +1,6 @@
 "use client";
 
+import { WarningCircle } from "@phosphor-icons/react";
 import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import * as React from "react";
@@ -33,6 +34,14 @@ function FormField<
   );
 }
 
+type FormItemContextValue = {
+  id: string;
+};
+
+const FormItemContext = React.createContext<FormItemContextValue>(
+  {} as FormItemContextValue,
+);
+
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext);
   const itemContext = React.useContext(FormItemContext);
@@ -56,14 +65,6 @@ const useFormField = () => {
   };
 };
 
-type FormItemContextValue = {
-  id: string;
-};
-
-const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
-);
-
 const FormItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -80,17 +81,10 @@ const FormItem = React.forwardRef<
 const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
->(function FormLabel({ className, ...props }, ref) {
-  const { error, formItemId } = useFormField();
+>(function FormLabel({ ...props }, ref) {
+  const { formItemId } = useFormField();
 
-  return (
-    <Label
-      ref={ref}
-      className={cn(error && "text-red-500 dark:text-red-900", className)}
-      htmlFor={formItemId}
-      {...props}
-    />
-  );
+  return <Label ref={ref} htmlFor={formItemId} {...props} />;
 });
 
 const FormControl = React.forwardRef<
@@ -136,22 +130,17 @@ const FormMessage = React.forwardRef<
   const { error, formMessageId } = useFormField();
   const body = error ? String(error?.message) : children;
 
-  if (!body) {
-    return null;
-  }
-
   return (
     <p
       ref={ref}
       id={formMessageId}
-      className={cn(
-        "text-sm font-medium text-red-500 dark:text-red-900",
-        className,
-      )}
+      className={cn("text-sm font-medium flex items-center", className, {
+        "text-red-500 dark:text-red-900": error,
+      })}
       {...props}
     >
       {error && <WarningCircle weight="fill" size={14} className="mr-1" />}
-      {body}
+      {body || <span className="invisible">Text to prevent layout shift</span>}
     </p>
   );
 });
