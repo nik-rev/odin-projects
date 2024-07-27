@@ -2,6 +2,8 @@
 
 This project was made for [The Odin Project](https://www.theodinproject.com/) curriculum as part of learning web development. I am leaving these projects up and public for anyone who would want to see my journey to becoming a software engineer. 
 
+Live: https://nikitarevenco.github.io/odin-project-recipes
+
 ## What I Learned
 
 - First time working with HTML.
