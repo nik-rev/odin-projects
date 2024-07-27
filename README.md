@@ -1,27 +1,29 @@
-## Template supports
-<p align="left">
-  <img src="https://img.shields.io/badge/-JavaScript-000?&logo=JavaScript" height="30" />
-  <img src="https://img.shields.io/badge/-HTML5-000?&logo=html5" height="30" />
-  <img src="https://img.shields.io/badge/-CSS3-000?&logo=css3" height="30" />
-  <img src="https://img.shields.io/badge/-npm-000?&logo=npm" height="30" />
-  <img src="https://img.shields.io/badge/-Webpack-000?&logo=webpack" height="30" />
-</p>
+# Weather App
 
-<br> <!-- Adjust the number of <br> tags to increase spacing -->
+This project was made for [The Odin Project](https://www.theodinproject.com/) curriculum as part of learning web development. I am leaving these projects up and public for anyone who would want to see my journey to becoming a software engineer. 
 
-## Getting started 
-```
-npm install webpack webpack-cli --save-dev
-```
-```
-npm init @eslint/config
-```
+Live: https://nikitarevenco.github.io/odin-project-weather-app
 
-<br>
+## What I Learned
 
-## Commands
-`npm run build`: Runs the build itself creating the `dist` folder
+- Asynchronous JavaScript (async/await and promises).
+- Data fetching.
+- Handling data.
+- Using browser's Geolocation API to get the user's current location.
 
-`npm run deploy`: Copies the contents of `dist` folder to the `gh-pages` branch
+## Features
 
-`npm run start`: Starts the web server
+- Parallax effect from moving the mouse.
+- Automatically fetches the user's location if they consent.
+- Fetch weather data for a place and display it to the user.
+- Supports both imperial and metric units.
+
+## Running locally
+
+1. Clone this repository.
+2. Run `npm ci` to install the dependencies.
+3. Run `npm run start` and the project will open up in your browser.
+
+## Screenshots
+
+![image](https://github.com/user-attachments/assets/df45e6ce-7b70-4d38-9a92-e559aaaeead0)
