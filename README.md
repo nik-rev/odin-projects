@@ -1,8 +1,8 @@
-# Name
+# Sign Up Form
 
 This project was made for [The Odin Project](https://www.theodinproject.com/) curriculum as part of learning web development. I am leaving these projects up and public for anyone who would want to see my journey to becoming a software engineer. 
 
-Live: https://nikitarevenco.github.io/
+Live: https://nikitarevenco.github.io/odin-project-signup-form
 
 ## What I Learned
 
