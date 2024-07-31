@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 
 import { login } from "@/actions/auth";
 import { register } from "@/actions/register";
+import FormError from "@/components/form-success";
+import FormSuccess from "@/components/form-success";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -130,8 +132,8 @@ export default function Register() {
               </FormItem>
             )}
           />
-          {error}
-          {success}
+          <FormSuccess>{success}</FormSuccess>
+          <FormError>{error}</FormError>
           <Button
             type="submit"
             onClick={() => setHasSubmittedForm(true)}

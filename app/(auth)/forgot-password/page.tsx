@@ -19,6 +19,8 @@ import { Input } from "@/components/ui/input";
 import { useIsClient } from "@/hooks/use-is-client";
 import type { TForgotPasswordSchema } from "@/lib/schema/forgot-password";
 import { ForgotPasswordSchema } from "@/lib/schema/forgot-password";
+import { FormError } from "@/components/form-error";
+import { FormSuccess } from "@/components/form-error";
 
 export default function ForgotPassword() {
   const [error, setError] = useState("");
@@ -69,8 +71,8 @@ export default function ForgotPassword() {
             </FormItem>
           )}
         />
-        {error}
-        {success}
+        <FormError>{error}</FormError>
+        <FormSuccess>{success}</FormSuccess>
         <Button type="submit" disabled={isPending}>
           Reset
         </Button>

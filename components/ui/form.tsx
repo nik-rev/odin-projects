@@ -3,6 +3,7 @@
 import { WarningCircle } from "@phosphor-icons/react";
 import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
+import { CircleAlert, CircleCheck } from "lucide-react";
 import * as React from "react";
 import type { ControllerProps, FieldPath, FieldValues } from "react-hook-form";
 import { Controller, FormProvider, useFormContext } from "react-hook-form";
@@ -139,8 +140,34 @@ const FormMessage = React.forwardRef<
       })}
       {...props}
     >
-      {error && <WarningCircle weight="fill" size={14} className="mr-1" />}
+      {error && <CircleAlert size={14} className="mr-1" />}
       {body || <span className="invisible">Text to prevent layout shift</span>}
+    </p>
+  );
+});
+
+const FormStatusMessage = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement> & {
+    readonly type: "error" | "success" | undefined;
+  }
+>(function FormError({ className, children, type, ...props }, ref) {
+  return (
+    <p
+      ref={ref}
+      className={cn(
+        {
+          "text-red-500 dark:text-red-900": type === "error",
+          "text-green-500 dark:text-green-900": type === "success",
+        },
+        className,
+      )}
+      {...props}
+    >
+      {type === "success" && <CircleAlert />}
+      {type === "error" && <CircleCheck />}
+      {children || "Text to prevent layout shift"}
+      {children}
     </p>
   );
 });
@@ -153,5 +180,6 @@ export {
   FormItem,
   FormLabel,
   FormMessage,
+  FormStatusMessage,
   useFormField,
 };

@@ -6,6 +6,7 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 import { loginCredentials } from "@/actions/login";
+import FormError from "@/components/form-error";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -82,7 +83,7 @@ export default function Login() {
             </FormItem>
           )}
         />
-        {error}
+        <FormError>{error}</FormError>
         <Button type="submit" disabled={isPending}>
           Login
         </Button>

@@ -68,9 +68,33 @@
     "react/jsx-no-constructed-context-values": "off",
     "react/jsx-sort-props": "off",
     "import/no-unresolved": "off",
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "extendDefaults": true,
+        "types": {
+          "$": true,
+          "$$": true
+        }
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_$",
+        "varsIgnorePattern": "^_$",
+        "caughtErrorsIgnorePattern": "^_$"
+      }
+    ],
     "max-statements": "off",
     "capitalized-comments": "off",
     "react/jsx-no-leaked-render": "off",
+    "unicorn/no-array-reduce": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "no-underscore-dangle": "off",
+    "security/detect-object-injection": "off",
     "no-magic-numbers": "off",
     "functional/prefer-immutable-types": "off",
     "@typescript-eslint/array-type": [

@@ -1,9 +1,12 @@
 "use client";
 
+import { LoaderCircle } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import { newVerification } from "@/actions/new-verification";
+import FormSuccess from "@/components/form-success";
+import FormError from "@/components/form-success";
 
 export default function NewVerification() {
   const [error, setError] = useState<undefined | string>();
@@ -37,11 +40,10 @@ export default function NewVerification() {
   }, [onSubmit]);
 
   return (
-    <>
-      Success:
-      <pre>{success}</pre>
-      Error:
-      <pre>{error}</pre>
-    </>
+    <div className="flex w-full items-center justify-center">
+      {!success && !error && <LoaderCircle className="animate-spin" />}
+      {!success && <FormError>{error}</FormError>}
+      {success && <FormSuccess>{success}</FormSuccess>}
+    </div>
   );
 }
