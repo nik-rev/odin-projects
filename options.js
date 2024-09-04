@@ -96,7 +96,7 @@ const createTable = (options, type) => {
   const emptyTh = document.createElement("th");
   headingTr.append(macroTh, urlTh, emptyTh);
   tHead.append(headingTr);
-  const tBody = document.createElement("tbody")
+  const tBody = document.createElement("tbody");
   table.append(tHead, tBody);
 
   for (const macro in options) {
@@ -128,14 +128,18 @@ const isEmptyObject = (object) => Object.keys(object).length === 0;
  * */
 const tableToObject = (table) => {
   const tableBody = Array.from(table.tBodies)[0];
+  const headers = Array.from(table.tHead.rows[0].cells);
 
-  Array.from(tableBody.rows).map((row) => {
-    Array.from(row.cells).map((cell) => {
-      const isMacro = cell.cellIndex === 0;
-      const isUrl = cell.cellIndex === 1;
-      console.log(cell.textContent, cell.cellIndex, cell.headers);
-    });
-  });
+  return Array.from(tableBody.rows)
+    .slice(0, -1)
+    .reduce((acc1, row) => {
+      const cells = Array.from(row.cells).map((cell) => cell.textContent);
+
+      return {
+        ...acc1,
+        [cells[0]]: cells[1],
+      };
+    }, {});
 };
 
 const restoreOptions = () => {
@@ -144,6 +148,7 @@ const restoreOptions = () => {
       isEmptyObject(result) ? defaultOptions.instantMacros : result,
       "instantMacros",
     );
+    console.log(tableToObject(instantMacrosTable));
     document.getElementById("instantMacros").replaceWith(instantMacrosTable);
   }
 
@@ -152,7 +157,7 @@ const restoreOptions = () => {
       isEmptyObject(result) ? defaultOptions.searchMacros : result,
       "searchMacros",
     );
-    tableToObject(searchMacrosTable);
+    console.log(tableToObject(searchMacrosTable));
     document.getElementById("searchMacros").replaceWith(searchMacrosTable);
   }
 
