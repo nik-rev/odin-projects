@@ -16,13 +16,6 @@ const defaultOptions = {
   },
 };
 
-// function saveOptions(e) {
-//   e.preventDefault();
-//   browser.storage.sync.set({
-//     instantMacros: JSON.stringify(),
-//     searchMacros: JSON.stringify(),
-//   });
-// }
 /**
  * @param {"searchMacros" | "instantMacros"} type
  * @param {string} macro
@@ -148,7 +141,6 @@ const restoreOptions = () => {
       isEmptyObject(result) ? defaultOptions.instantMacros : result,
       "instantMacros",
     );
-    console.log(tableToObject(instantMacrosTable));
     document.getElementById("instantMacros").replaceWith(instantMacrosTable);
   }
 
@@ -157,7 +149,6 @@ const restoreOptions = () => {
       isEmptyObject(result) ? defaultOptions.searchMacros : result,
       "searchMacros",
     );
-    console.log(tableToObject(searchMacrosTable));
     document.getElementById("searchMacros").replaceWith(searchMacrosTable);
   }
 
@@ -171,5 +162,23 @@ const restoreOptions = () => {
     .get("searchMacros")
     .then(createSearchMacrosTable, onError);
 };
+
+const saveButton = document.getElementById("save");
+saveButton.addEventListener("click", () => {
+  // ["instantMacros"].map(document.getElementById);
+  const dontMindIfIDo = document.getElementById;
+  ["instantMacros"].map((str) => dontMindIfIDo(str));
+  // document.getElementById("instantMacros")
+  // const [instantMacros, searchMacros] = ["instantMacros", "searchMacros"]
+  //   .map(document.getElementById)
+  //   .map(tableToObject);
+
+  // console.log(instantMacros, searchMacros);
+
+  // browser.storage.sync.set({
+  //   instantMacros,
+  //   searchMacros,
+  // });
+});
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
