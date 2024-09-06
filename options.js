@@ -139,16 +139,18 @@ const tableToObject = (table) => {
 const restoreOptions = () => {
   function createInstantMacrosTable(result) {
     const instantMacrosTable = createTable(
-      isEmptyObject(result) ? defaultOptions.instantMacros : result,
+      isEmptyObject(result)
+        ? defaultOptions.instantMacros
+        : result.instantMacros,
       "instantMacros",
     );
     document.getElementById("instantMacros").replaceWith(instantMacrosTable);
   }
 
   function createSearchMacrosTable(result) {
-    console.log(result);
+    console.log(result.searchMacros);
     const searchMacrosTable = createTable(
-      isEmptyObject(result) ? defaultOptions.searchMacros : result,
+      isEmptyObject(result) ? defaultOptions.searchMacros : result.searchMacros,
       "searchMacros",
     );
     document.getElementById("searchMacros").replaceWith(searchMacrosTable);
