@@ -80,6 +80,7 @@ const createCreateRowButton = (tBody) => {
  */
 const createTable = (options, type) => {
   const table = document.createElement("table");
+  table.id = type;
   const tHead = document.createElement("thead");
   const headingTr = document.createElement("tr");
   const macroTh = document.createElement("th");
@@ -145,6 +146,7 @@ const restoreOptions = () => {
   }
 
   function createSearchMacrosTable(result) {
+    console.log(result);
     const searchMacrosTable = createTable(
       isEmptyObject(result) ? defaultOptions.searchMacros : result,
       "searchMacros",
@@ -165,20 +167,15 @@ const restoreOptions = () => {
 
 const saveButton = document.getElementById("save");
 saveButton.addEventListener("click", () => {
-  // ["instantMacros"].map(document.getElementById);
-  const dontMindIfIDo = document.getElementById;
-  ["instantMacros"].map((str) => dontMindIfIDo(str));
-  // document.getElementById("instantMacros")
-  // const [instantMacros, searchMacros] = ["instantMacros", "searchMacros"]
-  //   .map(document.getElementById)
-  //   .map(tableToObject);
+  const [instantMacros, searchMacros] = [
+    document.getElementById("instantMacros"),
+    document.getElementById("searchMacros"),
+  ].map(tableToObject);
 
-  // console.log(instantMacros, searchMacros);
-
-  // browser.storage.sync.set({
-  //   instantMacros,
-  //   searchMacros,
-  // });
+  browser.storage.sync.set({
+    instantMacros: instantMacros,
+    searchMacros: searchMacros,
+  });
 });
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
