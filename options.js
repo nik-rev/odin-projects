@@ -16,6 +16,18 @@ const defaultOptions = {
   },
 };
 
+const saveSettings = () => {
+  const [instantMacros, searchMacros] = [
+    document.getElementById("instantMacros"),
+    document.getElementById("searchMacros"),
+  ].map(tableToObject);
+
+  browser.storage.sync.set({
+    instantMacros: instantMacros,
+    searchMacros: searchMacros,
+  });
+};
+
 /**
  * @param {"searchMacros" | "instantMacros"} type
  * @param {string} macro
@@ -32,6 +44,7 @@ const createRemoveTrButton = (tr) => {
   removeTrButton.append("Remove");
   removeTrButton.addEventListener("click", () => {
     tr.remove();
+    saveSettings();
   });
   return removeTrButton;
 };
@@ -50,16 +63,11 @@ const createCreateRowButton = (tBody) => {
       macroInput.replaceWith(macroInput.value);
       urlInput.replaceWith(urlInput.value);
 
-      // const newSettings
-
-      browser.storage.sync.set({
-        instantMacros: JSON.stringify(),
-      });
-
       submitNewRowButton.replaceWith(createRemoveTrButton(tr));
       const createRowButtonTr = document.createElement("tr");
       createRowButtonTr.append(wrapInTd(createCreateRowButton(tBody)));
       tBody.append(createRowButtonTr);
+      saveSettings();
     });
 
     const inputsTr = document.createElement("tr");
@@ -166,18 +174,5 @@ const restoreOptions = () => {
     .get("searchMacros")
     .then(createSearchMacrosTable, onError);
 };
-
-const saveButton = document.getElementById("save");
-saveButton.addEventListener("click", () => {
-  const [instantMacros, searchMacros] = [
-    document.getElementById("instantMacros"),
-    document.getElementById("searchMacros"),
-  ].map(tableToObject);
-
-  browser.storage.sync.set({
-    instantMacros: instantMacros,
-    searchMacros: searchMacros,
-  });
-});
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
