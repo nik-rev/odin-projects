@@ -54,10 +54,11 @@ const checkSearchMacros = (e) => {
   const match = e.target.value.match(/\?(.*?)\s+(.*)/);
   if (match) {
     const [_, command, query] = match;
+    const newCommand = "?".concat(command);
 
-    if (command in searchMacros) {
+    if (newCommand in searchMacros) {
       clearInput();
-      open(searchMacros[command].concat(encodeURIComponent(query)), "_self");
+      open(searchMacros[newCommand].concat(encodeURIComponent(query)), "_self");
       return true;
     }
   }
@@ -86,7 +87,7 @@ document.body.addEventListener("keydown", (e) => {
   }
 });
 
-search.addEventListener("blur", toggleDisplay)
+search.addEventListener("blur", toggleDisplay);
 search.addEventListener("input", checkInstantMacros);
 search.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
