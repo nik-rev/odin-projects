@@ -6,11 +6,11 @@ let instantMacros, searchMacros;
 
 const defaultOptions = {
   instantMacros: {
-    ".g": "https://www.github.com/",
-    ".y": "https://www.youtube.com/",
-    ".p": "https://www.pass.proton.me",
-    ".m": "https://www.mail.proton.me",
-    ".d": "https://www.drive.proton.me",
+    ".g": "https://github.com/",
+    ".y": "https://youtube.com/",
+    ".p": "https://pass.proton.me",
+    ".m": "https://mail.proton.me",
+    ".d": "https://drive.proton.me",
     ".h": "https://news.ycombinator.com/",
     ".a": "https://claude.ai/new",
   },
@@ -26,13 +26,26 @@ browser.storage.sync.get().then((obj) => {
   obj = isEmptyObject(obj) ? defaultOptions : obj;
   instantMacros = obj.instantMacros;
   searchMacros = obj.searchMacros;
-  console.log(instantMacros, searchMacros);
 }, console.error);
+
+const toggleDisplay = () => {
+  search.style.display = search.style.display === "none" ? "" : "none";
+  if (search.style.display === "") {
+    search.focus();
+  } else {
+    search.value = "";
+  }
+};
+
+const clearInput = () => {
+  search.textContent = "";
+};
 
 const checkInstantMacros = (e) => {
   const query = e.target.value;
   if (query in instantMacros) {
     clearInput();
+    toggleDisplay();
     open(instantMacros[query], "_self");
   }
 };
@@ -51,7 +64,7 @@ const checkSearchMacros = (e) => {
   return false;
 };
 
-search.style.display = "none"
+search.style.display = "none";
 search.style.position = "absolute";
 search.style.zIndex = "10000000000";
 search.style.fontFamily = "monospace";
@@ -61,20 +74,11 @@ search.style.left = "10%";
 search.style.right = "10%";
 search.style.color = "#4c4f69";
 search.style.backgroundColor = "#eff1f5";
-search.style.border = "none";
+search.style.border = "0.2em solid #acb0be";
 search.style.outline = "none";
 search.style.padding = "1rem";
 
 document.body.appendChild(search);
-
-const toggleDisplay = () => {
-  search.style.display = search.style.display === "none" ? "" : "none";
-  if (search.style.display === "") {
-    search.focus();
-  } else {
-    search.value = "";
-  }
-};
 
 document.body.addEventListener("keydown", (e) => {
   if (e.altKey && e.key === ".") {
@@ -82,6 +86,7 @@ document.body.addEventListener("keydown", (e) => {
   }
 });
 
+search.addEventListener("blur", toggleDisplay)
 search.addEventListener("input", checkInstantMacros);
 search.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
