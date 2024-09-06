@@ -31,3 +31,9 @@ List of default macros:
 | `?c`      | `https://github.com/search?type=code&q=`            | Searches code on GitHub.                        |
 
 You can also change them in the extension's settings page.
+
+### Running Locally
+
+1. Clone this repository
+1. Run `npm install -g web-ext`
+1. Run `web-ext run`
