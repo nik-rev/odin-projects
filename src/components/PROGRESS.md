@@ -1,6 +1,6 @@
 - [x] button.tsx
 - [x] accessible-icon.tsx
-- [ ] avatar.tsx
+- [x] avatar.tsx
 - [ ] breadcrumbs.tsx
 - [ ] calendar.tsx
 - [ ] checkbox.tsx

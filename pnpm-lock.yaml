@@ -97,8 +97,8 @@ importers:
         specifier: 15.0.1
         version: 15.0.1(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3)
       eslint-config-nikitarevenco:
-        specifier: ^8.0.0
-        version: 8.0.0(mwphybjwy34sdyoorf6vtpmuc4)
+        specifier: ^9.0.0
+        version: 9.0.0(mwphybjwy34sdyoorf6vtpmuc4)
       eslint-plugin-storybook:
         specifier: ^0.10.1
         version: 0.10.1(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3)
@@ -3004,8 +3004,8 @@ packages:
       typescript:
         optional: true
 
-  eslint-config-nikitarevenco@8.0.0:
-    resolution: {integrity: sha512-ym1wnhNwHoMYdUa3Z7q3IledlXmH+tKhRip2ZDYBN8zO//u+zgE87q7BDuppCzeUyBCW8WM8EEMOW2TU3+JSgQ==}
+  eslint-config-nikitarevenco@9.0.0:
+    resolution: {integrity: sha512-WLeOsM89UEvsQHmHa2tfBwACH+8llJXv5T1xAnwzI6bOLM87MN60+Dx0ITfcyoBXm2s5AeO5SFnwWYxJIVGXpw==}
     peerDependencies:
       '@eslint/compat': ^1.1.1
       '@eslint/js': ^9.9.0
@@ -9114,7 +9114,7 @@ snapshots:
       - eslint-plugin-import-x
       - supports-color
 
-  eslint-config-nikitarevenco@8.0.0(mwphybjwy34sdyoorf6vtpmuc4):
+  eslint-config-nikitarevenco@9.0.0(mwphybjwy34sdyoorf6vtpmuc4):
     dependencies:
       '@eslint/compat': 1.2.1(eslint@9.13.0(jiti@1.21.6))
       '@eslint/js': 9.13.0
