@@ -1,61 +1,35 @@
 import {
   Calendar as RACCalendar,
-  CalendarGridHeader as RACCalendarGridHeader,
-  CalendarProps as RACCalendarProps,
   CalendarCell,
   CalendarGrid,
   CalendarGridBody,
+  CalendarGridHeader as RACCalendarGridHeader,
   CalendarHeaderCell,
-  DateValue,
+  type CalendarProps as RACCalendarProps,
+  type DateValue,
   Heading,
   Text,
   useLocale,
-} from 'react-aria-components';
-import { Button } from './button';
-import { focusVisibleOutlineStyle } from './utils';
-import { twMerge } from 'tailwind-merge';
-import { ChevronLeftIcon, ChevronRightIcon } from './icons';
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
-export interface CalendarProps<T extends DateValue>
-  extends Omit<RACCalendarProps<T>, 'visibleDuration'> {
+import { Button } from "./button";
+import { ChevronLeftIcon, ChevronRightIcon } from "./icons";
+import { focusVisibleOutlineStyle } from "./utils";
+
+export type CalendarProps<T extends DateValue> = {
   errorMessage?: string;
-}
+} & Omit<RACCalendarProps<T>, "visibleDuration">;
 
-export function Calendar<T extends DateValue>({
-  errorMessage,
-  ...props
-}: CalendarProps<T>) {
+export function CalendarGridHeader() {
   return (
-    <RACCalendar {...props}>
-      <CalendarHeader />
-      <CalendarGrid weekdayStyle="short">
-        <CalendarGridHeader />
-        <CalendarGridBody>
-          {(date) => (
-            <CalendarCell
-              date={date}
-              className={twMerge(
-                'flex size-9 cursor-default items-center justify-center rounded-lg text-sm outline-none',
-                'hover:bg-zinc-100',
-                'pressed:bg-accent/90 pressed:text-white',
-                'disabled:opacity-50',
-                'selected:border selected:border-accent selected:',
-                'selected:bg-accent selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
-                'selected:text-white',
-                'selected:invalid:border-destructive selected:invalid:bg-destructive selected:invalid:text-white',
-                'unavailable:text-destructive unavailable:line-through unavailable:decoration-destructive',
-                focusVisibleOutlineStyle,
-              )}
-            />
-          )}
-        </CalendarGridBody>
-      </CalendarGrid>
-      {errorMessage && (
-        <Text slot="errorMessage" className="text-sm text-destructive">
-          {errorMessage}
-        </Text>
+    <RACCalendarGridHeader>
+      {(day) => (
+        <CalendarHeaderCell className="size-9 text-sm/6 font-normal text-muted">
+          {day}
+        </CalendarHeaderCell>
       )}
-    </RACCalendar>
+    </RACCalendarGridHeader>
   );
 }
 
@@ -71,7 +45,7 @@ export function CalendarHeader() {
         aria-label="Previous"
         className="focus-visible:-outline-offset-2"
       >
-        {direction === 'rtl' ? (
+        {direction === "rtl" ? (
           <ChevronRightIcon className="text-muted sm:size-5" />
         ) : (
           <ChevronLeftIcon className="text-muted sm:size-5" />
@@ -91,7 +65,7 @@ export function CalendarHeader() {
         aria-label="Next"
         className="focus-visible:-outline-offset-2"
       >
-        {direction === 'rtl' ? (
+        {direction === "rtl" ? (
           <ChevronLeftIcon className="text-muted sm:size-5" />
         ) : (
           <ChevronRightIcon className="text-muted sm:size-5" />
@@ -101,14 +75,40 @@ export function CalendarHeader() {
   );
 }
 
-export function CalendarGridHeader() {
+export function Calendar<T extends DateValue>({
+  errorMessage,
+  ...props
+}: CalendarProps<T>) {
   return (
-    <RACCalendarGridHeader>
-      {(day) => (
-        <CalendarHeaderCell className="size-9 text-sm/6 font-normal text-muted">
-          {day}
-        </CalendarHeaderCell>
+    <RACCalendar {...props}>
+      <CalendarHeader />
+      <CalendarGrid weekdayStyle="short">
+        <CalendarGridHeader />
+        <CalendarGridBody>
+          {(date) => (
+            <CalendarCell
+              date={date}
+              className={twMerge(
+                "flex size-9 cursor-default items-center justify-center rounded-lg text-sm outline-none",
+                "hover:bg-zinc-100",
+                "pressed:bg-accent/90 pressed:text-white",
+                "disabled:opacity-50",
+                "selected:border selected:border-accent selected:",
+                "selected:bg-accent selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]",
+                "selected:text-white",
+                "selected:invalid:border-destructive selected:invalid:bg-destructive selected:invalid:text-white",
+                "unavailable:text-destructive unavailable:line-through unavailable:decoration-destructive",
+                focusVisibleOutlineStyle,
+              )}
+            />
+          )}
+        </CalendarGridBody>
+      </CalendarGrid>
+      {errorMessage && (
+        <Text slot="errorMessage" className="text-sm text-destructive">
+          {errorMessage}
+        </Text>
       )}
-    </RACCalendarGridHeader>
+    </RACCalendar>
   );
 }

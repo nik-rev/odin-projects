@@ -1,8 +1,7 @@
 - [x] button.tsx
 - [x] accessible-icon.tsx
 - [x] avatar.tsx
-- [ ] breadcrumbs.tsx
-- [ ] calendar.tsx
+- [x] breadcrumbs.tsx
 - [ ] checkbox.tsx
 - [ ] clipboard.tsx
 - [ ] combobox.tsx
@@ -56,3 +55,4 @@
 - [ ] time-picker.ts
 - [ ] utils.ts
 - [ ] get-initials.ts
+- [ ] calendar.tsx
