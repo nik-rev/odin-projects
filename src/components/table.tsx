@@ -134,9 +134,9 @@ export function Row<T extends object>({
         'focus-visible:rounded',
         'focus-visible:-outline-offset-2',
         'group/row relative cursor-default select-none text-sm  disabled:text-muted',
-        'hover:bg-zinc-100 dark:hover:bg-zinc-700',
-        'hover:selected:bg-zinc-100 dark:hover:selected:bg-zinc-700',
-        'selected:bg-accent/5 dark:selected:bg-accent/35',
+        'hover:bg-zinc-100',
+        'hover:selected:bg-zinc-100',
+        'selected:bg-accent/5',
       )}
     >
       {allowsDragging && (

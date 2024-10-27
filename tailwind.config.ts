@@ -11,6 +11,7 @@ const config: Config = {
         background: "rgb(var(--background))",
         foreground: "rgb(var(--foreground))",
         accent: "rgb(var(--accent))",
+        highlighted: "rgb(var(--highlighted))",
         success: "rgb(var(--success))",
         success0: "rgb(var(--success0))",
         success1: "rgb(var(--success1))",

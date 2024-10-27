@@ -36,20 +36,20 @@ const buttonVariants = {
     "font-semibold text-base/6 sm:text-sm/6 whitespace-nowrap outline-none rounded-lg",
   ],
   solid: [
-    "border border-[var(--btn-bg)] dark:border-none dark:[--border-with:0px]",
+    "border border-[var(--btn-bg)]",
     "bg-[var(--btn-bg)] hover:bg-[var(--btn-bg-hover)] pressed:bg-[var(--btn-bg-hover)]",
     "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]",
     "text-white",
   ],
   outline: [
-    "border border-zinc-950/10 dark:border-white/15 border-b-zinc-950/15 dark:border-b-white/20",
-    "hover:bg-zinc-50 pressed:bg-zinc-50 dark:hover:bg-zinc-800 dark:pressed:bg-zinc-800",
+    "border border-border",
+    "hover:bg-highlighted pressed:bg-highlighted",
     "shadow-sm",
     "text-[var(--btn-color)]",
   ],
   plain: [
     "[--border-with:0px]",
-    "hover:bg-zinc-100 dark:hover:bg-zinc-800",
+    "hover:bg-zinc-100",
     "text-[var(--btn-color)]",
   ],
 };
@@ -186,7 +186,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 className={twMerge(
                   "absolute",
                   "text-foreground",
-                  "group-data-[variant=solid]:text-zinc-300",
+                  "group-data-[variant=solid]:text-border",
                   isCustomPending
                     ? "group-data-[pending]:sr-only"
                     : "group-data-[pending]:flex",
@@ -265,8 +265,8 @@ export function ButtonGroup({
         "[&>button:not(:first-of-type):not(:last-of-type)]:rounded-none",
 
         // Add border to solid button which has not border in dark mode
-        "dark:[&>button[data-variant=solid]]:border-solid",
-        "dark:[&>button[data-variant=solid]]:[--border-with:1px]",
+        "",
+        "",
         "[&>button[data-variant=solid]:not(:first-of-type)]:border-s-black/15",
         className,
       )}
