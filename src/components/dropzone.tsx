@@ -18,7 +18,7 @@ export function DropZone(props: DropZoneProps) {
         'border border-dashed p-2',
         focusVisibleOutlineStyle,
         'drop-target:border-solid',
-        'drop-target:bg-accent/20 drop-target:',
+        'drop-target:bg-accent/20 drop-target:dark:bg-accent/75',
         dropTargetOutlineStyle,
       ])}
     />

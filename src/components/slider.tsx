@@ -73,7 +73,7 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
       {({ state, orientation }) => (
         <>
           <div
-            className={twMerge("bg-zinc-200", trackStyle)}
+            className={twMerge("bg-zinc-200 dark:bg-zinc-300", trackStyle)}
           />
           <div
             className={twMerge("bg-accent", trackStyle)}
@@ -85,7 +85,7 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
               index={i}
               aria-label={thumbLabels?.[i]}
               className={composeTailwindRenderProps("", [
-                "size-5 rounded-full border bg-white shadow-xl",
+                "size-5 rounded-full border bg-white shadow-xl dark:border-0",
                 "group-orientation-horizontal:top-[50%] group-orientation-vertical:left-[50%]",
                 "dragging:border-8  dragging:border-accent",
                 "disabled:cursor-not-allowed",

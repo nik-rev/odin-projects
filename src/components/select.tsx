@@ -64,7 +64,7 @@ export function SelectButton(props: {
       <SelectValue
         data-ui="select-value"
         className={twMerge([
-          'flex-1 truncate  data-[placeholder]:text-muted',
+          'flex-1 truncate  data-[placeholder]:text-muted dark:data-[placeholder]:text-white',
           // Selected Item style
           '[&>[data-ui=item]]:flex',
           '[&>[data-ui=item]]:items-center',
@@ -90,8 +90,8 @@ export function SelectPopover({
       {...props}
       className={composeTailwindRenderProps(className, [
         'w-[--trigger-width]',
-        '',
-        '',
+        'dark:bg-zinc-800',
+        'dark:ring-zinc-700',
       ])}
       placement={placement}
     />
@@ -164,7 +164,7 @@ export function SelectSection<T extends object>(props: SectionProps<T>) {
     >
       <Header
         className={twMerge(
-          'sticky z-10 truncate bg-white ps-8 pt-2 text-xs/4 text-muted',
+          'sticky z-10 truncate bg-white ps-8 pt-2 text-xs/4 text-muted dark:bg-zinc-800',
           'top-[0px] -mx-[1px] rounded-md',
         )}
       >
@@ -192,7 +192,7 @@ export function SelectListItem({
         'px-1.5 py-2.5 has-submenu:pe-0 sm:py-1.5',
         'text-base/6 sm:text-sm/6',
         'disabled:opacity-50',
-        'focus:bg-zinc-100 focus:',
+        'focus:bg-zinc-100 focus:dark:bg-zinc-700',
         destructive && 'text-destructive',
       ])}
     >

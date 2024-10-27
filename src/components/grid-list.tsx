@@ -34,7 +34,7 @@ export function GridListItem({ children, ...props }: GridListItemProps) {
       textValue={textValue}
       className={composeTailwindRenderProps(props.className, [
         'relative -mb-px flex cursor-default select-none gap-3 rounded-md px-2 py-1.5 text-sm outline-none',
-        'hover:bg-zinc100',
+        'hover:bg-zinc100 dark:hover:bg-zinc-700',
         '[&:not(:last-child)]:mb-0.5',
         'selected:z-20',
         'disabled:opacity-50',

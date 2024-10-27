@@ -76,8 +76,8 @@ export function MenuPopover({ className, ...props }: PopoverProps) {
       className={composeTailwindRenderProps(
         className,
         twMerge(
-          '',
-          '',
+          'dark:bg-zinc-800',
+          'dark:ring-zinc-700',
           'max-w-72',
           'rounded-lg',
           'min-w-[max(144px,var(--trigger-width))]',
@@ -140,7 +140,7 @@ export function MenuSeparator({ className }: { className?: string }) {
   return (
     <Separator
       className={twMerge(
-        'my-1 w-[calc(100%-24px)] self-center border-t border-zinc-950/5',
+        'my-1 w-[calc(100%-24px)] self-center border-t border-zinc-950/5 dark:border-white/10',
         className,
       )}
     />
@@ -164,7 +164,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
             'rounded-md',
             'text-base/6 sm:text-sm/6',
             isDisabled && 'opacity-50',
-            isFocused && 'bg-zinc-100',
+            isFocused && 'bg-zinc-100 dark:bg-zinc-700',
             destructive && 'text-destructive',
             className,
           ]);
@@ -259,7 +259,7 @@ export function MenuSection<T extends object>({
     >
       <Header
         className={twMerge(
-          'sticky z-10 truncate bg-white pt-2 text-xs/4 text-muted',
+          'sticky z-10 truncate bg-white pt-2 text-xs/4 text-muted dark:bg-zinc-800',
           'top-[0px] -mx-[1px] rounded-md backdrop-blur-md',
         )}
       >

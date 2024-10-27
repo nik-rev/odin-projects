@@ -48,7 +48,7 @@ export function Modal({
       className={composeTailwindRenderProps(classNames?.modalOverlay, [
         'fixed left-0 top-0 isolate z-20',
         'h-[--visual-viewport-height] w-full',
-        'bg-zinc-950/40',
+        'bg-zinc-950/40 dark:bg-zinc-950/50',
         'flex',
         'items-center',
         'text-center',
@@ -94,8 +94,8 @@ export function Modal({
           'max-h-full w-full overflow-hidden',
           'text-left align-middle',
           'shadow-lg',
-          'bg-white',
-          '',
+          'bg-white dark:bg-zinc-900',
+          'dark:ring-1 dark:ring-white/10',
 
           props.size
             ? sizes[props.size]

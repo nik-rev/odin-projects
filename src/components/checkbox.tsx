@@ -104,23 +104,23 @@ export function Checkbox({
               className={twMerge([
                 'flex flex-shrink-0 items-center justify-center',
                 'size-[1.125rem] rounded shadow-sm sm:size-4',
-                'border border-zinc-400/75',
+                'border border-zinc-400/75 dark:border-[1.5px] dark:border-zinc-600',
 
                 'group-invalid:border-destructive',
-                'group-invalid:',
+                'group-invalid:dark:border-destructive',
 
                 'group-selected:border',
                 'group-selected:border-accent',
                 'group-selected:bg-accent',
-                'group-selected:',
-                'group-selected:',
+                'group-selected:dark:border-0',
+                'group-selected:dark:border-accent',
                 'group-selected:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
 
                 'group-indeterminate:border',
                 'group-indeterminate:border-accent',
                 'group-indeterminate:bg-accent',
-                'group-indeterminate:',
-                'group-indeterminate:',
+                'group-indeterminate:dark:border-0',
+                'group-indeterminate:dark:border-accent',
                 'group-indeterminate:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]',
                 groupFocusVisibleOutlineStyle,
               ])}
