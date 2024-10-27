@@ -3,7 +3,7 @@
 - [x] avatar.tsx
 - [x] breadcrumbs.tsx
 - [x] checkbox.tsx
-- [ ] clipboard.tsx
+- [x] clipboard.tsx
 - [ ] combobox.tsx
 - [ ] date-field.tsx
 - [ ] date-picker.tsx
