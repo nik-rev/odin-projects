@@ -1,5 +1,5 @@
 - [x] button.tsx
-- [ ] accessible-icon.tsx
+- [x] accessible-icon.tsx
 - [ ] avatar.tsx
 - [ ] breadcrumbs.tsx
 - [ ] calendar.tsx
