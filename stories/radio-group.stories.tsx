@@ -1,29 +1,35 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { RadioField, RadioGroup, Radio, Radios } from '@/components/radio-group';
-import { Form } from '@/components/form';
-import { Button } from '@/components/button';
-import { docs } from '../.storybook/docs';
+import type { Meta } from "@storybook/react";
+import React from "react";
+import { twMerge } from "tailwind-merge";
+
+import { Button } from "@/components/button";
 import {
-  FieldError,
-  Label,
   Description,
-  TextField,
+  FieldError,
   Input,
+  Label,
   LabeledGroup,
-} from '@/components/field';
-import { InputGroup, InputSeparator } from '@/components/input-group';
-import { twMerge } from 'tailwind-merge';
-import { focusVisibleOutlineStyle } from '@/components/utils';
-import { Strong, Text } from '@/components/text';
-import { SolidStar, Star, CheckCircle } from './~icons';
-import { CopyButton } from '@/components/clipboard';
+  TextField,
+} from "@/components/field";
+import { Form } from "@/components/form";
+import { InputGroup, InputSeparator } from "@/components/input-group";
+import {
+  Radio,
+  RadioField,
+  RadioGroup,
+  Radios,
+} from "@/components/radio-group";
+import { Strong, Text } from "@/components/text";
+import { focusVisibleOutlineStyle } from "@/components/utils";
+
+import { docs } from "../.storybook/docs";
+import { CheckCircle, SolidStar, Star } from "./~icons";
 
 const meta: Meta<typeof RadioGroup> = {
-  title: 'Radio group',
+  title: "Radio group",
   component: RadioGroup,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -35,12 +41,12 @@ const meta: Meta<typeof RadioGroup> = {
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <RadioGroup defaultValue="system" className="max-w-md">
       <Label>Autoplay animated images</Label>
@@ -51,9 +57,9 @@ export const BasicExample = () => {
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithRadioItemDescription = () => {
+export function WithRadioItemDescription() {
   return (
     <RadioGroup className="max-w-md">
       <Label>Autoplay animated images</Label>
@@ -76,9 +82,9 @@ export const WithRadioItemDescription = () => {
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithRadioItemDescriptionHidden = () => {
+export function WithRadioItemDescriptionHidden() {
   return (
     <RadioGroup className="max-w-md">
       <Label>Autoplay animated images</Label>
@@ -105,9 +111,9 @@ export const WithRadioItemDescriptionHidden = () => {
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithRadioGroupDescription = () => {
+export function WithRadioGroupDescription() {
   return (
     <RadioGroup className="max-w-md">
       <Label>Autoplay animated images</Label>
@@ -136,9 +142,9 @@ export const WithRadioGroupDescription = () => {
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithRadioGroupDescriptionHiddenTitle = () => {
+export function WithRadioGroupDescriptionHiddenTitle() {
   return (
     <RadioGroup className="max-w-md">
       <Label>Autoplay animated images</Label>
@@ -165,9 +171,9 @@ export const WithRadioGroupDescriptionHiddenTitle = () => {
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithLabelPosition = () => {
+export function WithLabelPosition() {
   return (
     <RadioGroup className="max-w-md">
       <Label>Autoplay animated images</Label>
@@ -187,9 +193,9 @@ export const WithLabelPosition = () => {
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithLabelPositionHidden = () => {
+export function WithLabelPositionHidden() {
   return (
     <RadioGroup className="max-w-md">
       <Label>Autoplay animated images</Label>
@@ -222,9 +228,9 @@ export const WithLabelPositionHidden = () => {
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithDisabledRadioItems = () => {
+export function WithDisabledRadioItems() {
   return (
     <RadioGroup className="max-w-md">
       <Label>Autoplay animated images</Label>
@@ -255,9 +261,9 @@ export const WithDisabledRadioItems = () => {
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithDisabledRadioGroup = () => {
+export function WithDisabledRadioGroup() {
   return (
     <RadioGroup className="max-w-md" isDisabled>
       <Label>Autoplay animated images</Label>
@@ -286,9 +292,9 @@ export const WithDisabledRadioGroup = () => {
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithReadonlyRadioGroup = () => {
+export function WithReadonlyRadioGroup() {
   return (
     <RadioGroup className="max-w-md" isReadOnly>
       <Label>Autoplay animated images</Label>
@@ -317,9 +323,9 @@ export const WithReadonlyRadioGroup = () => {
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithValidation = () => {
+export function WithValidation() {
   return (
     <Form>
       <RadioGroup isRequired className="max-w-md">
@@ -353,164 +359,156 @@ export const WithValidation = () => {
       <Button type="submit">Save motion preferences</Button>
     </Form>
   );
-};
+}
 
-export const RadioCardGroups = () => {
+export function RadioCardGroups() {
   const options = [
-    { name: 'Standard', description: ' 4-6 business days', price: ' $4.99' },
-    { name: 'Express', description: ' 2-5 business days', price: ' $15.99' },
-    { name: 'Lightning', description: ' 1 business day', price: ' $24.99' },
+    { name: "Standard", description: " 4-6 business days", price: " $4.99" },
+    { name: "Express", description: " 2-5 business days", price: " $15.99" },
+    { name: "Lightning", description: " 1 business day", price: " $24.99" },
   ];
 
   return (
-    <RadioGroup defaultValue={options[0].name}>
+    <RadioGroup defaultValue={options.at(0).name}>
       <Label>Shipping</Label>
       <Radios className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {options.map((option) => {
-          return (
-            <Radio
-              value={option.name}
-              className={({ isSelected }) => {
-                return twMerge(
-                  'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
-                  isSelected && 'min-w-52 border-accent ring-1 ring-accent',
-                );
-              }}
-            >
-              <div className="flex w-full items-center justify-between gap-3">
-                <div className="flex flex-1 flex-col">
-                  <div className="font-medium">{option.name}</div>
-                  <div className="text-gray-500">{option.description}</div>
-                </div>
-                <div className="font-medium text-muted">{option.price}</div>
+        {options.map((option) => (
+          <Radio
+            value={option.name}
+            className={({ isSelected }) =>
+              twMerge(
+                "items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5",
+                isSelected && "min-w-52 border-accent ring-1 ring-accent",
+              )
+            }
+          >
+            <div className="flex w-full items-center justify-between gap-3">
+              <div className="flex flex-1 flex-col">
+                <div className="font-medium">{option.name}</div>
+                <div className="text-gray-500">{option.description}</div>
               </div>
-            </Radio>
-          );
-        })}
+              <div className="font-medium text-muted">{option.price}</div>
+            </div>
+          </Radio>
+        ))}
       </Radios>
     </RadioGroup>
   );
-};
+}
 
-export const WithCustomRender = () => {
+export function WithCustomRender() {
   return (
-    <RadioGroup defaultValue={'private_with_link'}>
+    <RadioGroup defaultValue="private_with_link">
       <Label>Private Generations</Label>
       <Description>Who can view this generation?</Description>
       <Radios className="gap-y-0 divide-y rounded-xl border shadow-sm">
         <Radio
           value="public"
-          render={({ isSelected }) => {
-            return (
-              <div
-                className={twMerge(
-                  'flex flex-1 items-center justify-between space-x-6 p-4',
-                  focusVisibleOutlineStyle,
-                  'focus-visible:rounded-t-xl',
-                  // isFocusVisible && ['rounded-t-xl', focusOutlineStyle],
-                )}
-              >
-                <div className="flex-1">
-                  <Strong>Public</Strong>
+          render={({ isSelected }) => (
+            <div
+              className={twMerge(
+                "flex flex-1 items-center justify-between space-x-6 p-4",
+                focusVisibleOutlineStyle,
+                "focus-visible:rounded-t-xl",
+                // isFocusVisible && ['rounded-t-xl', focusOutlineStyle],
+              )}
+            >
+              <div className="flex-1">
+                <Strong>Public</Strong>
 
-                  <Text className="max-w-80">
-                    Anyone with a link can see this. It appears on your public
-                    profile and access app galleries
-                  </Text>
-                </div>
-                {isSelected ? (
-                  <CheckCircle className="size-5 text-accent" />
-                ) : (
-                  <div className="size-5 p-0.5">
-                    <div className="border-1.5 size-full rounded-full border"></div>
-                  </div>
-                )}
+                <Text className="max-w-80">
+                  Anyone with a link can see this. It appears on your public
+                  profile and access app galleries
+                </Text>
               </div>
-            );
-          }}
-        ></Radio>
+              {isSelected ? (
+                <CheckCircle className="size-5 text-accent" />
+              ) : (
+                <div className="size-5 p-0.5">
+                  <div className="border-1.5 size-full rounded-full border" />
+                </div>
+              )}
+            </div>
+          )}
+        />
         <Radio
           value="private_with_link"
-          render={({ isSelected }) => {
-            return (
-              <div
-                className={twMerge(
-                  'flex flex-1 items-center justify-between space-x-6 p-4',
-                  focusVisibleOutlineStyle,
-                )}
-              >
-                <div className="flex-1">
-                  <Strong>Private with Link</Strong>
+          render={({ isSelected }) => (
+            <div
+              className={twMerge(
+                "flex flex-1 items-center justify-between space-x-6 p-4",
+                focusVisibleOutlineStyle,
+              )}
+            >
+              <div className="flex-1">
+                <Strong>Private with Link</Strong>
 
-                  <Text className="mb-2 max-w-md">
-                    Anyone with a link can see this.
-                  </Text>
+                <Text className="mb-2 max-w-md">
+                  Anyone with a link can see this.
+                </Text>
 
-                  <LabeledGroup>
-                    <Label className="sr-only">Copy install command</Label>
-                    <InputGroup>
-                      <TextField isReadOnly>
-                        <Label className="sr-only">Install command</Label>
-                        <Input
-                          value="https://example.dev/r/YgqgxwxwVIy?share=ybOBQ"
-                          className="truncate"
-                        />
-                      </TextField>
-                      <InputSeparator />
-                      <CopyButton
-                        variant="outline"
-                        copyText="https://example.dev/r/YgqgxwxwVIy?share=ybOBQ"
-                      ></CopyButton>
-                    </InputGroup>
-                  </LabeledGroup>
-                </div>
-                {isSelected ? (
-                  <CheckCircle className="size-5 text-accent" />
-                ) : (
-                  <div className="size-5 p-0.5">
-                    <div className="border-1.5 size-full rounded-full border"></div>
-                  </div>
-                )}
+                <LabeledGroup>
+                  <Label className="sr-only">Copy install command</Label>
+                  <InputGroup>
+                    <TextField isReadOnly>
+                      <Label className="sr-only">Install command</Label>
+                      <Input
+                        value="https://example.dev/r/YgqgxwxwVIy?share=ybOBQ"
+                        className="truncate"
+                      />
+                    </TextField>
+                    <InputSeparator />
+                    {/*<CopyButton
+                      variant="outline"
+                      copyText="https://example.dev/r/YgqgxwxwVIy?share=ybOBQ"
+                    />*/}
+                  </InputGroup>
+                </LabeledGroup>
               </div>
-            );
-          }}
-        ></Radio>
+              {isSelected ? (
+                <CheckCircle className="size-5 text-accent" />
+              ) : (
+                <div className="size-5 p-0.5">
+                  <div className="border-1.5 size-full rounded-full border" />
+                </div>
+              )}
+            </div>
+          )}
+        />
         <Radio
           value="private"
-          render={({ isSelected }) => {
-            return (
-              <div
-                className={twMerge(
-                  'flex flex-1 items-center justify-between space-x-6 p-4',
-                  focusVisibleOutlineStyle,
-                  'focus-visible:rounded-t-xl',
-                )}
-              >
-                <div className="">
-                  <Strong>Private</Strong>
-                  <Text className="max-w-64">Only you can see this.</Text>
-                </div>
-                {isSelected ? (
-                  <CheckCircle className="size-5 text-accent" />
-                ) : (
-                  <div className="size-5 p-0.5">
-                    <div className="border-1.5 size-full rounded-full border"></div>
-                  </div>
-                )}
+          render={({ isSelected }) => (
+            <div
+              className={twMerge(
+                "flex flex-1 items-center justify-between space-x-6 p-4",
+                focusVisibleOutlineStyle,
+                "focus-visible:rounded-t-xl",
+              )}
+            >
+              <div className="">
+                <Strong>Private</Strong>
+                <Text className="max-w-64">Only you can see this.</Text>
               </div>
-            );
-          }}
-        ></Radio>
+              {isSelected ? (
+                <CheckCircle className="size-5 text-accent" />
+              ) : (
+                <div className="size-5 p-0.5">
+                  <div className="border-1.5 size-full rounded-full border" />
+                </div>
+              )}
+            </div>
+          )}
+        />
       </Radios>
     </RadioGroup>
   );
-};
+}
 
 WithCustomRender.parameters = {
   docs: {
     description: {
       story:
-        'Use the `render` prop of `Radio` to render completely custom radio groups.',
+        "Use the `render` prop of `Radio` to render completely custom radio groups.",
     },
   },
 };
@@ -603,14 +601,14 @@ export function PreferredEmojisTitleHidden() {
 }
 
 const options = [
-  { value: '1' },
-  { value: '2' },
-  { value: '3' },
-  { value: '4' },
-  { value: '5' },
+  { value: "1" },
+  { value: "2" },
+  { value: "3" },
+  { value: "4" },
+  { value: "5" },
 ];
 
-export const StarRatingsTitleHidden = () => {
+export function StarRatingsTitleHidden() {
   const [rating, setRating] = React.useState<string | null>(null);
 
   return (
@@ -630,28 +628,26 @@ export const StarRatingsTitleHidden = () => {
             <Radio
               value={option.value}
               aria-label={String(index + 1)}
-              className={({ isSelected }) => {
-                return twMerge(
-                  'items-start rounded-md',
-                  isSelected || shouldLHighlight ? 'text-accent' : 'text-muted',
+              className={({ isSelected }) =>
+                twMerge(
+                  "items-start rounded-md",
+                  isSelected || shouldLHighlight ? "text-accent" : "text-muted",
                   focusVisibleOutlineStyle,
-                );
-              }}
-              render={({ isSelected }) => {
-                return (
-                  <div className="flex w-full items-center justify-between gap-3 ">
-                    {isSelected || shouldLHighlight ? (
-                      <SolidStar className="size-6 text-accent" />
-                    ) : (
-                      <Star className="size-6 text-muted/45" />
-                    )}
-                  </div>
-                );
-              }}
+                )
+              }
+              render={({ isSelected }) => (
+                <div className="flex w-full items-center justify-between gap-3 ">
+                  {isSelected || shouldLHighlight ? (
+                    <SolidStar className="size-6 text-accent" />
+                  ) : (
+                    <Star className="size-6 text-muted/45" />
+                  )}
+                </div>
+              )}
             />
           );
         })}
       </Radios>
     </RadioGroup>
   );
-};
+}

@@ -2,7 +2,7 @@
 - [x] accessible-icon.tsx
 - [x] avatar.tsx
 - [x] breadcrumbs.tsx
-- [ ] checkbox.tsx
+- [x] checkbox.tsx
 - [ ] clipboard.tsx
 - [ ] combobox.tsx
 - [ ] date-field.tsx

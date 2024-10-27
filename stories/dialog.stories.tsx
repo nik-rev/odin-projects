@@ -36,7 +36,6 @@ import { TooltipTrigger, Tooltip } from '@/components/tooltip';
 import { Text } from '@/components/text';
 import { docs } from '../.storybook/docs';
 import { Heading } from '@/components/heading';
-import { CopyButton } from '@/components/clipboard';
 import {
   Select,
   SelectButton,
@@ -898,10 +897,10 @@ export const DialogCloseButtons = () => {
                   />
                 </TextField>
                 <InputSeparator />
-                <CopyButton
+                {/*<CopyButton
                   variant="outline"
                   copyText="npm i tailwindcss-react-aria-components"
-                ></CopyButton>
+                ></CopyButton>*/}
               </InputGroup>
             </LabeledGroup>
           </DialogBody>
