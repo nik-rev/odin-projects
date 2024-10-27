@@ -94,7 +94,7 @@ export function Checkbox({
         "data-[position=left]:flex-row-reverse",
         "data-[position=left]:justify-between",
         "text-base/6 sm:text-sm/6",
-        "disabled:opacity-50",
+        "disabled:opacity-50 cursor-pointer disabled:cursor-auto read-only:cursor-auto",
       ])}
     >
       {(renderProps) => (
