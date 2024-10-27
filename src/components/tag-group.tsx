@@ -22,7 +22,7 @@ const colors = {
   ],
   success: [
     "bg-success/10",
-    "border-success/15",
+    "border-success1",
     "dark:bg-success/35",
     "dark:border-success/40",
     "selected:bg-success",
@@ -32,7 +32,7 @@ const colors = {
   ],
   warning: [
     "bg-warning/10",
-    "border-warning/15",
+    "border-warning1",
     "dark:bg-warning/35",
     "dark:border-warning/40",
     "selected:bg-warning",
@@ -42,7 +42,7 @@ const colors = {
   ],
   destructive: [
     "bg-destructive/10",
-    "border-destructive/15",
+    "border-destructive1",
     "dark:bg-destructive/35",
     "dark:border-destructive/40",
     "selected:bg-destructive",

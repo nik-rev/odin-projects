@@ -32,7 +32,7 @@ export function RangeCalendar<T extends DateValue>({
               className={[
                 'group size-9 cursor-default text-sm outline-none',
                 'selected:bg-accent/[0.085] dark:selected:bg-accent/40',
-                'invalid:selected:bg-destructive/15 dark:invalid:selected:bg-destructive/30',
+                'invalid:selected:bg-destructive1 dark:invalid:selected:bg-destructive/30',
                 'selection-start:rounded-s-lg',
                 'selection-end:rounded-e-lg',
                 '[td:first-child_&]:rounded-s-lg [td:last-child_&]:rounded-e-lg',
