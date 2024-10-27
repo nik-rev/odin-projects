@@ -138,7 +138,7 @@ function buttonStyle({
   return [
     buttonVariants.base,
     buttonVariants[variant],
-    variant == "solid"
+    variant === "solid"
       ? [buttonBackground[color ?? "accent"]]
       : [buttonColor[color ?? "foreground"]],
     buttonSizes[buttonSize][buttonType],
@@ -147,14 +147,8 @@ function buttonStyle({
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    if (props.asChild) {
-      return (
-        <Slot className={twMerge(buttonStyle(props))}>{props.children}</Slot>
-      );
-    }
-
     const {
-      asChild,
+      asChild: isAsChild,
       children,
       isCustomPending,
       pendingLabel,
@@ -164,6 +158,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       isIconOnly,
       ...buttonProps
     } = props;
+
+    if (isAsChild) {
+      return <Slot className={twMerge(buttonStyle(props))}>{children}</Slot>;
+    }
 
     return (
       <RACButton
@@ -217,10 +215,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 export function ToggleButton(props: RACToggleButtonProps & BasicButtonProps) {
+  const { className } = props;
+
   return (
     <RACToggleButton
       {...props}
-      className={composeTailwindRenderProps(props.className, [
+      className={composeTailwindRenderProps(className, [
         buttonStyle(props),
         focusVisibleOutlineStyle,
       ])}
@@ -233,7 +233,7 @@ export function ButtonGroup({
   blend,
   orientation = "horizontal",
   ...props
-}: JSX.IntrinsicElements["div"] & {
+}: React.JSX.IntrinsicElements["div"] & {
   blend?: boolean;
   orientation?: "horizontal" | "vertical";
 }) {
