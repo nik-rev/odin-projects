@@ -1,19 +1,24 @@
+import containerQueries from "@tailwindcss/container-queries";
 import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
+import reactAriaComponents from "tailwindcss-react-aria-components";
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "./stories/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "rgb(var(--background))",
+        foreground: "rgb(var(--foreground))",
+        accent: "rgb(var(--accent))",
+        success: "rgb(var(--success))",
+        destructive: "rgb(var(--destructive))",
+        warning: "rgb(var(--warning))",
+        muted: "rgb(var(--muted))",
+        border: "rgb(var(--border))",
       },
     },
   },
-  plugins: [],
+  plugins: [reactAriaComponents, animate, containerQueries],
 };
 export default config;
