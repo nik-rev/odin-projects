@@ -1,33 +1,35 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { Form } from '@/components/form';
-import { Button } from '@/components/button';
+import type { Meta } from "@storybook/react";
+import { Search } from "lucide-react";
+import React from "react";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Avatar } from "@/components/avatar";
+import { Button } from "@/components/button";
 import {
   ComboBox,
-  ComboBoxListBox,
-  ComboBoxPopover,
-  ComboBoxClearButton,
   ComboBoxButton,
-  ComboBoxListItem,
-  ComboBoxSection,
+  ComboBoxClearButton,
   ComboBoxGroup,
   ComboBoxInput,
-  ComboBoxListItemLabel,
+  ComboBoxListBox,
+  ComboBoxListItem,
   ComboBoxListItemDescription,
-} from '@/components/combobox';
-import { Description, FieldError, Label } from '@/components/field';
-import { docs } from '../.storybook/docs';
-import { Text } from '@/components/text';
-import { Search } from 'lucide-react';
-import { AccessibleIcon } from '@/components/accessible-icon';
-import { users } from './users';
-import { Avatar } from '@/components/avatar';
+  ComboBoxListItemLabel,
+  ComboBoxPopover,
+  ComboBoxSection,
+} from "@/components/combobox";
+import { Description, FieldError, Label } from "@/components/field";
+import { Form } from "@/components/form";
+import { Text } from "@/components/text";
+
+import { docs } from "../.storybook/docs";
+import { users } from "./users";
 
 const meta: Meta<typeof ComboBox> = {
-  title: 'ComboBox',
+  title: "ComboBox",
   component: ComboBox,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -35,23 +37,49 @@ const meta: Meta<typeof ComboBox> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+//
+// export function BasicExample() {
+//   return (
+//     <ComboBox>
+//       <Label>Favorite Animal</Label>
+//       <Description>Choose your favorite animal</Description>
+//       <ComboBoxGroup>
+//         <ComboBoxInput />
+//         <ComboBoxClearButton />
+//         <ComboBoxButton />
+//       </ComboBoxGroup>
+//
+//       <ComboBoxPopover>
+//         <ComboBoxListBox>
+//           <ComboBoxListItem>Aardvark</ComboBoxListItem>
+//           <ComboBoxListItem>Cat</ComboBoxListItem>
+//           <ComboBoxListItem>Dog</ComboBoxListItem>
+//           <ComboBoxListItem>Kangaroo</ComboBoxListItem>
+//           <ComboBoxListItem>Panda</ComboBoxListItem>
+//           <ComboBoxListItem>Snake</ComboBoxListItem>
+//         </ComboBoxListBox>
+//       </ComboBoxPopover>
+//     </ComboBox>
+//   );
+// }
+
+export function WithDescription() {
   return (
     <ComboBox>
       <Label>Favorite Animal</Label>
       <Description>Choose your favorite animal</Description>
+
       <ComboBoxGroup>
         <ComboBoxInput />
-        <ComboBoxClearButton />
         <ComboBoxButton />
       </ComboBoxGroup>
 
@@ -67,34 +95,9 @@ export const BasicExample = () => {
       </ComboBoxPopover>
     </ComboBox>
   );
-};
+}
 
-export const WithDescription = () => {
-  return (
-    <ComboBox>
-      <Label>Favorite Animal</Label>
-      <Description>Choose your favorite animal</Description>
-
-      <ComboBoxGroup>
-        <ComboBoxInput />
-        <ComboBoxButton />
-      </ComboBoxGroup>
-
-      <ComboBoxPopover>
-        <ComboBoxListBox>
-          <ComboBoxListItem>Aardvark</ComboBoxListItem>
-          <ComboBoxListItem>Cat</ComboBoxListItem>
-          <ComboBoxListItem>Dog</ComboBoxListItem>
-          <ComboBoxListItem>Kangaroo</ComboBoxListItem>
-          <ComboBoxListItem>Panda</ComboBoxListItem>
-          <ComboBoxListItem>Snake</ComboBoxListItem>
-        </ComboBoxListBox>
-      </ComboBoxPopover>
-    </ComboBox>
-  );
-};
-
-export const WithDescriptionHidden = () => {
+export function WithDescriptionHidden() {
   return (
     <ComboBox>
       <Label>Favorite Animal</Label>
@@ -117,9 +120,9 @@ export const WithDescriptionHidden = () => {
       </ComboBoxPopover>
     </ComboBox>
   );
-};
+}
 
-export const OpenOnInputFocus = () => {
+export function OpenOnInputFocus() {
   return (
     <ComboBox menuTrigger="focus">
       <Label>Favorite Animal</Label>
@@ -142,9 +145,9 @@ export const OpenOnInputFocus = () => {
       </ComboBoxPopover>
     </ComboBox>
   );
-};
+}
 
-export const AllowsEmptyCollection = () => {
+export function AllowsEmptyCollection() {
   return (
     <ComboBox menuTrigger="focus" allowsEmptyCollection>
       <Label>Favorite Animal</Label>
@@ -157,9 +160,9 @@ export const AllowsEmptyCollection = () => {
 
       <ComboBoxPopover>
         <ComboBoxListBox
-          renderEmptyState={() => {
-            return <Text className="py-4 text-center">Not result found</Text>;
-          }}
+          renderEmptyState={() => (
+            <Text className="py-4 text-center">Not result found</Text>
+          )}
         >
           <ComboBoxListItem>Aardvark</ComboBoxListItem>
           <ComboBoxListItem>Cat</ComboBoxListItem>
@@ -171,20 +174,20 @@ export const AllowsEmptyCollection = () => {
       </ComboBoxPopover>
     </ComboBox>
   );
-};
+}
 
 AllowsEmptyCollection.parameters = {
   docs: {
     description: {
       story:
-        'Whether the combo box allows the menu to be open when the collection is empty.',
+        "Whether the combo box allows the menu to be open when the collection is empty.",
     },
   },
 };
 
-export const DisabledItems = () => {
+export function DisabledItems() {
   return (
-    <ComboBox disabledKeys={['snake']}>
+    <ComboBox disabledKeys={["snake"]}>
       <Label>Favorite Animal</Label>
       <Description>Choose your favorite animal</Description>
       <ComboBoxGroup>
@@ -203,9 +206,9 @@ export const DisabledItems = () => {
       </ComboBoxPopover>
     </ComboBox>
   );
-};
+}
 
-export const DisabledComboBox = () => {
+export function DisabledComboBox() {
   return (
     <ComboBox isDisabled>
       <Label>Favorite Animal</Label>
@@ -226,9 +229,9 @@ export const DisabledComboBox = () => {
       </ComboBoxPopover>
     </ComboBox>
   );
-};
+}
 
-export const ReadonlyComboBox = () => {
+export function ReadonlyComboBox() {
   return (
     <ComboBox isReadOnly>
       <Label>Favorite Animal</Label>
@@ -249,9 +252,9 @@ export const ReadonlyComboBox = () => {
       </ComboBoxPopover>
     </ComboBox>
   );
-};
+}
 
-export const Sections = () => {
+export function Sections() {
   return (
     <ComboBox>
       <Label>Preferred fruit or vegetable</Label>
@@ -286,9 +289,9 @@ export const Sections = () => {
       </ComboBoxPopover>
     </ComboBox>
   );
-};
+}
 
-export const WithTextSlots = () => {
+export function WithTextSlots() {
   return (
     <ComboBox menuTrigger="focus">
       <Label>Select action</Label>
@@ -329,9 +332,9 @@ export const WithTextSlots = () => {
       </ComboBoxPopover>
     </ComboBox>
   );
-};
+}
 
-export const WithAvatar = () => {
+export function WithAvatar() {
   return (
     <ComboBox menuTrigger="focus">
       <Label>Assign to</Label>
@@ -343,25 +346,23 @@ export const WithAvatar = () => {
 
       <ComboBoxPopover>
         <ComboBoxListBox items={users}>
-          {(user) => {
-            return (
-              <ComboBoxListItem textValue={user.name}>
-                <Avatar
-                  className="rounded-full"
-                  src={user.avatar}
-                  alt={user.name}
-                />
-                <ComboBoxListItemLabel>{user.name}</ComboBoxListItemLabel>
-              </ComboBoxListItem>
-            );
-          }}
+          {(user) => (
+            <ComboBoxListItem textValue={user.name}>
+              <Avatar
+                className="rounded-full"
+                src={user.avatar}
+                alt={user.name}
+              />
+              <ComboBoxListItemLabel>{user.name}</ComboBoxListItemLabel>
+            </ComboBoxListItem>
+          )}
         </ComboBoxListBox>
       </ComboBoxPopover>
     </ComboBox>
   );
-};
+}
 
-export const Validation = () => {
+export function Validation() {
   return (
     <Form className="flex flex-col items-start gap-2">
       <ComboBox isRequired>
@@ -386,51 +387,51 @@ export const Validation = () => {
       <Button type="submit">Submit</Button>
     </Form>
   );
-};
-
-export function SearchBox() {
-  const ref = React.useRef<HTMLInputElement>(null);
-
-  React.useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-
-        if (ref.current) {
-          ref.current.focus();
-        }
-      }
-    };
-    document.addEventListener('keydown', down);
-
-    return () => {
-      document.removeEventListener('keydown', down);
-    };
-  }, []);
-
-  return (
-    <ComboBox menuTrigger="focus" aria-label="Search">
-      <Description>Open the combobox using ⌘K</Description>
-      <ComboBoxGroup>
-        <AccessibleIcon>
-          <Search />
-        </AccessibleIcon>
-
-        <ComboBoxInput placeholder="Search&hellip;" ref={ref} />
-        <ComboBoxClearButton />
-      </ComboBoxGroup>
-
-      <ComboBoxPopover>
-        <ComboBoxListBox>
-          <ComboBoxListItem>Aardvark</ComboBoxListItem>
-          <ComboBoxListItem>Cat</ComboBoxListItem>
-          <ComboBoxListItem>Dog</ComboBoxListItem>
-          <ComboBoxListItem>Kangaroo</ComboBoxListItem>
-          <ComboBoxListItem>Panda</ComboBoxListItem>
-          <ComboBoxListItem id="snake">Snake</ComboBoxListItem>
-        </ComboBoxListBox>
-      </ComboBoxPopover>
-      <FieldError />
-    </ComboBox>
-  );
 }
+
+// export function SearchBox() {
+//   const ref = React.useRef<HTMLInputElement>(null);
+//
+//   React.useEffect(() => {
+//     const down = (e: KeyboardEvent) => {
+//       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+//         e.preventDefault();
+//
+//         if (ref.current) {
+//           ref.current.focus();
+//         }
+//       }
+//     };
+//     document.addEventListener("keydown", down);
+//
+//     return () => {
+//       document.removeEventListener("keydown", down);
+//     };
+//   }, []);
+//
+//   return (
+//     <ComboBox menuTrigger="focus" aria-label="Search">
+//       <Description>Open the combobox using ⌘K</Description>
+//       <ComboBoxGroup>
+//         <AccessibleIcon>
+//           <Search />
+//         </AccessibleIcon>
+//
+//         <ComboBoxInput placeholder="Search&hellip;" ref={ref} />
+//         <ComboBoxClearButton />
+//       </ComboBoxGroup>
+//
+//       <ComboBoxPopover>
+//         <ComboBoxListBox>
+//           <ComboBoxListItem>Aardvark</ComboBoxListItem>
+//           <ComboBoxListItem>Cat</ComboBoxListItem>
+//           <ComboBoxListItem>Dog</ComboBoxListItem>
+//           <ComboBoxListItem>Kangaroo</ComboBoxListItem>
+//           <ComboBoxListItem>Panda</ComboBoxListItem>
+//           <ComboBoxListItem id="snake">Snake</ComboBoxListItem>
+//         </ComboBoxListBox>
+//       </ComboBoxPopover>
+//       <FieldError />
+//     </ComboBox>
+//   );
+// }
