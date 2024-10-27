@@ -23,31 +23,31 @@ const colors = {
   success: [
     "bg-success/10",
     "border-success/15",
-    "dark:bg-success/35",
-    "dark:border-success/40",
+    "",
+    "",
     "selected:bg-success",
     "selected:border-success",
-    "selected:dark:bg-success",
+    "selected:",
     "selected:text-white",
   ],
   warning: [
     "bg-warning/10",
     "border-warning/15",
-    "dark:bg-warning/35",
-    "dark:border-warning/40",
+    "",
+    "",
     "selected:bg-warning",
     "selected:border-warning",
-    "selected:dark:bg-warning",
+    "selected:",
     "selected:text-white",
   ],
   destructive: [
     "bg-destructive/10",
     "border-destructive/15",
-    "dark:bg-destructive/35",
-    "dark:border-destructive/40",
+    "",
+    "",
     "selected:bg-destructive",
     "selected:border-destructive",
-    "selected:dark:bg-destructive",
+    "selected:",
     "selected:text-white",
   ],
 };
@@ -112,7 +112,7 @@ export function Tag({ children, color, ...props }: TagProps) {
             <Button
               slot="remove"
               className={composeTailwindRenderProps("", [
-                "flex cursor-default items-center justify-center rounded-full p-0.5 outline-0 transition-[background-color] hover:bg-black/10 pressed:bg-black/20 dark:hover:bg-white/10 dark:pressed:bg-white/20",
+                "flex cursor-default items-center justify-center rounded-full p-0.5 outline-0 transition-[background-color] hover:bg-black/10 pressed:bg-black/20",
                 focusVisibleOutlineStyle,
               ])}
             >

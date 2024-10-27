@@ -96,17 +96,17 @@ export function Switch({
               'transition duration-200 ease-in-out',
               'flex shrink-0 items-center',
               'bg-zinc-200',
-              'dark:bg-transparent',
+              '',
               'border',
 
               'group-selected/control:border-accent',
-              'group-selected/control:dark:border-0',
+              'group-selected/control:',
               'group-selected/control:bg-accent',
-              'group-selected/control:dark:bg-accent',
+              'group-selected/control:',
               'group-selected/control:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]',
 
               'group-disabled/control:bg-gray-200',
-              'group-disabled/control:dark:bg-zinc-700',
+              'group-disabled/control:',
               groupControlFocusVisibleOutlineStyle,
             )}
           >
