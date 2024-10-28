@@ -5,7 +5,7 @@ import { Heading, type HeadingProps, SubHeading } from "@/components/heading";
 import { docs } from "../.storybook/docs";
 
 const meta: Meta<HeadingProps> = {
-  title: "Heading",
+  title: "Components/Heading",
   parameters: {
     layout: "centered",
     docs: {
@@ -15,7 +15,7 @@ const meta: Meta<HeadingProps> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },

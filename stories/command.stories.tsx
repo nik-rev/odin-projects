@@ -1,40 +1,42 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { Button } from '@/components/button';
+import type { Meta } from "@storybook/react";
+import { Search } from "lucide-react";
+import React from "react";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Button } from "@/components/button";
 import {
   ComboBox,
-  ComboBoxListBox,
-  ComboBoxPopover,
   ComboBoxClearButton,
-  ComboBoxSection,
   ComboBoxGroup,
   ComboBoxInput,
-  CommandButton,
+  ComboBoxListBox,
   ComboBoxListItem,
-} from '@/components/combobox';
-import { docs } from '../.storybook/docs';
-import { Search } from 'lucide-react';
-import { AccessibleIcon } from '@/components/accessible-icon';
-import { Modal } from '@/components/modal';
-import { Dialog } from '@/components/dialog';
-import { Text } from '@/components/text';
+  ComboBoxPopover,
+  ComboBoxSection,
+  CommandButton,
+} from "@/components/combobox";
+import { Dialog } from "@/components/dialog";
+import { Modal } from "@/components/modal";
+import { Text } from "@/components/text";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof Button> = {
-  title: 'CommandK',
+  title: "Components/CommandK",
 
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       description: {
-        component: 'Combobox can be used as a `Command Menu`.',
+        component: "Combobox can be used as a `Command Menu`.",
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -44,15 +46,15 @@ export function CommandK() {
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         ref.current?.focus();
       }
     };
-    document.addEventListener('keydown', down);
+    document.addEventListener("keydown", down);
 
     return () => {
-      document.removeEventListener('keydown', down);
+      document.removeEventListener("keydown", down);
     };
   }, []);
 
@@ -150,22 +152,27 @@ export function OpenInDialog() {
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setIsModalOpen(true);
       }
     };
-    document.addEventListener('keydown', down);
+    document.addEventListener("keydown", down);
 
     return () => {
-      document.removeEventListener('keydown', down);
+      document.removeEventListener("keydown", down);
     };
   }, []);
 
   return (
     <div className="h-min-screen flex w-full flex-col">
       <div className="flex flex-1 justify-center p-6">
-        <Button variant="outline" onPress={() => setIsModalOpen(true)}>
+        <Button
+          variant="outline"
+          onPress={() => {
+            setIsModalOpen(true);
+          }}
+        >
           ⌘ K
         </Button>
       </div>
@@ -176,7 +183,7 @@ export function OpenInDialog() {
         onOpenChange={setIsModalOpen}
         classNames={{
           modal:
-            'entering:duration-0 exiting:duration-0 self-start shadow-none ring-0 sm:self-start bg-transparent dark:bg-transparent dark:ring-0',
+            "entering:duration-0 exiting:duration-0 self-start shadow-none ring-0 sm:self-start bg-transparent dark:bg-transparent dark:ring-0",
         }}
       >
         <Dialog
@@ -298,7 +305,7 @@ function Extension() {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-      ></path>
+      />
     </svg>
   );
 }
@@ -330,7 +337,7 @@ function Clipboard() {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-      ></path>
+      />
     </svg>
   );
 }
@@ -348,7 +355,7 @@ function Raycast() {
         clipRule="evenodd"
         d="M7 18.073V20.994L0 13.994L1.46 12.534L7 18.075V18.073ZM9.921 20.994H7L14 27.994L15.46 26.534L9.921 20.994V20.994ZM26.535 15.456L27.996 13.994L13.996 -0.00598145L12.538 1.46002L18.077 6.99802H14.73L10.864 3.14002L9.404 4.60002L11.809 7.00402H10.129V17.87H20.994V16.19L23.399 18.594L24.859 17.134L20.994 13.268V9.92102L26.534 15.456H26.535ZM7.73 6.27002L6.265 7.73202L7.833 9.29802L9.294 7.83802L7.73 6.27002ZM20.162 18.702L18.702 20.164L20.268 21.732L21.73 20.27L20.162 18.702V18.702ZM4.596 9.40402L3.134 10.866L7 14.732V11.809L4.596 9.40402ZM16.192 21H13.268L17.134 24.866L18.596 23.404L16.192 21Z"
         fill="#FF6363"
-      ></path>
+      />
     </svg>
   );
 }
@@ -360,10 +367,10 @@ function Linear() {
       fill="currentColor"
       className="size-4 text-purple-500"
     >
-      <path d="M37.3833 39.6083C37.5686 39.7936 37.866 39.8049 38.0605 39.6291C38.3259 39.3892 38.5867 39.1414 38.8425 38.8856C47.0518 30.6763 47.0518 17.3663 38.8425 9.15699C30.6332 0.947669 17.3232 0.947669 9.11388 9.15699C8.85807 9.4128 8.61024 9.67357 8.37037 9.93897C8.19462 10.1334 8.20585 10.4309 8.39119 10.6162L37.3833 39.6083Z"></path>
-      <path d="M34.6753 42.1232C34.951 41.9601 34.9928 41.5817 34.7663 41.3552L6.64432 13.2332C6.41779 13.0066 6.03942 13.0485 5.87624 13.3242C5.4889 13.9786 5.14011 14.6495 4.82985 15.3336C4.74507 15.5206 4.78727 15.74 4.93243 15.8851L32.1144 43.067C32.2595 43.2122 32.4789 43.2544 32.6659 43.1696C33.35 42.8594 34.0209 42.5106 34.6753 42.1232Z"></path>
-      <path d="M28.2357 44.6093C28.6164 44.531 28.7471 44.0636 28.4722 43.7887L4.21072 19.5272C3.93591 19.2524 3.4685 19.3831 3.39015 19.7638C3.2071 20.6531 3.08205 21.552 3.01501 22.4544C3.00437 22.5976 3.05768 22.738 3.15924 22.8396L25.1599 44.8402C25.2615 44.9418 25.4018 44.9951 25.5451 44.9845C26.4475 44.9174 27.3464 44.7924 28.2357 44.6093Z"></path>
-      <path d="M19.2493 44.5067C19.7204 44.6149 20.0112 44.0554 19.6694 43.7136L4.28592 28.3301C3.9441 27.9883 3.38454 28.2791 3.49282 28.7502C4.34654 32.4646 6.22023 35.9919 9.11388 38.8856C12.0075 41.7792 15.5349 43.6529 19.2493 44.5067Z"></path>
+      <path d="M37.3833 39.6083C37.5686 39.7936 37.866 39.8049 38.0605 39.6291C38.3259 39.3892 38.5867 39.1414 38.8425 38.8856C47.0518 30.6763 47.0518 17.3663 38.8425 9.15699C30.6332 0.947669 17.3232 0.947669 9.11388 9.15699C8.85807 9.4128 8.61024 9.67357 8.37037 9.93897C8.19462 10.1334 8.20585 10.4309 8.39119 10.6162L37.3833 39.6083Z" />
+      <path d="M34.6753 42.1232C34.951 41.9601 34.9928 41.5817 34.7663 41.3552L6.64432 13.2332C6.41779 13.0066 6.03942 13.0485 5.87624 13.3242C5.4889 13.9786 5.14011 14.6495 4.82985 15.3336C4.74507 15.5206 4.78727 15.74 4.93243 15.8851L32.1144 43.067C32.2595 43.2122 32.4789 43.2544 32.6659 43.1696C33.35 42.8594 34.0209 42.5106 34.6753 42.1232Z" />
+      <path d="M28.2357 44.6093C28.6164 44.531 28.7471 44.0636 28.4722 43.7887L4.21072 19.5272C3.93591 19.2524 3.4685 19.3831 3.39015 19.7638C3.2071 20.6531 3.08205 21.552 3.01501 22.4544C3.00437 22.5976 3.05768 22.738 3.15924 22.8396L25.1599 44.8402C25.2615 44.9418 25.4018 44.9951 25.5451 44.9845C26.4475 44.9174 27.3464 44.7924 28.2357 44.6093Z" />
+      <path d="M19.2493 44.5067C19.7204 44.6149 20.0112 44.0554 19.6694 43.7136L4.28592 28.3301C3.9441 27.9883 3.38454 28.2791 3.49282 28.7502C4.34654 32.4646 6.22023 35.9919 9.11388 38.8856C12.0075 41.7792 15.5349 43.6529 19.2493 44.5067Z" />
     </svg>
   );
 }
@@ -383,19 +390,19 @@ function Slack() {
         <path
           d="M19.712.133a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386h5.376V5.52A5.381 5.381 0 0 0 19.712.133m0 14.365H5.376A5.381 5.381 0 0 0 0 19.884a5.381 5.381 0 0 0 5.376 5.387h14.336a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386"
           fill="#44BEDF"
-        ></path>
+        />
         <path
           d="M53.76 19.884a5.381 5.381 0 0 0-5.376-5.386 5.381 5.381 0 0 0-5.376 5.386v5.387h5.376a5.381 5.381 0 0 0 5.376-5.387m-14.336 0V5.52A5.381 5.381 0 0 0 34.048.133a5.381 5.381 0 0 0-5.376 5.387v14.364a5.381 5.381 0 0 0 5.376 5.387 5.381 5.381 0 0 0 5.376-5.387"
           fill="#2EB67D"
-        ></path>
+        />
         <path
           d="M34.048 54a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386h-5.376v5.386A5.381 5.381 0 0 0 34.048 54m0-14.365h14.336a5.381 5.381 0 0 0 5.376-5.386 5.381 5.381 0 0 0-5.376-5.387H34.048a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386"
           fill="#ECB22E"
-        ></path>
+        />
         <path
           d="M0 34.249a5.381 5.381 0 0 0 5.376 5.386 5.381 5.381 0 0 0 5.376-5.386v-5.387H5.376A5.381 5.381 0 0 0 0 34.25m14.336-.001v14.364A5.381 5.381 0 0 0 19.712 54a5.381 5.381 0 0 0 5.376-5.387V34.25a5.381 5.381 0 0 0-5.376-5.387 5.381 5.381 0 0 0-5.376 5.387"
           fill="#E01E5A"
-        ></path>
+        />
       </g>
     </svg>
   );

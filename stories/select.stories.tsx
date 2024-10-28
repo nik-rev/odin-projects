@@ -1,31 +1,33 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { Key } from 'react-aria-components';
-import { users } from './users';
-import { Button } from '@/components/button';
-import { Form } from '@/components/form';
+import type { Meta } from "@storybook/react";
+import React from "react";
+import { type Key } from "react-aria-components";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Avatar } from "@/components/avatar";
+import { Button } from "@/components/button";
+import { Description, FieldError, Label } from "@/components/field";
+import { Form } from "@/components/form";
 import {
   Select,
-  SelectPopover,
   SelectButton,
-  SelectListItem,
-  SelectSection,
-  SelectListItemLabel,
-  SelectListItemDescription,
   SelectListBox,
-} from '@/components/select';
-import { Avatar } from '@/components/avatar';
-import { Description, FieldError, Label } from '@/components/field';
-import { docs } from '../.storybook/docs';
-import { AccessibleIcon } from '@/components/accessible-icon';
-import { Canada, Justified, Left, Mexico, Right, US } from './~icons';
-import { Text } from '@/components/text';
+  SelectListItem,
+  SelectListItemDescription,
+  SelectListItemLabel,
+  SelectPopover,
+  SelectSection,
+} from "@/components/select";
+import { Text } from "@/components/text";
+
+import { docs } from "../.storybook/docs";
+import { Canada, Justified, Left, Mexico, Right, US } from "./~icons";
+import { users } from "./users";
 
 const meta: Meta<typeof Select> = {
-  title: 'Select',
+  title: "Components/Select",
   component: Select,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -33,16 +35,16 @@ const meta: Meta<typeof Select> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <Select placeholder="Select status&hellip;">
       <Label>Project status</Label>
@@ -59,9 +61,9 @@ export const BasicExample = () => {
       <FieldError />
     </Select>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <Select placeholder="Select status&hellip;">
       <Label>Project status</Label>
@@ -80,9 +82,9 @@ export const WithDescription = () => {
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const WithFollowingDescription = () => {
+export function WithFollowingDescription() {
   return (
     <Select placeholder="Select status&hellip;">
       <Label>Project status</Label>
@@ -101,9 +103,9 @@ export const WithFollowingDescription = () => {
       </Description>
     </Select>
   );
-};
+}
 
-export const WithSelectItemDescription = () => {
+export function WithSelectItemDescription() {
   return (
     <Select placeholder="Select status&hellip;">
       <Label>Project status</Label>
@@ -136,9 +138,9 @@ export const WithSelectItemDescription = () => {
       </Description>
     </Select>
   );
-};
+}
 
-export const WithSections = () => {
+export function WithSections() {
   return (
     <Select>
       <Label>Preferred fruit or vegetable</Label>
@@ -202,17 +204,17 @@ export const WithSections = () => {
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const WithDisabledSelectItem = () => {
-  const [statusId, setStatusId] = React.useState<Key>('2');
+export function WithDisabledSelectItem() {
+  const [statusId, setStatusId] = React.useState<Key>("2");
 
   return (
     <Select
       placeholder="Select status&hellip;"
       selectedKey={statusId}
       onSelectionChange={setStatusId}
-      disabledKeys={['5']}
+      disabledKeys={["5"]}
     >
       <Label>Project status</Label>
       <Description>
@@ -230,9 +232,9 @@ export const WithDisabledSelectItem = () => {
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const WithDisabledSelect = () => {
+export function WithDisabledSelect() {
   return (
     <Select placeholder="Select status&hellip;" isDisabled>
       <Label>Project status</Label>
@@ -251,10 +253,10 @@ export const WithDisabledSelect = () => {
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const WithControlledSelect = () => {
-  const [statusId, setStatusId] = React.useState<Key>('3');
+export function WithControlledSelect() {
+  const [statusId, setStatusId] = React.useState<Key>("3");
 
   return (
     <Select
@@ -279,9 +281,9 @@ export const WithControlledSelect = () => {
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const WithIcon = () => {
+export function WithIcon() {
   return (
     <Select placeholder="Select status&hellip;">
       <Label>Project status</Label>
@@ -315,9 +317,9 @@ export const WithIcon = () => {
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const WithIconExampleTwoHiddenTitle = () => {
+export function WithIconExampleTwoHiddenTitle() {
   return (
     <Select placeholder="Choose alignment" defaultSelectedKey="left">
       <Label>Alignment</Label>
@@ -346,9 +348,9 @@ export const WithIconExampleTwoHiddenTitle = () => {
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const WithIconAndDescription = () => {
+export function WithIconAndDescription() {
   return (
     <Select placeholder="Select status&hellip;">
       <Label>Project status</Label>
@@ -382,34 +384,32 @@ export const WithIconAndDescription = () => {
       </Description>
     </Select>
   );
-};
+}
 
-export const WithAvatars = () => {
+export function WithAvatars() {
   return (
     <Select placeholder="Assign to" defaultSelectedKey="1">
       <Label>Assignee</Label>
       <SelectButton />
       <SelectPopover>
         <SelectListBox items={users}>
-          {(user) => {
-            return (
-              <SelectListItem textValue={user.name}>
-                <Avatar
-                  className="rounded-full"
-                  src={user.avatar}
-                  alt={user.name}
-                />
-                <SelectListItemLabel>{user.name}</SelectListItemLabel>
-              </SelectListItem>
-            );
-          }}
+          {(user) => (
+            <SelectListItem textValue={user.name}>
+              <Avatar
+                className="rounded-full"
+                src={user.avatar}
+                alt={user.name}
+              />
+              <SelectListItemLabel>{user.name}</SelectListItemLabel>
+            </SelectListItem>
+          )}
         </SelectListBox>
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const WithAvatarItemDescriptionHiddenTitle = () => {
+export function WithAvatarItemDescriptionHiddenTitle() {
   return (
     <Select
       placeholder="Assign to"
@@ -420,31 +420,29 @@ export const WithAvatarItemDescriptionHiddenTitle = () => {
       <SelectButton />
       <SelectPopover>
         <SelectListBox items={users}>
-          {(user) => {
-            return (
-              <SelectListItem textValue={user.name}>
-                <Avatar
-                  className="rounded-full"
-                  src={user.avatar}
-                  alt={user.name}
-                />
+          {(user) => (
+            <SelectListItem textValue={user.name}>
+              <Avatar
+                className="rounded-full"
+                src={user.avatar}
+                alt={user.name}
+              />
 
-                <SelectListItemLabel className="">
-                  {user.name}
-                </SelectListItemLabel>
-                <SelectListItemDescription>
-                  {user.description}
-                </SelectListItemDescription>
-              </SelectListItem>
-            );
-          }}
+              <SelectListItemLabel className="">
+                {user.name}
+              </SelectListItemLabel>
+              <SelectListItemDescription>
+                {user.description}
+              </SelectListItemDescription>
+            </SelectListItem>
+          )}
         </SelectListBox>
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const WithFlags = () => {
+export function WithFlags() {
   return (
     <Select defaultSelectedKey="ca">
       <Label>Country</Label>
@@ -473,9 +471,9 @@ export const WithFlags = () => {
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const WithSecondaryText = () => {
+export function WithSecondaryText() {
   return (
     <Select
       placeholder="Assign to"
@@ -486,22 +484,20 @@ export const WithSecondaryText = () => {
       <SelectButton />
       <SelectPopover>
         <SelectListBox items={users}>
-          {(user) => {
-            return (
-              <SelectListItem textValue={user.name}>
-                <SelectListItemLabel>
-                  {user.name}
-                  <Text className="inline ps-1.5">{user.description}</Text>
-                </SelectListItemLabel>
-              </SelectListItem>
-            );
-          }}
+          {(user) => (
+            <SelectListItem textValue={user.name}>
+              <SelectListItemLabel>
+                {user.name}
+                <Text className="inline ps-1.5">{user.description}</Text>
+              </SelectListItemLabel>
+            </SelectListItem>
+          )}
         </SelectListBox>
       </SelectPopover>
     </Select>
   );
-};
-export const Validation = () => {
+}
+export function Validation() {
   return (
     <Form>
       <Select isRequired placeholder="Select status&hellip;">
@@ -539,9 +535,9 @@ export const Validation = () => {
       <Button type="submit">Submit</Button>
     </Form>
   );
-};
+}
 
-export const CustomWidth = () => {
+export function CustomWidth() {
   return (
     <Select className="min-w-96" isRequired placeholder="Select status&hellip;">
       <Label>Project status</Label>
@@ -576,7 +572,7 @@ export const CustomWidth = () => {
       <FieldError />
     </Select>
   );
-};
+}
 
 CustomWidth.parameters = {
   docs: {
@@ -587,19 +583,15 @@ CustomWidth.parameters = {
   },
 };
 
-export const CustomLayout = () => {
+export function CustomLayout() {
   return (
     <Form>
-      <Select
-        isRequired
-        placeholder="Select status&hellip;"
-        className="gap-2"
-      >
+      <Select isRequired placeholder="Select status&hellip;" className="gap-2">
         <div className="flex items-center gap-2">
           <Label className="mb-0 self-start mt-1">Project status</Label>
           <div>
-            <SelectButton className='min-w-48'/>
-            <FieldError className="mt-2"/>
+            <SelectButton className="min-w-48" />
+            <FieldError className="mt-2" />
           </div>
 
           <SelectPopover>
@@ -632,7 +624,7 @@ export const CustomLayout = () => {
       <Button type="submit">Submit</Button>
     </Form>
   );
-};
+}
 
 function StatusIcon({ className }: { className: string }) {
   return (

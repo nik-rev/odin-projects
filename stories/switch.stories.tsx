@@ -1,19 +1,21 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from "@storybook/react";
+
+import { Description, Label } from "@/components/field";
 import {
   Switch,
+  Switches,
   SwitchField,
   SwitchGroup,
-  Switches,
-} from '@/components/switch';
-import { Text, TextLink } from '@/components/text';
-import { docs } from '../.storybook/docs';
-import { Description, Label } from '@/components/field';
+} from "@/components/switch";
+import { Text, TextLink } from "@/components/text";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof Switch> = {
-  title: 'Switch',
+  title: "Components/Switch",
   component: Switch,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -21,20 +23,20 @@ const meta: Meta<typeof Switch> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return <Switch>Email notification</Switch>;
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <SwitchField>
       <Switch>Email notifications</Switch>
@@ -43,9 +45,9 @@ export const WithDescription = () => {
       </Description>
     </SwitchField>
   );
-};
+}
 
-export const WithDisabled = () => {
+export function WithDisabled() {
   return (
     <SwitchField>
       <Switch isDisabled>Email notifications</Switch>
@@ -54,9 +56,9 @@ export const WithDisabled = () => {
       </Description>
     </SwitchField>
   );
-};
+}
 
-export const WithReadonly = () => {
+export function WithReadonly() {
   return (
     <SwitchField>
       <Switch isReadOnly>Email notifications</Switch>
@@ -65,17 +67,17 @@ export const WithReadonly = () => {
       </Description>
     </SwitchField>
   );
-};
+}
 
-export const LabelPosition = () => {
+export function LabelPosition() {
   return (
     <SwitchField>
       <Switch labelPosition="left">Email notifications</Switch>
     </SwitchField>
   );
-};
+}
 
-export const SwitchGroups = () => {
+export function SwitchGroups() {
   return (
     <SwitchGroup className="max-w-2xl">
       <Label>Audience and tagging</Label>
@@ -86,9 +88,9 @@ export const SwitchGroups = () => {
       </Switches>
     </SwitchGroup>
   );
-};
+}
 
-export const WithSwitchDescription = () => {
+export function WithSwitchDescription() {
   return (
     <SwitchGroup className="max-w-2xl">
       <Label>Audience and tagging</Label>
@@ -98,7 +100,7 @@ export const WithSwitchDescription = () => {
           <Description elementType="div">
             <Text>
               When selected, your posts and other account information are only
-              visible to people who follow you.{' '}
+              visible to people who follow you.{" "}
               <TextLink className="inline">Learn more</TextLink>
             </Text>
           </Description>
@@ -119,9 +121,9 @@ export const WithSwitchDescription = () => {
       </Switches>
     </SwitchGroup>
   );
-};
+}
 
-export const WithGroupDescription = () => {
+export function WithGroupDescription() {
   return (
     <SwitchGroup className="max-w-2xl">
       <Label>Audience and tagging</Label>
@@ -134,7 +136,7 @@ export const WithGroupDescription = () => {
           <Description elementType="div">
             <Text>
               When selected, your posts and other account information are only
-              visible to people who follow you.{' '}
+              visible to people who follow you.{" "}
               <TextLink className="inline">Learn more</TextLink>
             </Text>
           </Description>
@@ -155,9 +157,9 @@ export const WithGroupDescription = () => {
       </Switches>
     </SwitchGroup>
   );
-};
+}
 
-export const WithGroupItemDisabled = () => {
+export function WithGroupItemDisabled() {
   return (
     <SwitchGroup className="max-w-2xl">
       <Label>Audience and tagging</Label>
@@ -166,11 +168,13 @@ export const WithGroupItemDisabled = () => {
       </Description>
       <Switches>
         <SwitchField>
-          <Switch labelPosition="left" isDisabled>Protect your posts</Switch>
+          <Switch labelPosition="left" isDisabled>
+            Protect your posts
+          </Switch>
           <Description elementType="div">
             <Text>
               When selected, your posts and other account information are only
-              visible to people who follow you.{' '}
+              visible to people who follow you.{" "}
               <TextLink className="inline">Learn more</TextLink>
             </Text>
           </Description>
@@ -191,4 +195,4 @@ export const WithGroupItemDisabled = () => {
       </Switches>
     </SwitchGroup>
   );
-};
+}

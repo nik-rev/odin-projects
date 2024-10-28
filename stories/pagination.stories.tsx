@@ -7,18 +7,18 @@ import {
   PaginationNext,
   PaginationPage,
   PaginationPrevious,
-} from "@/components/pagination";
+} from "@/components/pagination.tsx";
 
 import { docs } from "../.storybook/docs";
 
 const meta: Meta = {
-  title: "Pagination",
+  title: "Components/Pagination",
   parameters: {
     layout: "centered",
     docs: {
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },

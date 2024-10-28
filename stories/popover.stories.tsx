@@ -1,34 +1,42 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { Settings } from 'lucide-react';
-import { Button } from '@/components/button.tsx';
-import { Popover } from '@/components/popover.tsx';
-import { docs } from '../.storybook/docs.ts';
-import { Avatar, AvatarBadge } from '@/components/avatar.tsx';
-import { Separator } from '@/components/separator.tsx';
-import { Switch } from '@/components/switch.tsx';
-import { Strong, Text } from '@/components/text.tsx';
+import type { Meta } from "@storybook/react";
+import { Settings } from "lucide-react";
+import React from "react";
+import { DialogTrigger } from "react-aria-components";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Avatar, AvatarBadge } from "@/components/avatar";
+import { Button } from "@/components/button";
+import { Dialog } from "@/components/dialog";
+import { Input, Label, TextField } from "@/components/field";
 import {
   Menu,
+  MenuButton,
   MenuItem,
+  MenuItemLabel,
   MenuPopover,
   MenuTrigger,
-  MenuButton,
-  MenuItemLabel,
-} from '@/components/menu.tsx';
-import { Available, Away, Busy, DoNotDisturb } from '@/components/status.tsx';
-import { Dialog } from '@/components/dialog.tsx';
-import { DialogTrigger } from 'react-aria-components';
-import { AccessibleIcon } from '@/components/accessible-icon.tsx';
-import { Input, Label, TextField } from '@/components/field.tsx';
-import { NativeSelect, NativeSelectField } from '@/components/native-select.tsx';
-import { Select, SelectButton, SelectListBox, SelectListItem, SelectPopover } from '@/components/select.tsx';
+} from "@/components/menu";
+import { NativeSelect, NativeSelectField } from "@/components/native-select";
+import { Popover } from "@/components/popover";
+import {
+  Select,
+  SelectButton,
+  SelectListBox,
+  SelectListItem,
+  SelectPopover,
+} from "@/components/select";
+import { Separator } from "@/components/separator";
+import { Available, Away, Busy, DoNotDisturb } from "@/components/status";
+import { Switch } from "@/components/switch";
+import { Strong, Text } from "@/components/text";
+
+import { docs } from "../.storybook/docs.ts";
 
 const meta: Meta<typeof Popover> = {
-  title: 'Popover',
+  title: "Components/Popover",
   component: Popover,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -36,16 +44,16 @@ const meta: Meta<typeof Popover> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <DialogTrigger>
       <>
@@ -74,7 +82,10 @@ export const BasicExample = () => {
               <Separator className="mt-2" />
 
               <MenuTrigger>
-                <MenuButton variant='plain' className="justify-start gap-3 font-medium">
+                <MenuButton
+                  variant="plain"
+                  className="justify-start gap-3 font-medium"
+                >
                   <Available className="size-3" />
                   Available
                 </MenuButton>
@@ -116,43 +127,42 @@ export const BasicExample = () => {
                 <Label>Username</Label>
                 <Input />
               </TextField>
-              
-             
-              <NativeSelectField>
-                  <Label>Work phone number type</Label>
-                  <NativeSelect name="work_phone_number_type">
-                    <option value="Mobile">Mobile</option>
-                    <option value="Phone">Phone</option>
-                    <option value="Page">Page</option>
-                    <option value="Fax">Fax</option>
-                  </NativeSelect>
-                </NativeSelectField>
 
-                <Select
-              className="sm:col-span-3"
-              name="company_size"
-              placeholder="Select&hellip;"
-            >
-              <Label> Company size (employees)</Label>
-              <SelectButton></SelectButton>
-              <SelectPopover>
-                <SelectListBox>
-                  <SelectListItem id="1-9">1-9</SelectListItem>
-                  <SelectListItem id="10-5-">10-50</SelectListItem>
-                  <SelectListItem id="50-250">50-250</SelectListItem>
-                  <SelectListItem id="250+">250+</SelectListItem>
-                </SelectListBox>
-              </SelectPopover>
-            </Select>
+              <NativeSelectField>
+                <Label>Work phone number type</Label>
+                <NativeSelect name="work_phone_number_type">
+                  <option value="Mobile">Mobile</option>
+                  <option value="Phone">Phone</option>
+                  <option value="Page">Page</option>
+                  <option value="Fax">Fax</option>
+                </NativeSelect>
+              </NativeSelectField>
+
+              <Select
+                className="sm:col-span-3"
+                name="company_size"
+                placeholder="Select&hellip;"
+              >
+                <Label> Company size (employees)</Label>
+                <SelectButton />
+                <SelectPopover>
+                  <SelectListBox>
+                    <SelectListItem id="1-9">1-9</SelectListItem>
+                    <SelectListItem id="10-5-">10-50</SelectListItem>
+                    <SelectListItem id="50-250">50-250</SelectListItem>
+                    <SelectListItem id="250+">250+</SelectListItem>
+                  </SelectListBox>
+                </SelectPopover>
+              </Select>
             </div>
           </Dialog>
         </Popover>
       </>
     </DialogTrigger>
   );
-};
+}
 
-export const ControlledOpen = () => {
+export function ControlledOpen() {
   const [isOpen, setIsOpen] = React.useState(false);
   const ref = React.useRef(null);
 
@@ -160,8 +170,9 @@ export const ControlledOpen = () => {
     <>
       <Button
         aria-label="Settings"
-        
-        onPress={() => setIsOpen(true)}
+        onPress={() => {
+          setIsOpen(true);
+        }}
         ref={ref}
       >
         <AccessibleIcon>
@@ -193,7 +204,10 @@ export const ControlledOpen = () => {
             <Separator />
 
             <MenuTrigger>
-              <MenuButton variant="plain" className="justify-start gap-3 font-medium">
+              <MenuButton
+                variant="plain"
+                className="justify-start gap-3 font-medium"
+              >
                 <Available className="size-3" />
                 Available
               </MenuButton>
@@ -236,4 +250,4 @@ export const ControlledOpen = () => {
       </Popover>
     </>
   );
-};
+}

@@ -1,15 +1,17 @@
-import type { Meta } from '@storybook/react';
-import { Button } from '@/components/button';
-import { Form } from '@/components/form';
-import { DateField, DateInput } from '@/components/date-field';
-import { Description, FieldError, Label } from '@/components/field';
-import { docs } from '../.storybook/docs';
+import type { Meta } from "@storybook/react";
+
+import { Button } from "@/components/button";
+import { DateField, DateInput } from "@/components/date-field";
+import { Description, FieldError, Label } from "@/components/field";
+import { Form } from "@/components/form";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof DateField> = {
-  title: 'Date field',
+  title: "Components/Date field",
   component: DateField,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -17,25 +19,25 @@ const meta: Meta<typeof DateField> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <DateField>
       <Label>Birth date</Label>
       <DateInput />
     </DateField>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <DateField>
       <Label>Birth date</Label>
@@ -43,9 +45,9 @@ export const WithDescription = () => {
       <DateInput />
     </DateField>
   );
-};
+}
 
-export const WithDescriptionHidden = () => {
+export function WithDescriptionHidden() {
   return (
     <DateField>
       <Label>Birth date</Label>
@@ -53,10 +55,9 @@ export const WithDescriptionHidden = () => {
       <Description>Please enter your birth date</Description>
     </DateField>
   );
-};
+}
 
-
-export const WithDisabled = () => {
+export function WithDisabled() {
   return (
     <DateField isDisabled>
       <Label>Birth date</Label>
@@ -64,9 +65,9 @@ export const WithDisabled = () => {
       <DateInput />
     </DateField>
   );
-};
+}
 
-export const WithReadonly = () => {
+export function WithReadonly() {
   return (
     <DateField isReadOnly>
       <Label>Birth date</Label>
@@ -74,17 +75,18 @@ export const WithReadonly = () => {
       <DateInput />
     </DateField>
   );
-};
+}
 
-
-export const WithValidation = () => (
-  <Form className="flex flex-col items-start gap-2">
-    <DateField isRequired>
-      <Label>Birth date</Label>
-      <Description>Please enter your birth date</Description>
-      <DateInput />
-      <FieldError />
-    </DateField>
-    <Button type="submit">Submit</Button>
-  </Form>
-);
+export function WithValidation() {
+  return (
+    <Form className="flex flex-col items-start gap-2">
+      <DateField isRequired>
+        <Label>Birth date</Label>
+        <Description>Please enter your birth date</Description>
+        <DateInput />
+        <FieldError />
+      </DateField>
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+}

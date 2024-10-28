@@ -4,15 +4,15 @@ import React from "react";
 import { type Selection } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 
-import { ListBox, ListBoxItem } from "@/components/list-box.tsx";
-import { Separator } from "@/components/separator.tsx";
-import { Available, Away, Busy, DoNotDisturb } from "@/components/status.tsx";
-import { Text } from "@/components/text.tsx";
+import { ListBox, ListBoxItem } from "@/components/list-box";
+import { Separator } from "@/components/separator";
+import { Available, Away, Busy, DoNotDisturb } from "@/components/status";
+import { Text } from "@/components/text";
 
 import { docs } from "../.storybook/docs.ts";
 
 const meta: Meta<typeof ListBox> = {
-  title: "Listbox",
+  title: "Components/Listbox",
   component: ListBox,
   parameters: {
     layout: "fullscreen",
@@ -31,7 +31,7 @@ export default meta;
 
 type Status = {
   id: "available" | "busy" | "away" | "doNotDisturb";
-  icon: React.FunctionComponent<JSX.IntrinsicElements["svg"]>;
+  icon: React.FunctionComponent<React.JSX.IntrinsicElements["svg"]>;
   textValue: string;
 };
 const statuses: Status[] = [
@@ -59,7 +59,7 @@ const statuses: Status[] = [
 
 export function BasicExample() {
   const [selectedStatus, setSelectedStatus] = React.useState<Selection>(
-    new Set([statuses.at(0).id]),
+    new Set([statuses[0].id]),
   );
 
   return (
@@ -98,12 +98,142 @@ export function BasicExample() {
   );
 }
 
-export function Appearance() {
+function LightTheme() {
   return (
-    <div className="flex max-w-2xl flex-col gap-4 p-6">
-      <SwitchThemes />
-      <Separator />
-      <AccentColors />
+    <div className="flex flex-col items-center gap-1">
+      <div className="flex rounded-xl border-2 border-transparent  p-0.5 group-selected:border-accent">
+        <div className="flex w-32 flex-col gap-2 overflow-hidden rounded-lg border bg-white ps-2 pt-4">
+          <div className="h-6 w-1/2 rounded-sm border border-zinc-200 bg-zinc-100 p-1.5">
+            <div className="h-full rounded-sm bg-accent" />
+          </div>
+
+          <div className="ms-auto flex h-8 w-3/4 flex-1 overflow-hidden rounded-tl-md border-t border-zinc-200 bg-white shadow-sm">
+            <div className="flex h-8 w-3/5 gap-1 bg-zinc-100 px-2 py-1.5">
+              <span className="size-1.5 rounded-full bg-orange-400" />
+              <span className="size-1.5 rounded-full bg-amber-400" />
+              <span className="size-1.5 rounded-full bg-green-400" />
+            </div>
+
+            <div className="h-8 w-2/5" />
+          </div>
+        </div>
+      </div>
+
+      <div className="text-sm leading-6 text-muted group-selected:font-semibold group-selected:text-foreground">
+        Light
+      </div>
+    </div>
+  );
+}
+
+function DarkTheme() {
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <div className="flex rounded-xl border-2 border-transparent p-0.5 group-selected:border-accent">
+        <div className="flex w-32 flex-col gap-2 overflow-hidden rounded-lg border bg-zinc-900 ps-2 pt-4 ">
+          <div className="h-6 w-1/2 rounded-sm border border-zinc-700 bg-zinc-700 p-1.5">
+            <div className="h-full rounded-sm bg-accent" />
+          </div>
+
+          <div className="ms-auto flex h-8 w-3/4 flex-1 rounded-tl-md border-t border-zinc-800 bg-zinc-800 shadow-sm">
+            <div className="flex h-8 w-3/5 gap-1 bg-zinc-700/20 p-1.5">
+              <span className="size-1.5 rounded-full bg-orange-400" />
+              <span className="size-1.5 rounded-full bg-amber-400" />
+              <span className="size-1.5 rounded-full bg-green-400" />
+            </div>
+
+            <div className="h-8 w-2/5" />
+          </div>
+        </div>
+      </div>
+
+      <div className="text-sm leading-6 text-muted group-selected:text-foreground">
+        Dark
+      </div>
+    </div>
+  );
+}
+
+function SystemTheme() {
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <div className="flex rounded-xl border-2 border-transparent p-0.5 group-selected:border-accent">
+        <div className="flex w-32">
+          <div className="flex flex-1 flex-col gap-2 overflow-hidden rounded-l-lg border-y border-l bg-white ps-2 pt-4">
+            <div className="h-6 rounded-l-sm border border-zinc-200 bg-zinc-100 p-1.5">
+              <div className="h-full rounded-sm bg-accent" />
+            </div>
+
+            <div className="ms-auto flex h-8 w-3/4 flex-1 rounded-tl-md border-l border-t border-zinc-200 bg-zinc-100 shadow-sm">
+              <div className="flex h-8 gap-1 p-1.5">
+                <span className="size-1.5 rounded-full bg-orange-400" />
+                <span className="size-1.5 rounded-full bg-amber-400" />
+                <span className="size-1.5 rounded-full bg-green-400" />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-1 flex-col gap-2 overflow-hidden rounded-r-lg border-y border-r border-zinc-900 bg-zinc-900 ps-2 pt-4 dark:border-y-border dark:border-r-border">
+            <div className="h-6 rounded-l-sm border border-zinc-700 bg-zinc-700 p-1.5">
+              <div className="h-full rounded-sm border border-accent bg-accent" />
+            </div>
+
+            <div className="ms-auto flex h-8 w-3/4 flex-1 rounded-tl-md border-l border-t border-zinc-800 bg-zinc-800 shadow-sm">
+              <div className="flex h-8 gap-1 p-1.5">
+                <span className="size-1.5 rounded-full bg-orange-400" />
+                <span className="size-1.5 rounded-full bg-amber-400" />
+                <span className="size-1.5 rounded-full bg-green-400" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="text-sm leading-6 text-muted group-selected:text-foreground">
+        System
+      </div>
+    </div>
+  );
+}
+
+function SwitchThemes() {
+  return (
+    <div className="flex justify-between">
+      <Text className="text-foreground">Appearance</Text>
+      <ListBox
+        disallowEmptySelection
+        aria-label="Choose your theme"
+        selectionMode="single"
+        defaultSelectedKeys={["light"]}
+        className="flex gap-4"
+      >
+        <ListBoxItem
+          id="light"
+          className="rounded-md px-2"
+          textValue="Light"
+          aria-label="Light"
+        >
+          <LightTheme />
+        </ListBoxItem>
+
+        <ListBoxItem
+          id="dark"
+          className="rounded-md px-2"
+          textValue="Dark"
+          aria-label="Dark"
+        >
+          <DarkTheme />
+        </ListBoxItem>
+
+        <ListBoxItem
+          id="system"
+          className="rounded-md px-2"
+          textValue="System"
+          aria-label="System"
+        >
+          <SystemTheme />
+        </ListBoxItem>
+      </ListBox>
     </div>
   );
 }
@@ -161,7 +291,7 @@ function AccentColors() {
   ];
 
   const [selectedAccentId, setSelectedAccentId] = React.useState<Selection>(
-    new Set([accentColors.at(0).id]),
+    new Set([accentColors[0].id]),
   );
 
   return (
@@ -184,7 +314,7 @@ function AccentColors() {
           >
             <span
               id={item.id}
-              className={`size-4 rounded-full outline outline-1 -outline-offset-1 outline-black/20 ${item.id === [...selectedAccentId].at(0) ? `border-[5px] bg-white ${item.border}` : item.bg}`}
+              className={`size-4 rounded-full outline outline-1 -outline-offset-1 outline-black/20 ${item.id === [...selectedAccentId].at(0) ? item.border : ""} ${item.id === [...selectedAccentId].at(0) ? "border-[5px] bg-white" : item.bg}`}
             />
 
             {item.id === [...selectedAccentId].at(0) && item.textValue}
@@ -195,142 +325,12 @@ function AccentColors() {
   );
 }
 
-function SwitchThemes() {
+export function Appearance() {
   return (
-    <div className="flex justify-between">
-      <Text className="text-foreground">Appearance</Text>
-      <ListBox
-        disallowEmptySelection
-        aria-label="Choose your theme"
-        selectionMode="single"
-        defaultSelectedKeys={["light"]}
-        className="flex gap-4"
-      >
-        <ListBoxItem
-          id="light"
-          className="rounded-md px-2"
-          textValue="Light"
-          aria-label="Light"
-        >
-          <LightTheme />
-        </ListBoxItem>
-
-        <ListBoxItem
-          id="dark"
-          className="rounded-md px-2"
-          textValue="Dark"
-          aria-label="Dark"
-        >
-          <DarkTheme />
-        </ListBoxItem>
-
-        <ListBoxItem
-          id="system"
-          className="rounded-md px-2"
-          textValue="System"
-          aria-label="System"
-        >
-          <SystemTheme />
-        </ListBoxItem>
-      </ListBox>
-    </div>
-  );
-}
-
-function LightTheme() {
-  return (
-    <div className="flex flex-col items-center gap-1">
-      <div className="flex rounded-xl border-2 border-transparent  p-0.5 group-selected:border-accent">
-        <div className="flex w-32 flex-col gap-2 overflow-hidden rounded-lg border bg-white ps-2 pt-4">
-          <div className="h-6 w-1/2 rounded-sm border border-zinc-200 bg-zinc-100 p-1.5">
-            <div className="h-full rounded-sm bg-accent" />
-          </div>
-
-          <div className="ms-auto flex h-8 w-3/4 flex-1 overflow-hidden rounded-tl-md border-t border-zinc-200 bg-white shadow-sm">
-            <div className="flex h-8 w-3/5 gap-1 bg-zinc-100 px-2 py-1.5">
-              <span className="size-1.5 rounded-full bg-orange-400" />
-              <span className="size-1.5 rounded-full bg-amber-400" />
-              <span className="size-1.5 rounded-full bg-green-400" />
-            </div>
-
-            <div className="h-8 w-2/5" />
-          </div>
-        </div>
-      </div>
-
-      <div className="text-sm leading-6 text-muted group-selected:font-semibold group-selected:text-foreground">
-        Light
-      </div>
-    </div>
-  );
-}
-
-function DarkTheme() {
-  return (
-    <div className="flex flex-col items-center gap-1">
-      <div className="flex rounded-xl border-2 border-transparent p-0.5 group-selected:border-accent">
-        <div className="flex w-32 flex-col gap-2 overflow-hidden rounded-lg border bg-zinc-900 ps-2 pt-4 ">
-          <div className="h-6 w-1/2 rounded-sm border border-zinc-700 bg-zinc-700 p-1.5">
-            <div className="h-full rounded-sm bg-accent" />
-          </div>
-
-          <div className="ms-auto flex flex h-8 w-3/4 flex-1 rounded-tl-md border-t border-zinc-800 bg-zinc-800 shadow-sm">
-            <div className="flex h-8 w-3/5 gap-1 bg-zinc-700/20 p-1.5">
-              <span className="size-1.5 rounded-full bg-orange-400" />
-              <span className="size-1.5 rounded-full bg-amber-400" />
-              <span className="size-1.5 rounded-full bg-green-400" />
-            </div>
-
-            <div className="h-8 w-2/5" />
-          </div>
-        </div>
-      </div>
-
-      <div className="text-sm leading-6 text-muted group-selected:text-foreground">
-        Dark
-      </div>
-    </div>
-  );
-}
-
-function SystemTheme() {
-  return (
-    <div className="flex flex-col items-center gap-1">
-      <div className="flex rounded-xl border-2 border-transparent p-0.5 group-selected:border-accent">
-        <div className="flex w-32">
-          <div className="flex flex-1 flex-col gap-2 overflow-hidden rounded-l-lg border-y border-l bg-white ps-2 pt-4">
-            <div className="h-6 rounded-l-sm border border-zinc-200 bg-zinc-100 p-1.5">
-              <div className="h-full rounded-sm bg-accent" />
-            </div>
-
-            <div className="ms-auto flex h-8 w-3/4 flex-1 rounded-tl-md border-l border-t border-zinc-200 bg-zinc-100 shadow-sm">
-              <div className="flex h-8 gap-1 p-1.5">
-                <span className="size-1.5 rounded-full bg-orange-400" />
-                <span className="size-1.5 rounded-full bg-amber-400" />
-                <span className="size-1.5 rounded-full bg-green-400" />
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-1 flex-col gap-2 overflow-hidden rounded-r-lg border-y border-r border-zinc-900 bg-zinc-900 ps-2 pt-4 dark:border-y-border dark:border-r-border">
-            <div className="h-6 rounded-l-sm border border-zinc-700 bg-zinc-700 p-1.5">
-              <div className="h-full rounded-sm border border-accent bg-accent" />
-            </div>
-
-            <div className="ms-auto flex h-8 w-3/4 flex-1 rounded-tl-md border-l border-t border-zinc-800 bg-zinc-800 shadow-sm">
-              <div className="flex h-8 gap-1 p-1.5">
-                <span className="size-1.5 rounded-full bg-orange-400" />
-                <span className="size-1.5 rounded-full bg-amber-400" />
-                <span className="size-1.5 rounded-full bg-green-400" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="text-sm leading-6 text-muted group-selected:text-foreground">
-        System
-      </div>
+    <div className="flex max-w-2xl flex-col gap-4 p-6">
+      <SwitchThemes />
+      <Separator />
+      <AccentColors />
     </div>
   );
 }

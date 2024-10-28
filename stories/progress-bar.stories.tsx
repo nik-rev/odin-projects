@@ -1,12 +1,14 @@
-import type { Meta } from '@storybook/react';
-import { ProgressBar } from '@/components/progress-bar';
-import { docs } from '../.storybook/docs';
+import type { Meta } from "@storybook/react";
+
+import { ProgressBar } from "@/components/progress-bar";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof ProgressBar> = {
   component: ProgressBar,
-  title: 'Progress bar',
+  title: "Components/Progress bar",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -14,19 +16,19 @@ const meta: Meta<typeof ProgressBar> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return <ProgressBar label="loading" value={80} />;
-};
+}
 
-export const Indeterminate = () => {
+export function Indeterminate() {
   return <ProgressBar label="loading" value={80} isIndeterminate />;
-};
+}

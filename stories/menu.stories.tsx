@@ -1,24 +1,27 @@
-import React from 'react';
-import type { Selection } from 'react-aria-components';
-import type { Meta } from '@storybook/react';
+import type { Meta } from "@storybook/react";
+import React from "react";
+import type { Selection } from "react-aria-components";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Avatar } from "@/components/avatar";
+import { Kbd } from "@/components/kbd";
 import {
   Menu,
-  SubMenu,
-  MenuSeparator,
-  MenuItem,
-  MenuSection,
   MenuButton,
-  MenuTrigger,
-  SubmenuTrigger,
-  MenuPopover,
-  MenuItemLabel,
+  MenuItem,
   MenuItemDescription,
-} from '@/components/menu';
-import { Switch } from '@/components/switch';
-import { docs } from '../.storybook/docs';
-import { AccessibleIcon } from '@/components/accessible-icon';
-import { Small, Strong, Text } from '@/components/text';
-import { Avatar } from '@/components/avatar';
+  MenuItemLabel,
+  MenuPopover,
+  MenuSection,
+  MenuSeparator,
+  MenuTrigger,
+  SubMenu,
+  SubmenuTrigger,
+} from "@/components/menu";
+import { Switch } from "@/components/switch";
+import { Small, Strong, Text } from "@/components/text";
+
+import { docs } from "../.storybook/docs";
 import {
   ArchiveBox,
   ArrowRightStartOnRectangle,
@@ -33,14 +36,13 @@ import {
   Moon,
   PencilSquare,
   User,
-} from './~icons';
-import { Kbd } from '@/components/kbd';
+} from "./~icons";
 
 const meta: Meta = {
-  title: 'Menu',
+  title: "Components/Menu",
   component: MenuTrigger,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -48,16 +50,16 @@ const meta: Meta = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -71,9 +73,9 @@ export const BasicExample = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const MenuButtons = () => {
+export function MenuButtons() {
   return (
     <MenuTrigger>
       <MenuButton variant="solid">Options</MenuButton>
@@ -87,7 +89,7 @@ export const MenuButtons = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 MenuButtons.parameters = {
   docs: {
@@ -98,7 +100,7 @@ MenuButtons.parameters = {
   },
 };
 
-export const DisabledMenuItems = () => {
+export function DisabledMenuItems() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -112,18 +114,18 @@ export const DisabledMenuItems = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 DisabledMenuItems.parameters = {
   docs: {
     description: {
       story:
-        'Use the `isDisabled` prop on the `MenuItem` to disable that item and prevent it from being selected.',
+        "Use the `isDisabled` prop on the `MenuItem` to disable that item and prevent it from being selected.",
     },
   },
 };
 
-export const DisabledMenus = () => {
+export function DisabledMenus() {
   return (
     <MenuTrigger>
       <MenuButton isDisabled>Options</MenuButton>
@@ -137,18 +139,18 @@ export const DisabledMenus = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 DisabledMenus.parameters = {
   docs: {
     description: {
       story:
-        'Use the `isDisabled` prop on the `MenuButton` component to disable the menu.',
+        "Use the `isDisabled` prop on the `MenuButton` component to disable the menu.",
     },
   },
 };
 
-export const MenuPopoverPlacements = () => {
+export function MenuPopoverPlacements() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -162,7 +164,7 @@ export const MenuPopoverPlacements = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 MenuPopoverPlacements.parameters = {
   docs: {
@@ -173,7 +175,7 @@ MenuPopoverPlacements.parameters = {
   },
 };
 
-export const CustomMenuWidth = (args: any) => {
+export function CustomMenuWidth(args: unknown) {
   return (
     <MenuTrigger {...args}>
       <MenuButton>Options</MenuButton>
@@ -187,18 +189,18 @@ export const CustomMenuWidth = (args: any) => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 CustomMenuWidth.parameters = {
   docs: {
     description: {
       story:
-        'Use `min-w-*` and `max-w-*` utilities on the `MenuPopover` component to config the minimum and maximum width of the menu popover.',
+        "Use `min-w-*` and `max-w-*` utilities on the `MenuPopover` component to config the minimum and maximum width of the menu popover.",
     },
   },
 };
 
-export const MenuSeparators = () => {
+export function MenuSeparators() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -213,18 +215,18 @@ export const MenuSeparators = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 MenuSeparators.parameters = {
   docs: {
     description: {
       story:
-        'Use the `MenuSeparator` component to render a separator between menu items.',
+        "Use the `MenuSeparator` component to render a separator between menu items.",
     },
   },
 };
 
-export const MenuDescriptions = () => {
+export function MenuDescriptions() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -255,9 +257,9 @@ export const MenuDescriptions = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const WithIcons = () => {
+export function WithIcons() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -292,9 +294,9 @@ export const WithIcons = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const WithMixedIconAndDescription = () => {
+export function WithMixedIconAndDescription() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -328,9 +330,9 @@ export const WithMixedIconAndDescription = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const WithKbdShortcut = () => {
+export function WithKbdShortcut() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -357,9 +359,9 @@ export const WithKbdShortcut = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const WithKbdShortcutAndDescription = () => {
+export function WithKbdShortcutAndDescription() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -394,9 +396,9 @@ export const WithKbdShortcutAndDescription = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const WithIconKbdShortcutAndDescription = () => {
+export function WithIconKbdShortcutAndDescription() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -443,9 +445,9 @@ export const WithIconKbdShortcutAndDescription = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const DestructiveMenuItems = () => {
+export function DestructiveMenuItems() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -492,18 +494,18 @@ export const DestructiveMenuItems = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 DestructiveMenuItems.parameters = {
   docs: {
     description: {
       story:
-        'Use the `destructive` prop on the `MenuItem` component to show a destructive menu item`.',
+        "Use the `destructive` prop on the `MenuItem` component to show a destructive menu item`.",
     },
   },
 };
 
-export const WithSections = () => {
+export function WithSections() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -521,9 +523,9 @@ export const WithSections = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const WithSectionHiddenTitle = () => {
+export function WithSectionHiddenTitle() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -575,18 +577,18 @@ export const WithSectionHiddenTitle = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 WithSections.parameters = {
   docs: {
     description: {
       story:
-        'Use the `MenuSection` component with the `title` prop to group menu items into sections.',
+        "Use the `MenuSection` component with the `title` prop to group menu items into sections.",
     },
   },
 };
 
-export const WithIconTrigger = () => {
+export function WithIconTrigger() {
   return (
     <MenuTrigger>
       <MenuButton noIndicator variant="plain" isIconOnly>
@@ -606,21 +608,21 @@ export const WithIconTrigger = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 WithIconTrigger.parameters = {
   docs: {
     description: {
       story:
-        'Add the `Icon` component to the `MenuButton` component with the `aria-label` and `noIndicator` prop to make an icon-only menu trigger.',
+        "Add the `Icon` component to the `MenuButton` component with the `aria-label` and `noIndicator` prop to make an icon-only menu trigger.",
     },
   },
 };
 
-export const WithAvatarTrigger = () => {
+export function WithAvatarTrigger() {
   return (
     <MenuTrigger>
-      <MenuButton noIndicator variant='unstyle'>
+      <MenuButton noIndicator variant="unstyle">
         <Avatar
           className="rounded-full"
           src="https://images.unsplash.com/photo-1601412436009-d964bd02edbc?q=80&auto=format&fit=facearea&facepad=3&w=256&h=256"
@@ -677,22 +679,22 @@ export const WithAvatarTrigger = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 WithAvatarTrigger.parameters = {
   docs: {
     description: {
       story:
-        'Add the `Avatar` component to the `MenuButton` component with the `unstyled` prop to use an avatar as the menu trigger.',
+        "Add the `Avatar` component to the `MenuButton` component with the `unstyled` prop to use an avatar as the menu trigger.",
     },
   },
 };
 
-export const WithCustomTrigger = () => {
+export function WithCustomTrigger() {
   return (
     <MenuTrigger>
       <MenuButton
-       variant='unstyle'
+        variant="unstyle"
         noIndicator
         className="flex items-center rounded-xl border border-transparent py-1 pe-2 ps-1 hover:border hover:border-border"
         aria-label="Jane"
@@ -700,12 +702,10 @@ export const WithCustomTrigger = () => {
         <Avatar
           alt="Jane"
           src="https://images.unsplash.com/photo-1601412436009-d964bd02edbc?q=80&auto=format&fit=facearea&facepad=3&w=256&h=256"
-        ></Avatar>
+        />
         <div className="me-12 ms-2 flex flex-col justify-center">
           <Strong className="self-start sm:leading-5">Jane</Strong>
-          <Small className="self-start sm:leading-5">
-            janeh@example.com
-          </Small>
+          <Small className="self-start sm:leading-5">janeh@example.com</Small>
         </div>
         <AccessibleIcon>
           <ChevronsUpDown className="size-4 text-muted/75" />
@@ -761,7 +761,7 @@ export const WithCustomTrigger = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 WithCustomTrigger.parameters = {
   docs: {
@@ -772,7 +772,7 @@ WithCustomTrigger.parameters = {
   },
 };
 
-export const WithLink = () => {
+export function WithLink() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -794,18 +794,18 @@ export const WithLink = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 WithLink.parameters = {
   docs: {
     description: {
       story:
-        'Use the `href` prop on the `MenuItem` component to render a menu item as a link.',
+        "Use the `href` prop on the `MenuItem` component to render a menu item as a link.",
     },
   },
 };
 
-export const SubMenus = () => {
+export function SubMenus() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -831,18 +831,18 @@ export const SubMenus = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 SubMenus.parameters = {
   docs: {
     description: {
       story:
-        'Use the `SubmenuTrigger` and `SubMenu` component to render a sub menu.',
+        "Use the `SubmenuTrigger` and `SubMenu` component to render a sub menu.",
     },
   },
 };
 
-export const SubMenuOnMobile = () => {
+export function SubMenuOnMobile() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -877,7 +877,7 @@ export const SubMenuOnMobile = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 SubMenuOnMobile.parameters = {
   docs: {
@@ -888,8 +888,8 @@ SubMenuOnMobile.parameters = {
   },
 };
 
-export const SingleSelection = () => {
-  const [selected, setSelected] = React.useState<Selection>(new Set(['left']));
+export function SingleSelection() {
+  const [selected, setSelected] = React.useState<Selection>(new Set(["left"]));
 
   return (
     <MenuTrigger>
@@ -908,7 +908,7 @@ export const SingleSelection = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 SingleSelection.parameters = {
   docs: {
@@ -919,9 +919,9 @@ SingleSelection.parameters = {
   },
 };
 
-export const SingleSectionWithDescription = () => {
+export function SingleSectionWithDescription() {
   const [selected, setSelected] = React.useState<Selection>(
-    new Set(['copy_link']),
+    new Set(["copy_link"]),
   );
 
   return (
@@ -962,11 +962,11 @@ export const SingleSectionWithDescription = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const SingleSectionWithIcon = () => {
+export function SingleSectionWithIcon() {
   const [selected, setSelected] = React.useState<Selection>(
-    new Set(['copy_link']),
+    new Set(["copy_link"]),
   );
 
   return (
@@ -1020,11 +1020,11 @@ export const SingleSectionWithIcon = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const SingleSelectionWithHeader = () => {
+export function SingleSelectionWithHeader() {
   const [selected, setSelected] = React.useState<Selection>(
-    new Set(['copy_link']),
+    new Set(["copy_link"]),
   );
 
   return (
@@ -1048,11 +1048,11 @@ export const SingleSelectionWithHeader = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const SingleSectionWithItemDescription = () => {
+export function SingleSectionWithItemDescription() {
   const [selected, setSelected] = React.useState<Selection>(
-    new Set(['copy_link']),
+    new Set(["copy_link"]),
   );
 
   return (
@@ -1097,11 +1097,11 @@ export const SingleSectionWithItemDescription = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const SingleSectionWithHeaderIconAndDescription = () => {
+export function SingleSectionWithHeaderIconAndDescription() {
   const [selected, setSelected] = React.useState<Selection>(
-    new Set(['copy_link']),
+    new Set(["copy_link"]),
   );
 
   return (
@@ -1159,17 +1159,17 @@ export const SingleSectionWithHeaderIconAndDescription = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const MultiSelections = () => {
+export function MultiSelections() {
   const [selected, setSelected] = React.useState<Selection>(
-    new Set(['sidebar', 'console']),
+    new Set(["sidebar", "console"]),
   );
 
   return (
     <>
       <Text className="w-64 pb-4 pt-2">
-        Current selection (controlled): {[...selected].join(', ')}
+        Current selection (controlled): {[...selected].join(", ")}
       </Text>
 
       <MenuTrigger>
@@ -1189,7 +1189,7 @@ export const MultiSelections = () => {
       </MenuTrigger>
     </>
   );
-};
+}
 
 MultiSelections.parameters = {
   docs: {
@@ -1200,7 +1200,7 @@ MultiSelections.parameters = {
   },
 };
 
-export const MenuHeaders = () => {
+export function MenuHeaders() {
   return (
     <MenuTrigger>
       <MenuButton>Options</MenuButton>
@@ -1223,19 +1223,25 @@ export const MenuHeaders = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
-export const ControlledMenuOpenState = () => {
+export function ControlledMenuOpenState() {
   const [isOpen, setOpen] = React.useState(false);
   const [darkMode, setDarkMode] = React.useState(false);
 
   return (
     <MenuTrigger>
-      <MenuButton onPress={() => setOpen((prev) => !prev)}>Options</MenuButton>
+      <MenuButton
+        onPress={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        Options
+      </MenuButton>
       <MenuPopover isOpen={isOpen} onOpenChange={setOpen}>
         <Menu
           onAction={(key) => {
-            if (key === 'dark_mode') {
+            if (key === "dark_mode") {
               setDarkMode((prev) => !prev);
               return;
             }
@@ -1253,13 +1259,13 @@ export const ControlledMenuOpenState = () => {
             <AccessibleIcon>
               <Cog8Tooth />
             </AccessibleIcon>
-            <MenuItemLabel>Settings</MenuItemLabel>{' '}
+            <MenuItemLabel>Settings</MenuItemLabel>{" "}
           </MenuItem>
           <MenuItem>
             <AccessibleIcon>
               <CreditCard />
             </AccessibleIcon>
-            <MenuItemLabel>Billing</MenuItemLabel>{' '}
+            <MenuItemLabel>Billing</MenuItemLabel>{" "}
           </MenuItem>
           <MenuItem>
             <AccessibleIcon>
@@ -1293,13 +1299,13 @@ export const ControlledMenuOpenState = () => {
       </MenuPopover>
     </MenuTrigger>
   );
-};
+}
 
 ControlledMenuOpenState.parameters = {
   docs: {
     description: {
       story:
-        'Use the `isOpen` and `onOpenChange` props on the `MenuPopover` component to control menu popover open state.',
+        "Use the `isOpen` and `onOpenChange` props on the `MenuPopover` component to control menu popover open state.",
     },
   },
 };

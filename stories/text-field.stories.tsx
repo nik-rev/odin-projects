@@ -1,23 +1,25 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from "@storybook/react";
+import { Mail } from "lucide-react";
+import { Group } from "react-aria-components";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Button } from "@/components/button";
 import {
-  TextField,
-  Label,
   Description,
   FieldError,
   Input,
+  Label,
   LabeledGroup,
-} from '@/components/field';
+  TextField,
+} from "@/components/field";
+import { Form } from "@/components/form";
 import {
+  InputAddon,
   InputGroup,
   InputGroups,
-  InputAddon,
   InputSeparator,
-} from '@/components/input-group';
-import { docs } from '../.storybook/docs';
-import { Form } from '@/components/form';
-import { Button } from '@/components/button';
-import { AccessibleIcon } from '@/components/accessible-icon';
-import { NativeSelect, NativeSelectField } from '@/components/native-select';
+} from "@/components/input-group";
+import { NativeSelect, NativeSelectField } from "@/components/native-select";
 import {
   Select,
   SelectButton,
@@ -25,16 +27,16 @@ import {
   SelectListItem,
   SelectListItemLabel,
   SelectPopover,
-} from '@/components/select';
-import { Canada, US } from './~icons';
-import { Mail } from 'lucide-react';
-import { Group } from 'react-aria-components';
+} from "@/components/select";
+
+import { docs } from "../.storybook/docs";
+import { Canada, US } from "./~icons";
 
 const meta: Meta<typeof TextField> = {
-  title: 'Text Field (Input)',
+  title: "Components/Text Field (Input)",
   component: TextField,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -42,25 +44,25 @@ const meta: Meta<typeof TextField> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <TextField className="w-full sm:w-80" name="email" type="email">
       <Label>Email address</Label>
       <Input />
     </TextField>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <TextField name="email" type="email">
       <Label>Email address</Label>
@@ -70,9 +72,9 @@ export const WithDescription = () => {
       <Input />
     </TextField>
   );
-};
+}
 
-export const WithFollowingDescription = () => {
+export function WithFollowingDescription() {
   return (
     <TextField name="email" type="email">
       <Label>Email address</Label>
@@ -83,9 +85,9 @@ export const WithFollowingDescription = () => {
       </Description>
     </TextField>
   );
-};
+}
 
-export const WithDisabled = () => {
+export function WithDisabled() {
   return (
     <TextField name="email" type="email" isDisabled>
       <Label>Email address</Label>
@@ -95,9 +97,9 @@ export const WithDisabled = () => {
       <Input placeholder="you@example.com" />
     </TextField>
   );
-};
+}
 
-export const WithReadonly = () => {
+export function WithReadonly() {
   return (
     <TextField name="email" type="email" isReadOnly>
       <Label>Email address</Label>
@@ -107,9 +109,9 @@ export const WithReadonly = () => {
       <Input placeholder="you@example.com" />
     </TextField>
   );
-};
+}
 
-export const WithValidation = () => {
+export function WithValidation() {
   return (
     <Form>
       <TextField isRequired>
@@ -118,14 +120,14 @@ export const WithValidation = () => {
           Enter an email for us to contact you about your order.
         </Description>
         <Input />
-        <FieldError></FieldError>
+        <FieldError />
       </TextField>
       <Button type="submit">Submit</Button>
     </Form>
   );
-};
+}
 
-export const InputGroupWithSingleInput = () => {
+export function InputGroupWithSingleInput() {
   return (
     <div className="min-w-64 space-y-6">
       <TextField name="email" type="email">
@@ -210,9 +212,9 @@ export const InputGroupWithSingleInput = () => {
       </TextField>
     </div>
   );
-};
+}
 
-export const InputGroupWithMultiInputs = () => {
+export function InputGroupWithMultiInputs() {
   return (
     <div className="space-y-6">
       <LabeledGroup>
@@ -296,7 +298,7 @@ export const InputGroupWithMultiInputs = () => {
         <InputGroup>
           <Select defaultSelectedKey="ca">
             <Label>Country</Label>
-            <SelectButton></SelectButton>
+            <SelectButton />
 
             <SelectPopover placement="bottom start" className="w-36">
               <SelectListBox>
@@ -328,7 +330,7 @@ export const InputGroupWithMultiInputs = () => {
         <InputGroup inline>
           <Select defaultSelectedKey="ca">
             <Label>Country</Label>
-            <SelectButton></SelectButton>
+            <SelectButton />
 
             <SelectPopover placement="bottom start" className="w-36">
               <SelectListBox>
@@ -365,7 +367,7 @@ export const InputGroupWithMultiInputs = () => {
           <InputSeparator />
           <Select defaultSelectedKey="ca">
             <Label>Country</Label>
-            <SelectButton></SelectButton>
+            <SelectButton />
 
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
@@ -397,7 +399,7 @@ export const InputGroupWithMultiInputs = () => {
           <InputSeparator />
           <Select defaultSelectedKey="ca">
             <Label>Country</Label>
-            <SelectButton></SelectButton>
+            <SelectButton />
 
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
@@ -451,7 +453,7 @@ export const InputGroupWithMultiInputs = () => {
           <InputSeparator />
           <Select defaultSelectedKey="CA">
             <Label>Currency</Label>
-            <SelectButton></SelectButton>
+            <SelectButton />
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
                 <SelectListItem id="CA" textValue="CA">
@@ -542,7 +544,7 @@ export const InputGroupWithMultiInputs = () => {
           <InputSeparator />
           <Select defaultSelectedKey="member">
             <Label>Role</Label>
-            <SelectButton className="w-32"></SelectButton>
+            <SelectButton className="w-32" />
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
                 <SelectListItem id="admin" textValue="Admin">
@@ -579,7 +581,7 @@ export const InputGroupWithMultiInputs = () => {
 
           <Select defaultSelectedKey="member">
             <Label>Role</Label>
-            <SelectButton className="w-32 shadow-none"></SelectButton>
+            <SelectButton className="w-32 shadow-none" />
             <SelectPopover placement="bottom end">
               <SelectListBox>
                 <SelectListItem id="admin" textValue="Admin">
@@ -605,7 +607,7 @@ export const InputGroupWithMultiInputs = () => {
         <InputGroup>
           <Select defaultSelectedKey="member">
             <Label>Role</Label>
-            <SelectButton></SelectButton>
+            <SelectButton />
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
                 <SelectListItem id="admin" textValue="Admin">
@@ -634,7 +636,7 @@ export const InputGroupWithMultiInputs = () => {
         <InputGroup inline>
           <Select defaultSelectedKey="member">
             <Label>Role</Label>
-            <SelectButton></SelectButton>
+            <SelectButton />
             <SelectPopover placement="bottom end" className="w-36">
               <SelectListBox>
                 <SelectListItem id="admin" textValue="Admin">
@@ -746,7 +748,11 @@ export const InputGroupWithMultiInputs = () => {
         <InputGroup inline>
           <TextField className="min-w-64">
             <Label>Email</Label>
-            <Input type="email" placeholder='Email Address' className="py-3 sm:py-2.5"/>
+            <Input
+              type="email"
+              placeholder="Email Address"
+              className="py-3 sm:py-2.5"
+            />
           </TextField>
           <InputSeparator />
 
@@ -757,9 +763,9 @@ export const InputGroupWithMultiInputs = () => {
       </Group>
     </div>
   );
-};
+}
 
-export const WithOptionalCornerHint = () => {
+export function WithOptionalCornerHint() {
   return (
     <TextField className="min-w-64">
       <Label className="flex justify-between">
@@ -769,18 +775,18 @@ export const WithOptionalCornerHint = () => {
       <Input placeholder="you@example.com" type="email" name="email" />
     </TextField>
   );
-};
+}
 
-export const WithRequiredHint = () => {
+export function WithRequiredHint() {
   return (
     <TextField className="min-w-64">
       <Label requiredHint>Email</Label>
       <Input placeholder="you@example.com" type="email" name="email" />
     </TextField>
   );
-};
+}
 
-export const WithMultiInputs = () => {
+export function WithMultiInputs() {
   return (
     <div className="space-y-4">
       <LabeledGroup>
@@ -822,4 +828,4 @@ export const WithMultiInputs = () => {
       </LabeledGroup>
     </div>
   );
-};
+}

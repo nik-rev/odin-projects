@@ -26,7 +26,7 @@ import { docs } from "../.storybook/docs";
 import { CheckCircle, SolidStar, Star } from "./~icons";
 
 const meta: Meta<typeof RadioGroup> = {
-  title: "Radio group",
+  title: "Components/Radio group",
   component: RadioGroup,
   parameters: {
     layout: "centered",
@@ -37,7 +37,7 @@ const meta: Meta<typeof RadioGroup> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
@@ -120,35 +120,6 @@ export function WithRadioGroupDescription() {
       <Description>
         Select whether animated images should play automatically.
       </Description>
-      <Radios>
-        <RadioField>
-          <Radio value="system">Sync with system</Radio>
-          <Description>
-            Adopts your system preference for reduced motion
-          </Description>
-        </RadioField>
-
-        <RadioField>
-          <Radio value="enable">Approve</Radio>
-          <Description>Automatically plays animated images</Description>
-        </RadioField>
-
-        <RadioField>
-          <Radio value="disabled">Disabled</Radio>
-          <Description>
-            Prevents animated images from playing automatically
-          </Description>
-        </RadioField>
-      </Radios>
-    </RadioGroup>
-  );
-}
-
-export function WithRadioGroupDescriptionHiddenTitle() {
-  return (
-    <RadioGroup className="max-w-md">
-      <Label>Autoplay animated images</Label>
-
       <Radios>
         <RadioField>
           <Radio value="system">Sync with system</Radio>
@@ -366,14 +337,15 @@ export function RadioCardGroups() {
     { name: "Standard", description: " 4-6 business days", price: " $4.99" },
     { name: "Express", description: " 2-5 business days", price: " $15.99" },
     { name: "Lightning", description: " 1 business day", price: " $24.99" },
-  ];
+  ] as const;
 
   return (
-    <RadioGroup defaultValue={options.at(0).name}>
+    <RadioGroup defaultValue={options[0].name}>
       <Label>Shipping</Label>
       <Radios className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {options.map((option) => (
           <Radio
+            key={option.name}
             value={option.name}
             className={({ isSelected }) =>
               twMerge(
@@ -626,6 +598,7 @@ export function StarRatingsTitleHidden() {
           const shouldLHighlight = Number(rating) > Number(option.value);
           return (
             <Radio
+              key={option.value}
               value={option.value}
               aria-label={String(index + 1)}
               className={({ isSelected }) =>

@@ -1,10 +1,32 @@
-import type { Meta } from '@storybook/react';
-import { TextField } from '@/components/field.tsx';
-import { SearchField, SearchInput } from '@/components/search-field.tsx';
-import { docs } from '../../.storybook/docs.ts';
-import { Button } from '@/components/button.tsx';
-import { Strong } from '@/components/text.tsx';
-import { AccessibleIcon } from '@/components/accessible-icon.tsx';
+import type { Meta } from "@storybook/react";
+import {
+  ChevronDownIcon,
+  Lightbulb,
+  LogOut,
+  SearchIcon,
+  Settings,
+  ShieldCheck,
+  UserCircle,
+} from "lucide-react";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Avatar } from "@/components/avatar";
+import { Button } from "@/components/button";
+import {
+  Dialog,
+  DialogBody,
+  DialogCloseButton,
+  DialogHeader,
+  DialogTrigger,
+} from "@/components/dialog";
+import {
+  Disclosure,
+  DisclosureControl,
+  DisclosurePanel,
+} from "@/components/disclosure";
+import { type TextField } from "@/components/field";
+import { Kbd } from "@/components/kbd";
+import { Link } from "@/components/link";
 import {
   Menu,
   MenuButton,
@@ -13,52 +35,32 @@ import {
   MenuPopover,
   MenuSeparator,
   MenuTrigger,
-} from '@/components/menu.tsx';
-import { Avatar } from '@/components/avatar.tsx';
-import {
-  Lightbulb,
-  LogOut,
-  SearchIcon,
-  Settings,
-  ShieldCheck,
-  UserCircle,
-  ChevronDownIcon,
-} from 'lucide-react';
-import { Modal } from '@/components/modal.tsx';
-import {
-  DialogTrigger,
-  Dialog,
-  DialogBody,
-  DialogCloseButton,
-  DialogHeader,
-} from '@/components/dialog.tsx';
-import { Link } from '@/components/link.tsx';
-import { Kbd } from '@/components/kbd.tsx';
-import {
-  Disclosure,
-  DisclosureControl,
-  DisclosurePanel,
-} from '@/components/disclosure.tsx';
+} from "@/components/menu";
+import { Modal } from "@/components/modal";
+import { SearchField, SearchInput } from "@/components/search-field";
+import { Strong } from "@/components/text";
+
+import { docs } from "../../.storybook/docs.ts";
 
 const meta: Meta<typeof TextField> = {
-  title: 'Layouts/Sidebar',
+  title: "Layouts/Sidebar",
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const Sidebar = () => {
+export function Sidebar() {
   return (
-    <div className="flex min-h-screen w-full flex-col bg-zinc-100 dark:bg-background md:flex-row">
+    <div className="flex min-h-screen w-full flex-col bg-white md:flex-row">
       <header className="flex h-14 items-center px-4 md:hidden">
         <HamburgerMenu />
 
@@ -126,7 +128,7 @@ export const Sidebar = () => {
             <path
               fill="currentColor"
               d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16s-7.163 16-16 16M13.77 6.5a.87.87 0 0 0-.759.444L6.105 19.263a.87.87 0 0 0 0 .85l2.21 3.942a.87.87 0 0 0 .758.445h13.854a.87.87 0 0 0 .759-.445l2.209-3.942a.87.87 0 0 0 0-.85L18.989 6.944a.87.87 0 0 0-.759-.444zM16 11.401l4.653 8.287h-9.306z"
-            ></path>
+            />
           </svg>
           <Strong>Acme.Co</Strong>
         </div>
@@ -203,7 +205,7 @@ export const Sidebar = () => {
       </main>
     </div>
   );
-};
+}
 
 function HamburgerMenu() {
   return (
@@ -223,7 +225,7 @@ function HamburgerMenu() {
               strokeLinejoin="round"
               strokeWidth={2}
               d="M4 8h16M4 16h16"
-            ></path>
+            />
           </svg>
         </AccessibleIcon>
       </Button>
@@ -241,7 +243,7 @@ function HamburgerMenu() {
                 <path
                   fill="currentColor"
                   d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16s-7.163 16-16 16M13.77 6.5a.87.87 0 0 0-.759.444L6.105 19.263a.87.87 0 0 0 0 .85l2.21 3.942a.87.87 0 0 0 .758.445h13.854a.87.87 0 0 0 .759-.445l2.209-3.942a.87.87 0 0 0 0-.85L18.989 6.944a.87.87 0 0 0-.759-.444zM16 11.401l4.653 8.287h-9.306z"
-                ></path>
+                />
               </svg>
               <Strong>ACME.Co</Strong>
             </div>
@@ -281,7 +283,7 @@ function MainNavigation() {
                   strokeLinejoin="round"
                   strokeWidth={1.5}
                   d="m2.25 12l8.955-8.955a1.124 1.124 0 0 1 1.59 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                ></path>
+                />
               </svg>
             </AccessibleIcon>
             Home
@@ -306,7 +308,7 @@ function MainNavigation() {
                     strokeLinejoin="round"
                     strokeWidth={1.5}
                     d="M15 19.128a9.4 9.4 0 0 0 2.625.372a9.3 9.3 0 0 0 4.121-.952q.004-.086.004-.173a4.125 4.125 0 0 0-7.536-2.32M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.3 12.3 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0a3.375 3.375 0 0 1 6.75 0m8.25 2.25a2.625 2.625 0 1 1-5.25 0a2.625 2.625 0 0 1 5.25 0"
-                  ></path>
+                  />
                 </svg>
               </AccessibleIcon>
               Authentications
@@ -396,7 +398,7 @@ function MainNavigation() {
                   strokeLinejoin="round"
                   strokeWidth={2}
                   d="M9.785 6L18 14.215l-2.054 2.054a5.81 5.81 0 1 1-8.215-8.215zM4 20l3.5-3.5M15 4l-3.5 3.5M20 9l-3.5 3.5"
-                ></path>
+                />
               </svg>
             </AccessibleIcon>
             Integrations
@@ -418,7 +420,7 @@ function MainNavigation() {
                 <path
                   fill="currentColor"
                   d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"
-                ></path>
+                />
               </svg>
             </AccessibleIcon>
             Notifications

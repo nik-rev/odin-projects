@@ -1,13 +1,15 @@
-import type { Meta } from '@storybook/react';
-import { Button } from '@/components/button';
-import { docs } from '../.storybook/docs';
-import { GlobalToastRegion } from '@/components/toast/toast-region';
-import { toast } from '@/components/toast/toast-queue';
+import type { Meta } from "@storybook/react";
+
+import { Button } from "@/components/button";
+import { toast } from "@/components/toast/toast-queue";
+import { GlobalToastRegion } from "@/components/toast/toast-region";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta = {
-  title: 'Toast',
+  title: "Components/Toast",
   parameters: {
-    layout: 'center',
+    layout: "center",
     docs: {
       description: {
         component:
@@ -15,25 +17,25 @@ const meta: Meta = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <div className="flex flex-col items-center gap-4 p-12">
       <Button
         variant="outline"
         onPress={() => {
           toast.add({
-            title: 'Templates unavailable',
+            title: "Components/Templates unavailable",
             description:
-              'Issue template and forms are current unavailable. Please try again later.',
+              "Issue template and forms are current unavailable. Please try again later.",
           });
         }}
       >
@@ -45,7 +47,7 @@ export const BasicExample = () => {
         onPress={() => {
           toast.add({
             description:
-              'Issue template and forms are current unavailable. Please try again later.',
+              "Issue template and forms are current unavailable. Please try again later.",
           });
         }}
       >
@@ -56,10 +58,10 @@ export const BasicExample = () => {
         variant="outline"
         onPress={() => {
           toast.add({
-            type: 'error',
-            title: 'Templates unavailable',
+            type: "error",
+            title: "Components/Templates unavailable",
             description:
-              'Issue template and forms are current unavailable. Please try again later.',
+              "Issue template and forms are current unavailable. Please try again later.",
           });
         }}
       >
@@ -70,10 +72,10 @@ export const BasicExample = () => {
         variant="outline"
         onPress={() => {
           toast.add({
-            type: 'warning',
-            title: 'Templates unavailable',
+            type: "warning",
+            title: "Components/Templates unavailable",
             description:
-              'Issue template and forms are current unavailable. Please try again later.',
+              "Issue template and forms are current unavailable. Please try again later.",
           });
         }}
       >
@@ -84,9 +86,9 @@ export const BasicExample = () => {
         variant="outline"
         onPress={() => {
           toast.add({
-            title: 'Payment details saved',
-            description: 'Your payment details have been save successfully.',
-            type: 'success',
+            title: "Components/Payment details saved",
+            description: "Your payment details have been save successfully.",
+            type: "success",
           });
         }}
       >
@@ -96,4 +98,4 @@ export const BasicExample = () => {
       <GlobalToastRegion aria-label="notification" />
     </div>
   );
-};
+}

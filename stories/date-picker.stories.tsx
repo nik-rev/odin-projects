@@ -1,26 +1,29 @@
-import type { Meta } from '@storybook/react';
-import { Form } from '@/components/form';
-import { Button } from '@/components/button';
+import {
+  type DateValue,
+  getLocalTimeZone,
+  isWeekend,
+  parseDate,
+  today,
+} from "@internationalized/date";
+import type { Meta } from "@storybook/react";
+import { useLocale } from "react-aria-components";
+
+import { Button } from "@/components/button";
 import {
   DatePicker,
   DatePickerButton,
   DatePickerInput,
-} from '@/components/date-picker';
-import { docs } from '../.storybook/docs';
-import { Description, FieldError, Label } from '@/components/field';
-import {
-  today,
-  getLocalTimeZone,
-  isWeekend,
-  parseDate,
-} from '@internationalized/date';
-import { useLocale } from 'react-aria-components';
+} from "@/components/date-picker";
+import { Description, FieldError, Label } from "@/components/field";
+import { Form } from "@/components/form";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof DatePicker> = {
-  title: 'Date picker',
+  title: "Components/Date picker",
   component: DatePicker,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -28,55 +31,55 @@ const meta: Meta<typeof DatePicker> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <DatePicker>
       <Label>Event date</Label>
-      <DatePickerInput></DatePickerInput>
+      <DatePickerInput />
     </DatePicker>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <DatePicker>
       <Label>Event date</Label>
       <Description>Please enter the event date</Description>
-      <DatePickerInput></DatePickerInput>
+      <DatePickerInput />
     </DatePicker>
   );
-};
+}
 
-export const WithDescriptionHiddenTitle = () => {
+export function WithDescriptionHiddenTitle() {
   return (
     <DatePicker>
       <Label>Event date</Label>
-      <DatePickerInput></DatePickerInput>
+      <DatePickerInput />
       <Description>Please enter the event date</Description>
     </DatePicker>
   );
-};
+}
 
-export const WithDisabled = () => {
+export function WithDisabled() {
   return (
     <DatePicker isDisabled>
       <Label>Event date</Label>
       <Description>Please enter the event date</Description>
-      <DatePickerInput></DatePickerInput>
+      <DatePickerInput />
     </DatePicker>
   );
-};
+}
 
-export const WithMinimumAndMaximumValues = () => {
+export function WithMinimumAndMaximumValues() {
   return (
     <DatePicker
       minValue={today(getLocalTimeZone())}
@@ -88,9 +91,9 @@ export const WithMinimumAndMaximumValues = () => {
       <DatePickerInput />
     </DatePicker>
   );
-};
+}
 
-export const WithUnavailableDates = () => {
+export function WithUnavailableDates() {
   const now = today(getLocalTimeZone());
   const disabledRanges = [
     [now, now.add({ days: 5 })],
@@ -99,7 +102,7 @@ export const WithUnavailableDates = () => {
   ];
 
   const { locale } = useLocale();
-  const isDateUnavailable = (date: any) =>
+  const isDateUnavailable = (date: DateValue) =>
     isWeekend(date, locale) ||
     disabledRanges.some(
       (interval) =>
@@ -116,33 +119,35 @@ export const WithUnavailableDates = () => {
       <DatePickerInput />
     </DatePicker>
   );
-};
+}
 
-export const WithReadonly = () => {
+export function WithReadonly() {
   return (
     <DatePicker isReadOnly>
       <Label>Event date</Label>
       <Description>Please enter the event date</Description>
-      <DatePickerInput></DatePickerInput>
+      <DatePickerInput />
     </DatePicker>
   );
-};
+}
 
-export const WithValidation = () => (
-  <Form>
-    <DatePicker isRequired>
-      <Label>Event date</Label>
-      <Description>Please enter the event date</Description>
-      <DatePickerInput></DatePickerInput>
-      <FieldError />
-    </DatePicker>
-    <Button type="submit" variant="outline">
-      Submit
-    </Button>
-  </Form>
-);
+export function WithValidation() {
+  return (
+    <Form>
+      <DatePicker isRequired>
+        <Label>Event date</Label>
+        <Description>Please enter the event date</Description>
+        <DatePickerInput />
+        <FieldError />
+      </DatePicker>
+      <Button type="submit" variant="outline">
+        Submit
+      </Button>
+    </Form>
+  );
+}
 
-export const WithDatePickerButtons = () => {
+export function WithDatePickerButtons() {
   return (
     <DatePicker defaultValue={today(getLocalTimeZone())}>
       <Label>Event date</Label>
@@ -151,4 +156,4 @@ export const WithDatePickerButtons = () => {
       <FieldError />
     </DatePicker>
   );
-};
+}

@@ -1,39 +1,41 @@
-import type { Meta } from '@storybook/react';
-import { TextField, Label, FieldError, Description } from '@/components/field';
-import { Form } from '@/components/form';
-import { Button } from '@/components/button';
-import { PasswordInput } from '@/components/password-input';
-import { docs } from '../.storybook/docs';
+import type { Meta } from "@storybook/react";
+
+import { Button } from "@/components/button";
+import { Description, FieldError, Label, TextField } from "@/components/field";
+import { Form } from "@/components/form";
+import { PasswordInput } from "@/components/password-input";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof PasswordInput> = {
-  title: 'Password input',
+  title: "Components/Password input",
   component: PasswordInput,
   parameters: {
     // layout: 'fullscreen',
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
-          'The `PasswordInput` component captures password data from user.',
+          "The `PasswordInput` component captures password data from user.",
       },
       ...docs,
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <TextField name="password">
       <Label>Password</Label>
       <PasswordInput placeholder="Password" />
     </TextField>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <TextField name="password">
       <Label>Password</Label>
@@ -41,19 +43,22 @@ export const WithDescription = () => {
       <PasswordInput placeholder="Password" minLength={8} />
     </TextField>
   );
-};
+}
 
-export const WithDescriptionHiddenTitle = () => {
+export function WithDescriptionHiddenTitle() {
   return (
     <TextField name="password" className="max-w-sm">
       <Label>Password</Label>
       <PasswordInput placeholder="Password" minLength={8} />
-      <Description>Must be at least 8 characters long, include an uppercase letter, a number, and a special character.</Description>
+      <Description>
+        Must be at least 8 characters long, include an uppercase letter, a
+        number, and a special character.
+      </Description>
     </TextField>
   );
-};
+}
 
-export const WithDisabled = () => {
+export function WithDisabled() {
   return (
     <TextField name="password" isDisabled>
       <Label>Password</Label>
@@ -61,9 +66,9 @@ export const WithDisabled = () => {
       <Description>Min 8 characters</Description>
     </TextField>
   );
-};
+}
 
-export const WithReadonly = () => {
+export function WithReadonly() {
   return (
     <TextField name="password" isReadOnly>
       <Label>Password</Label>
@@ -71,9 +76,9 @@ export const WithReadonly = () => {
       <Description>Min 8 characters</Description>
     </TextField>
   );
-};
+}
 
-export const WithValidation = () => {
+export function WithValidation() {
   return (
     <Form className="w-72 ">
       <TextField isRequired name="password">
@@ -83,9 +88,7 @@ export const WithValidation = () => {
         <FieldError />
       </TextField>
 
-      <Button type="submit">
-        Submit
-      </Button>
+      <Button type="submit">Submit</Button>
     </Form>
   );
-};
+}

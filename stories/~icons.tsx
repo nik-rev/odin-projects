@@ -1,16 +1,16 @@
 export {
+  BellAlertIcon,
+  ChatBubbleLeftRightIcon,
   Cog6ToothIcon,
   Cog8ToothIcon,
-  VideoCameraIcon,
-  MicrophoneIcon,
-  ChatBubbleLeftRightIcon,
-  UserIcon,
   CreditCardIcon,
-  BellAlertIcon,
-  MusicalNoteIcon
-} from '@heroicons/react/20/solid';
+  MicrophoneIcon,
+  MusicalNoteIcon,
+  UserIcon,
+  VideoCameraIcon,
+} from "@heroicons/react/20/solid";
 
-export function Plus(props: JSX.IntrinsicElements['svg']) {
+export function Plus(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ export function Plus(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Minus(props: JSX.IntrinsicElements['svg']) {
+export function Minus(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ export function Minus(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Calendar(props: JSX.IntrinsicElements['svg']) {
+export function Calendar(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@ export function Calendar(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Mail(props: JSX.IntrinsicElements['svg']) {
+export function Mail(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ export function Mail(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Verified(props: JSX.IntrinsicElements['svg']) {
+export function Verified(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ export function Verified(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Star(props: JSX.IntrinsicElements['svg']) {
+export function Star(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +120,7 @@ export function Star(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Left(props: JSX.IntrinsicElements['svg']) {
+export function Left(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +137,7 @@ export function Left(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Right(props: JSX.IntrinsicElements['svg']) {
+export function Right(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +154,7 @@ export function Right(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Justified(props: JSX.IntrinsicElements['svg']) {
+export function Justified(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -171,118 +171,118 @@ export function Justified(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Canada(props: JSX.IntrinsicElements['svg']) {
+export function Canada(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg viewBox="0 0 16 12" fill="none" {...props}>
       <g clipPath="url(#clip0_270_55097)">
-        <path fill="#fff" d="M0 0H16V12H0z"></path>
+        <path fill="#fff" d="M0 0H16V12H0z" />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M4 0h8.5v12H4V0z"
           fill="#F7FCFF"
-        ></path>
+        />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M7.164 4.201L7.987 3 8 10h-.343l.21-1.732s-2.305.423-2.115.21c.191-.214.3-.606.3-.606L4 6.474s.324-.004.587-.164c.264-.16-.263-1.109-.263-1.109l1.036.154.392-.435.782.836h.352l-.352-1.914.63.36zM8 10V3l.836 1.201.63-.359-.352 1.914h.352l.782-.836.392.435 1.036-.154s-.527.949-.263 1.109c.263.16.587.164.587.164L9.947 7.872s.11.392.3.606c.191.213-2.115-.21-2.115-.21L8.342 10H8zM12 0h4v12h-4V0zM0 0h4v12H0V0z"
           fill="#E31D1C"
-        ></path>
+        />
       </g>
       <defs>
         <clipPath id="clip0_270_55097">
-          <path fill="#fff" d="M0 0H16V12H0z"></path>
+          <path fill="#fff" d="M0 0H16V12H0z" />
         </clipPath>
       </defs>
     </svg>
   );
 }
 
-export function US(props: JSX.IntrinsicElements['svg']) {
+export function US(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg viewBox="0 0 16 12" fill="none" {...props}>
       <g clipPath="url(#clip0_270_55071)">
-        <path fill="#fff" d="M0 0H16V12H0z"></path>
+        <path fill="#fff" d="M0 0H16V12H0z" />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M0 0h16v12H0V0z"
           fill="#E31D1C"
-        ></path>
+        />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M0 1v1h16V1H0zm0 2v1h16V3H0zm0 3V5h16v1H0zm0 1v1h16V7H0zm0 3V9h16v1H0zm0 2v-1h16v1H0z"
           fill="#F7FCFF"
-        ></path>
-        <path fill="#2E42A5" d="M0 0H9V7H0z"></path>
+        />
+        <path fill="#2E42A5" d="M0 0H9V7H0z" />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M1.04 2.174l.53-.37.411.297h-.233l.471.416-.159.584h-.249l-.242-.536-.206.536H.748l.471.416-.179.657.53-.37.411.297h-.233l.471.416-.159.584h-.249l-.242-.536-.206.536H.748l.471.416-.179.657.53-.37.513.37-.16-.657.412-.416h-.19l.425-.296.411.296h-.233l.471.416-.179.657.53-.37.513.37-.16-.657.412-.416h-.19l.425-.296.411.296h-.233l.471.416-.179.657.53-.37.513.37-.16-.657.412-.416h-.19l.425-.296.411.296h-.233l.471.416-.179.657.53-.37.513.37-.16-.657.412-.416h-.524l-.242-.536-.206.536h-.298l-.142-.584.412-.416h-.19l.425-.296.513.369-.16-.657.412-.416h-.524l-.242-.536-.206.536h-.298l-.142-.584.412-.416h-.19l.425-.296.513.369-.16-.657.412-.416h-.524L7.569.565l-.206.536h-.615l.471.416-.159.584h-.249l-.242-.536-.206.536h-.298l-.142-.584.412-.416h-.524L5.569.565l-.206.536h-.615l.471.416-.159.584h-.249l-.242-.536-.206.536h-.298l-.142-.584.412-.416h-.524L3.569.565l-.206.536h-.615l.471.416-.159.584h-.249l-.242-.536-.206.536h-.298l-.142-.584.412-.416h-.524L1.569.565l-.206.536H.748l.471.416-.179.657zM7.06 4.1l.159-.584-.47-.416h.232l-.411-.296-.425.296h.19l-.412.416.142.584h.298l.206-.536.242.536h.249zm-1.079 0l-.411-.296-.425.296h.19l-.412.416.142.584h.298l.206-.536.242.536h.249l.159-.584-.47-.416h.232zm-1.762.416L4.06 5.1h-.249l-.242-.536-.206.536h-.298l-.142-.584.412-.416h-.19l.425-.296.411.296h-.233l.471.416zm.144-.416h-.298l-.142-.584.412-.416h-.19l.425-.296.411.296h-.233l.471.416-.159.584h-.249l-.242-.536-.206.536zm-1.303 0l.159-.584-.47-.416h.232l-.411-.296-.425.296h.19l-.412.416.142.584h.298l.206-.536.242.536h.249zm3.159-1.584L6.06 3.1h-.249l-.242-.536-.206.536h-.298l-.142-.584.412-.416h-.19l.425-.296.411.296h-.233l.471.416zM3.981 2.1l-.411-.296-.425.296h.19l-.412.416.142.584h.298l.206-.536.242.536h.249l.159-.584-.47-.416h.232z"
           fill="#F7FCFF"
-        ></path>
+        />
       </g>
       <defs>
         <clipPath id="clip0_270_55071">
-          <path fill="#fff" d="M0 0H16V12H0z"></path>
+          <path fill="#fff" d="M0 0H16V12H0z" />
         </clipPath>
       </defs>
     </svg>
   );
 }
 
-export function Mexico(props: JSX.IntrinsicElements['svg']) {
+export function Mexico(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg viewBox="0 0 16 12" fill="none" {...props}>
       <g clipPath="url(#clip0_270_55118)">
-        <path fill="#fff" d="M0 0H16V12H0z"></path>
+        <path fill="#fff" d="M0 0H16V12H0z" />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M11 0h5v12h-5V0z"
           fill="#D9071E"
-        ></path>
+        />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M0 0h6v12H0V0z"
           fill="#006923"
-        ></path>
+        />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M5 0h6v12H5V0z"
           fill="#fff"
-        ></path>
+        />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M7.192 3.957s-.343.266-.279.55c.064.284.74 0 .66-.275-.083-.275-.38-.275-.38-.275z"
           fill="#FCCA3D"
-        ></path>
+        />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M6.668 4.634c-.257 0-.364-.214-.311-.442.028-.121.102-.276.222-.476l.43.257a2.861 2.861 0 00-.11.198.96.96 0 01.25.113c.234.154.32.428.07.631-.05.04-.128.173-.171.302.12.007.204.025.283.071.221.13.2.37.032.553-.12.13-.278.237-.429.29-.25.091-.516.057-.516-.263v-.002c0-.013-.002-.036.11-.038h.022-.022c-.19-.003-.231-.104-.255-.283a1.853 1.853 0 01-.012-.182l-.002-.06-.002-.06-.001-.013c-.004-.058-.007-.097.123-.097h-.29v-.5h.29c.164 0 .255.055.307.17.03-.052.06-.101.094-.145a.386.386 0 00-.112-.024zm.318.878l.008-.008-.002.004-.006.004zm-.218.149zm0-.189v.008-.015.007z"
           fill="#A8AC71"
-        ></path>
+        />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M9.633 6.201s.463-1.37-.272-2.08c-.736-.71-1.585-.662-1.585-.662s-.245.182 0 .32c.245.14.142.272.142.272s-.41-.416-.682-.173c-.272.243.254.206.199.39-.056.182-.292.995.053 1.405.344.41-.326.321-.19.321.137 0 .62.096.62 0 0-.095.168.371.312.371s.255-.164.255-.164.201.164.324.164.552-.107.552-.107l-.81-.682s.049-.301-.066-.366.92.577 1.002.784c.08.207.146.207.146.207z"
           fill="#8F4620"
-        ></path>
+        />
         <path
           d="M5.533 5.863s.075-.239.156-.256c.07-.014.216.115.216.115.26 1.445.889 2.01 1.933 2.01 1.055 0 1.695-.43 2.069-1.762 0 0 .198-.203.268-.18.077.024.172.292.172.292-.095 1.559-1.22 2.482-2.492 2.482-1.284 0-2.333-1.035-2.322-2.7z"
           fill="#9FAB2F"
-        ></path>
+        />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M6.667 6.828s1.502.319 2.095.319c.593 0-.52.484-.954.484-.435 0-1.14-.803-1.14-.803z"
           fill="#2FC2DC"
-        ></path>
+        />
         <rect
           x="7.33337"
           y="7.05"
@@ -290,28 +290,28 @@ export function Mexico(props: JSX.IntrinsicElements['svg']) {
           height="0.535714"
           rx="0.0833333"
           fill="#F9AA51"
-        ></rect>
+        />
         <path
           d="M6.088 6.068l.41-.287c.532.76 1.328 1.009 2.443.748l.114.487c-1.303.305-2.31-.01-2.967-.948z"
           fill="#259485"
-        ></path>
+        />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M8.296 6.175s-.607.32-.405.32c.202 0 .994.16.84 0-.154-.16-.435-.32-.435-.32zM7.578 5.794s-.115-.333-.355-.333-.172.273-.288.273c-.115 0 .108.193.207.193.1 0 .436-.133.436-.133z"
           fill="#FCCA3D"
-        ></path>
+        />
       </g>
       <defs>
         <clipPath id="clip0_270_55118">
-          <path fill="#fff" d="M0 0H16V12H0z"></path>
+          <path fill="#fff" d="M0 0H16V12H0z" />
         </clipPath>
       </defs>
     </svg>
   );
 }
 
-export function CheckCircle(props: JSX.IntrinsicElements['svg']) {
+export function CheckCircle(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -328,7 +328,7 @@ export function CheckCircle(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function SolidStar(props: JSX.IntrinsicElements['svg']) {
+export function SolidStar(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -345,7 +345,7 @@ export function SolidStar(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Moon(props: JSX.IntrinsicElements['svg']) {
+export function Moon(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -359,7 +359,7 @@ export function Moon(props: JSX.IntrinsicElements['svg']) {
 }
 
 export function ArrowRightStartOnRectangle(
-  props: JSX.IntrinsicElements['svg'],
+  props: React.JSX.IntrinsicElements["svg"],
 ) {
   return (
     <svg
@@ -377,7 +377,7 @@ export function ArrowRightStartOnRectangle(
   );
 }
 
-export function InformationCircle(props: JSX.IntrinsicElements['svg']) {
+export function InformationCircle(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -394,7 +394,7 @@ export function InformationCircle(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function BelAlert(props: JSX.IntrinsicElements['svg']) {
+export function BelAlert(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -412,7 +412,7 @@ export function BelAlert(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function Cog8Tooth(props: JSX.IntrinsicElements['svg']) {
+export function Cog8Tooth(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -429,7 +429,7 @@ export function Cog8Tooth(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function User(props: JSX.IntrinsicElements['svg']) {
+export function User(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -442,7 +442,7 @@ export function User(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function ChevronsUpDown(props: JSX.IntrinsicElements['svg']) {
+export function ChevronsUpDown(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -459,7 +459,7 @@ export function ChevronsUpDown(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function EllipsisHorizontal(props: JSX.IntrinsicElements['svg']) {
+export function EllipsisHorizontal(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -472,7 +472,7 @@ export function EllipsisHorizontal(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function EllipsisVertical(props: JSX.IntrinsicElements['svg']) {
+export function EllipsisVertical(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -485,7 +485,7 @@ export function EllipsisVertical(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function CreditCard(props: JSX.IntrinsicElements['svg']) {
+export function CreditCard(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -503,7 +503,7 @@ export function CreditCard(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function ArchiveBox(props: JSX.IntrinsicElements['svg']) {
+export function ArchiveBox(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -521,7 +521,7 @@ export function ArchiveBox(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function FolderPlus(props: JSX.IntrinsicElements['svg']) {
+export function FolderPlus(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -538,7 +538,7 @@ export function FolderPlus(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function DocumentDuplicate(props: JSX.IntrinsicElements['svg']) {
+export function DocumentDuplicate(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -552,7 +552,7 @@ export function DocumentDuplicate(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function PencilSquare(props: JSX.IntrinsicElements['svg']) {
+export function PencilSquare(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -566,7 +566,7 @@ export function PencilSquare(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function RecordIcon(props: JSX.IntrinsicElements['svg']) {
+export function RecordIcon(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -584,7 +584,7 @@ export function RecordIcon(props: JSX.IntrinsicElements['svg']) {
   );
 }
 
-export function KeyboardIcon(props: JSX.IntrinsicElements['svg']) {
+export function KeyboardIcon(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -598,12 +598,12 @@ export function KeyboardIcon(props: JSX.IntrinsicElements['svg']) {
         fillRule="evenodd"
         d="M8 5h8c2.828 0 4.243 0 5.121.879C22 6.757 22 8.172 22 11v2c0 2.828 0 4.243-.879 5.121C20.243 19 18.828 19 16 19H8c-2.828 0-4.243 0-5.121-.879C2 17.243 2 15.828 2 13v-2c0-2.828 0-4.243.879-5.121C3.757 5 5.172 5 8 5m-2 5a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0-3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3-3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3-3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-.25 3a.75.75 0 0 1-.75.75H7a.75.75 0 0 1 0-1.5h10a.75.75 0 0 1 .75.75"
         clipRule="evenodd"
-      ></path>
+      />
     </svg>
   );
 }
 
-export function ScreenShareIcon(props: JSX.IntrinsicElements['svg']) {
+export function ScreenShareIcon(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -615,12 +615,12 @@ export function ScreenShareIcon(props: JSX.IntrinsicElements['svg']) {
       <path
         fill="currentColor"
         d="M8 14h2v-2q0-.425.288-.712T11 11h2v2l3-3l-3-3v2h-2q-1.25 0-2.125.875T8 12zm-4 4q-.825 0-1.412-.587T2 16V5q0-.825.588-1.412T4 3h16q.825 0 1.413.588T22 5v11q0 .825-.587 1.413T20 18zm-3 3v-2h22v2z"
-      ></path>
+      />
     </svg>
   );
 }
 
-export function ArtistsIcon(props: JSX.IntrinsicElements['svg']) {
+export function ArtistsIcon(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -632,12 +632,12 @@ export function ArtistsIcon(props: JSX.IntrinsicElements['svg']) {
       <path
         fill="currentColor"
         d="m15.75 8l-3.74-3.75a3.99 3.99 0 0 1 6.82-3.08A4 4 0 0 1 15.75 8m-13.9 7.3l9.2-9.19l2.83 2.83l-9.2 9.2l-2.82-2.84zm-1.4 2.83l2.11-2.12l1.42 1.42l-2.12 2.12l-1.42-1.42zM10 15l2-2v7h-2z"
-      ></path>
+      />
     </svg>
   );
 }
 
-export function AlbumsIcon(props: JSX.IntrinsicElements['svg']) {
+export function AlbumsIcon(props: React.JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -649,7 +649,7 @@ export function AlbumsIcon(props: JSX.IntrinsicElements['svg']) {
       <path
         fill="currentColor"
         d="M16.844 3.637c.14-1.992 1.289-3.024 3.445-3.024h14.93c2.156 0 3.281 1.032 3.422 3.024zm-4.149 6.492c.352-2.133 1.36-3.305 3.703-3.305h22.524c2.344 0 3.351 1.172 3.703 3.305zm1.899 45.258c-4.875 0-7.36-2.414-7.36-7.266v-27c0-4.828 2.485-7.265 7.36-7.265h26.812c4.899 0 7.36 2.437 7.36 7.265v27c0 4.828-2.438 7.266-6.657 7.266zM34.44 30.635c1.019-.276 1.337-.488 1.337-1.719v-4.159c0-.806-.276-1.167-1.4-.891l-6.218 1.549c-1.04.255-1.273.467-1.273 1.719v9.57c0 .934-.085 1.104-1.146 1.4l-1.952.51c-1.931.51-3.565 1.655-3.565 3.735c0 1.803 1.358 3.119 3.501 3.119c3.035 0 5.093-2.186 5.093-5.263v-7.278c0-.785.17-.997.658-1.104z"
-      ></path>
+      />
     </svg>
   );
 }

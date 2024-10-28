@@ -1,12 +1,13 @@
-import { docs } from '../.storybook/docs';
-import { Description, Label } from '@/components/field';
-import { NativeSelect, NativeSelectField } from '@/components/native-select';
+import { Description, Label } from "@/components/field";
+import { NativeSelect, NativeSelectField } from "@/components/native-select";
+
+import { docs } from "../.storybook/docs";
 
 const meta = {
-  title: 'Native select',
+  title: "Components/Native select",
   component: NativeSelect,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -14,16 +15,16 @@ const meta = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <NativeSelectField className="sm:w-80">
       <Label>Choose a pet</Label>
@@ -37,9 +38,9 @@ export const BasicExample = () => {
       </NativeSelect>
     </NativeSelectField>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <NativeSelectField className="sm:w-80">
       <Label>Choose a pet</Label>
@@ -54,9 +55,9 @@ export const WithDescription = () => {
       </NativeSelect>
     </NativeSelectField>
   );
-};
+}
 
-export const WithDescriptionHiddenTitle = () => {
+export function WithDescriptionHiddenTitle() {
   return (
     <NativeSelectField className="sm:w-80">
       <Label>Choose a pet</Label>
@@ -71,9 +72,9 @@ export const WithDescriptionHiddenTitle = () => {
       <Description>Please choose an option</Description>
     </NativeSelectField>
   );
-};
+}
 
-export const DisabledSelect = () => {
+export function DisabledSelect() {
   return (
     <NativeSelectField className="sm:w-80">
       <Label>Choose a pet</Label>
@@ -90,9 +91,9 @@ export const DisabledSelect = () => {
       </NativeSelect>
     </NativeSelectField>
   );
-};
+}
 
-export const DisabledOptions = () => {
+export function DisabledOptions() {
   return (
     <NativeSelectField className="sm:w-80">
       <Label>Choose a pet</Label>
@@ -109,4 +110,4 @@ export const DisabledOptions = () => {
       </NativeSelect>
     </NativeSelectField>
   );
-};
+}

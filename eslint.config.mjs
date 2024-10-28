@@ -13,5 +13,8 @@ export default nikitarevenco(
         { ignoreAccessorPattern: ["*.parameters", "*.displayName"] },
       ],
     },
+    unicornOverride: {
+      "unicorn/prefer-at": ["error"]
+    }
   },
 );

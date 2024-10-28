@@ -1,16 +1,18 @@
-import type { Meta } from '@storybook/react';
-import { Form } from '@/components/form';
-import { Button } from '@/components/button';
-import { TimeField } from '@/components/time-field';
-import { Description, FieldError, Label } from '@/components/field';
-import { DateInput } from '@/components/date-field';
-import { docs } from '../.storybook/docs';
+import type { Meta } from "@storybook/react";
+
+import { Button } from "@/components/button";
+import { DateInput } from "@/components/date-field";
+import { Description, FieldError, Label } from "@/components/field";
+import { Form } from "@/components/form";
+import { TimeField } from "@/components/time-field";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof TimeField> = {
-  title: 'Time field',
+  title: "Components/Time field",
   component: TimeField,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -18,25 +20,25 @@ const meta: Meta<typeof TimeField> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <TimeField>
       <Label>Appointment time</Label>
       <DateInput />
     </TimeField>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <TimeField>
       <Label>Appointment time</Label>
@@ -44,9 +46,9 @@ export const WithDescription = () => {
       <DateInput />
     </TimeField>
   );
-};
+}
 
-export const WithDescriptionHiddenTitle = () => {
+export function WithDescriptionHiddenTitle() {
   return (
     <TimeField>
       <Label>Appointment time</Label>
@@ -54,9 +56,9 @@ export const WithDescriptionHiddenTitle = () => {
       <Description>The specific time scheduled for your meeting</Description>
     </TimeField>
   );
-};
+}
 
-export const WithDisabled = () => {
+export function WithDisabled() {
   return (
     <TimeField isDisabled>
       <Label>Appointment time</Label>
@@ -64,9 +66,9 @@ export const WithDisabled = () => {
       <Description>The specific time scheduled for your meeting</Description>
     </TimeField>
   );
-};
+}
 
-export const WithReadonly = () => {
+export function WithReadonly() {
   return (
     <TimeField isReadOnly>
       <Label>Appointment time</Label>
@@ -74,16 +76,18 @@ export const WithReadonly = () => {
       <Description>The specific time scheduled for your meeting</Description>
     </TimeField>
   );
-};
+}
 
-export const WithValidation = () => (
-  <Form>
-    <TimeField isRequired>
-      <Label>Appointment time</Label>
-      <Description>The specific time scheduled for your meeting</Description>
-      <DateInput />
-      <FieldError></FieldError>
-    </TimeField>
-    <Button type="submit">Submit</Button>
-  </Form>
-);
+export function WithValidation() {
+  return (
+    <Form>
+      <TimeField isRequired>
+        <Label>Appointment time</Label>
+        <Description>The specific time scheduled for your meeting</Description>
+        <DateInput />
+        <FieldError />
+      </TimeField>
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+}

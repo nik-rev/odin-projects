@@ -1,13 +1,15 @@
-import type { Meta } from '@storybook/react';
-import { Available, Away, Busy, DoNotDisturb } from '@/components/status';
-import { AccessibleIcon } from '@/components/accessible-icon';
-import { docs } from '../.storybook/docs';
-import { MailIcon } from 'lucide-react';
+import type { Meta } from "@storybook/react";
+import { MailIcon } from "lucide-react";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Available, Away, Busy, DoNotDisturb } from "@/components/status";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof AccessibleIcon> = {
-  title: 'Icon',
+  title: "Components/Icon",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -15,16 +17,16 @@ const meta: Meta<typeof AccessibleIcon> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <div className="flex gap-4">
       <AccessibleIcon aria-label="Available">
@@ -41,15 +43,15 @@ export const BasicExample = () => {
       </AccessibleIcon>
     </div>
   );
-};
+}
 
-export const DecorativeIcons = () => {
+export function DecorativeIcons() {
   return (
     <AccessibleIcon>
-      <MailIcon strokeWidth={1.5}/>
+      <MailIcon strokeWidth={1.5} />
     </AccessibleIcon>
   );
-};
+}
 
 DecorativeIcons.parameters = {
   docs: {

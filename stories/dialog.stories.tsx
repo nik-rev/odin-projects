@@ -1,17 +1,19 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { Modal } from '@/components/modal';
+import type { Meta } from "@storybook/react";
+import { Bell, Star } from "lucide-react";
+import React from "react";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Button } from "@/components/button";
+import { Checkbox } from "@/components/checkbox";
 import {
-  DialogTrigger,
   Dialog,
   DialogBody,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogCloseButton,
-} from '@/components/dialog';
-import { Button } from '@/components/button';
-import { Form } from '@/components/form';
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/dialog";
 import {
   Description,
   FieldError,
@@ -20,22 +22,19 @@ import {
   LabeledGroup,
   TextArea,
   TextField,
-} from '@/components/field';
-import { InputGroup, InputSeparator } from '@/components/input-group';
+} from "@/components/field";
+import { Form } from "@/components/form";
+import { Heading } from "@/components/heading";
+import { InputGroup, InputSeparator } from "@/components/input-group";
 import {
-  MenuButton,
-  MenuTrigger,
   Menu,
+  MenuButton,
   MenuItem,
   MenuPopover,
   MenuSection,
-} from '@/components/menu';
-import { Bell, Star } from 'lucide-react';
-import { Tab, TabList, TabPanel, Tabs } from '@/components/tabs';
-import { TooltipTrigger, Tooltip } from '@/components/tooltip';
-import { Text } from '@/components/text';
-import { docs } from '../.storybook/docs';
-import { Heading } from '@/components/heading';
+  MenuTrigger,
+} from "@/components/menu";
+import { Modal } from "@/components/modal";
 import {
   Select,
   SelectButton,
@@ -44,14 +43,17 @@ import {
   SelectListItemDescription,
   SelectListItemLabel,
   SelectPopover,
-} from '@/components/select';
-import { AccessibleIcon } from '@/components/accessible-icon';
-import { Checkbox } from '@/components/checkbox';
+} from "@/components/select";
+import { Tab, TabList, TabPanel, Tabs } from "@/components/tabs";
+import { Text } from "@/components/text";
+import { Tooltip, TooltipTrigger } from "@/components/tooltip";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta = {
-  title: 'Dialog',
+  title: "Components/Dialog",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -60,19 +62,19 @@ const meta: Meta = {
       ...docs,
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
       <Modal size="md">
         <Dialog>
           <DialogHeader>Edit profile</DialogHeader>
-          <DialogCloseButton/>
+          <DialogCloseButton />
           <DialogBody>
             <Text>
               Make changes to your profile here. Click save when you're done.
@@ -80,12 +82,12 @@ export const BasicExample = () => {
             <Form className="py-4" id="edit-profile-form">
               <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Name</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
                 <Label className="ms-auto">Username</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
             </Form>
@@ -100,9 +102,9 @@ export const BasicExample = () => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
-export const DialogSizes = () => {
+export function DialogSizes() {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
@@ -117,12 +119,12 @@ export const DialogSizes = () => {
             <Form className="py-4" id="edit-profile-form">
               <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Name</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
                 <Label className="ms-auto">Username</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
             </Form>
@@ -137,7 +139,7 @@ export const DialogSizes = () => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
 DialogSizes.parameters = {
   docs: {
@@ -148,7 +150,7 @@ DialogSizes.parameters = {
   },
 };
 
-export const FullWidth = () => {
+export function FullWidth() {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
@@ -163,12 +165,12 @@ export const FullWidth = () => {
             <Form className="py-4" id="edit-profile-form">
               <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Name</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
                 <Label className="ms-auto">Username</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
             </Form>
@@ -183,9 +185,9 @@ export const FullWidth = () => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
-export const CustomHeaders = () => {
+export function CustomHeaders() {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
@@ -213,12 +215,12 @@ export const CustomHeaders = () => {
             <Form className="py-4" id="edit-profile-form">
               <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Name</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
                 <Label className="ms-auto">Username</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
             </Form>
@@ -233,18 +235,18 @@ export const CustomHeaders = () => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
 CustomHeaders.parameters = {
   docs: {
     description: {
       story:
-        'Use the `DialogTitle` component to compose header contains non text elements.',
+        "Use the `DialogTitle` component to compose header contains non text elements.",
     },
   },
 };
 
-export const NoHeader = () => {
+export function NoHeader() {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
@@ -257,12 +259,12 @@ export const NoHeader = () => {
             <Form className="py-4" id="edit-profile-form">
               <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Name</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
                 <Label className="ms-auto">Username</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
             </Form>
@@ -277,18 +279,18 @@ export const NoHeader = () => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
 NoHeader.parameters = {
   docs: {
     description: {
       story:
-        'Without `DialogHeader`, dialog trigger button text will be used as dialog header.',
+        "Without `DialogHeader`, dialog trigger button text will be used as dialog header.",
     },
   },
 };
 
-export const AutoFocusElements = (args: any) => {
+export function AutoFocusElements(args: unknown) {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
@@ -307,12 +309,12 @@ export const AutoFocusElements = (args: any) => {
                 autoFocus
               >
                 <Label className="ms-auto">Name</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
                 <Label className="ms-auto">Username</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
             </Form>
@@ -327,7 +329,7 @@ export const AutoFocusElements = (args: any) => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
 AutoFocusElements.parameters = {
   docs: {
@@ -338,9 +340,9 @@ AutoFocusElements.parameters = {
   },
 };
 
-AutoFocusElements.storyName = 'Auto-focusing elements';
+AutoFocusElements.storyName = "Auto-focusing elements";
 
-export const WithIsDismissableAndKeyboardDismissDisabled = () => {
+export function WithIsDismissableAndKeyboardDismissDisabled() {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
@@ -359,12 +361,12 @@ export const WithIsDismissableAndKeyboardDismissDisabled = () => {
                 autoFocus
               >
                 <Label className="ms-auto">Name</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
                 <Label className="ms-auto">Username</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
             </Form>
@@ -379,18 +381,18 @@ export const WithIsDismissableAndKeyboardDismissDisabled = () => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
 WithIsDismissableAndKeyboardDismissDisabled.parameters = {
   docs: {
     description: {
       story:
-        'Use the `isDismissable` prop of the `Modal` component to control whether the dialog can be closed by clicking outside. Default `false`. \n\nUse the `isKeyboardDismissDisabled` prop of the `Modal` to control whether the dialog can be closed by `ESC` key. Default `false`.',
+        "Use the `isDismissable` prop of the `Modal` component to control whether the dialog can be closed by clicking outside. Default `false`. \n\nUse the `isKeyboardDismissDisabled` prop of the `Modal` to control whether the dialog can be closed by `ESC` key. Default `false`.",
     },
   },
 };
 
-export const WithScrollingContent = () => {
+export function WithScrollingContent() {
   return (
     <DialogTrigger>
       <Button>Terms Service</Button>
@@ -501,18 +503,18 @@ export const WithScrollingContent = () => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
 WithScrollingContent.parameters = {
   docs: {
     description: {
       story:
-        'Long content within the `DialogBody` component automatically becomes scrollable.',
+        "Long content within the `DialogBody` component automatically becomes scrollable.",
     },
   },
 };
 
-export const WithControlledOpenState = () => {
+export function WithControlledOpenState() {
   const [isOpen, setOpen] = React.useState(false);
 
   return (
@@ -521,7 +523,13 @@ export const WithControlledOpenState = () => {
         <MenuButton>Options</MenuButton>
         <MenuPopover className="animate-none">
           <Menu>
-            <MenuItem onAction={() => setOpen(true)}>Edit profile</MenuItem>
+            <MenuItem
+              onAction={() => {
+                setOpen(true);
+              }}
+            >
+              Edit profile
+            </MenuItem>
             <MenuItem>Logout</MenuItem>
           </Menu>
         </MenuPopover>
@@ -542,12 +550,12 @@ export const WithControlledOpenState = () => {
                 autoFocus
               >
                 <Label className="ms-auto">Name</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
                 <Label className="ms-auto">Username</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
             </Form>
@@ -562,35 +570,41 @@ export const WithControlledOpenState = () => {
       </Modal>
     </>
   );
-};
+}
 
 WithControlledOpenState.parameters = {
   docs: {
     description: {
       story:
-        'Use the `isOpen` and `onOpenChange`  prop of the `Modal` component to control dialog open state.',
+        "Use the `isOpen` and `onOpenChange`  prop of the `Modal` component to control dialog open state.",
     },
   },
 };
 
-export const NestedDialogs = () => {
+export function NestedDialogs() {
   const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
     React.useState(false);
-  const [post, setPost] = React.useState('');
+  const [post, setPost] = React.useState("");
 
   return (
     <div>
-      <Button onPress={() => setIsEditDialogOpen(true)}>Edit profile</Button>
+      <Button
+        onPress={() => {
+          setIsEditDialogOpen(true);
+        }}
+      >
+        Edit profile
+      </Button>
       <Modal
         size="lg"
         isOpen={isEditDialogOpen}
         isDismissable
         onOpenChange={() => {
-          if (post !== '') {
-            setIsConfirmationDialogOpen(true);
-          } else {
+          if (post === "") {
             setIsEditDialogOpen(false);
+          } else {
+            setIsConfirmationDialogOpen(true);
           }
         }}
       >
@@ -604,7 +618,7 @@ export const NestedDialogs = () => {
               }}
             >
               <Label>Edit bio</Label>
-              <TextArea placeholder="Add a bio" rows={4}></TextArea>
+              <TextArea placeholder="Add a bio" rows={4} />
               <Description>
                 Add some texts and click outside to close dialog
               </Description>
@@ -638,7 +652,7 @@ export const NestedDialogs = () => {
             <DialogCloseButton>No, thanks</DialogCloseButton>
             <Button
               onPress={() => {
-                alert('Your changes are saved');
+                alert("Your changes are saved");
                 setIsConfirmationDialogOpen(false);
                 setIsEditDialogOpen(false);
               }}
@@ -650,18 +664,18 @@ export const NestedDialogs = () => {
       </Modal>
     </div>
   );
-};
+}
 
 NestedDialogs.parameters = {
   docs: {
     description: {
       story:
-        'Preventing users from accidentally closing a modal Dialog component with unsaved changes by displaying a nested confirmation dialog.',
+        "Preventing users from accidentally closing a modal Dialog component with unsaved changes by displaying a nested confirmation dialog.",
     },
   },
 };
 
-export const WithMinHeight = () => {
+export function WithMinHeight() {
   return (
     <DialogTrigger>
       <Button> Channel settings</Button>
@@ -678,7 +692,7 @@ export const WithMinHeight = () => {
                       aria-label="Start Conversation"
                       className="py-0.5 text-xs/6"
                     >
-                      <Star className="h-4 w-4" strokeWidth={1.5} />
+                      <Star className="size-4" strokeWidth={1.5} />
                     </MenuButton>
                     <Tooltip>Start Channel</Tooltip>
                   </TooltipTrigger>
@@ -735,7 +749,7 @@ export const WithMinHeight = () => {
           </DialogHeader>
           <DialogCloseButton />
           <DialogBody className="overflow-hidden px-0">
-            <Tabs className="overflow-auto p-0 pb-0 text-base/6 sm:text-sm/6">
+            <Tabs className="overflow-auto p-0 text-base/6 sm:text-sm/6">
               <div className="sticky top-0 bg-white dark:bg-zinc-900">
                 <TabList
                   aria-label="History of Ancient Rome"
@@ -807,16 +821,16 @@ export const WithMinHeight = () => {
                 dolore nihil aspernatur explicabo unde sed nesciunt quos
                 dignissimos, nobis reprehenderit quia ullam itaque autem labore?
               </TabPanel>
-              <TabPanel id="members"></TabPanel>
-              <TabPanel id="integrations"></TabPanel>
-              <TabPanel id="settings"></TabPanel>
+              <TabPanel id="members" />
+              <TabPanel id="integrations" />
+              <TabPanel id="settings" />
             </Tabs>
           </DialogBody>
         </Dialog>
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
 WithMinHeight.parameters = {
   docs: {
@@ -827,7 +841,7 @@ WithMinHeight.parameters = {
   },
 };
 
-export const Drawers = (args: any) => {
+export function Drawers(args: unknown) {
   return (
     <DialogTrigger>
       <Button>Edit profile</Button>
@@ -842,12 +856,12 @@ export const Drawers = (args: any) => {
             <Form className="py-4" id="edit-profile-form">
               <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Name</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
                 <Label className="ms-auto">Username</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
             </Form>
@@ -862,7 +876,7 @@ export const Drawers = (args: any) => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
 Drawers.parameters = {
   docs: {
@@ -873,7 +887,7 @@ Drawers.parameters = {
   },
 };
 
-export const DialogCloseButtons = () => {
+export function DialogCloseButtons() {
   return (
     <DialogTrigger>
       <Button>Add Block</Button>
@@ -911,7 +925,7 @@ export const DialogCloseButtons = () => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
 DialogCloseButtons.parameters = {
   docs: {
@@ -922,12 +936,17 @@ DialogCloseButtons.parameters = {
   },
 };
 
-export const DialogFooters = () => {
+export function DialogFooters() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <>
-      <Button variant="outline" onPress={() => setIsOpen(true)}>
+      <Button
+        variant="outline"
+        onPress={() => {
+          setIsOpen(true);
+        }}
+      >
         Publish
       </Button>
       <Modal size="lg" isOpen={isOpen} onOpenChange={setIsOpen}>
@@ -938,32 +957,48 @@ export const DialogFooters = () => {
           </DialogBody>
           <DialogFooter>
             <DialogCloseButton className="sm:me-auto">Cancel</DialogCloseButton>
-            <Button onPress={() => setIsOpen(false)} variant="outline">
+            <Button
+              onPress={() => {
+                setIsOpen(false);
+              }}
+              variant="outline"
+            >
               Save as draft
             </Button>
-            <Button onPress={() => setIsOpen(false)}>Publish</Button>
+            <Button
+              onPress={() => {
+                setIsOpen(false);
+              }}
+            >
+              Publish
+            </Button>
           </DialogFooter>
         </Dialog>
       </Modal>
     </>
   );
-};
+}
 
 DialogFooters.parameters = {
   docs: {
     description: {
       story:
-        'We can add `secondary action` and `checkbox` element to the `DialogFooter`.',
+        "We can add `secondary action` and `checkbox` element to the `DialogFooter`.",
     },
   },
 };
 
-export const WithCheckboxFooterHiddenTitle = () => {
+export function WithCheckboxFooterHiddenTitle() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <>
-      <Button variant="plain" onPress={() => setIsOpen(true)}>
+      <Button
+        variant="plain"
+        onPress={() => {
+          setIsOpen(true);
+        }}
+      >
         Don't ask again
       </Button>
       <Modal size="lg" isOpen={isOpen} onOpenChange={setIsOpen}>
@@ -977,7 +1012,9 @@ export const WithCheckboxFooterHiddenTitle = () => {
             <Checkbox className="sm:me-auto">Don't ask again</Checkbox>
             <DialogCloseButton>No Thanks</DialogCloseButton>
             <Button
-              onPress={() => setIsOpen(false)}
+              onPress={() => {
+                setIsOpen(false);
+              }}
               variant="solid"
               color="success"
             >
@@ -988,4 +1025,4 @@ export const WithCheckboxFooterHiddenTitle = () => {
       </Modal>
     </>
   );
-};
+}

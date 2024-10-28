@@ -1,32 +1,34 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { Tab, TabList, TabPanel, Tabs } from '@/components/tabs';
-import { Key } from 'react-aria-components';
-import { NativeSelect, NativeSelectField } from '@/components/native-select';
-import { docs } from '../.storybook/docs';
-import { AccessibleIcon } from '@/components/accessible-icon';
+import type { Meta } from "@storybook/react";
+import React from "react";
+import { type Key } from "react-aria-components";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { NativeSelect, NativeSelectField } from "@/components/native-select";
+import { Tab, TabList, TabPanel, Tabs } from "@/components/tabs";
+import { Strong } from "@/components/text";
+
+import { docs } from "../.storybook/docs";
 import {
-  RecordIcon,
-  Cog6ToothIcon,
-  VideoCameraIcon,
-  MicrophoneIcon,
-  ChatBubbleLeftRightIcon,
-  KeyboardIcon,
-  ScreenShareIcon,
-  BellAlertIcon,
-  CreditCardIcon,
-  UserIcon,
-  ArtistsIcon,
   AlbumsIcon,
+  ArtistsIcon,
+  BellAlertIcon,
+  ChatBubbleLeftRightIcon,
+  Cog6ToothIcon,
+  CreditCardIcon,
+  KeyboardIcon,
+  MicrophoneIcon,
   MusicalNoteIcon,
-} from './~icons';
-import { Strong } from '@/components/text';
+  RecordIcon,
+  ScreenShareIcon,
+  UserIcon,
+  VideoCameraIcon,
+} from "./~icons";
 
 const meta: Meta<typeof Tabs> = {
-  title: 'Tabs',
+  title: "Components/Tabs",
   component: Tabs,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       ...docs,
       description: {
@@ -34,16 +36,16 @@ const meta: Meta<typeof Tabs> = {
           '<a href="https://react-spectrum.adobe.com/react-aria/Tabs.html#tabs" target="_blank">`Tabs`</a> organize content into multiple sections and allow users to navigate between them.',
       },
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <div className="p-4 sm:p-12">
       <Tabs>
@@ -55,17 +57,17 @@ export const BasicExample = () => {
           <Tab id="Notifications">Notifications</Tab>
         </TabList>
 
-        <TabPanel id="Overview"></TabPanel>
-        <TabPanel id="Activity"></TabPanel>
-        <TabPanel id="Settings"></TabPanel>
-        <TabPanel id="Collaborators"></TabPanel>
-        <TabPanel id="Notifications"></TabPanel>
+        <TabPanel id="Overview" />
+        <TabPanel id="Activity" />
+        <TabPanel id="Settings" />
+        <TabPanel id="Collaborators" />
+        <TabPanel id="Notifications" />
       </Tabs>
     </div>
   );
-};
+}
 
-export const WithIcons = () => {
+export function WithIcons() {
   return (
     <div className="p-4 sm:p-12">
       <Tabs>
@@ -91,16 +93,16 @@ export const WithIcons = () => {
           </Tab>
         </TabList>
 
-        <TabPanel id="profile"></TabPanel>
+        <TabPanel id="profile" />
 
-        <TabPanel id="billing"></TabPanel>
-        <TabPanel id="notifications"></TabPanel>
+        <TabPanel id="billing" />
+        <TabPanel id="notifications" />
       </Tabs>
     </div>
   );
-};
+}
 
-export const WithBadges = () => {
+export function WithBadges() {
   return (
     <div className="p-4 sm:p-12">
       <Tabs>
@@ -129,9 +131,9 @@ export const WithBadges = () => {
       </Tabs>
     </div>
   );
-};
+}
 
-export const VerticalTabs = () => {
+export function VerticalTabs() {
   return (
     <div className="p-4 sm:p-12">
       <Strong>Components</Strong>
@@ -145,18 +147,18 @@ export const VerticalTabs = () => {
           <Tab id="Dialog">Dialog</Tab>
         </TabList>
 
-        <TabPanel id="Alert"></TabPanel>
-        <TabPanel id="Avatar"></TabPanel>
-        <TabPanel id="Badge"></TabPanel>
-        <TabPanel id="Button"></TabPanel>
-        <TabPanel id="Checkbox"></TabPanel>
-        <TabPanel id="Dialog"></TabPanel>
+        <TabPanel id="Alert" />
+        <TabPanel id="Avatar" />
+        <TabPanel id="Badge" />
+        <TabPanel id="Button" />
+        <TabPanel id="Checkbox" />
+        <TabPanel id="Dialog" />
       </Tabs>
     </div>
   );
-};
+}
 
-export const PillsTab = () => {
+export function PillsTab() {
   return (
     <div className="p-4 sm:p-12">
       <Tabs variant="pills">
@@ -166,16 +168,16 @@ export const PillsTab = () => {
           <Tab id="Team Members">Team Members</Tab>
           <Tab id="Billing">Billing</Tab>
         </TabList>
-        <TabPanel id="My Account"></TabPanel>
-        <TabPanel id="Company"></TabPanel>
-        <TabPanel id="Team Members"></TabPanel>
-        <TabPanel id="Billing"></TabPanel>
+        <TabPanel id="My Account" />
+        <TabPanel id="Company" />
+        <TabPanel id="Team Members" />
+        <TabPanel id="Billing" />
       </Tabs>
     </div>
   );
-};
+}
 
-export const VerticalPillsTab = () => {
+export function VerticalPillsTab() {
   return (
     <div className="p-4 sm:p-12">
       <Tabs variant="pills" orientation="vertical">
@@ -224,19 +226,19 @@ export const VerticalPillsTab = () => {
           </Tab>
         </TabList>
 
-        <TabPanel id="General"></TabPanel>
-        <TabPanel id="Video"></TabPanel>
-        <TabPanel id="Audio"></TabPanel>
-        <TabPanel id="Screen Share"></TabPanel>
-        <TabPanel id="Team Chat"></TabPanel>
-        <TabPanel id="Recording"></TabPanel>
-        <TabPanel id="Keyboard Shortcuts"></TabPanel>
+        <TabPanel id="General" />
+        <TabPanel id="Video" />
+        <TabPanel id="Audio" />
+        <TabPanel id="Screen Share" />
+        <TabPanel id="Team Chat" />
+        <TabPanel id="Recording" />
+        <TabPanel id="Keyboard Shortcuts" />
       </Tabs>
     </div>
   );
-};
+}
 
-export const SegmentsTab = () => {
+export function SegmentsTab() {
   return (
     <div className="p-4 sm:p-12">
       <Tabs variant="segment">
@@ -246,15 +248,15 @@ export const SegmentsTab = () => {
           <Tab id="Songs">Songs</Tab>
         </TabList>
 
-        <TabPanel id="Artists"></TabPanel>
-        <TabPanel id="Albums"></TabPanel>
-        <TabPanel id="Songs"></TabPanel>
+        <TabPanel id="Artists" />
+        <TabPanel id="Albums" />
+        <TabPanel id="Songs" />
       </Tabs>
     </div>
   );
-};
+}
 
-export const SegmentsTabWithIcon = () => {
+export function SegmentsTabWithIcon() {
   return (
     <div className="p-4 sm:p-12">
       <Tabs variant="segment">
@@ -279,24 +281,24 @@ export const SegmentsTabWithIcon = () => {
           </Tab>
         </TabList>
 
-        <TabPanel id="Artists"></TabPanel>
-        <TabPanel id="Albums"></TabPanel>
-        <TabPanel id="Songs"></TabPanel>
+        <TabPanel id="Artists" />
+        <TabPanel id="Albums" />
+        <TabPanel id="Songs" />
       </Tabs>
     </div>
   );
-};
+}
 
 const tabs = [
-  { title: 'Overview' },
-  { title: 'Activity' },
-  { title: 'Settings' },
-  { title: 'Collaborators' },
-  { title: 'Notifications' },
+  { title: "Components/Overview" },
+  { title: "Components/Activity" },
+  { title: "Components/Settings" },
+  { title: "Components/Collaborators" },
+  { title: "Components/Notifications" },
 ];
 
-export const TabsOnMobile = () => {
-  const [tab, setTab] = React.useState<Key>('Overview');
+export function TabsOnMobile() {
+  const [tab, setTab] = React.useState<Key>("Overview");
 
   return (
     <div className="p-4 sm:p-12">
@@ -308,13 +310,11 @@ export const TabsOnMobile = () => {
             setTab(e.target.value);
           }}
         >
-          {tabs.map((tab) => {
-            return (
-              <option key={tab.title} value={tab.title}>
-                {tab.title}
-              </option>
-            );
-          })}
+          {tabs.map((tab) => (
+            <option key={tab.title} value={tab.title}>
+              {tab.title}
+            </option>
+          ))}
         </NativeSelect>
       </NativeSelectField>
 
@@ -324,24 +324,22 @@ export const TabsOnMobile = () => {
           aria-label="Navigation"
           items={tabs}
         >
-          {(item) => {
-            return <Tab id={item.title}>{item.title}</Tab>;
-          }}
+          {(item) => <Tab id={item.title}>{item.title}</Tab>}
         </TabList>
 
-        {tabs.map((tab) => {
-          return <TabPanel key={tab.title} id={tab.title}></TabPanel>;
-        })}
+        {tabs.map((tab) => (
+          <TabPanel key={tab.title} id={tab.title} />
+        ))}
       </Tabs>
     </div>
   );
-};
+}
 
 TabsOnMobile.parameters = {
   docs: {
     description: {
       story:
-        'You can scroll tablist on mobile. If this is not what you want, you can show a selector on mobile. Please resize the screen to test.',
+        "You can scroll tablist on mobile. If this is not what you want, you can show a selector on mobile. Please resize the screen to test.",
     },
   },
 };

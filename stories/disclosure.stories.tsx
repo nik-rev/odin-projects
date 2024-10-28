@@ -1,20 +1,22 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from "@storybook/react";
+import { ChevronDown } from "lucide-react";
+
 import {
-  DisclosureGroup,
   Disclosure,
-  DisclosurePanel,
   DisclosureControl,
-} from '@/components/disclosure';
-import { docs } from '../.storybook/docs';
-import { Text } from '@/components/text';
-import { ChevronDown } from 'lucide-react';
-import { Heading } from '@/components/heading';
+  DisclosureGroup,
+  DisclosurePanel,
+} from "@/components/disclosure";
+import { Heading } from "@/components/heading";
+import { Text } from "@/components/text";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof Disclosure> = {
-  title: 'Disclosure',
+  title: "Components/Disclosure",
   component: Disclosure,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       description: {
         component:
@@ -22,16 +24,16 @@ const meta: Meta<typeof Disclosure> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <div className="p-6">
       <Disclosure>
@@ -46,9 +48,9 @@ export const BasicExample = () => {
       </Disclosure>
     </div>
   );
-};
+}
 
-export const DefaultExpanded = () => {
+export function DefaultExpanded() {
   return (
     <div className="p-6">
       <Disclosure defaultExpanded>
@@ -63,16 +65,16 @@ export const DefaultExpanded = () => {
       </Disclosure>
     </div>
   );
-};
+}
 
-export const WithToggleIcon = () => {
+export function WithToggleIcon() {
   return (
     <div className="p-6">
       <Disclosure defaultExpanded>
         <DisclosureControl className="gap-x-2">
           What is web accessibility?
           <ChevronDown
-            className="h-5 w-5 text-muted transition-all group-aria-[expanded=true]:rotate-180"
+            className="size-5 text-muted transition-all group-aria-[expanded=true]:rotate-180"
             strokeWidth={1.5}
           />
         </DisclosureControl>
@@ -86,9 +88,9 @@ export const WithToggleIcon = () => {
       </Disclosure>
     </div>
   );
-};
+}
 
-export const WithDisclosureGroups = () => {
+export function WithDisclosureGroups() {
   return (
     <div className="p-6">
       <DisclosureGroup className="flex flex-col gap-6" id="frequently asked">
@@ -156,4 +158,4 @@ export const WithDisclosureGroups = () => {
       </DisclosureGroup>
     </div>
   );
-};
+}

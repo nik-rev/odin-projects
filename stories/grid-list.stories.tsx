@@ -1,12 +1,14 @@
-import type { Meta } from '@storybook/react';
-import { GridList, GridListItem } from '@/components/grid-list';
-import { docs } from '../.storybook/docs';
+import type { Meta } from "@storybook/react";
+
+import { GridList, GridListItem } from "@/components/grid-list";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof GridList> = {
   component: GridList,
-  title: 'Grid list',
+  title: "Components/Grid list",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -14,16 +16,16 @@ const meta: Meta<typeof GridList> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <GridList aria-label="Ice cream flavors" selectionMode="multiple">
       <GridListItem id="chocolate">Chocolate</GridListItem>
@@ -32,14 +34,14 @@ export const BasicExample = () => {
       <GridListItem id="vanilla">Vanilla</GridListItem>
     </GridList>
   );
-};
+}
 
-export const DisabledItems = () => {
+export function DisabledItems() {
   return (
     <GridList
       aria-label="Ice cream flavors"
       selectionMode="multiple"
-      disabledKeys={['mint']}
+      disabledKeys={["mint"]}
     >
       <GridListItem id="chocolate">Chocolate</GridListItem>
       <GridListItem id="mint">Mint</GridListItem>
@@ -47,4 +49,4 @@ export const DisabledItems = () => {
       <GridListItem id="vanilla">Vanilla</GridListItem>
     </GridList>
   );
-};
+}

@@ -1,40 +1,42 @@
-import type { Meta } from '@storybook/react';
-import { docs } from '../.storybook/docs';
-import { Verified } from './~icons';
-import { Avatar, AvatarBadge, AvatarGroup } from '@/components/avatar';
-import { Available, Away, Busy, DoNotDisturb } from '@/components/status';
+import type { Meta } from "@storybook/react";
+
+import { Avatar, AvatarBadge, AvatarGroup } from "@/components/avatar";
+import { Available, Away, Busy, DoNotDisturb } from "@/components/status";
+
+import { docs } from "../.storybook/docs";
+import { Verified } from "./~icons";
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Avatar',
+  title: "Components/Avatar",
   component: Avatar,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
-          'An **avatar** is a thumbnail representation of an entity, such as a user or an organization.',
+          "An **avatar** is a thumbnail representation of an entity, such as a user or an organization.",
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <Avatar
       alt="M A"
       src="https://images.unsplash.com/photo-1601412436009-d964bd02edbc?q=80&auto=format&fit=facearea&facepad=3&w=256&h=256"
     />
   );
-};
+}
 
-export const RoundedAvatars = () => {
+export function RoundedAvatars() {
   return (
     <div className="flex gap-6">
       <Avatar
@@ -48,7 +50,7 @@ export const RoundedAvatars = () => {
       />
     </div>
   );
-};
+}
 
 RoundedAvatars.parameters = {
   docs: {
@@ -58,7 +60,7 @@ RoundedAvatars.parameters = {
   },
 };
 
-export const AvatarSizes = () => {
+export function AvatarSizes() {
   return (
     <div className="flex items-end gap-6">
       <Avatar
@@ -97,7 +99,7 @@ export const AvatarSizes = () => {
       />
     </div>
   );
-};
+}
 
 AvatarSizes.parameters = {
   docs: {
@@ -108,7 +110,7 @@ AvatarSizes.parameters = {
   },
 };
 
-export const InitialFallbacks = () => {
+export function InitialFallbacks() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-end gap-4">
@@ -131,18 +133,18 @@ export const InitialFallbacks = () => {
       </div>
     </div>
   );
-};
+}
 
 InitialFallbacks.parameters = {
   docs: {
     description: {
       story:
-        'The `alt` prop is used to generate initial avatar when image is loading or src is unavailable. Use the `colorless` prop to render initial avatars with a single background.',
+        "The `alt` prop is used to generate initial avatar when image is loading or src is unavailable. Use the `colorless` prop to render initial avatars with a single background.",
     },
   },
 };
 
-export const AvatarBadges = () => {
+export function AvatarBadges() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex gap-4">
@@ -182,14 +184,14 @@ export const AvatarBadges = () => {
             aria-label="Verified"
             className="border-none bg-blue-500 p-0 text-white"
             badge={<Verified />}
-          ></AvatarBadge>
+          />
         </Avatar>
       </div>
     </div>
   );
-};
+}
 
-export const AvatarBadgeSizesHiddenTitle = () => {
+export function AvatarBadgeSizesHiddenTitle() {
   return (
     <div className="flex items-end gap-6">
       <Avatar
@@ -235,9 +237,9 @@ export const AvatarBadgeSizesHiddenTitle = () => {
       </Avatar>
     </div>
   );
-};
+}
 
-export const AvatarBadgeSizeRoundedHiddenTitle = () => {
+export function AvatarBadgeSizeRoundedHiddenTitle() {
   return (
     <div className="flex items-end gap-6">
       <Avatar
@@ -284,7 +286,7 @@ export const AvatarBadgeSizeRoundedHiddenTitle = () => {
       </Avatar>
     </div>
   );
-};
+}
 
 AvatarBadges.parameters = {
   docs: {
@@ -295,7 +297,7 @@ AvatarBadges.parameters = {
   },
 };
 
-export const AvatarGroups = () => {
+export function AvatarGroups() {
   return (
     <div className="flex flex-col gap-6">
       <AvatarGroup>
@@ -419,12 +421,12 @@ export const AvatarGroups = () => {
       </div>
     </div>
   );
-};
+}
 
 AvatarGroups.parameters = {
   docs: {
     description: {
-      story: 'Use the `AvatarGroup` component to stack avatars.',
+      story: "Use the `AvatarGroup` component to stack avatars.",
     },
   },
 };

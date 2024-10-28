@@ -1,22 +1,24 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { docs } from '../.storybook/docs';
-import { Button } from '@/components/button';
-import { Modal } from '@/components/modal';
+import type { Meta } from "@storybook/react";
+import React from "react";
+
+import { Button } from "@/components/button";
 import {
-  DialogTrigger,
   Dialog,
   DialogBody,
+  DialogCloseButton,
   DialogFooter,
   DialogHeader,
-  DialogCloseButton,
-} from '@/components/dialog';
+  DialogTrigger,
+} from "@/components/dialog";
+import { Modal } from "@/components/modal";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta = {
-  title: 'Alert dialog',
+  title: "Components/Alert dialog",
   component: Dialog,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -24,21 +26,26 @@ const meta: Meta = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <>
-      <Button color="destructive" onPress={() => setIsOpen(true)}>
+      <Button
+        color="destructive"
+        onPress={() => {
+          setIsOpen(true);
+        }}
+      >
         Revoke access
       </Button>
       <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
@@ -50,7 +57,12 @@ export const BasicExample = () => {
           </DialogBody>
           <DialogFooter>
             <DialogCloseButton>Cancel</DialogCloseButton>
-            <Button color="destructive" onPress={() => setIsOpen(false)}>
+            <Button
+              color="destructive"
+              onPress={() => {
+                setIsOpen(false);
+              }}
+            >
               Revoke access
             </Button>
           </DialogFooter>
@@ -58,9 +70,9 @@ export const BasicExample = () => {
       </Modal>
     </>
   );
-};
+}
 
-export const WhenToUseAlertDialogs = () => {
+export function WhenToUseAlertDialogs() {
   return (
     <DialogTrigger>
       <Button>About</Button>
@@ -75,7 +87,7 @@ export const WhenToUseAlertDialogs = () => {
       </Modal>
     </DialogTrigger>
   );
-};
+}
 
 WhenToUseAlertDialogs.parameters = {
   docs: {

@@ -11,6 +11,9 @@ importers:
       '@heroicons/react':
         specifier: ^2.1.5
         version: 2.1.5(react@19.0.0-rc-69d4b800-20241021)
+      '@internationalized/date':
+        specifier: ^3.5.6
+        version: 3.5.6
       '@react-aria/toast':
         specifier: 3.0.0-beta.17
         version: 3.0.0-beta.17(react@19.0.0-rc-69d4b800-20241021)
@@ -21,8 +24,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1(tailwindcss@3.4.14)
       eslint-config-nikitarevenco:
-        specifier: ^13.0.0
-        version: 13.0.0(ek2ex4gvvwpbkudw4yjbjyi7qi)
+        specifier: ^14.0.0
+        version: 14.0.0(ek2ex4gvvwpbkudw4yjbjyi7qi)
       lucide-react:
         specifier: ^0.453.0
         version: 0.453.0(react@19.0.0-rc-69d4b800-20241021)
@@ -2980,8 +2983,8 @@ packages:
       typescript:
         optional: true
 
-  eslint-config-nikitarevenco@13.0.0:
-    resolution: {integrity: sha512-w+XCujSrtrh9li3CT2nXDDOORsrH5hLtL0fu/qjE8bOxX13Bsi/I8UHf9aNhof9AMzHZ330WCdEFKXM7h61c/A==}
+  eslint-config-nikitarevenco@14.0.0:
+    resolution: {integrity: sha512-AqLNyZ1QOZIp1cC8NU3H/ITiLaZ02qTu43kUjEKeTKyuFJEW74+RgMz0lrKIpGIoDZJxtklzgp8gn5hUUn6Yww==}
     peerDependencies:
       '@eslint/compat': ^1.1.1
       '@eslint/js': ^9.9.0
@@ -9063,7 +9066,7 @@ snapshots:
       - eslint-plugin-import-x
       - supports-color
 
-  eslint-config-nikitarevenco@13.0.0(ek2ex4gvvwpbkudw4yjbjyi7qi):
+  eslint-config-nikitarevenco@14.0.0(ek2ex4gvvwpbkudw4yjbjyi7qi):
     dependencies:
       '@eslint/compat': 1.2.1(eslint@9.13.0(jiti@1.21.6))
       '@eslint/js': 9.13.0

@@ -1,26 +1,28 @@
-import type { Meta } from '@storybook/react';
-import { Form } from '@/components/form';
-import { Button } from '@/components/button';
 import {
-  DateRangePickerInput,
+  getLocalTimeZone,
+  isWeekend,
+  parseDate,
+  today,
+} from "@internationalized/date";
+import type { Meta } from "@storybook/react";
+import { useLocale } from "react-aria-components";
+
+import { Button } from "@/components/button";
+import {
   DateRangePicker,
   DateRangePickerButton,
-} from '@/components/date-range-picker';
-import { Description, FieldError, Label } from '@/components/field';
-import { docs } from '../.storybook/docs';
-import {
-  isWeekend,
-  today,
-  getLocalTimeZone,
-  parseDate,
-} from '@internationalized/date';
-import { useLocale } from 'react-aria-components';
+  DateRangePickerInput,
+} from "@/components/date-range-picker";
+import { Description, FieldError, Label } from "@/components/field";
+import { Form } from "@/components/form";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof DateRangePicker> = {
-  title: 'Date range picker',
+  title: "Components/Date range picker",
   component: DateRangePicker,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -28,25 +30,25 @@ const meta: Meta<typeof DateRangePicker> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <DateRangePicker>
       <Label>Stay duration</Label>
       <DateRangePickerInput />
     </DateRangePicker>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <DateRangePicker>
       <Label>Stay duration</Label>
@@ -54,9 +56,9 @@ export const WithDescription = () => {
       <DateRangePickerInput />
     </DateRangePicker>
   );
-};
+}
 
-export const WithDescriptionHiddenTitle = () => {
+export function WithDescriptionHiddenTitle() {
   return (
     <DateRangePicker>
       <Label>Stay duration</Label>
@@ -64,9 +66,9 @@ export const WithDescriptionHiddenTitle = () => {
       <Description>Please enter your stay duration</Description>
     </DateRangePicker>
   );
-};
+}
 
-export const Validation = () => {
+export function Validation() {
   return (
     <Form className="flex flex-col items-start gap-2">
       <DateRangePicker isRequired>
@@ -78,9 +80,9 @@ export const Validation = () => {
       <Button type="submit">Submit</Button>
     </Form>
   );
-};
+}
 
-export const WithMinimumAndMaximumValues = () => {
+export function WithMinimumAndMaximumValues() {
   return (
     <DateRangePicker
       minValue={today(getLocalTimeZone())}
@@ -97,9 +99,9 @@ export const WithMinimumAndMaximumValues = () => {
       <DateRangePickerInput />
     </DateRangePicker>
   );
-};
+}
 
-export const WithUnavailableDates = () => {
+export function WithUnavailableDates() {
   const now = today(getLocalTimeZone());
   const disabledRanges = [
     [now, now.add({ days: 5 })],
@@ -108,11 +110,11 @@ export const WithUnavailableDates = () => {
   ];
 
   const { locale } = useLocale();
-  const isDateUnavailable = (date: any) =>
+  const isDateUnavailable = (date: unknown) =>
     isWeekend(date, locale) ||
     disabledRanges.some(
       (interval) =>
-        date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0,
+        date.compare(interval.at(0)) >= 0 && date.compare(interval.at(1)) <= 0,
     );
 
   return (
@@ -125,9 +127,9 @@ export const WithUnavailableDates = () => {
       <DateRangePickerInput />
     </DateRangePicker>
   );
-};
+}
 
-export const WithNonContiguousRange = () => {
+export function WithNonContiguousRange() {
   const { locale } = useLocale();
   return (
     <DateRangePicker
@@ -138,9 +140,9 @@ export const WithNonContiguousRange = () => {
       <DateRangePickerInput />
     </DateRangePicker>
   );
-};
+}
 
-export const WithDisable = () => {
+export function WithDisable() {
   return (
     <DateRangePicker isDisabled>
       <Label>Stay duration</Label>
@@ -148,9 +150,9 @@ export const WithDisable = () => {
       <DateRangePickerInput />
     </DateRangePicker>
   );
-};
+}
 
-export const WithReadonly = () => {
+export function WithReadonly() {
   return (
     <DateRangePicker isReadOnly>
       <Label>Stay duration</Label>
@@ -158,9 +160,9 @@ export const WithReadonly = () => {
       <DateRangePickerInput />
     </DateRangePicker>
   );
-};
+}
 
-export const DateRangePickerButtons = () => {
+export function DateRangePickerButtons() {
   return (
     <Form className="flex flex-col items-start gap-2">
       <DateRangePicker isRequired>
@@ -172,4 +174,4 @@ export const DateRangePickerButtons = () => {
       <Button type="submit">Submit</Button>
     </Form>
   );
-};
+}

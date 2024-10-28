@@ -1,21 +1,23 @@
-import type { Meta } from '@storybook/react';
-import { Button } from '@/components/button';
-import { docs } from '../.storybook/docs';
+import type { Meta } from "@storybook/react";
+import { FolderPlus, Plus } from "lucide-react";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Button } from "@/components/button";
 import {
   EmptyState,
   EmptyStateActions,
   EmptyStateDescription,
   EmptyStateHeading,
   EmptyStateIcon,
-} from '@/components/empty-state';
-import { FolderPlus, Plus } from 'lucide-react';
-import { AccessibleIcon } from '@/components/accessible-icon';
+} from "@/components/empty-state";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof Button> = {
-  title: 'Empty state',
+  title: "Components/Empty state",
   component: Button,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       description: {
         component:
@@ -23,16 +25,16 @@ const meta: Meta<typeof Button> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <EmptyState className="h-screen">
       <EmptyStateIcon>
@@ -52,4 +54,4 @@ export const BasicExample = () => {
       </EmptyStateActions>
     </EmptyState>
   );
-};
+}

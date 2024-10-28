@@ -1,31 +1,33 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { docs } from '../.storybook/docs';
-import { TagsInputField, TagsInput } from '@/components/tag-input';
-import { Description, FieldError, Label } from '@/components/field';
-import { useListData } from 'react-stately';
-import { Form } from '@/components/form';
-import { Button } from '@/components/button';
+import type { Meta } from "@storybook/react";
+import React from "react";
+import { useListData } from "react-stately";
+
+import { Button } from "@/components/button";
+import { Description, FieldError, Label } from "@/components/field";
+import { Form } from "@/components/form";
+import { TagsInput, TagsInputField } from "@/components/tag-input";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta = {
-  title: 'Tag input',
+  title: "Components/Tag input",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const Example = () => {
+export function Example() {
   const list = useListData({
-    initialItems: [{ id: 1, name: 'React' }],
+    initialItems: [{ id: 1, name: "React" }],
   });
 
   const [isInvalid, setIsInvalid] = React.useState(false);
@@ -57,9 +59,7 @@ export const Example = () => {
         <TagsInput />
         <FieldError>Please fill out this field.</FieldError>
       </TagsInputField>
-      <Button type="submit">
-        Save
-      </Button>
+      <Button type="submit">Save</Button>
     </Form>
   );
-};
+}

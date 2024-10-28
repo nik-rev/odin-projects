@@ -1,14 +1,16 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { Button } from '@/components/button';
-import { docs } from '../.storybook/docs';
-import { FileTrigger } from '@/components/file-trigger';
-import { Avatar } from '@/components/avatar';
+import type { Meta } from "@storybook/react";
+import React from "react";
+
+import { Avatar } from "@/components/avatar";
+import { Button } from "@/components/button";
+import { FileTrigger } from "@/components/file-trigger";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof Button> = {
-  title: 'File trigger',
+  title: "Components/File trigger",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -16,17 +18,17 @@ const meta: Meta<typeof Button> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
-  const [file, setFile] = React.useState<Array<string> | null>(null);
+export function BasicExample() {
+  const [file, setFile] = React.useState<string[] | null>(null);
 
   return (
     <>
@@ -36,7 +38,7 @@ export const BasicExample = () => {
             return;
           }
 
-          const files = Array.from(e);
+          const files = [...e];
           const filenames = files.map((file) => file.name);
           setFile(filenames);
         }}
@@ -46,21 +48,21 @@ export const BasicExample = () => {
       {file && file}
     </>
   );
-};
+}
 
-export const ChangeProfile = () => {
-  const [src, setSrc] = React.useState<string | undefined>(undefined);
+export function ChangeProfile() {
+  const [src, setSrc] = React.useState<string | undefined>();
 
   return (
     <div className="flex items-center gap-2">
-      <Avatar alt="D D" className="rounded-full" src={src}></Avatar>
+      <Avatar alt="D D" className="rounded-full" src={src} />
       <FileTrigger
         onSelect={(e) => {
           if (!e) {
             return;
           }
 
-          const file = Array.from(e)[0];
+          const file = [...e].at(0);
           setSrc(URL.createObjectURL(file));
         }}
       >
@@ -68,4 +70,4 @@ export const ChangeProfile = () => {
       </FileTrigger>
     </div>
   );
-};
+}

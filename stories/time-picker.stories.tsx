@@ -1,55 +1,58 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { DatePicker, DatePickerButton } from '@/components/date-picker';
-import { docs } from '../.storybook/docs';
-import { FieldError, LabeledGroup, Label } from '@/components/field';
 import {
-  today,
   getLocalTimeZone,
   now,
+  Time,
   toCalendarDate,
   toCalendarDateTime,
-  Time,
+  today,
   toTime,
-} from '@internationalized/date';
-import { getRoundMinute, useTimePicker } from '@/components/time-picker';
+} from "@internationalized/date";
+import type { Meta } from "@storybook/react";
+import React from "react";
+import { Group } from "react-aria-components";
+
+import { DatePicker, DatePickerButton } from "@/components/date-picker";
+import { FieldError, Label, LabeledGroup } from "@/components/field";
 import {
   Select,
   SelectButton,
-  SelectListItem,
   SelectListBox,
+  SelectListItem,
   SelectPopover,
-} from '@/components/select';
-import { Group } from 'react-aria-components';
+} from "@/components/select";
+import { getRoundMinute, useTimePicker } from "@/components/time-picker";
+
+import { docs } from "../.storybook/docs";
 
 const t = now(getLocalTimeZone());
 
 toCalendarDateTime(t);
 
 const meta: Meta = {
-  title: 'Time picker',
+  title: "Components/Time picker",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const TimePickerButtons = () => {
+export function TimePickerButtons() {
   const options = useTimePicker({
     intervalInMinute: 15,
   });
 
-  const startTime = options.find(({ hour, minute }) => {
-    return new Time(hour, minute).compare(toTime(now(getLocalTimeZone()))) > 0;
-  })?.id;
+  const startTime = options.find(
+    ({ hour, minute }) =>
+      new Time(hour, minute).compare(toTime(now(getLocalTimeZone()))) > 0,
+  )?.id;
 
   return (
     <Select
@@ -60,16 +63,14 @@ export const TimePickerButtons = () => {
       <SelectButton />
       <SelectPopover className="w-30">
         <SelectListBox items={options}>
-          {(item) => {
-            return <SelectListItem>{item.value}</SelectListItem>;
-          }}
+          {(item) => <SelectListItem>{item.value}</SelectListItem>}
         </SelectListBox>
       </SelectPopover>
     </Select>
   );
-};
+}
 
-export const DateAndTimerPicker = () => {
+export function DateAndTimerPicker() {
   const options = useTimePicker({
     intervalInMinute: 15,
   });
@@ -94,19 +95,19 @@ export const DateAndTimerPicker = () => {
 
   const startDate = toCalendarDate(startDateTime);
 
-  const startTime = options.find(({ hour, minute }) => {
-    return hour === startDateTime.hour && minute === startDateTime.minute;
-  })?.id;
+  const startTime = options.find(
+    ({ hour, minute }) =>
+      hour === startDateTime.hour && minute === startDateTime.minute,
+  )?.id;
 
   const disabledStartTimeOptions = options
-    .filter((option) => {
-      return (
+    .filter(
+      (option) =>
         toCalendarDateTime(
           startDate,
           new Time(option.hour, option.minute),
-        ).compare(toCalendarDateTime(now(getLocalTimeZone()))) <= 0
-      );
-    })
+        ).compare(toCalendarDateTime(now(getLocalTimeZone()))) <= 0,
+    )
     .map((option) => option.id);
 
   const [endDateTime, setEndDateTime] = React.useState(() => {
@@ -129,19 +130,19 @@ export const DateAndTimerPicker = () => {
 
   const endDate = toCalendarDate(endDateTime);
 
-  const endTime = options.find(({ hour, minute }) => {
-    return hour === endDateTime.hour && minute === endDateTime.minute;
-  })?.id;
+  const endTime = options.find(
+    ({ hour, minute }) =>
+      hour === endDateTime.hour && minute === endDateTime.minute,
+  )?.id;
 
   const disabledEndTimeOptions = options
-    .filter((option) => {
-      return (
+    .filter(
+      (option) =>
         toCalendarDateTime(
           endDate,
           new Time(option.hour, option.minute),
-        ).compare(startDateTime) <= 0
-      );
-    })
+        ).compare(startDateTime) <= 0,
+    )
     .map((option) => option.id);
 
   return (
@@ -202,9 +203,7 @@ export const DateAndTimerPicker = () => {
               <SelectButton />
               <SelectPopover className="w-30">
                 <SelectListBox items={options}>
-                  {(item) => {
-                    return <SelectListItem>{item.value}</SelectListItem>;
-                  }}
+                  {(item) => <SelectListItem>{item.value}</SelectListItem>}
                 </SelectListBox>
               </SelectPopover>
             </Select>
@@ -243,9 +242,7 @@ export const DateAndTimerPicker = () => {
               <SelectButton />
               <SelectPopover className="w-30">
                 <SelectListBox items={options}>
-                  {(item) => {
-                    return <SelectListItem>{item.value}</SelectListItem>;
-                  }}
+                  {(item) => <SelectListItem>{item.value}</SelectListItem>}
                 </SelectListBox>
               </SelectPopover>
             </Select>
@@ -254,4 +251,4 @@ export const DateAndTimerPicker = () => {
       </Group>
     </LabeledGroup>
   );
-};
+}

@@ -1,23 +1,30 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
+import type { Meta } from "@storybook/react";
+import React from "react";
+import { Group } from "react-aria-components";
+
+import { Button } from "@/components/button";
 import {
   Checkbox,
+  Checkboxes,
   CheckboxField,
   CheckboxGroup,
-  Checkboxes,
-} from '@/components/checkbox';
-import { Form } from '@/components/form';
-import { Button } from '@/components/button';
-import { Strong, Text } from '@/components/text';
-import { Label, Description, FieldError, LabeledGroup } from '@/components/field';
-import { docs } from '../.storybook/docs';
-import { Group } from 'react-aria-components';
+} from "@/components/checkbox";
+import {
+  Description,
+  FieldError,
+  Label,
+  LabeledGroup,
+} from "@/components/field";
+import { Form } from "@/components/form";
+import { Strong, Text } from "@/components/text";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'Checkbox',
+  title: "Components/Checkbox",
   component: Checkbox,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -25,71 +32,71 @@ const meta: Meta<typeof Checkbox> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return <Checkbox>I accept to the terms and conditions</Checkbox>;
-};
+}
 
-export const WithCheckboxDescription = () => {
+export function WithCheckboxDescription() {
   return (
-    <CheckboxField className='max-w-sm'>
+    <CheckboxField className="max-w-sm">
       <Checkbox>Subscribe</Checkbox>
       <Description>
         You will receive our newsletter once per week. Unsubscribe at any time.
       </Description>
     </CheckboxField>
   );
-};
+}
 
 WithCheckboxDescription.parameters = {
   docs: {
     description: {
       story:
-        'Use the `CheckboxField` and `Description` component to add checkbox description.',
+        "Use the `CheckboxField` and `Description` component to add checkbox description.",
     },
   },
 };
 
-export const WithDisabledCheckbox = () => {
+export function WithDisabledCheckbox() {
   return (
-    <CheckboxField className='max-w-sm'>
+    <CheckboxField className="max-w-sm">
       <Checkbox isDisabled>Subscribe</Checkbox>
       <Description>
         You will receive our newsletter once per week. Unsubscribe at any time.
       </Description>
     </CheckboxField>
   );
-};
+}
 
 WithDisabledCheckbox.parameters = {
   docs: {
     description: {
       story:
-        'Use the `isDisabled` prop on the `Checkbox` component to disable checkbox.',
+        "Use the `isDisabled` prop on the `Checkbox` component to disable checkbox.",
     },
   },
 };
 
-export const WithReadonlyCheckbox = () => {
+export function WithReadonlyCheckbox() {
   return (
-    <CheckboxField className='max-w-sm'>
+    <CheckboxField className="max-w-sm">
       <Checkbox isReadOnly>Subscribe</Checkbox>
       <Description>
         You will receive our newsletter once per week. Unsubscribe at any time.
       </Description>
     </CheckboxField>
   );
-};
+}
 
-export const WithCheckboxGroups = () => {
+export function WithCheckboxGroups() {
   return (
     <CheckboxGroup>
       <Label>Notifications</Label>
@@ -100,18 +107,18 @@ export const WithCheckboxGroups = () => {
       </Checkboxes>
     </CheckboxGroup>
   );
-};
+}
 
 WithCheckboxGroups.parameters = {
   docs: {
     description: {
       story:
-        'Use the `CheckboxGroup` and `Label` component to build your checkbox group.',
+        "Use the `CheckboxGroup` and `Label` component to build your checkbox group.",
     },
   },
 };
 
-export const WithCheckboxGroupDescription = () => {
+export function WithCheckboxGroupDescription() {
   return (
     <CheckboxGroup>
       <Label>Notifications</Label>
@@ -125,9 +132,9 @@ export const WithCheckboxGroupDescription = () => {
       </Checkboxes>
     </CheckboxGroup>
   );
-};
+}
 
-export const WithCheckboxDescriptionAndGroupDescription = () => {
+export function WithCheckboxDescriptionAndGroupDescription() {
   return (
     <CheckboxGroup>
       <Label>Notifications</Label>
@@ -152,9 +159,9 @@ export const WithCheckboxDescriptionAndGroupDescription = () => {
       </Checkboxes>
     </CheckboxGroup>
   );
-};
+}
 
-export const WithHorizontalCheckboxGroup = () => {
+export function WithHorizontalCheckboxGroup() {
   return (
     <CheckboxGroup orientation="horizontal">
       <Label>Notifications</Label>
@@ -165,13 +172,13 @@ export const WithHorizontalCheckboxGroup = () => {
       </Checkboxes>
     </CheckboxGroup>
   );
-};
+}
 
-export const WithCheckboxLabelPosition = () => {
+export function WithCheckboxLabelPosition() {
   return (
     <Checkbox labelPosition="left">I accept the terms and conditions</Checkbox>
   );
-};
+}
 
 WithCheckboxLabelPosition.parameters = {
   docs: {
@@ -182,7 +189,7 @@ WithCheckboxLabelPosition.parameters = {
   },
 };
 
-export const WithCheckboxGroupLabelPosition = () => {
+export function WithCheckboxGroupLabelPosition() {
   return (
     <CheckboxGroup>
       <Label>Notifications</Label>
@@ -213,16 +220,16 @@ export const WithCheckboxGroupLabelPosition = () => {
       </Checkboxes>
     </CheckboxGroup>
   );
-};
+}
 
-const options = ['Notify via email', 'Notify via SMS', 'Notify via Telegram'];
+const options = ["Notify via email", "Notify via SMS", "Notify via Telegram"];
 
-export const WithIndeterminateState = () => {
-  const [selected, setSelected] = React.useState<Array<string>>([]);
+export function WithIndeterminateState() {
+  const [selected, setSelected] = React.useState<string[]>([]);
 
   return (
     <LabeledGroup>
-      <Label className='mb-3'>Notifications</Label>
+      <Label className="mb-3">Notifications</Label>
 
       <Group className="space-y-3">
         <Checkbox
@@ -230,7 +237,9 @@ export const WithIndeterminateState = () => {
           isIndeterminate={
             selected.length > 0 && selected.length !== options.length
           }
-          onChange={(checked) => setSelected(checked ? options : [])}
+          onChange={(checked) => {
+            setSelected(checked ? options : []);
+          }}
         >
           Select all
         </Checkbox>
@@ -241,11 +250,11 @@ export const WithIndeterminateState = () => {
             name={option}
             isSelected={selected.includes(option)}
             onChange={(checked) => {
-              return setSelected((pending) => {
-                return checked
+              setSelected((pending) =>
+                checked
                   ? [...pending, option]
-                  : pending.filter((item) => item !== option);
-              });
+                  : pending.filter((item) => item !== option),
+              );
             }}
           >
             {option}
@@ -254,9 +263,9 @@ export const WithIndeterminateState = () => {
       </Group>
     </LabeledGroup>
   );
-};
+}
 
-export const WithValidation = () => {
+export function WithValidation() {
   return (
     <Form>
       <CheckboxGroup isRequired>
@@ -285,18 +294,18 @@ export const WithValidation = () => {
       <Button type="submit">Save</Button>
     </Form>
   );
-};
+}
 
 WithValidation.parameters = {
   docs: {
     description: {
       story:
-        'Combine the `Form`, `FieldError` with `CheckboxGroup` components to add validation when submitting form.',
+        "Combine the `Form`, `FieldError` with `CheckboxGroup` components to add validation when submitting form.",
     },
   },
 };
 
-export const CheckboxCards = () => {
+export function CheckboxCards() {
   return (
     <div className="flex flex-1 flex-wrap gap-4">
       <Checkbox
@@ -333,4 +342,4 @@ export const CheckboxCards = () => {
       </Checkbox>
     </div>
   );
-};
+}

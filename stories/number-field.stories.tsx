@@ -1,15 +1,17 @@
-import type { Meta } from '@storybook/react';
-import { Button } from '@/components/button';
-import { Form } from '@/components/form';
-import { NumberField, NumberInput } from '@/components/number-field';
-import { docs } from '../.storybook/docs';
-import { Description, FieldError, Label } from '@/components/field';
+import type { Meta } from "@storybook/react";
+
+import { Button } from "@/components/button";
+import { Description, FieldError, Label } from "@/components/field";
+import { Form } from "@/components/form";
+import { NumberField, NumberInput } from "@/components/number-field";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof NumberField> = {
   component: NumberField,
-  title: 'Number field',
+  title: "Components/Number field",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -17,25 +19,25 @@ const meta: Meta<typeof NumberField> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <NumberField maxValue={7}>
       <Label>Viewer(s)</Label>
       <NumberInput />
     </NumberField>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <NumberField maxValue={7}>
       <Label>Viewer(s)</Label>
@@ -43,9 +45,9 @@ export const WithDescription = () => {
       <NumberInput />
     </NumberField>
   );
-};
+}
 
-export const WithDescriptionHiddenTitle = () => {
+export function WithDescriptionHiddenTitle() {
   return (
     <NumberField maxValue={7}>
       <Label>Viewer(s)</Label>
@@ -53,10 +55,9 @@ export const WithDescriptionHiddenTitle = () => {
       <Description>Maximum of 7</Description>
     </NumberField>
   );
-};
+}
 
-
-export const WithDisabled = () => {
+export function WithDisabled() {
   return (
     <NumberField isDisabled>
       <Label>Viewer(s)</Label>
@@ -64,9 +65,9 @@ export const WithDisabled = () => {
       <NumberInput />
     </NumberField>
   );
-};
+}
 
-export const WithReadonly = () => {
+export function WithReadonly() {
   return (
     <NumberField isReadOnly>
       <Label>Viewer(s)</Label>
@@ -74,10 +75,9 @@ export const WithReadonly = () => {
       <NumberInput />
     </NumberField>
   );
-};
+}
 
-
-export const Validation = () => {
+export function Validation() {
   return (
     <Form>
       <NumberField maxValue={7} isRequired>
@@ -89,4 +89,4 @@ export const Validation = () => {
       <Button type="submit">Submit</Button>
     </Form>
   );
-};
+}

@@ -1,12 +1,13 @@
-import { Label, Description } from '@/components/field';
-import { SearchField, SearchInput } from '@/components/search-field';
-import { docs } from '../.storybook/docs';
+import { Description, Label } from "@/components/field";
+import { SearchField, SearchInput } from "@/components/search-field";
+
+import { docs } from "../.storybook/docs";
 
 const meta = {
-  title: 'Search Field',
+  title: "Components/Search Field",
   component: SearchField,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -14,25 +15,25 @@ const meta = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <SearchField>
       <Label>Search</Label>
       <SearchInput placeholder="Search&hellip;" />
     </SearchField>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <SearchField>
       <Label>Search</Label>
@@ -40,9 +41,9 @@ export const WithDescription = () => {
       <SearchInput placeholder="Search&hellip;" />
     </SearchField>
   );
-};
+}
 
-export const WithFollowingDescription = () => {
+export function WithFollowingDescription() {
   return (
     <SearchField>
       <Label>Search</Label>
@@ -50,9 +51,9 @@ export const WithFollowingDescription = () => {
       <Description>Input search. Beep boop.</Description>
     </SearchField>
   );
-};
+}
 
-export const WithDisabled = () => {
+export function WithDisabled() {
   return (
     <SearchField isDisabled>
       <Label>Search</Label>
@@ -60,9 +61,9 @@ export const WithDisabled = () => {
       <SearchInput placeholder="Search&hellip;" />
     </SearchField>
   );
-};
+}
 
-export const WithReadonly = () => {
+export function WithReadonly() {
   return (
     <SearchField isReadOnly>
       <Label>Search</Label>
@@ -70,4 +71,4 @@ export const WithReadonly = () => {
       <SearchInput placeholder="Search&hellip;" />
     </SearchField>
   );
-};
+}

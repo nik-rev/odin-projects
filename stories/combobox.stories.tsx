@@ -26,7 +26,7 @@ import { docs } from "../.storybook/docs";
 import { users } from "./users";
 
 const meta: Meta<typeof ComboBox> = {
-  title: "ComboBox",
+  title: "Components/ComboBox",
   component: ComboBox,
   parameters: {
     layout: "centered",

@@ -38,7 +38,7 @@ function InitialAvatar({
       }}
       fill="currentColor"
       viewBox="0 0 24 24"
-      className="font-medium text-white"
+      className="font-medium text-foreground"
     >
       <text
         x="50%"

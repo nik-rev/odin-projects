@@ -1,18 +1,20 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { docs } from '../.storybook/docs';
-import { DropZone } from '@/components/dropzone';
-import { FileTrigger, isFileDropItem } from 'react-aria-components';
-import { Button } from '@/components/button';
-import { Text } from '@/components/text';
-import { AccessibleIcon } from '@/components/accessible-icon';
-import { Image } from 'lucide-react';
+import type { Meta } from "@storybook/react";
+import { Image } from "lucide-react";
+import React from "react";
+import { FileTrigger, isFileDropItem } from "react-aria-components";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Button } from "@/components/button";
+import { DropZone } from "@/components/dropzone";
+import { Text } from "@/components/text";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof DropZone> = {
-  title: 'Dropzone',
+  title: "Components/Dropzone",
   component: DropZone,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -20,30 +22,28 @@ const meta: Meta<typeof DropZone> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
-  const [droppedImage, setDroppedImage] = React.useState<string | undefined>(
-    undefined,
-  );
+export function BasicExample() {
+  const [droppedImage, setDroppedImage] = React.useState<string | undefined>();
 
   return (
     <DropZone
       getDropOperation={(types) =>
-        types.has('image/jpeg') || types.has('image/png') ? 'copy' : 'cancel'
+        types.has("image/jpeg") || types.has("image/png") ? "copy" : "cancel"
       }
       onDrop={async (e) => {
         const item = e.items
           .filter(isFileDropItem)
           .find(
-            (item) => item.type === 'image/jpeg' || item.type === 'image/png',
+            (item) => item.type === "image/jpeg" || item.type === "image/png",
           );
         if (item) {
           setDroppedImage(URL.createObjectURL(await item.getFile()));
@@ -54,7 +54,7 @@ export const BasicExample = () => {
         <img
           alt=""
           src={droppedImage}
-          className="aspect-square h-full w-full object-contain"
+          className="aspect-square size-full object-contain"
         />
       ) : (
         <div className="flex flex-1 flex-col gap-2 py-6">
@@ -65,12 +65,12 @@ export const BasicExample = () => {
           </div>
           <div className="flex flex-1">
             <FileTrigger
-              acceptedFileTypes={['image/png', 'image/jpeg']}
+              acceptedFileTypes={["image/png", "image/jpeg"]}
               allowsMultiple={false}
               onSelect={async (e) => {
                 if (e) {
-                  const files = Array.from([...e]);
-                  const item = files[0];
+                  const files = [...e];
+                  const item = files.at(0);
 
                   if (item) {
                     setDroppedImage(URL.createObjectURL(item));
@@ -97,4 +97,4 @@ export const BasicExample = () => {
       <input type="hidden" name="image" value={droppedImage} />
     </DropZone>
   );
-};
+}

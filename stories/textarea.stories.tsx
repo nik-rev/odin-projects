@@ -1,20 +1,22 @@
-import type { Meta } from '@storybook/react';
-import { Form } from '@/components/form';
-import { Button } from '@/components/button';
+import type { Meta } from "@storybook/react";
+
+import { Button } from "@/components/button";
 import {
-  TextField,
-  Label,
-  TextArea,
   Description,
   FieldError,
-} from '@/components/field';
-import { docs } from '../.storybook/docs';
+  Label,
+  TextArea,
+  TextField,
+} from "@/components/field";
+import { Form } from "@/components/form";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof TextField> = {
-  title: 'Textarea',
+  title: "Components/Textarea",
   component: TextField,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -22,16 +24,16 @@ const meta: Meta<typeof TextField> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <TextField className="sm:w-80">
       <Label>Bio</Label>
@@ -39,9 +41,9 @@ export const BasicExample = () => {
       <FieldError />
     </TextField>
   );
-};
+}
 
-export const WithDescription = () => {
+export function WithDescription() {
   return (
     <TextField>
       <Label>Bio</Label>
@@ -52,9 +54,9 @@ export const WithDescription = () => {
       <TextArea placeholder="Tell us a little bit about yourself" />
     </TextField>
   );
-};
+}
 
-export const WithDescriptionHidden = () => {
+export function WithDescriptionHidden() {
   return (
     <TextField>
       <Label>Bio</Label>
@@ -65,9 +67,9 @@ export const WithDescriptionHidden = () => {
       </Description>
     </TextField>
   );
-};
+}
 
-export const WithDisabled = () => {
+export function WithDisabled() {
   return (
     <TextField isDisabled>
       <Label>Bio</Label>
@@ -78,9 +80,9 @@ export const WithDisabled = () => {
       <TextArea placeholder="Tell us a little bit about yourself" />
     </TextField>
   );
-};
+}
 
-export const WithReadonly = () => {
+export function WithReadonly() {
   return (
     <TextField isReadOnly>
       <Label>Bio</Label>
@@ -91,9 +93,9 @@ export const WithReadonly = () => {
       <TextArea placeholder="Tell us a little bit about yourself" />
     </TextField>
   );
-};
+}
 
-export const WithErrorMessage = () => {
+export function WithErrorMessage() {
   return (
     <Form>
       <TextField isRequired>
@@ -105,7 +107,7 @@ export const WithErrorMessage = () => {
         <TextArea placeholder="Tell us a little bit about yourself" />
         <FieldError />
       </TextField>
-      <Button type='submit'>Submit</Button>
+      <Button type="submit">Submit</Button>
     </Form>
   );
-};
+}

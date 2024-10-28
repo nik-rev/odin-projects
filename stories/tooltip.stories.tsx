@@ -1,21 +1,23 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { Button } from '@/components/button';
+import type { Meta } from "@storybook/react";
+import { Moon, Sun } from "lucide-react";
+import React from "react";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Button } from "@/components/button";
 import {
-  NonFousableTooltipTarget,
-  TooltipTrigger,
-  Tooltip,
   NativeTooltip,
-} from '@/components/tooltip';
-import { docs } from '../.storybook/docs';
-import { Moon, Sun } from 'lucide-react';
-import { AccessibleIcon } from '@/components/accessible-icon';
+  NonFousableTooltipTarget,
+  Tooltip,
+  TooltipTrigger,
+} from "@/components/tooltip";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Tooltip',
+  title: "Components/Tooltip",
   component: Tooltip,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -23,30 +25,34 @@ const meta: Meta<typeof Tooltip> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => (
-  <TooltipTrigger>
-    <Button variant="outline">Hover me</Button>
-    <Tooltip>I am a tooltip</Tooltip>
-  </TooltipTrigger>
-);
+export function BasicExample() {
+  return (
+    <TooltipTrigger>
+      <Button variant="outline">Hover me</Button>
+      <Tooltip>I am a tooltip</Tooltip>
+    </TooltipTrigger>
+  );
+}
 
-export const WithNonFocusableElements = () => (
-  <TooltipTrigger>
-    <NonFousableTooltipTarget>
-      <div>Hover me</div>
-    </NonFousableTooltipTarget>
-    <Tooltip>I am a tooltip</Tooltip>
-  </TooltipTrigger>
-);
+export function WithNonFocusableElements() {
+  return (
+    <TooltipTrigger>
+      <NonFousableTooltipTarget>
+        <div>Hover me</div>
+      </NonFousableTooltipTarget>
+      <Tooltip>I am a tooltip</Tooltip>
+    </TooltipTrigger>
+  );
+}
 
 WithNonFocusableElements.parameters = {
   docs: {
@@ -57,47 +63,51 @@ WithNonFocusableElements.parameters = {
   },
 };
 
-export const WithDisabledElements = () => (
-  <TooltipTrigger>
-    <NonFousableTooltipTarget>
-      <div>
-        <Button variant='outline' isDisabled>
-          Hover me
-        </Button>
-      </div>
-    </NonFousableTooltipTarget>
-    <Tooltip>I am a tooltip</Tooltip>
-  </TooltipTrigger>
-);
+export function WithDisabledElements() {
+  return (
+    <TooltipTrigger>
+      <NonFousableTooltipTarget>
+        <div>
+          <Button variant="outline" isDisabled>
+            Hover me
+          </Button>
+        </div>
+      </NonFousableTooltipTarget>
+      <Tooltip>I am a tooltip</Tooltip>
+    </TooltipTrigger>
+  );
+}
 
 WithDisabledElements.parameters = {
   docs: {
     description: {
       story:
-        'Use the `NonFousableTooltipTarget` component and `div` to show a tooltip on disabled elements.',
+        "Use the `NonFousableTooltipTarget` component and `div` to show a tooltip on disabled elements.",
     },
   },
 };
 
-export const NativeTooltips = () => {
-  const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
+export function NativeTooltips() {
+  const [theme, setTheme] = React.useState<"light" | "dark">("light");
   const title =
-    theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme';
+    theme === "light" ? "Switch to dark theme" : "Switch to light theme";
 
   return (
     <NativeTooltip title={title}>
       <Button
         isIconOnly
-        variant='outline'
-        onPress={() =>
-          setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))
-        }
+        variant="outline"
+        onPress={() => {
+          setTheme((theme) => (theme === "light" ? "dark" : "light"));
+        }}
       >
-        <AccessibleIcon aria-label={title}>{theme === 'light' ? <Moon /> : <Sun />}</AccessibleIcon>
+        <AccessibleIcon aria-label={title}>
+          {theme === "light" ? <Moon /> : <Sun />}
+        </AccessibleIcon>
       </Button>
     </NativeTooltip>
   );
-};
+}
 
 NativeTooltips.parameters = {
   docs: {

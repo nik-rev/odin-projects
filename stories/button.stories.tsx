@@ -36,7 +36,7 @@ import { Tooltip, TooltipTrigger } from "@/components/tooltip";
 import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof Button> = {
-  title: "Button",
+  title: "Components/Button",
   component: Button,
   parameters: {
     layout: "centered",
@@ -46,12 +46,9 @@ const meta: Meta<typeof Button> = {
           'A <a href="https://react-spectrum.adobe.com/react-aria/Button.html" target="_blank">`button`</a> allows a user to perform an action, with mouse, touch, and keyboard interactions.',
       },
       ...docs,
-      controls: {
-        exclude: /.*/gv,
-      },
     },
   },
-  tags: ["autodocs"],
+  tags: ["autodoc"],
 };
 
 export default meta;

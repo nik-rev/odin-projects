@@ -1,23 +1,25 @@
-import type { Meta } from '@storybook/react';
-import { docs } from '../.storybook/docs.ts';
-import { MailIcon, PlusIcon , ChevronDownIcon} from 'lucide-react';
-import { AccessibleIcon } from '@/components/accessible-icon.tsx';
-import { Separator } from '@/components/separator.tsx';
-import { Button } from '@/components/button.tsx';
+import type { Meta } from "@storybook/react";
+import { ChevronDownIcon, MailIcon, PlusIcon } from "lucide-react";
+
+import { AccessibleIcon } from "@/components/accessible-icon";
+import { Button } from "@/components/button";
 import {
-  MenuItem,
-  MenuTrigger,
   Menu,
   MenuButton,
+  MenuItem,
   MenuPopover,
   MenuSection,
-} from '@/components/menu.tsx';
+  MenuTrigger,
+} from "@/components/menu";
+import { Separator } from "@/components/separator";
+
+import { docs } from "../.storybook/docs.ts";
 
 const meta: Meta<typeof Separator> = {
-  title: 'Separator',
+  title: "Components/Separator",
   component: Separator,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       description: {
         component:
@@ -25,16 +27,16 @@ const meta: Meta<typeof Separator> = {
       },
       ...docs,
       controls: {
-        exclude: /.*/g,
+        exclude: /.*/gv,
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const BasicExample = () => {
+export function BasicExample() {
   return (
     <div className="flex flex-col items-center p-8">
       <div>
@@ -43,17 +45,17 @@ export const BasicExample = () => {
       <Separator className="my-4" />
     </div>
   );
-};
+}
 
-export const VerticalSeparators = () => {
+export function VerticalSeparators() {
   return (
     <div className="flex p-8">
-      <div className="h-48 flex-1 px-4"></div>
+      <div className="h-48 flex-1 px-4" />
       <Separator orientation="vertical" />
-      <div className="flex-1 px-4"></div>
+      <div className="flex-1 px-4" />
     </div>
   );
-};
+}
 
 VerticalSeparators.parameters = {
   docs: {
@@ -63,7 +65,7 @@ VerticalSeparators.parameters = {
   },
 };
 
-export const WithTextsOrIcons = () => {
+export function WithTextsOrIcons() {
   return (
     <div className="flex flex-col gap-6 p-8">
       <Separator>Continue</Separator>
@@ -75,20 +77,20 @@ export const WithTextsOrIcons = () => {
       </Separator>
 
       <Separator>
-        {new Intl.DateTimeFormat('en', {
-          weekday: 'long',
-          month: 'short',
-          day: '2-digit',
+        {new Intl.DateTimeFormat("en", {
+          weekday: "long",
+          month: "short",
+          day: "2-digit",
         }).format(new Date())}
       </Separator>
 
       <Separator>
         <MenuTrigger>
           <MenuButton variant="outline">
-            {new Intl.DateTimeFormat('en', {
-              weekday: 'long',
-              month: 'short',
-              day: '2-digit',
+            {new Intl.DateTimeFormat("en", {
+              weekday: "long",
+              month: "short",
+              day: "2-digit",
             }).format(new Date())}
           </MenuButton>
           <MenuPopover>
@@ -122,19 +124,19 @@ export const WithTextsOrIcons = () => {
       </Separator>
 
       <div className="flex p-8">
-        <div className="h-48 flex-1 px-4"></div>
+        <div className="h-48 flex-1 px-4" />
         <Separator orientation="vertical">Or</Separator>
-        <div className="flex-1 px-4"></div>
+        <div className="flex-1 px-4" />
       </div>
     </div>
   );
-};
+}
 
 WithTextsOrIcons.parameters = {
   docs: {
     description: {
       story:
-        'Add `text` or `icon` inside to render text or icons inside your separator.',
+        "Add `text` or `icon` inside to render text or icons inside your separator.",
     },
   },
 };

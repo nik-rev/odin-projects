@@ -1,6 +1,27 @@
-import React from 'react';
-import type { Meta } from '@storybook/react';
-import { Form } from '@/components/form';
+import type { Meta } from "@storybook/react";
+import React from "react";
+import { DialogTrigger, FileTrigger } from "react-aria-components";
+import { twMerge } from "tailwind-merge";
+
+import { Avatar } from "@/components/avatar";
+import { Button } from "@/components/button";
+import {
+  Checkbox,
+  Checkboxes,
+  CheckboxField,
+  CheckboxGroup,
+} from "@/components/checkbox";
+import {
+  DateRangePicker,
+  DateRangePickerInput,
+} from "@/components/date-range-picker";
+import {
+  Dialog,
+  DialogBody,
+  DialogCloseButton,
+  DialogFooter,
+  DialogHeader,
+} from "@/components/dialog";
 import {
   Description,
   FieldError,
@@ -8,52 +29,33 @@ import {
   Label,
   TextArea,
   TextField,
-} from '@/components/field';
-import { PasswordInput } from '@/components/password-input';
-import { Button } from '@/components/button';
-import { Strong, Text, TextLink } from '@/components/text';
-import { Link } from '@/components/link';
-import { Avatar } from '@/components/avatar';
-import {
-  DateRangePicker,
-  DateRangePickerInput,
-} from '@/components/date-range-picker';
-import { Heading } from '@/components/heading';
-import { Tab, TabList, Tabs } from '@/components/tabs';
-import { Switch } from '@/components/switch';
-import { Radio, RadioField, RadioGroup } from '@/components/radio-group';
-import { twMerge } from 'tailwind-merge';
-import { Slider, SliderOutput, SliderTack } from '@/components/slider';
-import {
-  Checkbox,
-  CheckboxField,
-  CheckboxGroup,
-  Checkboxes,
-} from '@/components/checkbox';
-import { NumberField, NumberInput } from '@/components/number-field';
-import { DialogTrigger, FileTrigger } from 'react-aria-components';
-import { Modal } from '@/components/modal';
-import {
-  Dialog,
-  DialogBody,
-  DialogCloseButton,
-  DialogFooter,
-  DialogHeader,
-} from '@/components/dialog';
-import { NativeTooltips } from './tooltip.stories';
-import { WithAvatars } from './multi-select.stories';
-import { WithFlags } from './select.stories';
+} from "@/components/field";
+import { Form } from "@/components/form";
+import { Heading } from "@/components/heading";
+import { Link } from "@/components/link";
+import { Modal } from "@/components/modal";
+import { NumberField, NumberInput } from "@/components/number-field";
+import { PasswordInput } from "@/components/password-input";
+import { Radio, RadioField, RadioGroup } from "@/components/radio-group";
+import { Slider, SliderOutput, SliderTack } from "@/components/slider";
+import { Switch } from "@/components/switch";
+import { Tab, TabList, Tabs } from "@/components/tabs";
+import { Strong, Text, TextLink } from "@/components/text";
+
+import { WithAvatars } from "./multi-select.stories";
+import { WithFlags } from "./select.stories";
+import { NativeTooltips } from "./tooltip.stories";
 
 const meta: Meta<typeof Button> = {
-  title: 'Overview',
+  title: "Components/Overview",
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
 };
 
 export default meta;
 
-export const Example = () => {
+export function Example() {
   return (
     <div className="flex gap-12 p-8">
       <div className="flex w-96 flex-col items-stretch gap-12">
@@ -97,19 +99,19 @@ export const Example = () => {
           <RadioField>
             <Radio
               value="Root user"
-              className={({ isSelected }) => {
-                return twMerge(
-                  'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
-                  isSelected && 'border-accent ring-1 ring-accent',
-                );
-              }}
+              className={({ isSelected }) =>
+                twMerge(
+                  "items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5",
+                  isSelected && "border-accent ring-1 ring-accent",
+                )
+              }
             >
               <div className="flex w-full items-center justify-between gap-3">
                 <div className="flex flex-1 flex-col">
                   <div className="font-semibold"> Root user</div>
                   <Text>
                     Account owner that performs tasks requiring unrestricted
-                    access.{' '}
+                    access.{" "}
                     <TextLink href="https://www.example.com" target="_blank">
                       Learn more
                     </TextLink>
@@ -120,18 +122,18 @@ export const Example = () => {
           </RadioField>
           <Radio
             value="IAM user"
-            className={({ isSelected }) => {
-              return twMerge(
-                'items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5',
-                isSelected && 'border-accent ring-1 ring-accent',
-              );
-            }}
+            className={({ isSelected }) =>
+              twMerge(
+                "items-start rounded-md border p-3 shadow-sm [&_[slot=radio]]:mt-1.5",
+                isSelected && "border-accent ring-1 ring-accent",
+              )
+            }
           >
             <div className="flex w-full items-center justify-between gap-3">
               <div className="flex flex-1 flex-col">
                 <div className="font-semibold">IAM user</div>
                 <Text>
-                  User within an account that performs daily tasks.{' '}
+                  User within an account that performs daily tasks.{" "}
                   <TextLink href="https://www.example.com" target="_blank">
                     Learn more
                   </TextLink>
@@ -152,16 +154,14 @@ export const Example = () => {
             <Label className="text-nowrap pb-1 pe-4 font-normal">Zoom</Label>
             <div className="flex flex-1 flex-col">
               <SliderOutput className="self-center">
-                {({ state }) => {
-                  return (
-                    <span className="text-sm">
-                      {state.getThumbValueLabel(0)}%
-                    </span>
-                  );
-                }}
+                {({ state }) => (
+                  <span className="text-sm">
+                    {state.getThumbValueLabel(0)}%
+                  </span>
+                )}
               </SliderOutput>
               <div className="flex flex-1 items-center gap-3">
-                <SliderTack thumbLabels={['volume']} />
+                <SliderTack thumbLabels={["volume"]} />
               </div>
             </div>
           </div>
@@ -189,10 +189,10 @@ export const Example = () => {
         <TextField>
           <Label>About</Label>
           <Description>Write a few sentences about yourself.</Description>
-          <TextArea rows={2}></TextArea>
+          <TextArea rows={2} />
         </TextField>
 
-        <CheckboxGroup defaultValue={['Post']}>
+        <CheckboxGroup defaultValue={["Post"]}>
           <Label>Audience, media and tagging</Label>
           <Description>
             Manage what information you allow other people to see.
@@ -225,7 +225,7 @@ export const Example = () => {
         <div>
           <DateRangePicker>
             <Label>Stay duration</Label>
-            <DateRangePickerInput></DateRangePickerInput>
+            <DateRangePickerInput />
           </DateRangePicker>
         </div>
       </div>
@@ -246,7 +246,7 @@ export const Example = () => {
                   className="size-5"
                   alt="react aria component"
                   src="https://spectrum.adobe.com/_next/static/media/adobe_logo_spectrum_site.b6d47fe3.svg"
-                />{' '}
+                />{" "}
                 React React Component
               </Link>
             </Button>
@@ -307,16 +307,16 @@ export const Example = () => {
       </div>
     </div>
   );
-};
+}
 
 function ChangeProfile() {
   const [src, setSrc] = React.useState<string | undefined>(
-    'https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    "https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   );
 
   return (
     <div className="flex items-center gap-2">
-      <Avatar alt="D D" className="rounded-full" src={src}></Avatar>
+      <Avatar alt="D D" className="rounded-full" src={src} />
 
       <FileTrigger
         onSelect={(e) => {
@@ -324,7 +324,7 @@ function ChangeProfile() {
             return;
           }
 
-          const file = Array.from(e)[0];
+          const file = [...e].at(0);
           setSrc(URL.createObjectURL(file));
         }}
       >
@@ -349,12 +349,12 @@ function DialogExample() {
             <Form className="py-4" id="edit-profile-form">
               <TextField isRequired className="grid grid-cols-4 gap-x-4">
                 <Label className="ms-auto">Name</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
               <TextField isRequired className="grid grid-cols-4 gap-4">
                 <Label className="ms-auto">Username</Label>
-                <Input className="col-span-3"></Input>
+                <Input className="col-span-3" />
                 <FieldError className="col-span-3 col-start-2" />
               </TextField>
             </Form>

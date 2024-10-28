@@ -1,14 +1,16 @@
-import type { Meta } from '@storybook/react';
-import React from 'react';
-import { SortDescriptor, TableBody} from 'react-aria-components';
-import { Cell, Column, Row, Table, TableHeader } from '@/components/table';
-import { docs } from '../.storybook/docs';
+import type { Meta } from "@storybook/react";
+import React from "react";
+import { type SortDescriptor, TableBody } from "react-aria-components";
+
+import { Cell, Column, Row, Table, TableHeader } from "@/components/table";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta<typeof Table> = {
   component: Table,
-  title: 'Table',
+  title: "Components/Table",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       description: {
         component:
@@ -18,35 +20,35 @@ const meta: Meta<typeof Table> = {
       ...docs,
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
 const rows = [
-  { id: 1, name: 'Games', date: '6/7/2020', type: 'File folder' },
-  { id: 2, name: 'Program Files', date: '4/7/2021', type: 'File folder' },
-  { id: 3, name: 'bootmgr', date: '11/20/2010', type: 'System file' },
-  { id: 4, name: 'log.txt', date: '1/18/2016', type: 'Text Document' },
-  { id: 5, name: 'Proposal.ppt', date: '6/18/2022', type: 'PowerPoint file' },
-  { id: 6, name: 'Taxes.pdf', date: '12/6/2023', type: 'PDF Document' },
-  { id: 7, name: 'Photos', date: '8/2/2021', type: 'File folder' },
-  { id: 8, name: 'Documents', date: '3/18/2023', type: 'File folder' },
-  { id: 9, name: 'Budget.xls', date: '1/6/2024', type: 'Excel file' },
+  { id: 1, name: "Games", date: "6/7/2020", type: "File folder" },
+  { id: 2, name: "Program Files", date: "4/7/2021", type: "File folder" },
+  { id: 3, name: "bootmgr", date: "11/20/2010", type: "System file" },
+  { id: 4, name: "log.txt", date: "1/18/2016", type: "Text Document" },
+  { id: 5, name: "Proposal.ppt", date: "6/18/2022", type: "PowerPoint file" },
+  { id: 6, name: "Taxes.pdf", date: "12/6/2023", type: "PDF Document" },
+  { id: 7, name: "Photos", date: "8/2/2021", type: "File folder" },
+  { id: 8, name: "Documents", date: "3/18/2023", type: "File folder" },
+  { id: 9, name: "Budget.xls", date: "1/6/2024", type: "Excel file" },
 ];
 
-export const BasicExample = () => {
+export function BasicExample() {
   const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
-    column: 'name',
-    direction: 'ascending',
+    column: "name",
+    direction: "ascending",
   });
 
   const items = React.useMemo(() => {
-    const items = rows.slice().sort((a, b) => {
+    const items = [...rows].sort((a, b) => {
       const column = sortDescriptor.column as keyof (typeof rows)[number];
       return String(a[column]).localeCompare(String(b[column]));
     });
-    if (sortDescriptor.direction === 'descending') {
+    if (sortDescriptor.direction === "descending") {
       items.reverse();
     }
     return items;
@@ -81,4 +83,4 @@ export const BasicExample = () => {
       </TableBody>
     </Table>
   );
-};
+}
