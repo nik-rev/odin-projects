@@ -17,7 +17,7 @@
 - [x] form.tsx
 - [x] grid-list.tsx
 - [x] heading.tsx
-- [ ] icons.tsx
+- [x] icons.tsx
 - [ ] input-group.tsx
 - [ ] kbd.tsx
 - [ ] link.tsx

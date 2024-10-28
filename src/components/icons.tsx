@@ -1,12 +1,14 @@
-import { twMerge } from 'tailwind-merge';
-import { AccessibleIcon } from './accessible-icon';
+import { twMerge } from "tailwind-merge";
 
+import { AccessibleIcon } from "./accessible-icon";
+
+export default {};
 export function EyeIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -25,11 +27,11 @@ export function EyeIcon({
 }
 
 export function EyeOffIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
@@ -48,11 +50,11 @@ export function EyeOffIcon({
 }
 
 export function CheckIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
@@ -71,11 +73,11 @@ export function CheckIcon({
 }
 
 export function PlusIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -96,11 +98,11 @@ export function PlusIcon({
 }
 
 export function MinusIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -120,11 +122,11 @@ export function MinusIcon({
 }
 
 export function XIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -145,11 +147,11 @@ export function XIcon({
 }
 
 export function CalendarIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="1em"
@@ -160,18 +162,18 @@ export function CalendarIcon({
         <path
           fill="currentColor"
           d="M11.992 49.574h32.016c4.899 0 7.36-2.437 7.36-7.265V13.69c0-4.828-2.461-7.265-7.36-7.265H11.992c-4.875 0-7.36 2.414-7.36 7.265v28.62c0 4.851 2.485 7.265 7.36 7.265m-.328-3.773c-2.086 0-3.258-1.102-3.258-3.282V20.419c0-2.156 1.172-3.281 3.258-3.281h32.649c2.085 0 3.28 1.125 3.28 3.281V42.52c0 2.18-1.195 3.28-3.28 3.28Zm11.742-20.25h1.383c.82 0 1.102-.235 1.102-1.055v-1.383c0-.82-.281-1.078-1.102-1.078h-1.383c-.82 0-1.078.258-1.078 1.078v1.383c0 .82.258 1.055 1.078 1.055m7.805 0h1.36c.843 0 1.101-.235 1.101-1.055v-1.383c0-.82-.258-1.078-1.102-1.078h-1.359c-.82 0-1.101.258-1.101 1.078v1.383c0 .82.28 1.055 1.101 1.055m7.781 0h1.383c.82 0 1.102-.235 1.102-1.055v-1.383c0-.82-.282-1.078-1.102-1.078h-1.383c-.82 0-1.101.258-1.101 1.078v1.383c0 .82.281 1.055 1.101 1.055m-23.367 7.664h1.383c.82 0 1.102-.235 1.102-1.055v-1.383c0-.82-.282-1.054-1.102-1.054h-1.383c-.82 0-1.101.234-1.101 1.054v1.383c0 .82.28 1.055 1.101 1.055m7.781 0h1.383c.82 0 1.102-.235 1.102-1.055v-1.383c0-.82-.281-1.054-1.102-1.054h-1.383c-.82 0-1.078.234-1.078 1.054v1.383c0 .82.258 1.055 1.078 1.055m7.805 0h1.36c.843 0 1.101-.235 1.101-1.055v-1.383c0-.82-.258-1.054-1.102-1.054h-1.359c-.82 0-1.101.234-1.101 1.054v1.383c0 .82.28 1.055 1.101 1.055m7.781 0h1.383c.82 0 1.102-.235 1.102-1.055v-1.383c0-.82-.282-1.054-1.102-1.054h-1.383c-.82 0-1.101.234-1.101 1.054v1.383c0 .82.281 1.055 1.101 1.055m-23.367 7.687h1.383c.82 0 1.102-.258 1.102-1.078v-1.383c0-.82-.282-1.054-1.102-1.054h-1.383c-.82 0-1.101.234-1.101 1.054v1.383c0 .82.28 1.078 1.101 1.078m7.781 0h1.383c.82 0 1.102-.258 1.102-1.078v-1.383c0-.82-.281-1.054-1.102-1.054h-1.383c-.82 0-1.078.234-1.078 1.054v1.383c0 .82.258 1.078 1.078 1.078m7.805 0h1.36c.843 0 1.101-.258 1.101-1.078v-1.383c0-.82-.258-1.054-1.102-1.054h-1.359c-.82 0-1.101.234-1.101 1.054v1.383c0 .82.28 1.078 1.101 1.078"
-        ></path>
+        />
       </svg>
     </AccessibleIcon>
   );
 }
 
 export function ChevronUpIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -191,11 +193,11 @@ export function ChevronUpIcon({
 }
 
 export function ChevronDownIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -215,11 +217,11 @@ export function ChevronDownIcon({
 }
 
 export function ChevronRightIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -239,11 +241,11 @@ export function ChevronRightIcon({
 }
 
 export function ChevronLeftIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -263,11 +265,11 @@ export function ChevronLeftIcon({
 }
 
 export function SearchIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"
@@ -278,7 +280,7 @@ export function SearchIcon({
           fillRule="evenodd"
           d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
           clipRule="evenodd"
-        ></path>
+        />
       </svg>
     </AccessibleIcon>
   );
@@ -286,13 +288,13 @@ export function SearchIcon({
 
 export function SpinnerIcon({
   className,
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon aria-label={arialLabel}>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
-        className={twMerge('animate-spin', className)}
+        className={twMerge("animate-spin", className)}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -305,23 +307,23 @@ export function SpinnerIcon({
           r="10"
           stroke="currentColor"
           strokeWidth="4"
-        ></circle>
+        />
         <path
           className="opacity-75"
           fill="currentColor"
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-        ></path>
+        />
       </svg>
     </AccessibleIcon>
   );
 }
 
 export function CopyIcon({
-  'aria-label': arialLabel,
+  "aria-label": ariaLabel,
   ...props
-}: JSX.IntrinsicElements['svg']) {
+}: React.JSX.IntrinsicElements["svg"]) {
   return (
-    <AccessibleIcon>
+    <AccessibleIcon aria-label={ariaLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
