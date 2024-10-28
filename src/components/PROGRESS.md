@@ -16,8 +16,7 @@
 - [x] file-trigger.tsx
 - [x] form.tsx
 - [x] grid-list.tsx
-- [ ] heading.tsx
-- [ ] hover-card.tsx
+- [x] heading.tsx
 - [ ] icons.tsx
 - [ ] input-group.tsx
 - [ ] kbd.tsx
