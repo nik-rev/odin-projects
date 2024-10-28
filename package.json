@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "gh-pages": "pnpm build-storybook && mv storybook-static .. && git checkout gh-pages && rm -r * && mv ../storybook-static . && mv storybook-static/* . && rm -r storybook-static && git commit -m 'deploy: gh-pages' && git push && git checkout main",
+    "gh-pages": "pnpm build-storybook && mv storybook-static .. && git checkout gh-pages && rm -rf * && mv ../storybook-static . && mv storybook-static/* . && rm -r storybook-static && git commit -m 'deploy: gh-pages' && git push && git checkout main",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
