@@ -1,12 +1,13 @@
 import {
+  Button,
   GridList as AriaGridList,
   GridListItem as AriaGridListItem,
-  Button,
-  GridListItemProps,
-  GridListProps,
-} from 'react-aria-components';
-import { Checkbox } from './checkbox';
-import { composeTailwindRenderProps, focusVisibleOutlineStyle } from './utils';
+  type GridListItemProps,
+  type GridListProps,
+} from "react-aria-components";
+
+import { Checkbox } from "./checkbox";
+import { composeTailwindRenderProps, focusVisibleOutlineStyle } from "./utils";
 
 export function GridList<T extends object>({
   children,
@@ -17,7 +18,7 @@ export function GridList<T extends object>({
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        'relative overflow-auto rounded-lg border p-1',
+        "relative overflow-auto rounded-lg border p-1",
       )}
     >
       {children}
@@ -26,27 +27,27 @@ export function GridList<T extends object>({
 }
 
 export function GridListItem({ children, ...props }: GridListItemProps) {
-  const textValue = typeof children === 'string' ? children : undefined;
-  
+  const textValue = typeof children === "string" ? children : undefined;
+
   return (
     <AriaGridListItem
       {...props}
       textValue={textValue}
       className={composeTailwindRenderProps(props.className, [
-        'relative -mb-px flex cursor-default select-none gap-3 rounded-md px-2 py-1.5 text-sm outline-none',
-        'hover:bg-zinc100',
-        '[&:not(:last-child)]:mb-0.5',
-        'selected:z-20',
-        'disabled:opacity-50',
+        "relative -mb-px flex cursor-default select-none gap-3 rounded-md px-2 py-1.5 text-sm outline-none",
+        "hover:bg-zinc100",
+        "[&:not(:last-child)]:mb-0.5",
+        "selected:z-20",
+        "disabled:opacity-50",
         focusVisibleOutlineStyle,
-        'focus-visible:-outline-offset-2',
+        "focus-visible:-outline-offset-2",
       ])}
     >
       {({ selectionMode, selectionBehavior, allowsDragging }) => (
         <>
           {/* Add elements for drag and drop and selection. */}
           {allowsDragging && <Button slot="drag">≡</Button>}
-          {selectionMode === 'multiple' && selectionBehavior === 'toggle' && (
+          {selectionMode === "multiple" && selectionBehavior === "toggle" && (
             <Checkbox slot="selection" />
           )}
           {children}

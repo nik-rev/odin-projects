@@ -13,9 +13,9 @@
 - [x] dropzone.tsx
 - [x] empty-state.tsx
 - [x] field.tsx
-- [ ] file-trigger.tsx
-- [ ] form.tsx
-- [ ] grid-list.tsx
+- [x] file-trigger.tsx
+- [x] form.tsx
+- [x] grid-list.tsx
 - [ ] heading.tsx
 - [ ] hover-card.tsx
 - [ ] icons.tsx
