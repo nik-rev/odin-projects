@@ -1,27 +1,29 @@
-import React from 'react';
+/* eslint @typescript-eslint/no-unnecessary-condition: off -- unknown if this is actually needed, but i will not remove it for now. */
+import React from "react";
 import {
   DateRangePicker as AriaDateRangePicker,
-  DateRangePickerProps as AriaDateRangePickerProps,
+  type DateRangePickerProps as AriaDateRangePickerProps,
   DateRangePickerStateContext,
-  DateValue,
-  useLocale,
+  type DateValue,
   Group,
-} from 'react-aria-components';
-import { Button } from './button';
-import { DateInput } from './date-field';
-import { Dialog } from './dialog';
-import { Popover } from './popover';
-import { RangeCalendar } from './range-calendar';
+  useLocale,
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
+
+import { Button } from "./button";
+import { DateInput } from "./date-field";
+import { Dialog } from "./dialog";
+import { CalendarIcon } from "./icons";
+import { Popover } from "./popover";
+import { RangeCalendar } from "./range-calendar";
 import {
   composeTailwindRenderProps,
   focusWithinRingStyle,
   inputFieldStyle,
-} from './utils';
-import { twMerge } from 'tailwind-merge';
-import { CalendarIcon } from './icons';
+} from "./utils";
 
-export interface DateRangePickerProps<T extends DateValue>
-  extends AriaDateRangePickerProps<T> {}
+export type DateRangePickerProps<T extends DateValue> =
+  {} & AriaDateRangePickerProps<T>;
 
 export function DateRangePicker<T extends DateValue>({
   ...props
@@ -44,12 +46,12 @@ export function DateRangePickerInput() {
       <Group
         data-ui="control"
         className={twMerge(
-          '[&:has([aria-valuetext=Empty]:) w-full',
-          'grid grid-cols-[1fr_16px_1fr_40px] items-center sm:grid-cols-[1fr_16px_1fr_36px]',
-          'group relative rounded-lg border bg-inherit shadow-sm',
-          'group-invalid:border-destructive',
-          '[&:has(_input[data-disabled=true])]:border-border/50',
-          formattedValue ? 'min-w-60' : 'min-w-[278px]',
+          "[&:has([aria-valuetext=Empty]:) w-full",
+          "grid grid-cols-[1fr_16px_1fr_40px] items-center sm:grid-cols-[1fr_16px_1fr_36px]",
+          "group relative rounded-lg border bg-inherit shadow-sm",
+          "group-invalid:border-destructive",
+          "[&:has(_input[data-disabled=true])]:border-border/50",
+          formattedValue ? "min-w-60" : "min-w-[278px]",
           focusWithinRingStyle,
         )}
       >
@@ -77,11 +79,7 @@ export function DateRangePickerInput() {
         </Button>
       </Group>
       <Popover
-        className={[
-          'max-w-none rounded-xl',
-          '',
-          '',
-        ].join(' ')}
+        className={["max-w-none rounded-xl", "", ""].join(" ")}
         placement="bottom"
       >
         <Dialog className="overflow-auto p-3">
@@ -108,14 +106,14 @@ export function DateRangePickerButton({
       <Group data-ui="control">
         <Button
           variant="outline"
-          className={twMerge('w-full min-w-64 px-0 font-normal', className)}
+          className={twMerge("w-full min-w-64 px-0 font-normal", className)}
         >
           <div
             className={twMerge(
-              'grid w-full items-center',
+              "grid w-full items-center",
               formattedValue
-                ? 'grid grid-cols-[1fr_16px_1fr_36px]'
-                : 'grid-cols-[1fr_36px]',
+                ? "grid grid-cols-[1fr_16px_1fr_36px]"
+                : "grid-cols-[1fr_36px]",
             )}
           >
             {formattedValue ? (
@@ -147,11 +145,7 @@ export function DateRangePickerButton({
         <DateInput slot="end" aria-hidden className="hidden" />
       </Group>
       <Popover
-        className={[
-          'max-w-none rounded-xl',
-          '',
-          ' ',
-        ].join(' ')}
+        className={["max-w-none rounded-xl", "", " "].join(" ")}
         placement="bottom"
       >
         <Dialog className="overflow-auto p-3">

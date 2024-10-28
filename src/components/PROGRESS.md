@@ -7,7 +7,7 @@
 - [x] combobox.tsx
 - [x] date-field.tsx
 - [x] date-picker.tsx
-- [ ] date-range-picker.tsx
+- [x] date-range-picker.tsx
 - [ ] dialog.tsx
 - [ ] disclosure.tsx
 - [ ] dropzone.tsx
