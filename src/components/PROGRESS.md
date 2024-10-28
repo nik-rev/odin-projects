@@ -37,7 +37,7 @@
 - [x] range-calendar.tsx
 - [x] search-field.tsx
 - [x] select.tsx
-- [ ] separator.tsx
+- [x] separator.tsx
 - [ ] skeleton.tsx
 - [ ] slider.tsx
 - [ ] slot.tsx

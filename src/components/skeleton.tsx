@@ -1,12 +1,13 @@
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from "tailwind-merge";
 
+export default {};
 export function Skeleton({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={twMerge('animate-pulse rounded-md bg-zinc-200', className)}
+      className={twMerge("animate-pulse rounded-md bg-zinc-200", className)}
       {...props}
     />
   );
