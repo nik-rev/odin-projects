@@ -27,8 +27,8 @@
 - [x] modal.tsx
 - [x] multi-select.tsx
 - [x] native-select.tsx
-- [ ] notification-badge.tsx
-- [ ] number-field.tsx
+- [x] notification-badge.tsx
+- [x] number-field.tsx
 - [ ] password-input.tsx
 - [ ] pgagination.tsx
 - [ ] popover.tsx

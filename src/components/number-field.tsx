@@ -1,27 +1,33 @@
 import {
-  NumberField as AriaNumberField,
-  NumberFieldProps as AriaNumberFieldProps,
-  InputProps,
   Group,
-} from 'react-aria-components';
-import { Input } from './field';
-import { composeTailwindRenderProps, inputFieldStyle } from './utils';
-import { Button } from './button';
-import { Separator } from './separator';
-import { MinusIcon, PlusIcon } from './icons';
+  type InputProps,
+  NumberField as AriaNumberField,
+  type NumberFieldProps as AriaNumberFieldProps,
+} from "react-aria-components";
 
-export interface NumberFieldProps extends AriaNumberFieldProps {}
+import { Button } from "./button";
+import { Input } from "./field";
+import { MinusIcon, PlusIcon } from "./icons";
+import { Separator } from "./separator";
+import { composeTailwindRenderProps, inputFieldStyle } from "./utils";
+
+export default {};
+export type NumberFieldProps = {} & AriaNumberFieldProps;
 
 export function NumberField(props: NumberFieldProps) {
+  const { className } = props;
+
   return (
     <AriaNumberField
       {...props}
-      className={composeTailwindRenderProps(props.className, inputFieldStyle)}
+      className={composeTailwindRenderProps(className, inputFieldStyle)}
     />
   );
 }
 
 export function NumberInput(props: InputProps) {
+  const { className } = props;
+
   return (
     <Group
       data-ui="control"
@@ -38,11 +44,11 @@ export function NumberInput(props: InputProps) {
       <Separator orientation="vertical" className="col-start-2 row-start-1" />
       <Input
         {...props}
-        className={composeTailwindRenderProps(props.className, [
-          'z-0',
-          'col-span-full',
-          'row-start-1',
-          'px-[calc(theme(size.11)+10px)] sm:px-[calc(theme(size.9)+10px)]',
+        className={composeTailwindRenderProps(className, [
+          "z-0",
+          "col-span-full",
+          "row-start-1",
+          "px-[calc(theme(size.11)+10px)] sm:px-[calc(theme(size.9)+10px)]",
         ])}
       />
 
