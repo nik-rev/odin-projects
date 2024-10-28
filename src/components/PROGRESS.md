@@ -35,7 +35,7 @@
 - [x] progress-bar.tsx
 - [x] radio-group.tsx
 - [x] range-calendar.tsx
-- [ ] search-field.tsx
+- [x] search-field.tsx
 - [ ] select.tsx
 - [ ] separator.tsx
 - [ ] skeleton.tsx
