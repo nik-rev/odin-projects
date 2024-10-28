@@ -21,7 +21,7 @@
 - [ ] input-group.tsx
 - [x] kbd.tsx
 - [x] link.tsx
-- [ ] list-box.tsx
+- [x] list-box.tsx
 - [ ] menu.tsx
 - [ ] meter.tsx
 - [ ] modal.tsx
