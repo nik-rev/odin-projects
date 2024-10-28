@@ -12,6 +12,7 @@ import {
 
 import { composeTailwindRenderProps, focusVisibleRingStyle } from "./utils";
 
+export default {};
 const TabsContext = React.createContext<{
   variant: "underline" | "pills" | "segment";
   orientation: "vertical" | "horizontal";
@@ -61,15 +62,7 @@ const tabList = {
     vertical: ["space-y-2"],
   },
   segment: {
-    horizontal: [
-      "gap-x-4",
-      "rounded-lg",
-      "bg-zinc-100",
-      "p-1",
-      "",
-      "",
-      "",
-    ],
+    horizontal: ["gap-x-4", "rounded-lg", "bg-zinc-100", "p-1", "", "", ""],
     vertical: [],
   },
 };
@@ -77,13 +70,14 @@ const tabList = {
 export function TabList<T extends object & { title: string }>(
   props: TabListProps<T>,
 ) {
+  const { className } = props;
   const { variant, orientation } = React.useContext(TabsContext);
 
   return (
     <div className="flex overflow-x-auto pb-px pl-px">
       <AriaTabList
         {...props}
-        className={composeTailwindRenderProps(props.className, [
+        className={composeTailwindRenderProps(className, [
           "flex",
           "text-base/6 sm:text-sm/6",
           tabList.base[orientation],
@@ -110,12 +104,13 @@ const tabPanel = {
 };
 
 export function TabPanel(props: TabPanelProps) {
+  const { className } = props;
   const { variant, orientation } = React.useContext(TabsContext);
 
   return (
     <AriaTabPanel
       {...props}
-      className={composeTailwindRenderProps(props.className, [
+      className={composeTailwindRenderProps(className, [
         "flex-1 outline-0",
         tabPanel[variant][orientation],
       ])}
@@ -173,15 +168,16 @@ const tab = {
 };
 
 export function Tab(props: TabProps) {
+  const { className } = props;
   const { variant, orientation } = React.useContext(TabsContext);
 
   return (
     <AriaTab
       {...props}
-      className={composeTailwindRenderProps(props.className, [
+      className={composeTailwindRenderProps(className, [
         "relative flex items-center gap-x-3 rounded font-medium outline-none outline-0",
         // disable
-        "disabled:opacity-50",
+        "disabled:opacity-50 cursor-pointer disabled:cursor-auto",
 
         "[&>[data-ui=icon]:not([class*=size-])]:size-[1.125rem]",
 

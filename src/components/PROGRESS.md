@@ -44,7 +44,7 @@
 - [x] status.tsx
 - [x] switch.tsx
 - [x] table.tsx
-- [ ] tabs.tsx
+- [x] tabs.tsx
 - [ ] tag-group.tsx
 - [ ] tag-input.tsx
 - [ ] text.tsx
