@@ -1,24 +1,25 @@
-import React from 'react';
+import React from "react";
 import {
+  Collection,
+  composeRenderProps,
+  Header,
   ListBox as RACListBox,
   ListBoxItem as RACListBoxItem,
-  ListBoxProps as RACListBoxProps,
-  Collection,
-  Header,
-  ListBoxItemProps,
+  type ListBoxItemProps,
+  type ListBoxProps as RACListBoxProps,
   Section,
-  SectionProps,
-  composeRenderProps,
-} from 'react-aria-components';
-import {
-  composeTailwindRenderProps,
-  focusVisibleOutlineStyle,
-} from './utils';
-import { twMerge } from 'tailwind-merge';
-import { CheckIcon } from './icons';
+  type SectionProps,
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
-export interface ListBoxProps<T>
-  extends Omit<RACListBoxProps<T>, 'layout' | 'orientation'> {}
+import { CheckIcon } from "./icons";
+import { composeTailwindRenderProps, focusVisibleOutlineStyle } from "./utils";
+
+export default {};
+export type ListBoxProps<T> = {} & Omit<
+  RACListBoxProps<T>,
+  "layout" | "orientation"
+>;
 
 export function ListBox<T extends object>({
   children,
@@ -29,12 +30,12 @@ export function ListBox<T extends object>({
   // Fix not auto scroll to selected item
   React.useEffect(() => {
     if (ref.current) {
-      const selectedItem = ref.current.querySelector('[aria-selected=true]');
+      const selectedItem = ref.current.querySelector("[aria-selected=true]");
       if (selectedItem) {
         const timer = setTimeout(() => {
           selectedItem.scrollIntoView({
-            block: 'nearest',
-            behavior: 'smooth',
+            block: "nearest",
+            behavior: "smooth",
           });
         }, 50);
 
@@ -48,7 +49,7 @@ export function ListBox<T extends object>({
   return (
     <RACListBox
       {...props}
-      className={composeTailwindRenderProps(props.className, ['outline-none'])}
+      className={composeTailwindRenderProps(props.className, ["outline-none"])}
       ref={ref}
     >
       {children}
@@ -57,21 +58,22 @@ export function ListBox<T extends object>({
 }
 
 export function ListBoxItem(props: ListBoxItemProps) {
-  const textValue =
-    props.textValue ||
-    (typeof props.children === 'string' ? props.children : undefined);
+  const { children, textValue, className } = props;
+
+  const processedTextValue =
+    textValue ?? (typeof children === "string" ? children : undefined);
 
   return (
     <RACListBoxItem
       {...props}
-      textValue={textValue}
-      className={composeTailwindRenderProps(props.className, [
-        'group relative flex outline-0',
-        'disabled:opacity-50',
-         focusVisibleOutlineStyle,
+      textValue={processedTextValue}
+      className={composeTailwindRenderProps(className, [
+        "group relative flex outline-0",
+        "disabled:opacity-50 cursor-pointer disabled:cursor-default",
+        focusVisibleOutlineStyle,
       ])}
     >
-      {props.children}
+      {children}
     </RACListBoxItem>
   );
 }
@@ -80,50 +82,48 @@ export function DropdownItem({
   destructive,
   ...props
 }: ListBoxItemProps & { destructive?: true }) {
-  const textValue =
-    props.textValue ||
-    (typeof props.children === 'string' ? props.children : undefined);
+  const { textValue, children, className } = props;
+
+  const processedTextValue =
+    textValue ?? (typeof children === "string" ? children : undefined);
 
   return (
     <RACListBoxItem
       {...props}
-      textValue={textValue}
+      textValue={processedTextValue}
       className={composeRenderProps(
-        props.className,
-        (className, { isDisabled, isFocused }) => {
-          return twMerge([
-            'group flex cursor-default select-none items-center gap-x-1 rounded-md outline-none',
-            'px-1.5 py-2.5 has-submenu:pe-0 sm:py-1.5',
-            'text-base/6 sm:text-sm/6',
-            isDisabled && 'opacity-50',
-            isFocused && 'bg-zinc-100',
-            destructive && 'text-destructive',
-            className,
-          ]);
-        },
+        className,
+        (renderClassName, { isDisabled, isFocused }) =>
+          twMerge([
+            "group flex cursor-default select-none items-center gap-x-1 rounded-md outline-none",
+            "px-1.5 py-2.5 has-submenu:pe-0 sm:py-1.5",
+            "text-base/6 sm:text-sm/6",
+            isDisabled && "opacity-50",
+            isFocused && "bg-zinc-100",
+            destructive && "text-destructive",
+            renderClassName,
+          ]),
       )}
     >
-      {composeRenderProps(props.children, (children, { isSelected }) => {
-        return (
-          <>
-            <CheckIcon
-              className={twMerge(
-                'mt-1 size-4 self-start [[data-ui=select-value]_&]:hidden',
-                isSelected ? 'visible' : 'invisible',
-              )}
-            />
+      {composeRenderProps(children, (renderChildren, { isSelected }) => (
+        <>
+          <CheckIcon
+            className={twMerge(
+              "mt-1 size-4 self-start [[data-ui=select-value]_&]:hidden",
+              isSelected ? "visible" : "invisible",
+            )}
+          />
 
-            <div data-ui="item">{children}</div>
-          </>
-        );
-      })}
+          <div data-ui="item">{renderChildren}</div>
+        </>
+      ))}
     </RACListBoxItem>
   );
 }
 
-export interface DropdownSectionProps<T> extends SectionProps<T> {
+export type DropdownSectionProps<T> = {
   title?: string;
-}
+} & SectionProps<T>;
 
 export function DropdownSection<T extends object>({
   className,
@@ -132,16 +132,16 @@ export function DropdownSection<T extends object>({
   return (
     <Section
       className={twMerge(
-        '[&:first-child]:-mt-[1px]',
-        '[&:not(:first-child)]:my-1.5',
-        '[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/40',
+        "[&:first-child]:-mt-[1px]",
+        "[&:not(:first-child)]:my-1.5",
+        "[&:not(:first-child)]:border-t [&:not(:first-child)]:border-t-border/40",
         className,
       )}
     >
       <Header
         className={twMerge(
-          'sticky z-10 truncate bg-white px-7 pt-2 text-xs/4 text-muted',
-          'top-[0px] -mx-[1px] rounded-md backdrop-blur-md',
+          "sticky z-10 truncate bg-white px-7 pt-2 text-xs/4 text-muted",
+          "top-[0px] -mx-[1px] rounded-md backdrop-blur-md",
         )}
       >
         {props.title}

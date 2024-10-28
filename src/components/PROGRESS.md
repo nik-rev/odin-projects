@@ -20,7 +20,7 @@
 - [x] icons.tsx
 - [ ] input-group.tsx
 - [x] kbd.tsx
-- [ ] link.tsx
+- [x] link.tsx
 - [ ] list-box.tsx
 - [ ] menu.tsx
 - [ ] meter.tsx
