@@ -70,7 +70,7 @@ export function TagGroup({ children, ...props }: TagGroupProps) {
       {...props}
       className={twMerge("flex flex-col gap-1", props.className)}
     >
-      <ColorContext.Provider value={props.color || "default"}>
+      <ColorContext.Provider value={props.color ?? "default"}>
         {children}
       </ColorContext.Provider>
     </AriaTagGroup>
@@ -78,13 +78,12 @@ export function TagGroup({ children, ...props }: TagGroupProps) {
 }
 
 export function TagList<T extends object>(props: TagListProps<T>) {
+  const { className } = props;
+
   return (
     <AriaTagList
       {...props}
-      className={composeTailwindRenderProps(
-        props.className,
-        "flex flex-wrap gap-1",
-      )}
+      className={composeTailwindRenderProps(className, "flex flex-wrap gap-1")}
     />
   );
 }
@@ -99,7 +98,7 @@ export function Tag({ children, color, ...props }: TagProps) {
       {...props}
       className={composeTailwindRenderProps(props.className, [
         "flex max-w-fit cursor-default items-center gap-1 rounded-md border px-1 py-0.5 text-xs transition",
-        colors[color || groupColor],
+        colors[color ?? groupColor],
         focusVisibleOutlineStyle,
         "focus-visible:outline-offset-1",
         "disabled:opacity-50",
