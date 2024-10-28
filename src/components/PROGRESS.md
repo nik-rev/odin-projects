@@ -10,7 +10,7 @@
 - [x] date-range-picker.tsx
 - [x] dialog.tsx
 - [x] disclosure.tsx
-- [ ] dropzone.tsx
+- [x] dropzone.tsx
 - [ ] empty-state.tsx
 - [ ] field.tsx
 - [ ] file-trigger.tsx
