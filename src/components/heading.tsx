@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import { FocusScope } from "react-aria";
 import {
   Heading as RACHeading,
-  HeadingProps as RACHeadingProps,
-} from 'react-aria-components';
-import { twMerge } from 'tailwind-merge';
-import { FocusScope } from 'react-aria';
-import { DisplayLevel, displayLevels } from './utils';
+  type HeadingProps as RACHeadingProps,
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
+
+import { type DisplayLevel, displayLevels } from "./utils";
 
 type BaseHeadingProps = {
   displayLevel?: DisplayLevel;
@@ -19,13 +20,13 @@ export type HeadingProps = {
 
 type CustomElement = {
   level?: never;
-  elementType: 'div';
-} & JSX.IntrinsicElements['div'];
+  elementType: "div";
+} & React.JSX.IntrinsicElements["div"];
 
 export const Heading = React.forwardRef<
   HTMLHeadingElement | HTMLDivElement,
   BaseHeadingProps & (HeadingProps | CustomElement)
->(function Heading({ elementType, autoFocus, ...props }, ref) {
+>(({ elementType, autoFocus, ...props }, ref) => {
   if (elementType) {
     const { displayLevel = 1, className, ...restProps } = props;
 
@@ -35,9 +36,9 @@ export const Heading = React.forwardRef<
           <div
             {...restProps}
             ref={ref}
-            {...(autoFocus && { tabIndex: -1 })}
+            tabIndex={-1}
             className={twMerge(
-              [displayLevels[displayLevel], 'outline-none'],
+              [displayLevels[displayLevel], "outline-none"],
               className,
             )}
           />
@@ -61,10 +62,10 @@ export const Heading = React.forwardRef<
         <RACHeading
           {...restProps}
           ref={ref}
+          tabIndex={-1}
           level={level}
-          {...(autoFocus && { tabIndex: -1 })}
           className={twMerge(
-            [displayLevels[displayLevel ?? level], 'outline-none'],
+            [displayLevels[displayLevel ?? level], "outline-none"],
             className,
           )}
         />
@@ -82,15 +83,17 @@ export const Heading = React.forwardRef<
   );
 });
 
+Heading.displayName = "Heading";
+
 export const SubHeading = React.forwardRef<
   HTMLDivElement,
-  JSX.IntrinsicElements['div']
->(function SubHeading({ className, ...props }, ref) {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      className={twMerge('text-sm/6 text-muted', className)}
-    />
-  );
-});
+  React.JSX.IntrinsicElements["div"]
+>(({ className, ...props }, ref) => (
+  <div
+    {...props}
+    ref={ref}
+    className={twMerge("text-sm/6 text-muted", className)}
+  />
+));
+
+SubHeading.displayName = "SubHeading";
