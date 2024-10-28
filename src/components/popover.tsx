@@ -20,11 +20,7 @@ export function Popover(props: PopoverProps) {
 
   const popoverContext = useSlottedContext(PopoverContext);
 
-  if (!popoverContext) {
-    throw new Error("No popover contex found");
-  }
-
-  const isSubmenu = popoverContext.trigger === "SubmenuTrigger";
+  const isSubmenu = popoverContext?.trigger === "SubmenuTrigger";
 
   const calculatedOffset =
     typeof offset === "number" ? (isSubmenu ? offset - 14 : offset) : undefined;
