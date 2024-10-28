@@ -1,4 +1,4 @@
-import { Keyboard as RACKeyboard } from "react-aria-components";
+import { Keyboard as AriaKeyboard } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 
 export default {};
@@ -8,7 +8,7 @@ export type KeyboardProps = Omit<JSX.IntrinsicElements["div"], "children"> & {
 
 export function Kbd({ className, children, ...props }: KeyboardProps) {
   return (
-    <RACKeyboard
+    <AriaKeyboard
       {...props}
       data-ui="kbd"
       className={twMerge(
@@ -17,6 +17,6 @@ export function Kbd({ className, children, ...props }: KeyboardProps) {
       )}
     >
       {children}
-    </RACKeyboard>
+    </AriaKeyboard>
   );
 }

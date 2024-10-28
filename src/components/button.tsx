@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  Button as RACButton,
-  type ButtonProps as RACButtonProps,
-  ToggleButton as RACToggleButton,
-  type ToggleButtonProps as RACToggleButtonProps,
+  Button as AriaButton,
+  type ButtonProps as AriaButtonProps,
+  ToggleButton as AriaToggleButton,
+  type ToggleButtonProps as AriaToggleButtonProps,
 } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 
@@ -26,9 +26,9 @@ export type BasicButtonProps = {
   variant?: Variant;
 };
 
-export type ButtonProps = AsChildProps<RACButtonProps> & BasicButtonProps;
+export type ButtonProps = AsChildProps<AriaButtonProps> & BasicButtonProps;
 
-export type ButtonWithoutAsChildProps = RACButtonProps & BasicButtonProps;
+export type ButtonWithoutAsChildProps = AriaButtonProps & BasicButtonProps;
 
 const buttonVariants = {
   base: [
@@ -164,7 +164,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <RACButton
+      <AriaButton
         {...buttonProps}
         ref={ref}
         data-variant={variant}
@@ -207,18 +207,18 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             />
           </>
         )}
-      </RACButton>
+      </AriaButton>
     );
   },
 );
 
 Button.displayName = "Button";
 
-export function ToggleButton(props: RACToggleButtonProps & BasicButtonProps) {
+export function ToggleButton(props: AriaToggleButtonProps & BasicButtonProps) {
   const { className } = props;
 
   return (
-    <RACToggleButton
+    <AriaToggleButton
       {...props}
       className={composeTailwindRenderProps(className, [
         buttonStyle(props),

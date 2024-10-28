@@ -1,9 +1,9 @@
 import {
-  Slider as RACSlider,
-  type SliderProps as RACSliderProps,
+  Slider as AriaSlider,
+  type SliderProps as AriaSliderProps,
   type SliderRenderProps,
   SliderThumb,
-  SliderTrack as RACSliderTrack,
+  SliderTrack as AriaSliderTrack,
 } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 
@@ -14,13 +14,13 @@ export { SliderOutput } from "react-aria-components";
 export type SliderProps<T> = {
   label?: string;
   thumbLabels?: string[];
-} & RACSliderProps<T>;
+} & AriaSliderProps<T>;
 
 export function Slider<T extends number | number[]>(props: SliderProps<T>) {
   const { className } = props;
 
   return (
-    <RACSlider
+    <AriaSlider
       {...props}
       className={composeTailwindRenderProps(
         className,
@@ -69,7 +69,7 @@ function getTrackHighlightStyle(
 
 export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
   return (
-    <RACSliderTrack className="group relative flex w-full items-center orientation-horizontal:h-7 orientation-vertical:h-44 orientation-vertical:w-7">
+    <AriaSliderTrack className="group relative flex w-full items-center orientation-horizontal:h-7 orientation-vertical:h-44 orientation-vertical:w-7">
       {({ state, orientation }) => (
         <>
           <div
@@ -95,6 +95,6 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
           ))}
         </>
       )}
-    </RACSliderTrack>
+    </AriaSliderTrack>
   );
 }

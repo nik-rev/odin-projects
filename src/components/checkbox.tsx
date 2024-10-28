@@ -1,9 +1,9 @@
 import React, { type ReactNode } from "react";
 import {
-  Checkbox as RACCheckbox,
-  CheckboxGroup as RACCheckboxGroup,
-  type CheckboxGroupProps as RACCheckboxGroupProps,
-  type CheckboxProps as RACCheckboxProps,
+  Checkbox as AriaCheckbox,
+  CheckboxGroup as AriaCheckboxGroup,
+  type CheckboxGroupProps as AriaCheckboxGroupProps,
+  type CheckboxProps as AriaCheckboxProps,
 } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 
@@ -18,14 +18,14 @@ import {
 export type CheckboxGroupProps = {
   children?: ReactNode;
   orientation?: "vertical" | "horizontal";
-} & Omit<RACCheckboxGroupProps, "children">;
+} & Omit<AriaCheckboxGroupProps, "children">;
 
 export function CheckboxGroup({
   orientation = "vertical",
   ...props
 }: CheckboxGroupProps) {
   return (
-    <RACCheckboxGroup
+    <AriaCheckboxGroup
       {...props}
       data-orientation={orientation}
       className={composeTailwindRenderProps(props.className, groupBoxStyle)}
@@ -74,7 +74,7 @@ export function CheckboxField({
 
 type CheckboxProps = {
   labelPosition?: "left" | "right";
-} & RACCheckboxProps;
+} & AriaCheckboxProps;
 
 export function Checkbox({
   labelPosition = "right",
@@ -84,7 +84,7 @@ export function Checkbox({
   const descriptionContext = React.useContext(DescriptionContext);
 
   return (
-    <RACCheckbox
+    <AriaCheckbox
       {...props}
       aria-describedby={descriptionContext?.["aria-describedby"]}
       data-position={labelPosition}
@@ -134,6 +134,6 @@ export function Checkbox({
           {typeof children === "function" ? children(renderProps) : children}
         </>
       )}
-    </RACCheckbox>
+    </AriaCheckbox>
   );
 }

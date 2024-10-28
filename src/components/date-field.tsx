@@ -1,9 +1,9 @@
 import {
   composeRenderProps,
-  DateField as RACDateField,
-  type DateFieldProps as RACDateFieldProps,
-  DateInput as RACDateInput,
-  type DateInputProps as RACDateInputProps,
+  DateField as AriaDateField,
+  type DateFieldProps as AriaDateFieldProps,
+  DateInput as AriaDateInput,
+  type DateInputProps as AriaDateInputProps,
   DateSegment,
   type DateValue,
 } from "react-aria-components";
@@ -15,20 +15,20 @@ import {
   inputFieldStyle,
 } from "./utils";
 
-export type DateFieldProps<T extends DateValue> = {} & RACDateFieldProps<T>;
+export type DateFieldProps<T extends DateValue> = {} & AriaDateFieldProps<T>;
 
 export function DateField<T extends DateValue>(props: DateFieldProps<T>) {
   const { className } = props;
 
   return (
-    <RACDateField
+    <AriaDateField
       {...props}
       className={composeRenderProps(
         className,
         (renderClassName, { isDisabled }) =>
           twMerge(
             inputFieldStyle,
-            // RAC does not set disable to date field when it is disable
+            // Aria does not set disable to date field when it is disable
             // So we have to style disable state for none input
             isDisabled && "[&>:not(input)]:opacity-50",
             renderClassName,
@@ -38,13 +38,13 @@ export function DateField<T extends DateValue>(props: DateFieldProps<T>) {
   );
 }
 
-export type DateInputProps = Omit<RACDateInputProps, "children">;
+export type DateInputProps = Omit<AriaDateInputProps, "children">;
 
 export function DateInput(props: DateInputProps) {
   const { className } = props;
 
   return (
-    <RACDateInput
+    <AriaDateInput
       {...props}
       data-ui="control"
       className={composeTailwindRenderProps(className, [
@@ -69,6 +69,6 @@ export function DateInput(props: DateInputProps) {
           )}
         />
       )}
-    </RACDateInput>
+    </AriaDateInput>
   );
 }

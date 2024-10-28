@@ -1,5 +1,5 @@
 import {
-  DropZone as RACDropZone,
+  DropZone as AriaDropZone,
   type DropZoneProps,
 } from "react-aria-components";
 
@@ -13,7 +13,7 @@ export function DropZone(props: DropZoneProps) {
   const { className } = props;
 
   return (
-    <RACDropZone
+    <AriaDropZone
       {...props}
       className={composeTailwindRenderProps(className, [
         "sm:min-w-96",

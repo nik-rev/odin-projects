@@ -2,8 +2,8 @@ import React from "react";
 import { mergeProps, useFocusable } from "react-aria";
 import {
   OverlayArrow,
-  Tooltip as RACTooltip,
-  type TooltipProps as RACTooltipProps,
+  Tooltip as AriaTooltip,
+  type TooltipProps as AriaTooltipProps,
 } from "react-aria-components";
 
 import { composeTailwindRenderProps } from "./utils";
@@ -12,11 +12,11 @@ export { TooltipTrigger } from "react-aria-components";
 
 export type TooltipProps = {
   children: React.ReactNode;
-} & Omit<RACTooltipProps, "children">;
+} & Omit<AriaTooltipProps, "children">;
 
 export function Tooltip({ children, ...props }: TooltipProps) {
   return (
-    <RACTooltip
+    <AriaTooltip
       {...props}
       offset={10}
       className={composeTailwindRenderProps(
@@ -35,7 +35,7 @@ export function Tooltip({ children, ...props }: TooltipProps) {
         </svg>
       </OverlayArrow>
       {children}
-    </RACTooltip>
+    </AriaTooltip>
   );
 }
 

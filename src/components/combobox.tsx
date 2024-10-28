@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  ComboBox as RACComboBox,
-  type ComboBoxProps as RACComboBoxProps,
+  ComboBox as AriaComboBox,
+  type ComboBoxProps as AriaComboBoxProps,
   ComboBoxStateContext,
   Group,
   type GroupProps,
@@ -13,11 +13,11 @@ import { Button, type ButtonWithoutAsChildProps } from "./button";
 import { ChevronDownIcon, XIcon } from "./icons";
 import { composeTailwindRenderProps, inputFieldStyle } from "./utils";
 
-export function ComboBox(props: RACComboBoxProps<object>) {
+export function ComboBox(props: AriaComboBoxProps<object>) {
   const { className } = props;
 
   return (
-    <RACComboBox
+    <AriaComboBox
       {...props}
       data-ui="comboBox"
       className={composeTailwindRenderProps(className, [

@@ -1,13 +1,13 @@
 import React from "react";
 import {
-  Tab as RACTab,
-  TabList as RACTabList,
+  Tab as AriaTab,
+  TabList as AriaTabList,
   type TabListProps,
-  TabPanel as RACTabPanel,
+  TabPanel as AriaTabPanel,
   type TabPanelProps,
   type TabProps,
-  Tabs as RACTabs,
-  type TabsProps as RACTabProps,
+  Tabs as AriaTabs,
+  type TabsProps as AriaTabProps,
 } from "react-aria-components";
 
 import { composeTailwindRenderProps, focusVisibleRingStyle } from "./utils";
@@ -20,7 +20,7 @@ const TabsContext = React.createContext<{
   orientation: "horizontal",
 });
 
-export type TabsProps = RACTabProps &
+export type TabsProps = AriaTabProps &
   (
     | { variant?: "underline" | "pills" }
     | { variant: "segment"; orientation?: never }
@@ -34,7 +34,7 @@ export function Tabs({
 }: TabsProps) {
   return (
     <TabsContext.Provider value={{ variant, orientation }}>
-      <RACTabs
+      <AriaTabs
         {...props}
         keyboardActivation={keyboardActivation}
         orientation={orientation}
@@ -81,7 +81,7 @@ export function TabList<T extends object & { title: string }>(
 
   return (
     <div className="flex overflow-x-auto pb-px pl-px">
-      <RACTabList
+      <AriaTabList
         {...props}
         className={composeTailwindRenderProps(props.className, [
           "flex",
@@ -113,7 +113,7 @@ export function TabPanel(props: TabPanelProps) {
   const { variant, orientation } = React.useContext(TabsContext);
 
   return (
-    <RACTabPanel
+    <AriaTabPanel
       {...props}
       className={composeTailwindRenderProps(props.className, [
         "flex-1 outline-0",
@@ -176,7 +176,7 @@ export function Tab(props: TabProps) {
   const { variant, orientation } = React.useContext(TabsContext);
 
   return (
-    <RACTab
+    <AriaTab
       {...props}
       className={composeTailwindRenderProps(props.className, [
         "relative flex items-center gap-x-3 rounded font-medium outline-none outline-0",

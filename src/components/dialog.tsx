@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  Dialog as RACDialog,
-  type DialogProps as RACDialogProps,
+  Dialog as AriaDialog,
+  type DialogProps as AriaDialogProps,
   OverlayTriggerStateContext,
 } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
@@ -16,11 +16,11 @@ export { DialogTrigger } from "react-aria-components";
 
 export type DialogProps = {
   alert?: boolean;
-} & RACDialogProps;
+} & AriaDialogProps;
 
 export function Dialog({ role, alert = false, ...props }: DialogProps) {
   return (
-    <RACDialog
+    <AriaDialog
       {...props}
       role={(role ?? alert) ? "alertdialog" : "dialog"}
       className={twMerge(

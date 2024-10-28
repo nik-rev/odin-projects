@@ -1,20 +1,20 @@
 import {
   composeRenderProps,
-  TimeField as RACTimeField,
-  type TimeFieldProps as RACTimeFieldProps,
+  TimeField as AriaTimeField,
+  type TimeFieldProps as AriaTimeFieldProps,
   type TimeValue,
 } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 
 import { inputFieldStyle } from "./utils";
 
-export type TimeFieldProps<T extends TimeValue> = {} & RACTimeFieldProps<T>;
+export type TimeFieldProps<T extends TimeValue> = {} & AriaTimeFieldProps<T>;
 
-export function TimeField<T extends TimeValue>(props: RACTimeFieldProps<T>) {
+export function TimeField<T extends TimeValue>(props: AriaTimeFieldProps<T>) {
   const { className } = props;
 
   return (
-    <RACTimeField
+    <AriaTimeField
       {...props}
       className={composeRenderProps(
         className,
@@ -22,7 +22,7 @@ export function TimeField<T extends TimeValue>(props: RACTimeFieldProps<T>) {
           twMerge(
             inputFieldStyle,
             "items-start",
-            // RAC does not set disable to time field when it is disable
+            // Aria does not set disable to time field when it is disable
             // So we have to style disable state for none input
             isDisabled && "[&>:not(input)]:opacity-50",
             renderClassName,

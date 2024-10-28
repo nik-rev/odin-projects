@@ -1,6 +1,6 @@
 import {
   TextProps,
-  Group as RACGroup,
+  Group as AriaGroup,
   GroupProps,
 } from 'react-aria-components';
 import { twMerge } from 'tailwind-merge';
@@ -13,7 +13,7 @@ export function InputGroup({
   inline?: boolean;
 }) {
   return (
-    <RACGroup
+    <AriaGroup
       {...props}
       data-ui="control"
       className={composeTailwindRenderProps(props.className, [
@@ -186,7 +186,7 @@ export function InputSeparator({
 
 export function InputGroups(props: GroupProps) {
   return (
-    <RACGroup
+    <AriaGroup
       {...props}
       data-ui="control"
       className={composeTailwindRenderProps(props.className, [

@@ -1,6 +1,6 @@
 import {
-  NumberField as RACNumberField,
-  NumberFieldProps as RACNumberFieldProps,
+  NumberField as AriaNumberField,
+  NumberFieldProps as AriaNumberFieldProps,
   InputProps,
   Group,
 } from 'react-aria-components';
@@ -10,11 +10,11 @@ import { Button } from './button';
 import { Separator } from './separator';
 import { MinusIcon, PlusIcon } from './icons';
 
-export interface NumberFieldProps extends RACNumberFieldProps {}
+export interface NumberFieldProps extends AriaNumberFieldProps {}
 
 export function NumberField(props: NumberFieldProps) {
   return (
-    <RACNumberField
+    <AriaNumberField
       {...props}
       className={composeTailwindRenderProps(props.className, inputFieldStyle)}
     />

@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  DatePicker as RACDatePicker,
-  type DatePickerProps as RACDatePickerProps,
+  DatePicker as AriaDatePicker,
+  type DatePickerProps as AriaDatePickerProps,
   DatePickerStateContext,
   type DateValue,
   Group,
@@ -17,13 +17,13 @@ import { CalendarIcon } from "./icons";
 import { Popover } from "./popover";
 import { composeTailwindRenderProps, inputFieldStyle } from "./utils";
 
-export type DatePickerProps<T extends DateValue> = {} & RACDatePickerProps<T>;
+export type DatePickerProps<T extends DateValue> = {} & AriaDatePickerProps<T>;
 
 export function DatePicker<T extends DateValue>(props: DatePickerProps<T>) {
   const { className } = props;
 
   return (
-    <RACDatePicker
+    <AriaDatePicker
       {...props}
       className={composeTailwindRenderProps(className, inputFieldStyle)}
     />

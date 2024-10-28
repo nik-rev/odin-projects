@@ -4,7 +4,7 @@ import {
   Tag as AriaTag,
   TagGroup as AriaTagGroup,
   type TagGroupProps as AriaTagGroupProps,
-  TagList as RACTagList,
+  TagList as AriaTagList,
   type TagListProps,
   type TagProps as AriaTagProps,
 } from "react-aria-components";
@@ -79,7 +79,7 @@ export function TagGroup({ children, ...props }: TagGroupProps) {
 
 export function TagList<T extends object>(props: TagListProps<T>) {
   return (
-    <RACTagList
+    <AriaTagList
       {...props}
       className={composeTailwindRenderProps(
         props.className,

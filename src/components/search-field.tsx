@@ -1,22 +1,22 @@
 import {
   InputProps,
   Group,
-  SearchField as RACSearchField,
-  SearchFieldProps as RACSearchFieldProps,
+  SearchField as AriaSearchField,
+  SearchFieldProps as AriaSearchFieldProps,
 } from 'react-aria-components';
 import { composeTailwindRenderProps, inputFieldStyle } from './utils';
 import { Button } from './button';
 import { Input } from './field';
 import { SearchIcon, XIcon } from './icons';
 
-export interface SearchFieldProps extends RACSearchFieldProps {}
+export interface SearchFieldProps extends AriaSearchFieldProps {}
 
 export function SearchField(props: SearchFieldProps) {
   return (
-    <RACSearchField
+    <AriaSearchField
       {...props}
       className={composeTailwindRenderProps(props.className, inputFieldStyle)}
-    ></RACSearchField>
+    ></AriaSearchField>
   );
 }
 

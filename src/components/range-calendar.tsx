@@ -1,6 +1,6 @@
 import {
-  RangeCalendar as RACRangeCalendar,
-  RangeCalendarProps as RACRangeCalendarProps,
+  RangeCalendar as AriaRangeCalendar,
+  RangeCalendarProps as AriaRangeCalendarProps,
   CalendarCell,
   CalendarGrid,
   CalendarGridBody,
@@ -12,7 +12,7 @@ import { groupFocusVisibleOutlineStyle } from './utils';
 import { twMerge } from 'tailwind-merge';
 
 export interface RangeCalendarProps<T extends DateValue>
-  extends Omit<RACRangeCalendarProps<T>, 'visibleDuration'> {
+  extends Omit<AriaRangeCalendarProps<T>, 'visibleDuration'> {
   errorMessage?: string;
 }
 
@@ -21,7 +21,7 @@ export function RangeCalendar<T extends DateValue>({
   ...props
 }: RangeCalendarProps<T>) {
   return (
-    <RACRangeCalendar {...props}>
+    <AriaRangeCalendar {...props}>
       <CalendarHeader />
       <CalendarGrid className="[&_td]:px-0" weekdayStyle="short">
         <CalendarGridHeader />
@@ -105,6 +105,6 @@ export function RangeCalendar<T extends DateValue>({
           {errorMessage}
         </Text>
       )}
-    </RACRangeCalendar>
+    </AriaRangeCalendar>
   );
 }

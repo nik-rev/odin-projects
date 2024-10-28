@@ -1,13 +1,13 @@
 import {
-  Popover as RACPopover,
-  PopoverProps as RACPopoverProps,
+  Popover as AriaPopover,
+  PopoverProps as AriaPopoverProps,
   useSlottedContext,
   PopoverContext,
 } from 'react-aria-components';
 import React from 'react';
 import { composeTailwindRenderProps } from './utils';
 
-export interface PopoverProps extends Omit<RACPopoverProps, 'children'> {
+export interface PopoverProps extends Omit<AriaPopoverProps, 'children'> {
   children: React.ReactNode;
   noEnteringAnimation?: boolean;
   noExitingAnimation?: boolean;
@@ -26,7 +26,7 @@ export function Popover(props: PopoverProps) {
         : offset;
 
   return (
-    <RACPopover
+    <AriaPopover
       {...props}
       offset={offset}
       className={composeTailwindRenderProps(props.className, [

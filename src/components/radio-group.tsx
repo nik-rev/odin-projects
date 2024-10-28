@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  Radio as RACRadio,
-  RadioGroup as RACRadioGroup,
-  RadioGroupProps as RACRadioGroupProps,
-  RadioProps as RACRadioProps,
+  Radio as AriaRadio,
+  RadioGroup as AriaRadioGroup,
+  RadioGroupProps as AriaRadioGroupProps,
+  RadioProps as AriaRadioProps,
   RadioRenderProps,
 } from 'react-aria-components';
 import { DescriptionContext, DescriptionProvider } from './field';
@@ -14,9 +14,9 @@ import {
 } from './utils';
 import { twMerge } from 'tailwind-merge';
 
-export function RadioGroup({ ...props }: RACRadioGroupProps) {
+export function RadioGroup({ ...props }: AriaRadioGroupProps) {
   return (
-    <RACRadioGroup
+    <AriaRadioGroup
       {...props}
       className={composeTailwindRenderProps(props.className, groupBoxStyle)}
     />
@@ -63,13 +63,13 @@ export function RadioField({
   );
 }
 
-export interface RadioProps extends RACRadioProps {
+export interface RadioProps extends AriaRadioProps {
   labelPosition?: 'left' | 'right';
   render?: never;
 }
 
 export interface CustomRenderRadioProps
-  extends Omit<RACRadioProps, 'children'> {
+  extends Omit<AriaRadioProps, 'children'> {
   render: (props: RadioRenderProps) => React.ReactNode;
   children?: never;
 }
@@ -82,7 +82,7 @@ export function Radio({
 
   if (props.render) {
     return (
-      <RACRadio
+      <AriaRadio
         {...props}
         aria-describedby={descriptionContext?.['aria-describedby']}
         className={composeTailwindRenderProps(className, [
@@ -91,14 +91,14 @@ export function Radio({
         ])}
       >
         {props.render}
-      </RACRadio>
+      </AriaRadio>
     );
   }
 
   const { labelPosition = 'right', ...restProps } = props;
 
   return (
-    <RACRadio
+    <AriaRadio
       {...restProps}
       aria-describedby={descriptionContext?.['aria-describedby']}
       data-position={labelPosition}
@@ -139,6 +139,6 @@ export function Radio({
           </>
         );
       }}
-    </RACRadio>
+    </AriaRadio>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   ComboBox,
-  ComboBoxProps as RACComboBoxProps,
+  ComboBoxProps as AriaComboBoxProps,
   Key,
   ListBoxItemProps,
   composeRenderProps,
@@ -26,7 +26,7 @@ import { composeTailwindRenderProps, inputFieldStyle } from './utils';
 
 export interface MultiSelectProps<T extends object>
   extends Omit<
-    RACComboBoxProps<T>,
+    AriaComboBoxProps<T>,
     | 'children'
     | 'validate'
     | 'allowsEmptyCollection'

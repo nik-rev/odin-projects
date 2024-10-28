@@ -1,6 +1,6 @@
 import {
-  Select as RACSelect,
-  SelectProps as RACSelectProps,
+  Select as AriaSelect,
+  SelectProps as AriaSelectProps,
   Header,
   Button,
   ListBoxItemProps,
@@ -8,8 +8,8 @@ import {
   composeRenderProps,
   Collection,
   Section,
-  SectionProps as RACSectionProps,
-  ListBoxItem as RACListBoxItem,
+  SectionProps as AriaSectionProps,
+  ListBoxItem as AriaListBoxItem,
 } from 'react-aria-components';
 import { ListBoxProps, ListBox } from './list-box';
 import { Popover, PopoverProps } from './popover';
@@ -23,9 +23,9 @@ import { twMerge } from 'tailwind-merge';
 import { Small } from './text';
 import { CheckIcon } from './icons';
 
-export function Select<T extends object>(props: RACSelectProps<T>) {
+export function Select<T extends object>(props: AriaSelectProps<T>) {
   return (
-    <RACSelect
+    <AriaSelect
       {...props}
       data-ui="select"
       className={composeTailwindRenderProps(props.className, [
@@ -148,7 +148,7 @@ export function SelectListBox<T extends object>(props: ListBoxProps<T>) {
   );
 }
 
-export interface SectionProps<T> extends RACSectionProps<T> {
+export interface SectionProps<T> extends AriaSectionProps<T> {
   title?: string;
 }
 
@@ -184,7 +184,7 @@ export function SelectListItem({
     (typeof props.children === 'string' ? props.children : undefined);
 
   return (
-    <RACListBoxItem
+    <AriaListBoxItem
       {...props}
       textValue={textValue}
       className={composeTailwindRenderProps(props.className, [
@@ -209,7 +209,7 @@ export function SelectListItem({
           </>
         );
       })}
-    </RACListBoxItem>
+    </AriaListBoxItem>
   );
 }
 

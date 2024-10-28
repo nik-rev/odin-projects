@@ -1,8 +1,8 @@
 import React from "react";
 import { FocusScope } from "react-aria";
 import {
-  Heading as RACHeading,
-  type HeadingProps as RACHeadingProps,
+  Heading as AriaHeading,
+  type HeadingProps as AriaHeadingProps,
 } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 
@@ -16,7 +16,7 @@ type BaseHeadingProps = {
 export type HeadingProps = {
   level?: DisplayLevel;
   elementType?: never;
-} & RACHeadingProps;
+} & AriaHeadingProps;
 
 type CustomElement = {
   level?: never;
@@ -59,7 +59,7 @@ export const Heading = React.forwardRef<
   if (autoFocus) {
     return (
       <FocusScope autoFocus>
-        <RACHeading
+        <AriaHeading
           {...restProps}
           ref={ref}
           tabIndex={-1}
@@ -74,7 +74,7 @@ export const Heading = React.forwardRef<
   }
 
   return (
-    <RACHeading
+    <AriaHeading
       {...restProps}
       ref={ref}
       level={level}

@@ -3,10 +3,10 @@ import {
   Collection,
   composeRenderProps,
   Header,
-  ListBox as RACListBox,
-  ListBoxItem as RACListBoxItem,
+  ListBox as AriaListBox,
+  ListBoxItem as AriaListBoxItem,
   type ListBoxItemProps,
-  type ListBoxProps as RACListBoxProps,
+  type ListBoxProps as AriaListBoxProps,
   Section,
   type SectionProps,
 } from "react-aria-components";
@@ -17,7 +17,7 @@ import { composeTailwindRenderProps, focusVisibleOutlineStyle } from "./utils";
 
 export default {};
 export type ListBoxProps<T> = {} & Omit<
-  RACListBoxProps<T>,
+  AriaListBoxProps<T>,
   "layout" | "orientation"
 >;
 
@@ -47,13 +47,13 @@ export function ListBox<T extends object>({
   }, []);
 
   return (
-    <RACListBox
+    <AriaListBox
       {...props}
       className={composeTailwindRenderProps(props.className, ["outline-none"])}
       ref={ref}
     >
       {children}
-    </RACListBox>
+    </AriaListBox>
   );
 }
 
@@ -64,7 +64,7 @@ export function ListBoxItem(props: ListBoxItemProps) {
     textValue ?? (typeof children === "string" ? children : undefined);
 
   return (
-    <RACListBoxItem
+    <AriaListBoxItem
       {...props}
       textValue={processedTextValue}
       className={composeTailwindRenderProps(className, [
@@ -74,7 +74,7 @@ export function ListBoxItem(props: ListBoxItemProps) {
       ])}
     >
       {children}
-    </RACListBoxItem>
+    </AriaListBoxItem>
   );
 }
 
@@ -88,7 +88,7 @@ export function DropdownItem({
     textValue ?? (typeof children === "string" ? children : undefined);
 
   return (
-    <RACListBoxItem
+    <AriaListBoxItem
       {...props}
       textValue={processedTextValue}
       className={composeRenderProps(
@@ -117,7 +117,7 @@ export function DropdownItem({
           <div data-ui="item">{renderChildren}</div>
         </>
       ))}
-    </RACListBoxItem>
+    </AriaListBoxItem>
   );
 }
 

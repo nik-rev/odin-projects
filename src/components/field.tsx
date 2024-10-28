@@ -1,18 +1,18 @@
 import React from "react";
 import {
-  FieldError as RACFieldError,
+  FieldError as AriaFieldError,
   type FieldErrorProps,
   GroupContext,
-  Input as RACInput,
+  Input as AriaInput,
   type InputProps,
-  Label as RACLabel,
+  Label as AriaLabel,
   LabelContext,
   type LabelProps,
-  Text as RACText,
-  TextArea as RACTextArea,
-  type TextAreaProps as RACTextAreaProps,
-  TextField as RACTextField,
-  type TextFieldProps as RACTextFieldProps,
+  Text as AriaText,
+  TextArea as AriaTextArea,
+  type TextAreaProps as AriaTextAreaProps,
+  TextField as AriaTextField,
+  type TextFieldProps as AriaTextFieldProps,
   type TextProps,
 } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
@@ -61,7 +61,7 @@ export function Label({
   displayLevel?: DisplayLevel;
 }) {
   return (
-    <RACLabel
+    <AriaLabel
       {...props}
       data-ui="label"
       className={twMerge(
@@ -107,7 +107,7 @@ export function DescriptionProvider({
 }
 
 /**
- * RAC will auto associate <RACText slot="description"/> with TextField/NumberField/RadioGroup/CheckboxGroup/DatePicker etc,
+ * Aria will auto associate <AriaText slot="description"/> with TextField/NumberField/RadioGroup/CheckboxGroup/DatePicker etc,
  * but not for Switch/Checkbox/Radio and our custom components. We use follow pattern to associate description for
  * Switch/Checkbox/Radio https://react-spectrum.adobe.com/react-aria/Switch.html#advanced-customization
  */
@@ -123,7 +123,7 @@ export function Description({ className, ...props }: TextProps) {
       className={twMerge("block group-disabled:opacity-50", className)}
     />
   ) : (
-    <RACText
+    <AriaText
       {...props}
       data-ui="description"
       slot="description"
@@ -136,11 +136,11 @@ export function Description({ className, ...props }: TextProps) {
   );
 }
 
-export function TextField(props: RACTextFieldProps) {
+export function TextField(props: AriaTextFieldProps) {
   const { className } = props;
 
   return (
-    <RACTextField
+    <AriaTextField
       {...props}
       data-ui="text-field"
       className={composeTailwindRenderProps(className, inputFieldStyle)}
@@ -152,7 +152,7 @@ export function FieldError(props: FieldErrorProps) {
   const { className } = props;
 
   return (
-    <RACFieldError
+    <AriaFieldError
       {...props}
       data-ui="errorMessage"
       className={composeTailwindRenderProps(
@@ -165,7 +165,7 @@ export function FieldError(props: FieldErrorProps) {
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => (
-    <RACInput
+    <AriaInput
       {...props}
       ref={ref}
       className={composeTailwindRenderProps(props.className, [
@@ -182,11 +182,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
 Input.displayName = "Input";
 
-export function TextArea(props: RACTextAreaProps) {
+export function TextArea(props: AriaTextAreaProps) {
   const { className } = props;
 
   return (
-    <RACTextArea
+    <AriaTextArea
       {...props}
       className={composeTailwindRenderProps(className, [
         "w-full rounded-lg border bg-inherit px-2.5 py-1 outline-none",

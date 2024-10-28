@@ -1,8 +1,8 @@
 import {
-  Breadcrumb as RACBreadcrumb,
-  type BreadcrumbProps as RACBreadcrumbProps,
-  Breadcrumbs as RACBreadcrumbs,
-  type BreadcrumbsProps as RACBreadcrumbsProps,
+  Breadcrumb as AriaBreadcrumb,
+  type BreadcrumbProps as AriaBreadcrumbProps,
+  Breadcrumbs as AriaBreadcrumbs,
+  type BreadcrumbsProps as AriaBreadcrumbsProps,
   type LinkProps,
 } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
@@ -14,20 +14,20 @@ import { composeTailwindRenderProps } from "./utils";
 export function Breadcrumbs<T extends object>({
   className,
   ...props
-}: RACBreadcrumbsProps<T>) {
+}: AriaBreadcrumbsProps<T>) {
   return (
-    <RACBreadcrumbs {...props} className={twMerge("flex gap-1", className)} />
+    <AriaBreadcrumbs {...props} className={twMerge("flex gap-1", className)} />
   );
 }
 
-type BreadcrumbProps = RACBreadcrumbProps & LinkProps;
+type BreadcrumbProps = AriaBreadcrumbProps & LinkProps;
 
 export function Breadcrumb({ className, ...props }: BreadcrumbProps) {
   return (
-    <RACBreadcrumb
+    <AriaBreadcrumb
       {...props}
       className={composeTailwindRenderProps(
-        className as RACBreadcrumbProps["className"],
+        className as AriaBreadcrumbProps["className"],
         "flex items-center gap-1",
       )}
     >
@@ -38,6 +38,6 @@ export function Breadcrumb({ className, ...props }: BreadcrumbProps) {
       {props.href && (
         <ChevronRightIcon className="size-4 text-muted" strokeWidth={1.5} />
       )}
-    </RACBreadcrumb>
+    </AriaBreadcrumb>
   );
 }

@@ -1,11 +1,11 @@
 import {
-  Calendar as RACCalendar,
+  Calendar as AriaCalendar,
   CalendarCell,
   CalendarGrid,
   CalendarGridBody,
-  CalendarGridHeader as RACCalendarGridHeader,
+  CalendarGridHeader as AriaCalendarGridHeader,
   CalendarHeaderCell,
-  type CalendarProps as RACCalendarProps,
+  type CalendarProps as AriaCalendarProps,
   type DateValue,
   Heading,
   Text,
@@ -19,17 +19,17 @@ import { focusVisibleOutlineStyle } from "./utils";
 
 export type CalendarProps<T extends DateValue> = {
   errorMessage?: string;
-} & Omit<RACCalendarProps<T>, "visibleDuration">;
+} & Omit<AriaCalendarProps<T>, "visibleDuration">;
 
 export function CalendarGridHeader() {
   return (
-    <RACCalendarGridHeader>
+    <AriaCalendarGridHeader>
       {(day) => (
         <CalendarHeaderCell className="size-9 text-sm/6 font-normal text-muted">
           {day}
         </CalendarHeaderCell>
       )}
-    </RACCalendarGridHeader>
+    </AriaCalendarGridHeader>
   );
 }
 
@@ -80,7 +80,7 @@ export function Calendar<T extends DateValue>({
   ...props
 }: CalendarProps<T>) {
   return (
-    <RACCalendar {...props}>
+    <AriaCalendar {...props}>
       <CalendarHeader />
       <CalendarGrid weekdayStyle="short">
         <CalendarGridHeader />
@@ -109,6 +109,6 @@ export function Calendar<T extends DateValue>({
           {errorMessage}
         </Text>
       )}
-    </RACCalendar>
+    </AriaCalendar>
   );
 }

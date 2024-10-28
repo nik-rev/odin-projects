@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  Link as RACLink,
-  type LinkProps as RACLinkProps,
+  Link as AriaLink,
+  type LinkProps as AriaLinkProps,
 } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 
@@ -9,7 +9,7 @@ import { type AsChildProps, Slot } from "./slot";
 import { composeTailwindRenderProps, focusVisibleOutlineStyle } from "./utils";
 
 export default {};
-export type LinkProps = AsChildProps<RACLinkProps>;
+export type LinkProps = AsChildProps<AriaLinkProps>;
 
 const linkStyle = [
   "relative inline-flex cursor-pointer items-center gap-1 rounded-lg outline-none hover:underline",
@@ -27,7 +27,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
     }
 
     return (
-      <RACLink
+      <AriaLink
         {...rest}
         ref={ref}
         className={composeTailwindRenderProps(props.className, [

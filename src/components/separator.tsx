@@ -1,8 +1,8 @@
 import { useSeparator } from 'react-aria';
 import { twMerge } from 'tailwind-merge';
-import { SeparatorProps as RACSeparatorProps } from 'react-aria-components';
+import { SeparatorProps as AriaSeparatorProps } from 'react-aria-components';
 
-export type SeparatorProps = RACSeparatorProps & {
+export type SeparatorProps = AriaSeparatorProps & {
   children?: React.ReactNode;
   dim?: boolean;
 } & JSX.IntrinsicElements['div'];

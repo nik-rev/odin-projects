@@ -2,10 +2,10 @@ import {
   Collection,
   composeRenderProps,
   Header,
-  Menu as RACMenu,
-  MenuItem as RACMenuItem,
-  type MenuItemProps as RACMenuItemProps,
-  type MenuProps as RACMenuProps,
+  Menu as AriaMenu,
+  MenuItem as AriaMenuItem,
+  type MenuItemProps as AriaMenuItemProps,
+  type MenuProps as AriaMenuProps,
   Section,
   type SectionProps,
   Separator,
@@ -86,11 +86,11 @@ export function MenuPopover({ className, ...props }: PopoverProps) {
     />
   );
 }
-export function Menu<T extends object>(props: RACMenuProps<T>) {
+export function Menu<T extends object>(props: AriaMenuProps<T>) {
   const { className } = props;
 
   return (
-    <RACMenu
+    <AriaMenu
       {...props}
       className={twMerge(
         "flex max-h-[inherit] flex-col overflow-auto outline-none",
@@ -131,7 +131,7 @@ export function Menu<T extends object>(props: RACMenuProps<T>) {
 }
 
 export function SubMenu<T extends object>(
-  props: RACMenuProps<T> & { "aria-label": string },
+  props: AriaMenuProps<T> & { "aria-label": string },
 ) {
   return <Menu {...props} />;
 }
@@ -147,13 +147,13 @@ export function MenuSeparator({ className }: { className?: string }) {
   );
 }
 
-type MenuItemProps = RACMenuItemProps & {
+type MenuItemProps = AriaMenuItemProps & {
   destructive?: true;
 };
 
 export function MenuItem({ destructive, ...props }: MenuItemProps) {
   return (
-    <RACMenuItem
+    <AriaMenuItem
       {...props}
       className={composeRenderProps(
         props.className,
@@ -198,7 +198,7 @@ export function MenuItem({ destructive, ...props }: MenuItemProps) {
           </>
         ),
       )}
-    </RACMenuItem>
+    </AriaMenuItem>
   );
 }
 

@@ -2,8 +2,8 @@ import React from 'react';
 import {
   Group,
   GroupProps,
-  Switch as RACSwitch,
-  SwitchProps as RACSwitchProps,
+  Switch as AriaSwitch,
+  SwitchProps as AriaSwitchProps,
 } from 'react-aria-components';
 import {
   composeTailwindRenderProps,
@@ -64,7 +64,7 @@ export function SwitchField({
   );
 }
 
-interface SwitchProps extends RACSwitchProps {
+interface SwitchProps extends AriaSwitchProps {
   labelPosition?: 'left' | 'right';
 }
 
@@ -76,7 +76,7 @@ export function Switch({
   const descriptionContext = React.useContext(DescriptionContext);
 
   return (
-    <RACSwitch
+    <AriaSwitch
       {...props}
       aria-describedby={descriptionContext?.['aria-describedby']}
       data-position={labelPosition}
@@ -124,6 +124,6 @@ export function Switch({
           {typeof children === 'function' ? children(renderProps) : children}
         </>
       )}
-    </RACSwitch>
+    </AriaSwitch>
   );
 }
