@@ -8,7 +8,7 @@
 - [x] date-field.tsx
 - [x] date-picker.tsx
 - [x] date-range-picker.tsx
-- [ ] dialog.tsx
+- [x] dialog.tsx
 - [ ] disclosure.tsx
 - [ ] dropzone.tsx
 - [ ] empty-state.tsx

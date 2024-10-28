@@ -1,5 +1,4 @@
 import '@/css/index.css';
-import '@/css/accents.css';
 import '@/css/initials.css';
 import './preview.css';
 import type { Preview } from '@storybook/react';

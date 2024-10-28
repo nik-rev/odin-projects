@@ -36,6 +36,8 @@
     --warning0: 254 252 232;
     /* yellow-200 -- warning/15 -- borders */
     --warning1: 254 240 138;
+    /* blue-600 */
+    --accent: 37 99 235;
   }
 
   .dark {
@@ -67,6 +69,8 @@
     --warning0: 254 252 232;
     /* yellow-200 -- warning/15 -- borders */
     --warning1: 254 240 138;
+    /* blue-600 */
+    --accent: 37 99 235;
   }
 }
 
