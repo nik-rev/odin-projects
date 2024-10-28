@@ -18,7 +18,7 @@
 - [x] grid-list.tsx
 - [x] heading.tsx
 - [x] icons.tsx
-- [ ] input-group.tsx
+- [x] input-group.tsx
 - [x] kbd.tsx
 - [x] link.tsx
 - [x] list-box.tsx
@@ -33,8 +33,8 @@
 - [x] pagination.tsx
 - [x] popover.tsx
 - [x] progress-bar.tsx
-- [ ] radio-group.tsx
-- [ ] range-calendar.tsx
+- [x] radio-group.tsx
+- [x] range-calendar.tsx
 - [ ] search-field.tsx
 - [ ] select.tsx
 - [ ] separator.tsx
