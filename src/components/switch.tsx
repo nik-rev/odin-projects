@@ -87,7 +87,7 @@ export function Switch({
         "data-[position=left]:flex-row-reverse",
         "data-[position=left]:justify-between",
         "text-base/6 sm:text-sm/6",
-        "disabled:opacity-50",
+        "disabled:opacity-50 cursor-pointer disabled:cursor-default read-only:cursor-default",
       ])}
     >
       {(renderProps) => (

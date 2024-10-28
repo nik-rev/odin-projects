@@ -42,8 +42,8 @@
 - [x] slider.tsx
 - [x] slot.tsx
 - [x] status.tsx
-- [ ] switch.tsx
-- [ ] table.tsx
+- [x] switch.tsx
+- [x] table.tsx
 - [ ] tabs.tsx
 - [ ] tag-group.tsx
 - [ ] tag-input.tsx
