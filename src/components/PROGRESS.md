@@ -25,8 +25,8 @@
 - [x] menu.tsx
 - [x] meter.tsx
 - [x] modal.tsx
-- [ ] multi-select.tsx
-- [ ] native-select.tsx
+- [x] multi-select.tsx
+- [x] native-select.tsx
 - [ ] notification-badge.tsx
 - [ ] number-field.tsx
 - [ ] password-input.tsx
