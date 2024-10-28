@@ -29,9 +29,9 @@
 - [x] native-select.tsx
 - [x] notification-badge.tsx
 - [x] number-field.tsx
-- [ ] password-input.tsx
-- [ ] pgagination.tsx
-- [ ] popover.tsx
+- [x] password-input.tsx
+- [x] pagination.tsx
+- [x] popover.tsx
 - [ ] progress-bar.tsx
 - [ ] radio-group.tsx
 - [ ] range-calendar.tsx

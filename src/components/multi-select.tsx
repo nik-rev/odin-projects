@@ -25,7 +25,6 @@ import { Popover } from "./popover";
 import { TagGroup, TagList } from "./tag-group";
 import { composeTailwindRenderProps, inputFieldStyle } from "./utils";
 
-export default {};
 export type MultiSelectProps<T extends object> = {
   items: T[];
   selectedList: ListData<T>;

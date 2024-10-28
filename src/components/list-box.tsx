@@ -15,7 +15,6 @@ import { twMerge } from "tailwind-merge";
 import { CheckIcon } from "./icons";
 import { composeTailwindRenderProps, focusVisibleOutlineStyle } from "./utils";
 
-export default {};
 export type ListBoxProps<T> = {} & Omit<
   AriaListBoxProps<T>,
   "layout" | "orientation"

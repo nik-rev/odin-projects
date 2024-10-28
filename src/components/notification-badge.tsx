@@ -1,6 +1,5 @@
 import { twMerge } from "tailwind-merge";
 
-export default {};
 export type NotificationBadgeProps =
   | {
       show: boolean;

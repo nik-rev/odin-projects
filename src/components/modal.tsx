@@ -6,7 +6,6 @@ import {
 
 import { composeTailwindRenderProps } from "./utils";
 
-export default {};
 const sizes = {
   xs: "sm:max-w-xs",
   sm: "sm:max-w-sm",

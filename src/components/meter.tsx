@@ -6,7 +6,6 @@ import {
 import { Label } from "./field";
 import { composeTailwindRenderProps } from "./utils";
 
-export default {};
 export type MeterProps = {
   label?: string;
 } & AriaMeterProps;

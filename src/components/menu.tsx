@@ -18,7 +18,6 @@ import { Popover, type PopoverProps } from "./popover";
 import { Small } from "./text";
 import { composeTailwindRenderProps } from "./utils";
 
-export default {};
 export { MenuTrigger, SubmenuTrigger } from "react-aria-components";
 
 type MenuButtonProps = ButtonWithoutAsChildProps & {

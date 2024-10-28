@@ -8,7 +8,6 @@ import { twMerge } from "tailwind-merge";
 import { type AsChildProps, Slot } from "./slot";
 import { composeTailwindRenderProps, focusVisibleOutlineStyle } from "./utils";
 
-export default {};
 export type LinkProps = AsChildProps<AriaLinkProps>;
 
 const linkStyle = [

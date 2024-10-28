@@ -11,7 +11,6 @@ import { MinusIcon, PlusIcon } from "./icons";
 import { Separator } from "./separator";
 import { composeTailwindRenderProps, inputFieldStyle } from "./utils";
 
-export default {};
 export type NumberFieldProps = {} & AriaNumberFieldProps;
 
 export function NumberField(props: NumberFieldProps) {

@@ -10,7 +10,6 @@ import {
   selectBoxIndicator,
 } from "./utils";
 
-export default {};
 export function NativeSelectField({
   className,
   ...props

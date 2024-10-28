@@ -6,7 +6,6 @@ import { Input } from "./field";
 import { EyeIcon, EyeOffIcon } from "./icons";
 import { composeTailwindRenderProps } from "./utils";
 
-export default {};
 export function PasswordInput(props: InputProps) {
   const { className } = props;
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);

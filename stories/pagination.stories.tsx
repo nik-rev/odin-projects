@@ -1,5 +1,5 @@
-import type { Meta } from '@storybook/react';
-import { docs } from '../.storybook/docs';
+import type { Meta } from "@storybook/react";
+
 import {
   Pagination,
   PaginationGap,
@@ -7,12 +7,14 @@ import {
   PaginationNext,
   PaginationPage,
   PaginationPrevious,
-} from '@/components/pgagination';
+} from "@/components/pagination";
+
+import { docs } from "../.storybook/docs";
 
 const meta: Meta = {
-  title: 'Pagination',
+  title: "Pagination",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
     docs: {
       ...docs,
       controls: {
@@ -20,12 +22,12 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
 
-export const Example = () => {
+export function Example() {
   return (
     <Pagination>
       <PaginationPrevious href="?page=2" />
@@ -43,4 +45,4 @@ export const Example = () => {
       <PaginationNext href="?page=4" />
     </Pagination>
   );
-};
+}

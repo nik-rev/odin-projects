@@ -2,7 +2,6 @@ import { twMerge } from "tailwind-merge";
 
 import { AccessibleIcon } from "./accessible-icon";
 
-export default {};
 export function EyeIcon({
   "aria-label": ariaLabel,
   ...props
