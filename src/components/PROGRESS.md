@@ -11,7 +11,7 @@
 - [x] dialog.tsx
 - [x] disclosure.tsx
 - [x] dropzone.tsx
-- [ ] empty-state.tsx
+- [x] empty-state.tsx
 - [ ] field.tsx
 - [ ] file-trigger.tsx
 - [ ] form.tsx

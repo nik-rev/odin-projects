@@ -1,17 +1,18 @@
-import { twMerge } from 'tailwind-merge';
-import { TextProps } from 'react-aria-components';
-import { Text } from './text';
-import { Heading, HeadingProps } from './heading';
+import { type TextProps } from "react-aria-components";
+import { twMerge } from "tailwind-merge";
+
+import { Heading, type HeadingProps } from "./heading";
+import { Text } from "./text";
 
 export function EmptyState({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements["div"]) {
   return (
     <div
       {...props}
       className={twMerge(
-        'flex h-full w-full flex-col items-center justify-center gap-1 p-4 text-center @container',
+        "flex h-full w-full flex-col items-center justify-center gap-1 p-4 text-center @container",
         className,
       )}
     />
@@ -22,17 +23,17 @@ export function EmptyStateIcon({
   className,
   children,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements["div"]) {
   return (
     <div
       {...props}
       className={twMerge(
-        'mb-2 flex max-w-32 items-center justify-center @md:max-w-40',
-        '[&>svg:not([class*=text-])]:text-muted [&>svg]:h-auto [&>svg]:min-w-12 [&>svg]:max-w-full',
+        "mb-2 flex max-w-32 items-center justify-center @md:max-w-40",
+        "[&>svg:not([class*=text-])]:text-muted [&>svg]:h-auto [&>svg]:min-w-12 [&>svg]:max-w-full",
         className,
       )}
     >
-    {children}
+      {children}
     </div>
   );
 }
@@ -46,7 +47,7 @@ export function EmptyStateHeading({
     <Heading
       {...props}
       level={level}
-      className={twMerge('text-balance', className)}
+      className={twMerge("text-balance", className)}
     />
   );
 }
@@ -55,7 +56,7 @@ export function EmptyStateDescription({ className, ...props }: TextProps) {
   return (
     <Text
       {...props}
-      className={twMerge('max-w-prose text-balance', className)}
+      className={twMerge("max-w-prose text-balance", className)}
     />
   );
 }
@@ -63,12 +64,12 @@ export function EmptyStateDescription({ className, ...props }: TextProps) {
 export function EmptyStateActions({
   className,
   ...props
-}: JSX.IntrinsicElements['div']) {
+}: React.JSX.IntrinsicElements["div"]) {
   return (
     <div
       {...props}
       className={twMerge(
-        'mt-3 flex flex-col items-center justify-center gap-4 p-2',
+        "mt-3 flex flex-col items-center justify-center gap-4 p-2",
         className,
       )}
     />
