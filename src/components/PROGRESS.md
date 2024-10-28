@@ -40,7 +40,7 @@
 - [x] separator.tsx
 - [x] skeleton.tsx
 - [x] slider.tsx
-- [ ] slot.tsx
+- [x] slot.tsx
 - [ ] status.tsx
 - [ ] switch.tsx
 - [ ] table.tsx
