@@ -1,31 +1,30 @@
-import React from 'react';
+import React from "react";
 import {
   Link as RACLink,
-  LinkProps as RACLinkProps,
-} from 'react-aria-components';
-import {
-  composeTailwindRenderProps,
-  focusVisibleOutlineStyle,
-} from './utils';
-import { twMerge } from 'tailwind-merge';
-import { AsChildProps, Slot } from './slot';
+  type LinkProps as RACLinkProps,
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
+import { type AsChildProps, Slot } from "./slot";
+import { composeTailwindRenderProps, focusVisibleOutlineStyle } from "./utils";
+
+export default {};
 export type LinkProps = AsChildProps<RACLinkProps>;
 
 const linkStyle = [
-  'relative inline-flex cursor-pointer items-center gap-1 rounded-lg outline-none hover:underline',
-  'text-base/6 sm:text-sm/6',
-  'disabled:no-underline disabled:opacity-50 disabled:cursor-default',
-  '[&.border]:hover:no-underline',
-].join(' ');
+  "relative inline-flex cursor-pointer items-center gap-1 rounded-lg outline-none hover:underline",
+  "text-base/6 sm:text-sm/6",
+  "disabled:no-underline disabled:opacity-50 disabled:cursor-default",
+  "[&.border]:hover:no-underline",
+].join(" ");
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
-  function Link(props, ref) {
-    if (props.asChild) {
+  (props, ref) => {
+    const { asChild: isAsChild, ...rest } = props;
+
+    if (isAsChild) {
       return <Slot className={twMerge(linkStyle)}>{props.children}</Slot>;
     }
-
-    const { asChild, ...rest } = props;
 
     return (
       <RACLink
@@ -39,3 +38,5 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
     );
   },
 );
+
+Link.displayName = "Link";
