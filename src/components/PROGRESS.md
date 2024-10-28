@@ -22,8 +22,8 @@
 - [x] kbd.tsx
 - [x] link.tsx
 - [x] list-box.tsx
-- [ ] menu.tsx
-- [ ] meter.tsx
+- [x] menu.tsx
+- [x] meter.tsx
 - [ ] modal.tsx
 - [ ] multi-select.tsx
 - [ ] native-select.tsx
