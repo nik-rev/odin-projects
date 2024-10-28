@@ -19,7 +19,7 @@
 - [x] heading.tsx
 - [x] icons.tsx
 - [ ] input-group.tsx
-- [ ] kbd.tsx
+- [x] kbd.tsx
 - [ ] link.tsx
 - [ ] list-box.tsx
 - [ ] menu.tsx
