@@ -32,7 +32,7 @@
 - [x] password-input.tsx
 - [x] pagination.tsx
 - [x] popover.tsx
-- [ ] progress-bar.tsx
+- [x] progress-bar.tsx
 - [ ] radio-group.tsx
 - [ ] range-calendar.tsx
 - [ ] search-field.tsx
