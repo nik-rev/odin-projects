@@ -41,7 +41,7 @@
 - [x] skeleton.tsx
 - [x] slider.tsx
 - [x] slot.tsx
-- [ ] status.tsx
+- [x] status.tsx
 - [ ] switch.tsx
 - [ ] table.tsx
 - [ ] tabs.tsx
