@@ -36,7 +36,7 @@
 - [x] radio-group.tsx
 - [x] range-calendar.tsx
 - [x] search-field.tsx
-- [ ] select.tsx
+- [x] select.tsx
 - [ ] separator.tsx
 - [ ] skeleton.tsx
 - [ ] slider.tsx
