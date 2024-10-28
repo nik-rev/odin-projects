@@ -38,7 +38,7 @@ export function GridListItem({ children, ...props }: GridListItemProps) {
         "hover:bg-zinc100",
         "[&:not(:last-child)]:mb-0.5",
         "selected:z-20",
-        "disabled:opacity-50",
+        "disabled:opacity-50 cursor-pointer disabled:cursor-default",
         focusVisibleOutlineStyle,
         "focus-visible:-outline-offset-2",
       ])}
