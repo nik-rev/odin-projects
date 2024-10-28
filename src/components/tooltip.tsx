@@ -57,6 +57,6 @@ export function NonFousableTooltipTarget(props: {
 export function NativeTooltip({
   title,
   ...props
-}: JSX.IntrinsicElements["div"] & { title: string }) {
+}: React.JSX.IntrinsicElements["div"] & { title: string }) {
   return <div title={title} role="presentation" {...props} />;
 }

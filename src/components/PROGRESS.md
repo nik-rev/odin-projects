@@ -45,13 +45,13 @@
 - [x] switch.tsx
 - [x] table.tsx
 - [x] tabs.tsx
-- [ ] tag-group.tsx
-- [ ] tag-input.tsx
-- [ ] text.tsx
-- [ ] time-field.tsx
-- [ ] tooltip.tsx
-- [ ] toast/
-- [ ] time-picker.ts
-- [ ] utils.ts
-- [ ] get-initials.ts
-- [ ] calendar.tsx
+- [x] tag-group.tsx
+- [x] tag-input.tsx
+- [x] text.tsx
+- [x] time-field.tsx
+- [x] tooltip.tsx
+- [x] toast/
+- [x] time-picker.ts
+- [x] utils.ts
+- [x] get-initials.ts
+- [x] calendar.tsx
