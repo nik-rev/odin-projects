@@ -38,8 +38,8 @@
 - [x] search-field.tsx
 - [x] select.tsx
 - [x] separator.tsx
-- [ ] skeleton.tsx
-- [ ] slider.tsx
+- [x] skeleton.tsx
+- [x] slider.tsx
 - [ ] slot.tsx
 - [ ] status.tsx
 - [ ] switch.tsx

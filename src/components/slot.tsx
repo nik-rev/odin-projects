@@ -1,24 +1,23 @@
 // https://www.jacobparis.com/content/react-as-child
-import React from 'react';
+import React from "react";
+import { twMerge } from "tailwind-merge";
 
-import { twMerge } from "tailwind-merge"
-
+export default {};
 export type AsChildProps<DefaultElementProps> =
   | ({ asChild?: false } & DefaultElementProps)
-  | { asChild: true; children: React.ReactNode }
+  | { asChild: true; children: React.ReactNode };
 
-
-export  function Slot({
+export function Slot({
   children,
+  asChild: _asChild,
   ...props
 }: React.HTMLAttributes<HTMLElement> & {
-  children?: React.ReactNode
+  children?: React.ReactNode;
+  asChild?: boolean;
 }) {
-  if('asChild' in props) {
-    delete props.asChild;
-  }
-  
   if (React.isValidElement(children)) {
+    /* eslint @typescript-eslint/no-unsafe-assignment: off, @typescript-eslint/no-unsafe-member-access: off, @typescript-eslint/no-unsafe-argument: off 
+     -- children must have className */
     return React.cloneElement(children, {
       ...props,
       ...children.props,
@@ -26,14 +25,11 @@ export  function Slot({
         ...props.style,
         ...children.props.style,
       },
-      className: twMerge(
-        props.className,
-        children.props.className,
-      ),
-    })
+      className: twMerge(props.className, children.props.className),
+    });
   }
   if (React.Children.count(children) > 1) {
-    React.Children.only(null)
+    React.Children.only(null);
   }
-  return null
+  return null;
 }

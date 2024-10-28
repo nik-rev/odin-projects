@@ -9,6 +9,7 @@ import { twMerge } from "tailwind-merge";
 
 import { composeTailwindRenderProps, focusVisibleOutlineStyle } from "./utils";
 
+export default {};
 export { SliderOutput } from "react-aria-components";
 
 export type SliderProps<T> = {
@@ -72,9 +73,7 @@ export function SliderTack({ thumbLabels }: { thumbLabels?: string[] }) {
     <AriaSliderTrack className="group relative flex w-full items-center orientation-horizontal:h-7 orientation-vertical:h-44 orientation-vertical:w-7">
       {({ state, orientation }) => (
         <>
-          <div
-            className={twMerge("bg-zinc-200", trackStyle)}
-          />
+          <div className={twMerge("bg-zinc-200", trackStyle)} />
           <div
             className={twMerge("bg-accent", trackStyle)}
             style={getTrackHighlightStyle(state, orientation)}
