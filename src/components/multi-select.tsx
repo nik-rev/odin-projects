@@ -1,44 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useFilter } from "react-aria";
 import {
   ComboBox,
-  ComboBoxProps as AriaComboBoxProps,
-  Key,
-  ListBoxItemProps,
+  type ComboBoxProps as AriaComboBoxProps,
   composeRenderProps,
-  GroupProps,
-  LabelContext,
   Group,
-} from 'react-aria-components';
-import { useListData, ListData } from 'react-stately';
-import { useFilter } from 'react-aria';
-import {
-  DescriptionProvider,
-  LabeledGroup,
-  Input,
-  DescriptionContext,
-} from './field';
-import { Popover } from './popover';
-import { ListBox, ListBoxItem } from './list-box';
-import { Button } from './button';
-import { twMerge } from 'tailwind-merge';
-import { TagGroup, TagList } from './tag-group';
-import { composeTailwindRenderProps, inputFieldStyle } from './utils';
+  type GroupProps,
+  type Key,
+  LabelContext,
+  type ListBoxItemProps,
+} from "react-aria-components";
+import { type ListData, useListData } from "react-stately";
+import { twMerge } from "tailwind-merge";
 
-export interface MultiSelectProps<T extends object>
-  extends Omit<
-    AriaComboBoxProps<T>,
-    | 'children'
-    | 'validate'
-    | 'allowsEmptyCollection'
-    | 'inputValue'
-    | 'selectedKey'
-    | 'inputValue'
-    | 'className'
-    | 'value'
-    | 'onSelectionChange'
-    | 'onInputChange'
-  > {
-  items: Array<T>;
+import { Button } from "./button";
+import {
+  DescriptionContext,
+  DescriptionProvider,
+  Input,
+  LabeledGroup,
+} from "./field";
+import { ListBox, ListBoxItem } from "./list-box";
+import { Popover } from "./popover";
+import { TagGroup, TagList } from "./tag-group";
+import { composeTailwindRenderProps, inputFieldStyle } from "./utils";
+
+export default {};
+export type MultiSelectProps<T extends object> = {
+  items: T[];
   selectedList: ListData<T>;
   className?: string;
   onItemAdd?: (key: Key) => void;
@@ -46,7 +35,18 @@ export interface MultiSelectProps<T extends object>
   renderEmptyState: (inputValue: string) => React.ReactNode;
   tag: (item: T) => React.ReactNode;
   children: React.ReactNode | ((item: T) => React.ReactNode);
-}
+} & Omit<
+  AriaComboBoxProps<T>,
+  | "children"
+  | "validate"
+  | "allowsEmptyCollection"
+  | "inputValue"
+  | "selectedKey"
+  | "className"
+  | "value"
+  | "onSelectionChange"
+  | "onInputChange"
+>;
 
 export function MultiSelectField({
   children,
@@ -78,17 +78,15 @@ export function MultiSelect<
   renderEmptyState,
   ...props
 }: MultiSelectProps<T>) {
-  const { contains } = useFilter({ sensitivity: 'base' });
+  const baseFilter = useFilter({ sensitivity: "base" });
 
   const selectedKeys = selectedList.items.map((i) => i.id);
 
   const filter = React.useCallback(
-    (item: T, filterText: string) => {
-      return (
-        !selectedKeys.includes(item.id) && contains(item.textValue, filterText)
-      );
-    },
-    [contains, selectedKeys],
+    (item: T, filterText: string) =>
+      !selectedKeys.includes(item.id) &&
+      baseFilter.contains(item.textValue, filterText),
+    [baseFilter, selectedKeys],
   );
 
   const availableList = useListData({
@@ -101,7 +99,7 @@ export function MultiSelect<
     inputValue: string;
   }>({
     selectedKey: null,
-    inputValue: '',
+    inputValue: "",
   });
 
   const onRemove = React.useCallback(
@@ -110,7 +108,7 @@ export function MultiSelect<
       if (key) {
         selectedList.remove(key);
         setFieldState({
-          inputValue: '',
+          inputValue: "",
           selectedKey: null,
         });
         onItemRemove?.(key);
@@ -126,52 +124,48 @@ export function MultiSelect<
 
     const item = availableList.getItem(id);
 
-    if (!item) {
-      return;
-    }
-
     if (!selectedKeys.includes(id)) {
       selectedList.append(item);
       setFieldState({
-        inputValue: '',
+        inputValue: "",
         selectedKey: id,
       });
       onItemAdd?.(id);
     }
 
-    availableList.setFilterText('');
+    availableList.setFilterText("");
   };
 
   const onInputChange = (value: string) => {
     setFieldState((prevState) => ({
       inputValue: value,
-      selectedKey: value === '' ? null : prevState.selectedKey,
+      selectedKey: value === "" ? null : prevState.selectedKey,
     }));
 
     availableList.setFilterText(value);
   };
 
   const deleteLast = React.useCallback(() => {
-    if (selectedList.items.length == 0) {
+    if (selectedList.items.length === 0) {
       return;
     }
 
-    const lastKey = selectedList.items[selectedList.items.length - 1];
+    const lastKey = selectedList.items.at(-1);
 
-    if (lastKey !== null) {
+    if (lastKey) {
       selectedList.remove(lastKey.id);
       onItemRemove?.(lastKey.id);
     }
 
     setFieldState({
-      inputValue: '',
+      inputValue: "",
       selectedKey: null,
     });
   }, [selectedList, onItemRemove]);
 
   const onKeyDownCapture = React.useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Backspace' && fieldState.inputValue === '') {
+      if (e.key === "Backspace" && fieldState.inputValue === "") {
         deleteLast();
       }
     },
@@ -214,12 +208,12 @@ export function MultiSelect<
         data-ui="control"
         ref={triggerRef}
         className={twMerge(
-          'relative',
-          'pe-2',
-          'flex min-h-9 w-[350px] flex-row flex-wrap items-center rounded-lg shadow-sm',
-          'border has-[input[data-focused=true]]:border-blue-500',
-          'has-[input[data-invalid=true][data-focused=true]]:border-blue-500 has-[input[data-invalid=true]]:border-destructive',
-          'has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-blue-500',
+          "relative",
+          "pe-2",
+          "flex min-h-9 w-[350px] flex-row flex-wrap items-center rounded-lg shadow-sm",
+          "border has-[input[data-focused=true]]:border-blue-500",
+          "has-[input[data-invalid=true][data-focused=true]]:border-blue-500 has-[input[data-invalid=true]]:border-destructive",
+          "has-[input[data-focused=true]]:ring-1 has-[input[data-focused=true]]:ring-blue-500",
           className,
         )}
       >
@@ -232,8 +226,8 @@ export function MultiSelect<
           <TagList
             items={selectedList.items}
             className={twMerge(
-              selectedList.items.length !== 0 && 'p-1',
-              'outline-none',
+              selectedList.items.length > 0 && "p-1",
+              "outline-none",
             )}
           >
             {props.tag}
@@ -242,7 +236,7 @@ export function MultiSelect<
         <ComboBox
           {...props}
           allowsEmptyCollection
-          className={twMerge('group flex flex-1', className)}
+          className={twMerge("group flex flex-1", className)}
           items={availableList.items}
           selectedKey={fieldState.selectedKey}
           inputValue={fieldState.inputValue}
@@ -255,15 +249,15 @@ export function MultiSelect<
               className="flex-1 border-0 px-0.5 py-0 shadow-none outline-0 focus:ring-0"
               onBlur={() => {
                 setFieldState({
-                  inputValue: '',
+                  inputValue: "",
                   selectedKey: null,
                 });
-                availableList.setFilterText('');
+                availableList.setFilterText("");
               }}
               aria-describedby={[
                 tagGroupId,
-                descriptionContext?.['aria-describedby'] ?? '',
-              ].join(' ')}
+                descriptionContext?.["aria-describedby"] ?? "",
+              ].join(" ")}
               onKeyDownCapture={onKeyDownCapture}
             />
 
@@ -292,7 +286,10 @@ export function MultiSelect<
             className="max-w-none duration-0"
           >
             <ListBox<T>
-              renderEmptyState={() => renderEmptyState(fieldState.inputValue)}
+              /* @ts-expect-error -- input value cannot be bigint */
+              renderEmptyState={async () =>
+                renderEmptyState(fieldState.inputValue)
+              }
               selectionMode="multiple"
               className="flex max-h-[inherit] flex-col gap-1.5 overflow-auto p-1.5 outline-none has-[header]:pt-0 sm:gap-0"
             >
@@ -331,28 +328,29 @@ export function MultiSelect<
       </div>
 
       {name && (
-        <input hidden name={name} value={selectedKeys.join(',')} readOnly />
+        <input hidden name={name} value={selectedKeys.join(",")} readOnly />
       )}
     </>
   );
 }
 
 export function MultiSelectItem(props: ListBoxItemProps) {
+  const { className, children } = props;
+
   return (
     <ListBoxItem
       {...props}
       className={composeRenderProps(
-        props.className,
-        (className, { isFocused }) => {
-          return twMerge([
-            'rounded-lg p-1.5 text-base/6 outline-0 focus-visible:outline-0 sm:text-sm/6',
-            isFocused && 'bg-zinc-100',
-            className,
-          ]);
-        },
+        className,
+        (renderClassName, { isFocused }) =>
+          twMerge([
+            "rounded-lg p-1.5 text-base/6 outline-0 focus-visible:outline-0 sm:text-sm/6",
+            isFocused && "bg-zinc-100",
+            renderClassName,
+          ]),
       )}
     >
-      {props.children}
+      {children}
     </ListBoxItem>
   );
 }

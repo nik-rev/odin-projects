@@ -24,7 +24,7 @@
 - [x] list-box.tsx
 - [x] menu.tsx
 - [x] meter.tsx
-- [ ] modal.tsx
+- [x] modal.tsx
 - [ ] multi-select.tsx
 - [ ] native-select.tsx
 - [ ] notification-badge.tsx
