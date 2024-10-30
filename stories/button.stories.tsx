@@ -46,9 +46,12 @@ const meta: Meta<typeof Button> = {
           'A <a href="https://react-spectrum.adobe.com/react-aria/Button.html" target="_blank">`button`</a> allows a user to perform an action, with mouse, touch, and keyboard interactions.',
       },
       ...docs,
+      controls: {
+        exclude: /.*/g,
+      },
     },
   },
-  tags: ["autodoc"],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -204,7 +207,7 @@ DisabledButtons.parameters = {
 };
 
 export function Pending() {
-  const isPending = true;
+  const [isPending] = React.useState(true);
 
   return (
     <div className="flex gap-2">
@@ -417,7 +420,7 @@ export function SplitButtons() {
   };
 
   // Convert the Set to an Array and get the first value.
-  const selectedOptionValue = [...selectedOption].at(0);
+  const selectedOptionValue = [...selectedOption][0];
 
   return (
     <ButtonGroup>

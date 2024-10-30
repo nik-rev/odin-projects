@@ -1,4 +1,17 @@
 <style>
+  [data-nodetype="story"],
+  [data-nodetype="document"] {
+    display: none !important;
+  }
+
+  [aria-expanded="true"] {
+    background-color: hsl(1, 0, 0) !important;
+  }
+
+  .sidebar-item>button>div>div>svg {
+    display: none !important;
+  }
+
   div:has(> [href*='hidden']) {
     display: none !important;
   }
