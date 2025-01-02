@@ -24,14 +24,7 @@ let projects = [
 ]
 
 for project in $projects {
-	git clone $"git@github.com:NikitaRevenco/odin-project-($project).git"
-	mv ...(glob $"odin-project-($project)/.git") ~/lol2
-	mv ...(glob $"odin-project-($project)/*") ~/lol
-	mv ...(glob $"($env.HOME)/lol2/.git") $"odin-project-($project)"
-	cd $"odin-project-($project)"
-	mkdir $project
-	mv ...(glob $"($env.HOME)/lol/*") $project
-	git commit -am "chore: create subdirectory"
-	git push
-	cd ..
+	git remote add $project $"git@github.com:NikitaRevenco/odin-project-($project).git"
+	git fetch $project
+	git rebase $"($project)/main"
 }
