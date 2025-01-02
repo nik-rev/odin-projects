@@ -1,10 +1,10 @@
 let projects = [
-	restaurant-page
-	todo-app
-	weather-app
-	shopping-cart
-	memory-cards
-	cd-maker
+	# restaurant-page
+	# todo-app
+	# weather-app
+	# shopping-cart
+	# memory-cards
+	cv-maker
 	responsive-homepage
 	battleship
 	knight-travails
