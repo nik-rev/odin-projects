@@ -1,0 +1,5 @@
+{% extends "base.html" %} {% block content %} {% set page =
+get_page(path="result.md") %}
+<h1 class="title">{{ page.title }}</h1>
+
+{{ page.content | safe }}{% endblock content %}
