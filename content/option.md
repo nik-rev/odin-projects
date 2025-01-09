@@ -19,313 +19,237 @@ How to read this cheatsheet:
 
   A closure which takes some type <span class="parameter">T</span> as an argument and returns another type `K`
 
-- <span class="type">D</span>, <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span>
+- <span class="type">D</span>, <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="None">None</span> <span class="type">N</span>
 
-  The first argument is of some type <span class="type">D</span>, the second argument is a closure that takes a <span class="parameter">T</span> as an argument and always returns some other type <span class="type">N</span> wrapped in an <span class="Err">Err</span>
+  The first argument is of some type <span class="type">D</span>, the second argument is a closure that takes a <span class="parameter">T</span> as an argument and always returns some other type <span class="type">N</span> wrapped in an <span class="None">None</span>
 
 - 💥
 
   Indicates an unsafe function or [undefined behaviour](https://doc.rust-lang.org/reference/behavior-considered-undefined.html)
 
-## <span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">Result</span>
+## <span class="type">Option</span> <span class="punctuation">➝</span> <span class="type">Option</span>
 
-### [map](https://doc.rust-lang.org/std/result/enum.Result.html#method.map)
+### and
 
-Transform <span class="Ok">Ok</span>
+| result | args   | out    |
+| ------ | ------ | ------ |
+| Some T | Some K | Some T |
+| Some T | None   | Some T |
+| None   | Some K | None   |
+| None   | None   | None   |
 
-| result                                                   | args                                                                                            | out                                                      |
-| -------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="Ok">Ok</span> <span class="type">K</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="Err">Err</span> <span class="type">E</span> |
+### and_then
 
-### [map_or](https://doc.rust-lang.org/std/result/enum.Result.html#method.map_or)
+| result | args        | out    |
+| ------ | ----------- | ------ |
+| Some T | T -> Some K | Some K |
+| Some T | T -> None   | None   |
+| None   | T -> Some K | None   |
+| None   | T -> None   | None   |
 
-Transform <span class="Ok">Ok</span> with a default if <span class="Err">Err</span>
+### as_deref
 
-| result                                                   | args                                                                                                 | out                         |
-| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | `N`, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">K</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | `N`, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">N</span> |
+| result  | out     |
+| ------- | ------- |
+| Some T  | Some &T |
+| &Some T | Some &T |
+| None    | None    |
 
-### [map_or_else](https://doc.rust-lang.org/std/result/enum.Result.html#method.map_or_else)
+### as_deref_mut
 
-Transform <span class="Ok">Ok</span> and <span class="Err">Err</span>
+| result      | out         |
+| ----------- | ----------- |
+| Some T      | Some &T     |
+| &mut Some T | Some &mut T |
+| None        | None        |
 
-| result                                                   | args                                                                                                                                                                     | out                         |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">E</span> <span class="punctuation">➝</span> `N`, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">K</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> `N`, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">N</span> |
+### as_mut
 
-### [map_err](https://doc.rust-lang.org/std/result/enum.Result.html#method.map_err)
+| result      | out         |
+| ----------- | ----------- |
+| &mut Some T | Some &mut T |
+| None        | None        |
 
-Transform <span class="Err">Err</span>
+### as_mut_slice
 
-| result                                                   | args                                                                                            | out                                                      |
-| -------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">N</span> | <span class="Ok">Ok</span> <span class="type">T</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">N</span> |
+| result      | out         |
+| ----------- | ----------- |
+| &mut Some T | &mut T\[..] |
+| None        | &mut [][..] |
 
-### [and_then](https://doc.rust-lang.org/std/result/enum.Result.html#method.and_then)
+### as_pin_mut
 
-Returns the first returned <span class="Err">Err</span> value
+| result          | out             |
+| --------------- | --------------- |
+| Pin &mut Some T | Some Pin &mut T |
+| None            | None            |
 
-| result                                                   | args                                                                                                                         | out                                                      |
-| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">N</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Err">Err</span> <span class="type">E</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">E</span> |
+### as_pin_ref
 
-### [and](https://doc.rust-lang.org/std/result/enum.Result.html#method.and)
+| result      | out         |
+| ----------- | ----------- |
+| Pin &Some T | Some Pin &T |
+| None        | None        |
 
-Returns the first <span class="Err">Err</span> value
+### as_ref
 
-| result                                                   | args                                                     | out                                                      |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">N</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Err">Err</span> <span class="type">E</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">E</span> |
+| result  | out     |
+| ------- | ------- |
+| &Some T | Some &T |
+| None    | None    |
 
-### [or_else](https://doc.rust-lang.org/std/result/enum.Result.html#method.or_else)
+### as_slice
 
-Returns the first returned <span class="Ok">Ok</span> value
+| result  | out     |
+| ------- | ------- |
+| &Some T | &T\[..] |
+| None    | &[][..] |
 
-| result                                                   | args                                                                                                                         | out                                                      |
-| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">T</span>   |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span> | <span class="Ok">Ok</span> <span class="type">T</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">N</span> |
+### cloned
 
-### [or](https://doc.rust-lang.org/std/result/enum.Result.html#method.or)
+Uses Clone.
 
-Returns the first <span class="Ok">Ok</span> value
+| result      | out    |
+| ----------- | ------ |
+| Some &T     | Some T |
+| Some &mut T | Some T |
+| None        | None   |
 
-| result                                                   | args                                                     | out                                                      |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">T</span>   |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Err">Err</span> <span class="type">N</span> | <span class="Ok">Ok</span> <span class="type">T</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">N</span> |
+### copied
 
-## <span class="Ok">Ok</span> <span class="type">T</span> <span class="punctuation">➝</span> <span class="type">T</span>
+Uses Copy.
 
-Extract the value contained in <span class="Ok">Ok</span>
+| result      | out    |
+| ----------- | ------ |
+| Some &T     | Some T |
+| Some &mut T | Some T |
+| None        | None   |
 
-### [unwrap_or](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or)
+### transpose
 
-| result                                                   | args                        | out                         |
-| -------------------------------------------------------- | --------------------------- | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="type">K</span> | <span class="type">T</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="type">K</span> | <span class="type">K</span> |
+| result     | out       |
+| ---------- | --------- |
+| Some Ok T  | Ok Some T |
+| None       | Ok None   |
+| Some Err T | Err T     |
 
-### [unwrap_or_else](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or_else)
+### flatten
 
-| result                                                   | args                                                                                            | out                         |
-| -------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">T</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">K</span> |
+Removes 1 level of nesting
 
-### [unwrap_or_default](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or_default)
+| result      | out    |
+| ----------- | ------ |
+| Some Some T | Some T |
+| Some None   | None   |
 
-| result                                                   | out                         |
-| -------------------------------------------------------- | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="type">T</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | `T::default()`              |
+### expect
 
-### [expect](https://doc.rust-lang.org/std/result/enum.Result.html#method.expect)
+| result | args           | out                   |
+| ------ | -------------- | --------------------- |
+| Some T | "Some message" | T                     |
+| None   | "Some message" | panic! "Some message" |
 
-| result                                                   | args             | out                         |
-| -------------------------------------------------------- | ---------------- | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | `"Some message"` | <span class="type">T</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | `"Some message"` | `panic! "Some message"`     |
+### filter
 
-### [unwrap](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap)
+| result | args       | out  |
+| ------ | ---------- | ---- |
+| Some T | T -> true  | T    |
+| None   | T -> true  | None |
+| Some T | T -> false | None |
+| None   | T -> false | None |
 
-| result                                                   | out                         |
-| -------------------------------------------------------- | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="type">T</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | `panic!`                    |
+### or
 
-### 💥[unwrap_unchecked](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_unchecked)
+| result | args   | out    |
+| ------ | ------ | ------ |
+| Some T | Some K | Some T |
+| None   | Some K | Some K |
+| Some T | None   | Some T |
+| None   | None   | None   |
 
-| result                                                   | out                         |
-| -------------------------------------------------------- | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="type">T</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | 💥                          |
+### or_else
 
-## <span class="Err">Err</span> <span class="type">E</span> <span class="punctuation">➝</span> <span class="type">E</span>
+| result | args        | out    |
+| ------ | ----------- | ------ |
+| Some T | T -> Some K | Some T |
+| None   | T -> Some K | Some K |
+| Some T | T -> None   | Some T |
+| None   | T -> None   | None   |
 
-Extract the value contained in <span class="Err">Err</span>
+### xor
 
-### [unwrap_err](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_err)
+| result | args        | out    |
+| ------ | ----------- | ------ |
+| Some T | T -> Some K | None   |
+| None   | T -> Some K | Some K |
+| Some T | T -> None   | Some T |
+| None   | T -> None   | None   |
 
-| result                                                   | out                         |
-| -------------------------------------------------------- | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | `panic!`                    |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="type">E</span> |
+### insert
 
-### [expect_err](https://doc.rust-lang.org/std/result/enum.Result.html#method.expect_err)
+Inserts a value into the option, and returns a reference to the value
 
-| result                                                   | args             | out                         |
-| -------------------------------------------------------- | ---------------- | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | `"Some message"` | `panic! "Some message"`     |
-| <span class="Err">Err</span> <span class="type">E</span> | `"Some message"` | <span class="type">E</span> |
+| result      | args | out    |
+| ----------- | ---- | ------ |
+| &mut Some T | K    | &mut K |
+| &mut None   | K    | &mut K |
 
-### 💥[unwrap_err_unchecked](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_err_unchecked)
+### get_or_insert
 
-| result                                                   | out                         |
-| -------------------------------------------------------- | --------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | 💥                          |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="type">E</span> |
+Inserts a value into the option if it is None, and returns a reference to the value
 
-## <span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">Option</span>
+| result      | args | out    |
+| ----------- | ---- | ------ |
+| &mut Some T | K    | &mut T |
+| &mut None   | K    | &mut K |
 
-### [ok](https://doc.rust-lang.org/std/result/enum.Result.html#method.ok)
+### get_or_insert_default
 
-Get the <span class="Ok">Ok</span> value, which may or may not be there
+Inserts the default value into the option if it is None, and returns a reference to the value
 
-| result                                                   | out                                                        |
-| -------------------------------------------------------- | ---------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Some">Some</span> <span class="type">T</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="None">None</span>                             |
+| result      | out               |
+| ----------- | ----------------- |
+| &mut Some T | &mut T            |
+| &mut None   | &mut T::default() |
 
-### [err](https://doc.rust-lang.org/std/result/enum.Result.html#method.err)
+### get_or_insert_with
 
-Get the <span class="Err">Err</span> value, which may or may not be there
+Inserts a computed value into the option if it is None, and returns a reference to the value
 
-| result                                                   | out                                                        |
-| -------------------------------------------------------- | ---------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="None">None</span>                             |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="Some">Some</span> <span class="type">E</span> |
+| result      | args | out    | result      |
+| ----------- | ---- | ------ | ----------- |
+| &mut Some T | -> K | &mut T | &mut Some T |
+| &mut None   | -> K | &mut K | &mut Some K |
 
-### [transpose](https://doc.rust-lang.org/std/result/enum.Result.html#method.transpose)
+### take
 
-Does the `Result` have _anything_ in it?
+Takes the value out of the option, leaving a None in its place
 
-| result                                                                                | out                                                                                     |
-| ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="None">None</span>                             | <span class="None">None</span>                                                          |
-| <span class="Ok">Ok</span> <span class="Some">Some</span> <span class="type">T</span> | <span class="Some">Some</span> <span class="Ok">Ok</span> <span class="type">T</span>   |
-| <span class="Err">Err</span> <span class="type">E</span>                              | <span class="Some">Some</span> <span class="Err">Err</span> <span class="type">E</span> |
+| result      | out         | result |
+| ----------- | ----------- | ------ |
+| &mut Some T | Some &mut T | None   |
+| &mut None   | None        | None   |
 
-## <span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">bool</span>
+### take_if
 
-### [is_ok](https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok)
+Takes the value out of the option if the predicate is true, leaving a None in its place
 
-| result                                                   | out                              |
-| -------------------------------------------------------- | -------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="bool">true</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="false">false</span> |
+| result      | args            | out         | result      |
+| ----------- | --------------- | ----------- | ----------- |
+| &mut Some T | &mut T -> true  | Some &mut T | None        |
+| &mut None   | &mut T -> true  | None        | None        |
+| &mut Some T | &mut T -> false | None        | &mut Some T |
+| &mut None   | &mut T -> false | None        | None        |
 
-### [is_err](https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err)
+### replace
 
-| result                                                   | out                              |
-| -------------------------------------------------------- | -------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="false">false</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="bool">true</span>   |
+Takes the value out of the option if the predicate is true, leaving a None in its place
 
-### [is_ok_and](https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok_and)
+| result      | args            | out         | result      |
+| ----------- | --------------- | ----------- | ----------- |
+| &mut Some T | &mut T -> true  | Some &mut T | None        |
+| &mut None   | &mut T -> true  | None        | None        |
+| &mut Some T | &mut T -> false | None        | &mut Some T |
+| &mut None   | &mut T -> false | None        | None        |
 
-| result                                                   | args                                                                | out                              |
-| -------------------------------------------------------- | ------------------------------------------------------------------- | -------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="punctuation">➝</span> <span class="bool">true</span>   | <span class="bool">true</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="punctuation">➝</span> <span class="bool">true</span>   | <span class="false">false</span> |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="punctuation">➝</span> <span class="false">false</span> | <span class="false">false</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="punctuation">➝</span> <span class="false">false</span> | <span class="false">false</span> |
-
-### [is_err_and](https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err_and)
-
-| result                                                   | args                                                                | out                              |
-| -------------------------------------------------------- | ------------------------------------------------------------------- | -------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="punctuation">➝</span> <span class="bool">true</span>   | <span class="false">false</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="punctuation">➝</span> <span class="bool">true</span>   | <span class="bool">true</span>   |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="punctuation">➝</span> <span class="false">false</span> | <span class="false">false</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="punctuation">➝</span> <span class="false">false</span> | <span class="false">false</span> |
-
-## <span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">Iterator</span>
-
-### [iter](https://doc.rust-lang.org/std/result/enum.Result.html#method.iter)
-
-| result                                                   | out                              |
-| -------------------------------------------------------- | -------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | Iter <span class="type">T</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | iter::empty()                    |
-
-### [iter_mut](https://doc.rust-lang.org/std/result/enum.Result.html#method.iter_mut)
-
-| result                                                   | out                                 |
-| -------------------------------------------------------- | ----------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | IterMut <span class="type">T</span> |
-| <span class="Err">Err</span> <span class="type">E</span> | iter::empty()                       |
-
-## Reference Manipulation
-
-### [as_deref](https://doc.rust-lang.org/std/result/enum.Result.html#method.as_deref)
-
-| result                                                   | out                                                                              |
-| -------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Ok">Ok</span> <span class="&">&</span><span class="type">K</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="Err">Err</span> <span class="&">&</span><span class="type">E</span> |
-
-### [as_deref_mut](https://doc.rust-lang.org/std/result/enum.Result.html#method.as_deref_mut)
-
-| result                                                                           | out                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="&">&</span><span class="type">T</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   |
-| <span class="Err">Err</span> <span class="&">&</span><span class="type">E</span> | <span class="Err">Err</span> <span class="type">E</span> |
-
-### [as_mut](https://doc.rust-lang.org/std/result/enum.Result.html#method.as_mut)
-
-| result                                                                                                        | out                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| <span class="&">&</span><span class="mut">mut</span> <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Ok">Ok</span> <span class="&">&</span><span class="mut">mut</span> <span class="type">K</span>   |
-| <span class="&">&</span><span class="mut">mut</span> <span class="Err">Err</span> <span class="type">E</span> | <span class="Err">Err</span> <span class="&">&</span><span class="mut">mut</span> <span class="type">E</span> |
-
-### [as_ref](https://doc.rust-lang.org/std/result/enum.Result.html#method.as_ref)
-
-| result                                                                           | out                                                                              |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| <span class="&">&</span><span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Ok">Ok</span> <span class="&">&</span><span class="type">K</span>   |
-| <span class="&">&</span><span class="Err">Err</span> <span class="type">E</span> | <span class="Err">Err</span> <span class="&">&</span><span class="type">E</span> |
-
-### [cloned](https://doc.rust-lang.org/std/result/enum.Result.html#method.cloned)
-
-Uses Clone
-
-| result                                                                                                      | out                                                      |
-| ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="&">&</span><span class="type">T</span>                              | <span class="Ok">Ok</span> <span class="type">K</span>   |
-| <span class="Ok">Ok</span> <span class="&">&</span><span class="mut">mut</span> <span class="type">T</span> | <span class="Ok">Ok</span> <span class="type">K</span>   |
-| <span class="Err">Err</span> <span class="type">E</span>                                                    | <span class="Err">Err</span> <span class="type">E</span> |
-
-### [copied](https://doc.rust-lang.org/std/result/enum.Result.html#method.copied)
-
-Uses Copy
-
-| result                                                                                                      | out                                                      |
-| ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="&">&</span><span class="type">T</span>                              | <span class="Ok">Ok</span> <span class="type">K</span>   |
-| <span class="Ok">Ok</span> <span class="&">&</span><span class="mut">mut</span> <span class="type">T</span> | <span class="Ok">Ok</span> <span class="type">K</span>   |
-| <span class="Err">Err</span> <span class="type">E</span>                                                    | <span class="Err">Err</span> <span class="type">E</span> |
-
-## Debugging
-
-### [inspect](https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect)
-
-Calls a function with a reference to the contained value if <span class="Ok">Ok</span>.
-
-| result                                                   | args                                                                                        | out                                                      |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="type">T</span> <span class="punctuation">➝</span> <span class="unit">()</span> | <span class="Ok">Ok</span> <span class="type">T</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | _does nothing_                                                                              | <span class="Err">Err</span> <span class="type">E</span> |
-
-### [inspect_err](https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect_err)
-
-Calls a function with a reference to the contained value if <span class="Err">Err</span>.
-
-| result                                                   | args                                                                                        | out                                                      |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| <span class="Ok">Ok</span> <span class="type">T</span>   | _does nothing_                                                                              | <span class="Ok">Ok</span> <span class="type">T</span>   |
-| <span class="Err">Err</span> <span class="type">E</span> | <span class="type">E</span> <span class="punctuation">➝</span> <span class="unit">()</span> | <span class="Err">Err</span> <span class="type">E</span> |
+TBD ...
