@@ -1,3 +1,12 @@
+html {
+  display: flex;
+  justify-content: center;
+}
+
+hr {
+  border: 0.5px solid var(--surface2);
+}
+
 body {
   background-color: var(--base);
   max-width: 65ch;
@@ -26,7 +35,13 @@ body {
   color: var(--red);
 }
 
-a:visited {
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+a:visited,
+a {
   color: var(--blue);
 }
 
