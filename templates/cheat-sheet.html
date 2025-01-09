@@ -1,4 +1,19 @@
-{% extends "base.html" %} {% block content %}
-<h1 class="title">{{ page.title }}</h1>
-<p class="subtitle"><strong>{{ page.date }}</strong></p>
-{{ page.content | safe }} {% endblock content %}
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="title">{{ page.title }}</h1>
+  <p class="subtitle"><strong>{{ page.date }}</strong></p>
+
+
+  <div class="breadcrumbs">
+    {% for page in ["option", "result"] %}
+
+        <div class="breadcrumb-item {% if page == page.components.0 %}selected{% endif %}">
+          {{ page }}
+        </div>
+
+    {% endfor %}
+  </div>
+
+  {{ page.content | safe }}
+
+{% endblock content %}
