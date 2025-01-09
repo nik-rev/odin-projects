@@ -1,46 +1,67 @@
-/* :root { */
-/* --color-ctp-rosewater: rgba(var(--ctp-rosewater)); */
-/* --color-ctp-flamingo: rgba(var(--ctp-flamingo)); */
-/* --color-ctp-pink: rgba(var(--ctp-pink)); */
-/* --color-ctp-mauve: rgba(var(--ctp-mauve)); */
-/* --color-ctp-red: rgba(var(--ctp-red)); */
-/* --color-ctp-maroon: rgba(var(--ctp-maroon)); */
-/* --color-ctp-peach: rgba(var(--ctp-peach)); */
-/* --color-ctp-yellow: rgba(var(--ctp-yellow)); */
-/* --color-ctp-green: rgba(var(--ctp-green)); */
-/* --color-ctp-teal: rgba(var(--ctp-teal)); */
-/* --color-ctp-sky: rgba(var(--ctp-sky)); */
-/* --color-ctp-sapphire: rgba(var(--ctp-sapphire)); */
-/* --color-ctp-blue: rgba(var(--ctp-blue)); */
-/* --color-ctp-lavender: rgba(var(--ctp-lavender)); */
-/* --color-ctp-text: rgba(var(--ctp-text)); */
-/* --color-ctp-subtext1: rgba(var(--ctp-subtext1)); */
-/* --color-ctp-subtext0: rgba(var(--ctp-subtext0)); */
-/* --color-ctp-overlay2: rgba(var(--ctp-overlay2)); */
-/* --color-ctp-overlay1: rgba(var(--ctp-overlay1)); */
-/* --color-ctp-overlay0: rgba(var(--ctp-overlay0)); */
-/* --color-ctp-surface2: rgba(var(--ctp-surface2)); */
-/* --color-ctp-surface1: rgba(var(--ctp-surface1)); */
-/* --color-ctp-surface0: rgba(var(--ctp-surface0)); */
-/* --color-ctp-base: rgba(var(--ctp-base)); */
-/* --color-ctp-mantle: rgba(var(--ctp-mantle)); */
-/* --color-ctp-crust: rgba(var(--ctp-crust)); */
-/* } */
-
 body {
-  background-color: paleturquoise;
+  background-color: var(--base);
   max-width: 65ch;
+  color: var(--text);
+  font-size: 0.8rem;
 }
 
 .Ok,
-.Err {
+.Err,
+.\&,
+.mut,
+.bool,
+.Some,
+.None,
+.param,
+.punctuation {
   font-family: monospace;
 }
 
-.Ok {
-  color: green;
+a {
+  color: var(--blue);
 }
 
-.Err {
-  color: red;
+.unit {
+  color: var(--surface2);
+}
+
+:root {
+  --base: #1e1e2e;
+  --peach: #fab387;
+  --green: #a6e3a1;
+  --red: #f38ba8;
+  --text: #cdd6f4;
+  --blue: #89b4fa;
+  --mauve: #cba6f7;
+  --sky: #89dceb;
+  --surface2: #585b70;
+  --overlay2: #9399b2;
+  --maroon: #eba0ac;
+}
+
+.\& {
+  color: var(--sky);
+}
+
+.bool {
+  color: var(--peach);
+}
+
+.mut {
+  color: var(--mauve);
+}
+
+.punctuation {
+  color: var(--sky);
+  font-weight: bold;
+}
+
+.Ok,
+.Some {
+  color: var(--green);
+}
+
+.Err,
+.None {
+  color: var(--red);
 }
