@@ -1,6 +1,6 @@
 +++
 title = "Result"
-date = 2019-11-17
+date = 2019-11-27
 +++
 
 We use abstract names for types which can represent _literally anything_ such as <span class="type">T</span> and <span class="type">K</span>.
