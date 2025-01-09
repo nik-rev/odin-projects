@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rust Cheatsheets</title>
+    <link href="/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    
+  <div class="header">
+    <span>
+      <a href="https://github.com/nik-rev/rust-cheatsheets/edit/main/content/result.md">✏️ Edit this page on github</a> • <a href="/">All Cheatsheets</a>
+    </span>
+    <img id="stars" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/nik-rev/rust-cheatsheets" height="16px">
+  </div>
+  <h1 class="title">Result Cheatsheet</h1>
+  <!-- <p class="subtitle"><strong></strong></p> -->
+
+  <!-- <div class="breadcrumbs"> -->
+    <!--  -->
+
+        <!-- <a class="breadcrumb-item " href="/option"> -->
+          <!-- option -->
+        <!-- </a> -->
+
+    <!--  -->
+
+        <!-- <a class="breadcrumb-item selected" href="/result"> -->
+          <!-- result -->
+        <!-- </a> -->
+
+    <!--  -->
+  <!-- </div> -->
+
+  <p>A cheatsheet on the <span class="type">Result</span> type in Rust.</p>
+<hr />
+<p>We use abstract names for types which can represent <em>literally anything</em> such as <span class="type">T</span> and <span class="type">K</span>.</p>
+<p>Feel free to mentally substitute types which make more sense to you, like for example <span class="&">&amp;</span><span class="type">str</span> and <span class="type">i32</span></p>
+<hr />
+<p>How to read this cheatsheet:</p>
+<ul>
+<li>
+<p><span class="Some">Some</span> <span class="type">T</span></p>
+<p>Some type <span class="type">T</span> wrapped in a <span class="Some">Some</span></p>
+</li>
+<li>
+<p><span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span></p>
+<p>A closure which takes some type <span class="parameter">T</span> as an argument and returns another type <code>K</code></p>
+</li>
+<li>
+<p><span class="type">D</span>, <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span></p>
+<p>The first argument is of some type <span class="type">D</span>, the second argument is a closure that takes a <span class="parameter">T</span> as an argument and always returns some other type <span class="type">N</span> wrapped in an <span class="Err">Err</span></p>
+</li>
+<li>
+<p>💥</p>
+<p>Indicates an unsafe function or <a href="https://doc.rust-lang.org/reference/behavior-considered-undefined.html">undefined behaviour</a></p>
+</li>
+</ul>
+<h2 id="result-result"><span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">Result</span></h2>
+<h3 id="map"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.map">map</a></h3>
+<p>Transform <span class="Ok">Ok</span></p>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span></td><td><span class="Err">Err</span> <span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="map-or"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.map_or">map_or</a></h3>
+<p>Transform <span class="Ok">Ok</span> with a default if <span class="Err">Err</span></p>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><code>N</code>, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span></td><td><span class="type">K</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><code>N</code>, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span></td><td><span class="type">N</span></td></tr>
+</tbody></table>
+<h3 id="map-or-else"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.map_or_else">map_or_else</a></h3>
+<p>Transform <span class="Ok">Ok</span> and <span class="Err">Err</span></p>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="parameter">E</span> <span class="punctuation">➝</span> <code>N</code>, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span></td><td><span class="type">K</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="parameter">E</span> <span class="punctuation">➝</span> <code>N</code>, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span></td><td><span class="type">N</span></td></tr>
+</tbody></table>
+<h3 id="map-err"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.map_err">map_err</a></h3>
+<p>Transform <span class="Err">Err</span></p>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">N</span></td><td><span class="Ok">Ok</span> <span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="parameter">E</span> <span class="punctuation">➝</span> <span class="type">N</span></td><td><span class="Err">Err</span> <span class="type">N</span></td></tr>
+</tbody></table>
+<h3 id="and-then"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.and_then">and_then</a></h3>
+<p>Returns the first returned <span class="Err">Err</span> value</p>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td></tr>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span></td><td><span class="Err">Err</span> <span class="type">N</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span></td><td><span class="Err">Err</span> <span class="type">E</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span></td><td><span class="Err">Err</span> <span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="and"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.and">and</a></h3>
+<p>Returns the first <span class="Err">Err</span> value</p>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td></tr>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="Err">Err</span> <span class="type">N</span></td><td><span class="Err">Err</span> <span class="type">N</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td><td><span class="Err">Err</span> <span class="type">E</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="Err">Err</span> <span class="type">N</span></td><td><span class="Err">Err</span> <span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="or-else"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.or_else">or_else</a></h3>
+<p>Returns the first returned <span class="Ok">Ok</span> value</p>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span></td><td><span class="Ok">Ok</span> <span class="type">T</span></td></tr>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span></td><td><span class="Ok">Ok</span> <span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span></td><td><span class="Err">Err</span> <span class="type">N</span></td></tr>
+</tbody></table>
+<h3 id="or"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.or">or</a></h3>
+<p>Returns the first <span class="Ok">Ok</span> value</p>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td><td><span class="Ok">Ok</span> <span class="type">T</span></td></tr>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="Err">Err</span> <span class="type">N</span></td><td><span class="Ok">Ok</span> <span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="Err">Err</span> <span class="type">N</span></td><td><span class="Err">Err</span> <span class="type">N</span></td></tr>
+</tbody></table>
+<h2 id="ok-t-t"><span class="Ok">Ok</span> <span class="type">T</span> <span class="punctuation">➝</span> <span class="type">T</span></h2>
+<p>Extract the value contained in <span class="Ok">Ok</span></p>
+<h3 id="unwrap-or"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or">unwrap_or</a></h3>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="type">K</span></td><td><span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="type">K</span></td><td><span class="type">K</span></td></tr>
+</tbody></table>
+<h3 id="unwrap-or-else"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or_else">unwrap_or_else</a></h3>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span></td><td><span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="parameter">E</span> <span class="punctuation">➝</span> <span class="type">K</span></td><td><span class="type">K</span></td></tr>
+</tbody></table>
+<h3 id="unwrap-or-default"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or_default">unwrap_or_default</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><code>T::default()</code></td></tr>
+</tbody></table>
+<h3 id="expect"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.expect">expect</a></h3>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><code>"Some message"</code></td><td><span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><code>"Some message"</code></td><td><code>panic! "Some message"</code></td></tr>
+</tbody></table>
+<h3 id="unwrap"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap">unwrap</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><code>panic!</code></td></tr>
+</tbody></table>
+<h3 id="boom-unwrap-unchecked">💥<a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_unchecked">unwrap_unchecked</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td>💥</td></tr>
+</tbody></table>
+<h2 id="err-e-e"><span class="Err">Err</span> <span class="type">E</span> <span class="punctuation">➝</span> <span class="type">E</span></h2>
+<p>Extract the value contained in <span class="Err">Err</span></p>
+<h3 id="unwrap-err"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_err">unwrap_err</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><code>panic!</code></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="expect-err"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.expect_err">expect_err</a></h3>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><code>"Some message"</code></td><td><code>panic! "Some message"</code></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><code>"Some message"</code></td><td><span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="boom-unwrap-err-unchecked">💥<a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_err_unchecked">unwrap_err_unchecked</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td>💥</td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="type">E</span></td></tr>
+</tbody></table>
+<h2 id="result-option"><span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">Option</span></h2>
+<h3 id="ok"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.ok">ok</a></h3>
+<p>Get the <span class="Ok">Ok</span> value, which may or may not be there</p>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="Some">Some</span> <span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="None">None</span></td></tr>
+</tbody></table>
+<h3 id="err"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.err">err</a></h3>
+<p>Get the <span class="Err">Err</span> value, which may or may not be there</p>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="None">None</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="Some">Some</span> <span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="transpose"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.transpose">transpose</a></h3>
+<p>Does the <code>Result</code> have <em>anything</em> in it?</p>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="None">None</span></td><td><span class="None">None</span></td></tr>
+<tr><td><span class="Ok">Ok</span> <span class="Some">Some</span> <span class="type">T</span></td><td><span class="Some">Some</span> <span class="Ok">Ok</span> <span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="Some">Some</span> <span class="Err">Err</span> <span class="type">E</span></td></tr>
+</tbody></table>
+<h2 id="result-bool"><span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">bool</span></h2>
+<h3 id="is-ok"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok">is_ok</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="bool">true</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="false">false</span></td></tr>
+</tbody></table>
+<h3 id="is-err"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err">is_err</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="false">false</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="bool">true</span></td></tr>
+</tbody></table>
+<h3 id="is-ok-and"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok_and">is_ok_and</a></h3>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="punctuation">➝</span> <span class="bool">true</span></td><td><span class="bool">true</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="punctuation">➝</span> <span class="bool">true</span></td><td><span class="false">false</span></td></tr>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="punctuation">➝</span> <span class="false">false</span></td><td><span class="false">false</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="punctuation">➝</span> <span class="false">false</span></td><td><span class="false">false</span></td></tr>
+</tbody></table>
+<h3 id="is-err-and"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err_and">is_err_and</a></h3>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="punctuation">➝</span> <span class="bool">true</span></td><td><span class="false">false</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="punctuation">➝</span> <span class="bool">true</span></td><td><span class="bool">true</span></td></tr>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="punctuation">➝</span> <span class="false">false</span></td><td><span class="false">false</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="punctuation">➝</span> <span class="false">false</span></td><td><span class="false">false</span></td></tr>
+</tbody></table>
+<h2 id="result-iterator"><span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">Iterator</span></h2>
+<h3 id="iter"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.iter">iter</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td>Iter <span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td>iter::empty()</td></tr>
+</tbody></table>
+<h3 id="iter-mut"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.iter_mut">iter_mut</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td>IterMut <span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td>iter::empty()</td></tr>
+</tbody></table>
+<h2 id="reference-manipulation">Reference Manipulation</h2>
+<h3 id="as-deref"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.as_deref">as_deref</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="Ok">Ok</span> <span class="&">&amp;</span><span class="type">K</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="Err">Err</span> <span class="&">&amp;</span><span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="as-deref-mut"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.as_deref_mut">as_deref_mut</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="&">&amp;</span><span class="type">T</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="&">&amp;</span><span class="type">E</span></td><td><span class="Err">Err</span> <span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="as-mut"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.as_mut">as_mut</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="&">&amp;</span><span class="mut">mut</span> <span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="Ok">Ok</span> <span class="&">&amp;</span><span class="mut">mut</span> <span class="type">K</span></td></tr>
+<tr><td><span class="&">&amp;</span><span class="mut">mut</span> <span class="Err">Err</span> <span class="type">E</span></td><td><span class="Err">Err</span> <span class="&">&amp;</span><span class="mut">mut</span> <span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="as-ref"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.as_ref">as_ref</a></h3>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="&">&amp;</span><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="Ok">Ok</span> <span class="&">&amp;</span><span class="type">K</span></td></tr>
+<tr><td><span class="&">&amp;</span><span class="Err">Err</span> <span class="type">E</span></td><td><span class="Err">Err</span> <span class="&">&amp;</span><span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="cloned"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.cloned">cloned</a></h3>
+<p>Uses Clone</p>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="&">&amp;</span><span class="type">T</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td></tr>
+<tr><td><span class="Ok">Ok</span> <span class="&">&amp;</span><span class="mut">mut</span> <span class="type">T</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="Err">Err</span> <span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="copied"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.copied">copied</a></h3>
+<p>Uses Copy</p>
+<table><thead><tr><th>result</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="&">&amp;</span><span class="type">T</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td></tr>
+<tr><td><span class="Ok">Ok</span> <span class="&">&amp;</span><span class="mut">mut</span> <span class="type">T</span></td><td><span class="Ok">Ok</span> <span class="type">K</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="Err">Err</span> <span class="type">E</span></td></tr>
+</tbody></table>
+<h2 id="debugging">Debugging</h2>
+<h3 id="inspect"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect">inspect</a></h3>
+<p>Calls a function with a reference to the contained value if <span class="Ok">Ok</span>.</p>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><span class="type">T</span> <span class="punctuation">➝</span> <span class="unit">()</span></td><td><span class="Ok">Ok</span> <span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><em>does nothing</em></td><td><span class="Err">Err</span> <span class="type">E</span></td></tr>
+</tbody></table>
+<h3 id="inspect-err"><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect_err">inspect_err</a></h3>
+<p>Calls a function with a reference to the contained value if <span class="Err">Err</span>.</p>
+<table><thead><tr><th>result</th><th>args</th><th>out</th></tr></thead><tbody>
+<tr><td><span class="Ok">Ok</span> <span class="type">T</span></td><td><em>does nothing</em></td><td><span class="Ok">Ok</span> <span class="type">T</span></td></tr>
+<tr><td><span class="Err">Err</span> <span class="type">E</span></td><td><span class="type">E</span> <span class="punctuation">➝</span> <span class="unit">()</span></td><td><span class="Err">Err</span> <span class="type">E</span></td></tr>
+</tbody></table>
+
+
+
+  </body>
+</html>
