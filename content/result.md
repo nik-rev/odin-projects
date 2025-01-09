@@ -4,291 +4,298 @@ title = "Result"
 
 ## Result -> Result
 
-### map
+### `map`
 
-Transform `Ok`
+```rs
 
-| left  | input  | right |
-| ----- | ------ | ----- |
-| Ok T  | T -> K | Ok K  |
-| Err E | T -> K | Err E |
+fn main() {
+  eprintln!("Hello world!")
+}
+```
 
-### map_or
+Transform <span class="Ok">Ok</span>
 
-Transform `Ok` with a default
+| left                           | input  | right                          |
+| ------------------------------ | ------ | ------------------------------ |
+| <span class="Ok">Ok</span> T   | T -> K | <span class="Ok">Ok</span> K   |
+| <span class="Err">Err</span> E | T -> K | <span class="Err">Err</span> E |
 
-| left  | input     | right |
-| ----- | --------- | ----- |
-| Ok T  | N, T -> K | K     |
-| Err E | N, T -> K | N     |
+### `map_or`
 
-### map_or_else
+Transform <span class="Ok">Ok</span> with a default
 
-Transform `Ok` and `Err`
+| left                           | input     | right |
+| ------------------------------ | --------- | ----- |
+| <span class="Ok">Ok</span> T   | N, T -> K | K     |
+| <span class="Err">Err</span> E | N, T -> K | N     |
 
-| left  | input          | right |
-| ----- | -------------- | ----- |
-| Ok T  | E -> N, T -> K | K     |
-| Err E | E -> N, T -> K | N     |
+### `map_or_else`
 
-### map_err
+Transform <span class="Ok">Ok</span> and <span class="Err">Err</span>
 
-Transform `Err`
+| left                           | input          | right |
+| ------------------------------ | -------------- | ----- |
+| <span class="Ok">Ok</span> T   | E -> N, T -> K | K     |
+| <span class="Err">Err</span> E | E -> N, T -> K | N     |
 
-| left  | input  | right |
-| ----- | ------ | ----- |
-| Ok T  | E -> N | Ok T  |
-| Err E | E -> N | Err N |
+### `map_err`
 
-### and_then
+Transform <span class="Err">Err</span>
 
-Returns the first returned `Err` value
+| left                           | input  | right                          |
+| ------------------------------ | ------ | ------------------------------ |
+| <span class="Ok">Ok</span> T   | E -> N | <span class="Ok">Ok</span> T   |
+| <span class="Err">Err</span> E | E -> N | <span class="Err">Err</span> N |
 
-| left  | input    | right |
-| ----- | -------- | ----- |
-| Ok T  | -> Ok K  | Ok K  |
-| Ok T  | -> Err N | Err N |
-| Err E | -> Ok K  | Err E |
-| Err E | -> Err N | Err E |
+### `and_then`
 
-### and
+Returns the first returned <span class="Err">Err</span> value
 
-Returns the first `Err` value
+| left                           | input                             | right                          |
+| ------------------------------ | --------------------------------- | ------------------------------ |
+| <span class="Ok">Ok</span> T   | -> <span class="Ok">Ok</span> K   | <span class="Ok">Ok</span> K   |
+| <span class="Ok">Ok</span> T   | -> <span class="Err">Err</span> N | <span class="Err">Err</span> N |
+| <span class="Err">Err</span> E | -> <span class="Ok">Ok</span> K   | <span class="Err">Err</span> E |
+| <span class="Err">Err</span> E | -> <span class="Err">Err</span> N | <span class="Err">Err</span> E |
 
-| left  | input | right |
-| ----- | ----- | ----- |
-| Ok T  | Ok K  | Ok K  |
-| Ok T  | Err N | Err N |
-| Err E | Ok K  | Err E |
-| Err E | Err N | Err E |
+### `and`
 
-### or_else
+Returns the first <span class="Err">Err</span> value
 
-Returns the first returned `Ok` value
+| left                           | input                          | right                          |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| <span class="Ok">Ok</span> T   | <span class="Ok">Ok</span> K   | <span class="Ok">Ok</span> K   |
+| <span class="Ok">Ok</span> T   | <span class="Err">Err</span> N | <span class="Err">Err</span> N |
+| <span class="Err">Err</span> E | <span class="Ok">Ok</span> K   | <span class="Err">Err</span> E |
+| <span class="Err">Err</span> E | <span class="Err">Err</span> N | <span class="Err">Err</span> E |
 
-| left  | input    | right |
-| ----- | -------- | ----- |
-| Ok T  | -> Ok K  | Ok T  |
-| Ok T  | -> Err N | Ok T  |
-| Err E | -> Ok K  | Ok K  |
-| Err E | -> Err N | Err N |
+### `or_else`
 
-### or
+Returns the first returned <span class="Ok">Ok</span> value
 
-Returns the first `Ok` value
+| left                           | input                             | right                          |
+| ------------------------------ | --------------------------------- | ------------------------------ |
+| <span class="Ok">Ok</span> T   | -> <span class="Ok">Ok</span> K   | <span class="Ok">Ok</span> T   |
+| <span class="Ok">Ok</span> T   | -> <span class="Err">Err</span> N | <span class="Ok">Ok</span> T   |
+| <span class="Err">Err</span> E | -> <span class="Ok">Ok</span> K   | <span class="Ok">Ok</span> K   |
+| <span class="Err">Err</span> E | -> <span class="Err">Err</span> N | <span class="Err">Err</span> N |
 
-| left  | input | right |
-| ----- | ----- | ----- |
-| Ok T  | Ok K  | Ok T  |
-| Ok T  | Err N | Ok T  |
-| Err E | Ok K  | Ok K  |
-| Err E | Err N | Err N |
+### `or`
 
-## Ok T -> T
+Returns the first <span class="Ok">Ok</span> value
 
-### unwrap_or
+| left                           | input                          | right                          |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| <span class="Ok">Ok</span> T   | <span class="Ok">Ok</span> K   | <span class="Ok">Ok</span> T   |
+| <span class="Ok">Ok</span> T   | <span class="Err">Err</span> N | <span class="Ok">Ok</span> T   |
+| <span class="Err">Err</span> E | <span class="Ok">Ok</span> K   | <span class="Ok">Ok</span> K   |
+| <span class="Err">Err</span> E | <span class="Err">Err</span> N | <span class="Err">Err</span> N |
 
-| left  | input | right |
-| ----- | ----- | ----- |
-| Ok T  | K     | T     |
-| Err E | K     | K     |
+## <span class="Ok">Ok</span> T -> T
 
-### unwrap_or_else
+### `unwrap_or`
 
-| left  | input | right |
-| ----- | ----- | ----- |
-| Ok T  | -> K  | T     |
-| Err E | -> K  | K     |
+| left                           | input | right |
+| ------------------------------ | ----- | ----- |
+| <span class="Ok">Ok</span> T   | K     | T     |
+| <span class="Err">Err</span> E | K     | K     |
 
-### unwrap_or_default
+### `unwrap_or_else`
 
-| left  | right        |
-| ----- | ------------ |
-| Ok T  | T            |
-| Err E | T::default() |
+| left                           | input | right |
+| ------------------------------ | ----- | ----- |
+| <span class="Ok">Ok</span> T   | -> K  | T     |
+| <span class="Err">Err</span> E | -> K  | K     |
 
-### expect
+### `unwrap_or_default`
 
-| left  | input          | right                 |
-| ----- | -------------- | --------------------- |
-| Ok T  | "Some message" | t                     |
-| Err E | "Some message" | panic! "Some message" |
+| left                           | right        |
+| ------------------------------ | ------------ |
+| <span class="Ok">Ok</span> T   | T            |
+| <span class="Err">Err</span> E | T::default() |
 
-### unwrap
+### `expect`
 
-| left  | right  |
-| ----- | ------ |
-| Ok T  | T      |
-| Err E | panic! |
+| left                           | input          | right                 |
+| ------------------------------ | -------------- | --------------------- |
+| <span class="Ok">Ok</span> T   | "Some message" | t                     |
+| <span class="Err">Err</span> E | "Some message" | panic! "Some message" |
 
-### unwrap_unchecked (unsafe)
+### `unwrap`
 
-| left  | right                     |
-| ----- | ------------------------- |
-| Ok T  | T                         |
-| Err E | 💥 Undefined Behaviour 💥 |
+| left                           | right  |
+| ------------------------------ | ------ |
+| <span class="Ok">Ok</span> T   | T      |
+| <span class="Err">Err</span> E | panic! |
 
-## Err E -> E
+### `unwrap_unchecked (unsafe)`
 
-### unwrap_err
+| left                           | right                     |
+| ------------------------------ | ------------------------- |
+| <span class="Ok">Ok</span> T   | T                         |
+| <span class="Err">Err</span> E | 💥 Undefined Behaviour 💥 |
 
-| left  | right  |
-| ----- | ------ |
-| Ok T  | panic! |
-| Err E | E      |
+## <span class="Err">Err</span> E -> E
 
-### expect_err
+### `unwrap_err`
 
-| left  | input          | right                 |
-| ----- | -------------- | --------------------- |
-| Ok T  | "Some message" | panic! "Some message" |
-| Err E | "Some message" | E                     |
+| left                           | right  |
+| ------------------------------ | ------ |
+| <span class="Ok">Ok</span> T   | panic! |
+| <span class="Err">Err</span> E | E      |
 
-### unwrap_err_unchecked (unsafe)
+### `expect_err`
 
-| left  | right                     |
-| ----- | ------------------------- |
-| Ok T  | 💥 Undefined Behaviour 💥 |
-| Err E | E                         |
+| left                           | input          | right                 |
+| ------------------------------ | -------------- | --------------------- |
+| <span class="Ok">Ok</span> T   | "Some message" | panic! "Some message" |
+| <span class="Err">Err</span> E | "Some message" | E                     |
+
+### `unwrap_err_unchecked (unsafe)`
+
+| left                           | right                     |
+| ------------------------------ | ------------------------- |
+| <span class="Ok">Ok</span> T   | 💥 Undefined Behaviour 💥 |
+| <span class="Err">Err</span> E | E                         |
 
 ## Result -> Option
 
-### ok
+### `ok`
 
-| left  | right  |
-| ----- | ------ |
-| Ok T  | Some T |
-| Err E | None   |
+| left                           | right  |
+| ------------------------------ | ------ |
+| <span class="Ok">Ok</span> T   | Some T |
+| <span class="Err">Err</span> E | None   |
 
-### err
+### `err`
 
-| left  | right  |
-| ----- | ------ |
-| Ok T  | None   |
-| Err E | Some E |
+| left                           | right  |
+| ------------------------------ | ------ |
+| <span class="Ok">Ok</span> T   | None   |
+| <span class="Err">Err</span> E | Some E |
 
-| left      | right      |
-| --------- | ---------- |
-| Ok None   | None       |
-| Ok Some T | Some Ok T  |
-| Err E     | Some Err E |
+| left                              | right                               |
+| --------------------------------- | ----------------------------------- |
+| <span class="Ok">Ok</span> None   | None                                |
+| <span class="Ok">Ok</span> Some T | Some <span class="Ok">Ok</span> T   |
+| <span class="Err">Err</span> E    | Some <span class="Err">Err</span> E |
 
 ## Result -> bool
 
-### is_ok
+### `is_ok`
 
-| left  | right |
-| ----- | ----- |
-| Ok T  | true  |
-| Err E | false |
+| left                           | right |
+| ------------------------------ | ----- |
+| <span class="Ok">Ok</span> T   | true  |
+| <span class="Err">Err</span> E | false |
 
-### is_err_and
+### `is_err_and`
 
-| left  | input    | right |
-| ----- | -------- | ----- |
-| Ok T  | -> true  | true  |
-| Err E | -> true  | false |
-| Ok T  | -> false | false |
-| Err E | -> false | false |
+| left                           | input    | right |
+| ------------------------------ | -------- | ----- |
+| <span class="Ok">Ok</span> T   | -> true  | true  |
+| <span class="Err">Err</span> E | -> true  | false |
+| <span class="Ok">Ok</span> T   | -> false | false |
+| <span class="Err">Err</span> E | -> false | false |
 
-### is_err
+### `is_err`
 
-| left  | right |
-| ----- | ----- |
-| Ok T  | false |
-| Err E | true  |
+| left                           | right |
+| ------------------------------ | ----- |
+| <span class="Ok">Ok</span> T   | false |
+| <span class="Err">Err</span> E | true  |
 
-### is_err_and
+### `is_err_and`
 
-| left  | input    | right |
-| ----- | -------- | ----- |
-| Ok T  | -> true  | false |
-| Err E | -> true  | true  |
-| Ok T  | -> false | false |
-| Err E | -> false | false |
+| left                           | input    | right |
+| ------------------------------ | -------- | ----- |
+| <span class="Ok">Ok</span> T   | -> true  | false |
+| <span class="Err">Err</span> E | -> true  | true  |
+| <span class="Ok">Ok</span> T   | -> false | false |
+| <span class="Err">Err</span> E | -> false | false |
 
 ## Result -> Iter
 
-### iter
+### `iter`
 
-| left  | right         |
-| ----- | ------------- |
-| Ok T  | Iter T        |
-| Err E | iter::empty() |
+| left                           | right         |
+| ------------------------------ | ------------- |
+| <span class="Ok">Ok</span> T   | Iter T        |
+| <span class="Err">Err</span> E | iter::empty() |
 
-### iter_mut
+### `iter_mut`
 
-| left  | right         |
-| ----- | ------------- |
-| Ok T  | IterMut T     |
-| Err E | iter::empty() |
+| left                           | right         |
+| ------------------------------ | ------------- |
+| <span class="Ok">Ok</span> T   | IterMut T     |
+| <span class="Err">Err</span> E | iter::empty() |
 
 ## Reference Manipulation
 
-### as_deref
+### `as_deref`
 
-| left  | right  |
-| ----- | ------ |
-| Ok T  | Ok &K  |
-| Err E | Err &E |
+| left                           | right                           |
+| ------------------------------ | ------------------------------- |
+| <span class="Ok">Ok</span> T   | <span class="Ok">Ok</span> &K   |
+| <span class="Err">Err</span> E | <span class="Err">Err</span> &E |
 
-### as_deref_mut
+### `as_deref_mut`
 
-| left   | right |
-| ------ | ----- |
-| Ok &T  | Ok K  |
-| Err &E | Err E |
+| left                            | right                          |
+| ------------------------------- | ------------------------------ |
+| <span class="Ok">Ok</span> &T   | <span class="Ok">Ok</span> K   |
+| <span class="Err">Err</span> &E | <span class="Err">Err</span> E |
 
-### as_mut
+### `as_mut`
 
-| left       | right      |
-| ---------- | ---------- |
-| &mut Ok T  | Ok &mut K  |
-| &mut Err E | Err &mut E |
+| left                                | right                               |
+| ----------------------------------- | ----------------------------------- |
+| &mut <span class="Ok">Ok</span> T   | <span class="Ok">Ok</span> &mut K   |
+| &mut <span class="Err">Err</span> E | <span class="Err">Err</span> &mut E |
 
-### as_ref
+### `as_ref`
 
-| left   | right  |
-| ------ | ------ |
-| &Ok T  | Ok &K  |
-| &Err E | Err &E |
+| left                            | right                           |
+| ------------------------------- | ------------------------------- |
+| &<span class="Ok">Ok</span> T   | <span class="Ok">Ok</span> &K   |
+| &<span class="Err">Err</span> E | <span class="Err">Err</span> &E |
 
-### cloned
+### `cloned`
 
-Uses `Clone`
+Uses Clone
 
-| left      | right |
-| --------- | ----- |
-| Ok &T     | Ok K  |
-| Ok &mut T | Ok K  |
-| Err E     | Err E |
+| left                              | right                          |
+| --------------------------------- | ------------------------------ |
+| <span class="Ok">Ok</span> &T     | <span class="Ok">Ok</span> K   |
+| <span class="Ok">Ok</span> &mut T | <span class="Ok">Ok</span> K   |
+| <span class="Err">Err</span> E    | <span class="Err">Err</span> E |
 
-### copied
+### `copied`
 
-Uses `Copy`
+Uses Copy
 
-| left      | right |
-| --------- | ----- |
-| Ok &T     | Ok K  |
-| Ok &mut T | Ok K  |
-| Err E     | Err E |
+| left                              | right                          |
+| --------------------------------- | ------------------------------ |
+| <span class="Ok">Ok</span> &T     | <span class="Ok">Ok</span> K   |
+| <span class="Ok">Ok</span> &mut T | <span class="Ok">Ok</span> K   |
+| <span class="Err">Err</span> E    | <span class="Err">Err</span> E |
 
 ## Debugging
 
-### inspect
+### `inspect`
 
-Calls a function with a reference to the contained value if `Ok`.
+Calls a function with a reference to the contained value if <span class="Ok">Ok</span>.
 
-| left  | input          | right |
-| ----- | -------------- | ----- |
-| Ok T  | T -> ()        | Ok T  |
-| Err E | _does nothing_ | Err E |
+| left                           | input          | right                          |
+| ------------------------------ | -------------- | ------------------------------ |
+| <span class="Ok">Ok</span> T   | T -> ()        | <span class="Ok">Ok</span> T   |
+| <span class="Err">Err</span> E | _does nothing_ | <span class="Err">Err</span> E |
 
-### inspect_err
+### `inspect_err`
 
-Calls a function with a reference to the contained value if `Err`.
+Calls a function with a reference to the contained value if <span class="Err">Err</span>.
 
-| left  | input          | right |
-| ----- | -------------- | ----- |
-| Ok T  | _does nothing_ | Ok T  |
-| Err E | E -> ()        | Err E |
+| left                           | input          | right                          |
+| ------------------------------ | -------------- | ------------------------------ |
+| <span class="Ok">Ok</span> T   | _does nothing_ | <span class="Ok">Ok</span> T   |
+| <span class="Err">Err</span> E | E -> ()        | <span class="Err">Err</span> E |
