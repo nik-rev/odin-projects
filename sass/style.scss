@@ -3,6 +3,7 @@ body {
   max-width: 65ch;
   color: var(--text);
   font-size: 0.8rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .Ok,
@@ -10,25 +11,68 @@ body {
 .\&,
 .mut,
 .bool,
+.false,
 .Some,
 .None,
 .param,
+.unit,
+.parameter,
+.type,
 .punctuation {
   font-family: monospace;
 }
 
-a {
+.false {
+  color: var(--red);
+}
+
+a:visited {
   color: var(--blue);
 }
 
+h3:has(a) {
+  color: var(--blue);
+  font-weight: normal;
+  text-decoration: none;
+  font-family: monospace;
+
+  &::before {
+    content: "result.";
+    color: var(--overlay2);
+  }
+  &::after {
+    content: "(args) -> out";
+    color: var(--overlay2);
+  }
+  &::hover {
+    text-decoration: underline;
+  }
+}
+
+h3 a {
+  &:link,
+  &:visited {
+    color: var(--blue);
+  }
+}
+
+.type {
+  color: var(--yellow);
+}
+
 .unit {
-  color: var(--surface2);
+  color: var(--overlay2);
+}
+
+.parameter {
+  color: var(--maroon);
 }
 
 :root {
   --base: #1e1e2e;
   --peach: #fab387;
   --green: #a6e3a1;
+  --yellow: #f9e2af;
   --red: #f38ba8;
   --text: #cdd6f4;
   --blue: #89b4fa;
@@ -44,7 +88,7 @@ a {
 }
 
 .bool {
-  color: var(--peach);
+  color: var(--green);
 }
 
 .mut {
@@ -52,8 +96,10 @@ a {
 }
 
 .punctuation {
-  color: var(--sky);
+  color: var(--overlay2);
   font-weight: bold;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .Ok,
@@ -64,4 +110,20 @@ a {
 .Err,
 .None {
   color: var(--red);
+}
+
+table {
+  border: 1px solid var(--surface2);
+  border-radius: 2px;
+
+  th,
+  td {
+    padding: 16px;
+  }
+
+  th {
+    font-family: monospace;
+    font-weight: normal;
+    color: var(--overlay2);
+  }
 }

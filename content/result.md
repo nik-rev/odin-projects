@@ -2,295 +2,329 @@
 title = "Result"
 +++
 
-## Result <span class="punctuation">➝</span> Result
+**Note**: We use abstract names for types which can represent _literally anything_ such as <span class="type">T</span> and <span class="type">K</span>.
 
-### `map`
+Feel free to mentally substitute types which make more sense to you, like for example <span class="&">&</span><span class="type">str</span> and <span class="type">i32</span>
 
-[docs](https://doc.rust-lang.org/std/result/enum.Result.html#method.map)
+---
+
+How to read this cheatsheet:
+
+- <span class="Some">Some</span> <span class="type">T</span>
+
+  Some type <span class="type">T</span> wrapped in a <span class="Some">Some</span>
+
+- <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span>
+
+  A closure which takes some type <span class="parameter">T</span> as an argument and returns another type `K`
+
+- <span class="type">D</span>, <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span>
+
+  The first argument is of some type <span class="type">D</span>, the second argument is a closure that takes a <span class="parameter">T</span> as an argument and always returns some other type <span class="type">N</span> wrapped in an <span class="Err">Err</span>
+
+- 💥
+
+  Indicates an unsafe function or [undefined behaviour](https://doc.rust-lang.org/reference/behavior-considered-undefined.html)
+
+## <span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">Result</span>
+
+### [map](https://doc.rust-lang.org/std/result/enum.Result.html#method.map)
 
 Transform <span class="Ok">Ok</span>
 
-|                                                        left | input                                                                                            |                                                       right |
-| ----------------------------------------------------------: | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------: |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="T param">T</span> <span class="punctuation">➝</span> <span class="K param">K</span> |   <span class="Ok">Ok</span> <span class="K param">K</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="T param">T</span> <span class="punctuation">➝</span> <span class="K param">K</span> | <span class="Err">Err</span> <span class="E param">E</span> |
+| result                                                   | args                                                                                            | out                                                      |
+| -------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="Ok">Ok</span> <span class="type">K</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="Err">Err</span> <span class="type">E</span> |
 
-### `map_or`
+### [map_or](https://doc.rust-lang.org/std/result/enum.Result.html#method.map_or)
 
-Transform <span class="Ok">Ok</span> with a default
+Transform <span class="Ok">Ok</span>
 
-|                                                        left | input                                                                                               | right                          |
-| ----------------------------------------------------------: | --------------------------------------------------------------------------------------------------- | ------------------------------ |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | N, <span class="T param">T</span> <span class="punctuation">➝</span> <span class="K param">K</span> | <span class="K param">K</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | N, <span class="T param">T</span> <span class="punctuation">➝</span> <span class="K param">K</span> | <span class="N param">N</span> |
+| result                                                   | args                                                                                                 | out                         |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | --------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | `N`, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">K</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | `N`, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">N</span> |
 
-### `map_or_else`
+### [map_or_else](https://doc.rust-lang.org/std/result/enum.Result.html#method.map_or_else)
 
 Transform <span class="Ok">Ok</span> and <span class="Err">Err</span>
 
-|                                                        left | input                                                                                                                                                                 | right                          |
-| ----------------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="E param">E</span> <span class="punctuation">➝</span> N, <span class="T param">T</span> <span class="punctuation">➝</span> <span class="K param">K</span> | <span class="K param">K</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="E param">E</span> <span class="punctuation">➝</span> N, <span class="T param">T</span> <span class="punctuation">➝</span> <span class="K param">K</span> | <span class="N param">N</span> |
+| result                                                   | args                                                                                                                                                                     | out                         |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">E</span> <span class="punctuation">➝</span> `N`, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">K</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> `N`, <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">N</span> |
 
-### `map_err`
+### [map_err](https://doc.rust-lang.org/std/result/enum.Result.html#method.map_err)
 
 Transform <span class="Err">Err</span>
 
-|                                                        left | input                                                                                            |                                                       right |
-| ----------------------------------------------------------: | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------: |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="E param">E</span> <span class="punctuation">➝</span> <span class="N param">N</span> |   <span class="Ok">Ok</span> <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="E param">E</span> <span class="punctuation">➝</span> <span class="N param">N</span> | <span class="Err">Err</span> <span class="N param">N</span> |
+| result                                                   | args                                                                    | out                                                      |
+| -------------------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">E</span> <span class="punctuation">➝</span> `N` | <span class="Ok">Ok</span> <span class="type">T</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> `N` | <span class="Err">Err</span> <span class="type">N</span> |
 
-### `and_then`
+### [and_then](https://doc.rust-lang.org/std/result/enum.Result.html#method.and_then)
 
 Returns the first returned <span class="Err">Err</span> value
 
-|                                                        left | input                                                                                          |                                                       right |
-| ----------------------------------------------------------: | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------: |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="K param">K</span>   |   <span class="Ok">Ok</span> <span class="K param">K</span> |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="N param">N</span> | <span class="Err">Err</span> <span class="N param">N</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="K param">K</span>   | <span class="Err">Err</span> <span class="E param">E</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="N param">N</span> | <span class="Err">Err</span> <span class="E param">E</span> |
+| result                                                   | args                                                                                                                         | out                                                      |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">N</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Err">Err</span> <span class="type">E</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">E</span> |
 
-### `and`
+### [and](https://doc.rust-lang.org/std/result/enum.Result.html#method.and)
 
 Returns the first <span class="Err">Err</span> value
 
-|                                                        left |                            input                            |                                                       right |
-| ----------------------------------------------------------: | :---------------------------------------------------------: | ----------------------------------------------------------: |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> |  <span class="Ok">Ok</span> <span class="K param">K</span>  |   <span class="Ok">Ok</span> <span class="K param">K</span> |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="Err">Err</span> <span class="N param">N</span> | <span class="Err">Err</span> <span class="N param">N</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> |  <span class="Ok">Ok</span> <span class="K param">K</span>  | <span class="Err">Err</span> <span class="E param">E</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="Err">Err</span> <span class="N param">N</span> | <span class="Err">Err</span> <span class="E param">E</span> |
+| result                                                   | args                                                     | out                                                      |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">N</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Err">Err</span> <span class="type">E</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">E</span> |
 
-### `or_else`
+### [or_else](https://doc.rust-lang.org/std/result/enum.Result.html#method.or_else)
 
 Returns the first returned <span class="Ok">Ok</span> value
 
-|                                                        left | input                                                                                          |                                                       right |
-| ----------------------------------------------------------: | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------: |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="K param">K</span>   |   <span class="Ok">Ok</span> <span class="T param">T</span> |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="N param">N</span> |   <span class="Ok">Ok</span> <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="K param">K</span>   |   <span class="Ok">Ok</span> <span class="K param">K</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="N param">N</span> | <span class="Err">Err</span> <span class="N param">N</span> |
+| result                                                   | args                                                                                                                         | out                                                      |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">T</span>   |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span> | <span class="Ok">Ok</span> <span class="type">T</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">N</span> |
 
-### `or`
+### [or](https://doc.rust-lang.org/std/result/enum.Result.html#method.or)
 
 Returns the first <span class="Ok">Ok</span> value
 
-|                                                        left |                                                       input |                                                       right |
-| ----------------------------------------------------------: | ----------------------------------------------------------: | ----------------------------------------------------------: |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> |   <span class="Ok">Ok</span> <span class="K param">K</span> |   <span class="Ok">Ok</span> <span class="T param">T</span> |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="Err">Err</span> <span class="N param">N</span> |   <span class="Ok">Ok</span> <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> |   <span class="Ok">Ok</span> <span class="K param">K</span> |   <span class="Ok">Ok</span> <span class="K param">K</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="Err">Err</span> <span class="N param">N</span> | <span class="Err">Err</span> <span class="N param">N</span> |
+| result                                                   | args                                                     | out                                                      |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">T</span>   |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Err">Err</span> <span class="type">N</span> | <span class="Ok">Ok</span> <span class="type">T</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="Ok">Ok</span> <span class="type">K</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="Err">Err</span> <span class="type">N</span> | <span class="Err">Err</span> <span class="type">N</span> |
 
-## <span class="Ok">Ok</span> <span class="T param">T</span> <span class="punctuation">➝</span> T
+## <span class="Ok">Ok</span> <span class="type">T</span> <span class="punctuation">➝</span> <span class="type">T</span>
 
-### `unwrap_or`
+Extract the value contained in <span class="Ok">Ok</span>
 
-|                                                        left | input                          | right                          |
-| ----------------------------------------------------------: | ------------------------------ | ------------------------------ |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="K param">K</span> | <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="K param">K</span> | <span class="K param">K</span> |
+### [unwrap_or](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or)
 
-### `unwrap_or_else`
+| result                                                   | args                        | out                         |
+| -------------------------------------------------------- | --------------------------- | --------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="type">K</span> | <span class="type">T</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="type">K</span> | <span class="type">K</span> |
 
-|                                                        left | input                                                             | right                          |
-| ----------------------------------------------------------: | ----------------------------------------------------------------- | ------------------------------ |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="punctuation">➝</span> <span class="K param">K</span> | <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="punctuation">➝</span> <span class="K param">K</span> | <span class="K param">K</span> |
+### [unwrap_or_else](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or_else)
 
-### `unwrap_or_default`
+| result                                                   | args                                                                                            | out                         |
+| -------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="parameter">T</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">T</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="parameter">E</span> <span class="punctuation">➝</span> <span class="type">K</span> | <span class="type">K</span> |
 
-|                                                        left | right                          |
-| ----------------------------------------------------------: | ------------------------------ |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | `T::default()`                 |
+### [unwrap_or_default](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or_default)
 
-### `expect`
+| result                                                   | out                         |
+| -------------------------------------------------------- | --------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="type">T</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | `T::default()`              |
 
-|                                                        left | input          | right                 |
-| ----------------------------------------------------------: | -------------- | --------------------- |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | "Some message" | t                     |
-| <span class="Err">Err</span> <span class="E param">E</span> | "Some message" | panic! "Some message" |
+### [expect](https://doc.rust-lang.org/std/result/enum.Result.html#method.expect)
 
-### `unwrap`
+| result                                                   | args           | out                   |
+| -------------------------------------------------------- | -------------- | --------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | "Some message" | t                     |
+| <span class="Err">Err</span> <span class="type">E</span> | "Some message" | panic! "Some message" |
 
-|                                                        left | right                          |
-| ----------------------------------------------------------: | ------------------------------ |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | panic!                         |
+### [unwrap](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap)
 
-### `unwrap_unchecked (unsafe)`
+| result                                                   | out                         |
+| -------------------------------------------------------- | --------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="type">T</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | panic!                      |
 
-|                                                        left | right                          |
-| ----------------------------------------------------------: | ------------------------------ |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | 💥 Undefined Behaviour 💥      |
+### 💥[unwrap_unchecked](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_unchecked)
 
-## <span class="Err">Err</span> <span class="E param">E</span> <span class="punctuation">➝</span> E
+| result                                                   | out                         |
+| -------------------------------------------------------- | --------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="type">T</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | 💥                          |
 
-### `unwrap_err`
+## <span class="Err">Err</span> <span class="type">E</span> <span class="punctuation">➝</span> <span class="type">E</span>
 
-|                                                        left | right                          |
-| ----------------------------------------------------------: | ------------------------------ |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | panic!                         |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="E param">E</span> |
+Extract the value contained in <span class="Err">Err</span>
 
-### `expect_err`
+### [unwrap_err](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_err)
 
-|                                                        left | input          | right                          |
-| ----------------------------------------------------------: | -------------- | ------------------------------ |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | "Some message" | panic! "Some message"          |
-| <span class="Err">Err</span> <span class="E param">E</span> | "Some message" | <span class="E param">E</span> |
+| result                                                   | out                         |
+| -------------------------------------------------------- | --------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | panic!                      |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="type">E</span> |
 
-### `unwrap_err_unchecked (unsafe)`
+### [expect_err](https://doc.rust-lang.org/std/result/enum.Result.html#method.expect_err)
 
-|                                                        left | right                          |
-| ----------------------------------------------------------: | ------------------------------ |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | 💥 Undefined Behaviour 💥      |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="E param">E</span> |
+| result                                                   | args           | out                         |
+| -------------------------------------------------------- | -------------- | --------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | "Some message" | panic! "Some message"       |
+| <span class="Err">Err</span> <span class="type">E</span> | "Some message" | <span class="type">E</span> |
 
-## Result <span class="punctuation">➝</span> Option
+### 💥[unwrap_err_unchecked](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_err_unchecked)
 
-### `ok`
+| result                                                   | out                         |
+| -------------------------------------------------------- | --------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | 💥                          |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="type">E</span> |
 
-|                                                        left | right                                                         |
-| ----------------------------------------------------------: | ------------------------------------------------------------- |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="Some">Some</span> <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="None">None</span>                                |
+## <span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">Option</span>
 
-### `err`
+### [ok](https://doc.rust-lang.org/std/result/enum.Result.html#method.ok)
 
-|                                                        left | right                                                         |
-| ----------------------------------------------------------: | ------------------------------------------------------------- |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="None">None</span>                                |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="Some">Some</span> <span class="E param">E</span> |
+Get the <span class="Ok">Ok</span> value, which may or may not be there
 
-|                                                                                     left |                                                                                      right |
-| ---------------------------------------------------------------------------------------: | -----------------------------------------------------------------------------------------: |
-|                                <span class="Ok">Ok</span> <span class="None">None</span> |                                                             <span class="None">None</span> |
-| <span class="Ok">Ok</span> <span class="Some">Some</span> <span class="T param">T</span> |   <span class="Some">Some</span> <span class="Ok">Ok</span> <span class="T param">T</span> |
-|                              <span class="Err">Err</span> <span class="E param">E</span> | <span class="Some">Some</span> <span class="Err">Err</span> <span class="E param">E</span> |
+| result                                                   | out                                                        |
+| -------------------------------------------------------- | ---------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Some">Some</span> <span class="type">T</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="None">None</span>                             |
 
-## Result <span class="punctuation">➝</span> bool
+### [err](https://doc.rust-lang.org/std/result/enum.Result.html#method.err)
 
-### `is_ok`
+Get the <span class="Err">Err</span> value, which may or may not be there
 
-| left                                                        | right                           |
-| ----------------------------------------------------------- | ------------------------------- |
-| <span class="Ok">Ok</span> <span class="T param">T</span>   | <span class="bool">true</span>  |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="bool">false</span> |
+| result                                                   | out                                                        |
+| -------------------------------------------------------- | ---------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="None">None</span>                             |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="Some">Some</span> <span class="type">E</span> |
 
-### `is_err_and`
+### [transpose](https://doc.rust-lang.org/std/result/enum.Result.html#method.transpose)
 
-| left                                                        | input                                                              | right                           |
-| ----------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------- |
-| <span class="Ok">Ok</span> <span class="T param">T</span>   | <span class="punctuation">➝</span> <span class="bool">true</span>  | <span class="bool">true</span>  |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="punctuation">➝</span> <span class="bool">true</span>  | <span class="bool">false</span> |
-| <span class="Ok">Ok</span> <span class="T param">T</span>   | <span class="punctuation">➝</span> <span class="bool">false</span> | <span class="bool">false</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="punctuation">➝</span> <span class="bool">false</span> | <span class="bool">false</span> |
+Does the `Result` have _anything_ in it?
 
-### `is_err`
+| result                                                                                | out                                                                                     |
+| ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="None">None</span>                             | <span class="None">None</span>                                                          |
+| <span class="Ok">Ok</span> <span class="Some">Some</span> <span class="type">T</span> | <span class="Some">Some</span> <span class="Ok">Ok</span> <span class="type">T</span>   |
+| <span class="Err">Err</span> <span class="type">E</span>                              | <span class="Some">Some</span> <span class="Err">Err</span> <span class="type">E</span> |
 
-| left                                                        | right                           |
-| ----------------------------------------------------------- | ------------------------------- |
-| <span class="Ok">Ok</span> <span class="T param">T</span>   | <span class="bool">false</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="bool">true</span>  |
+## <span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">bool</span>
 
-### `is_err_and`
+### [is_ok](https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok)
 
-| left                                                        | input                                                              | right                           |
-| ----------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------- |
-| <span class="Ok">Ok</span> <span class="T param">T</span>   | <span class="punctuation">➝</span> <span class="bool">true</span>  | <span class="bool">false</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="punctuation">➝</span> <span class="bool">true</span>  | <span class="bool">true</span>  |
-| <span class="Ok">Ok</span> <span class="T param">T</span>   | <span class="punctuation">➝</span> <span class="bool">false</span> | <span class="bool">false</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="punctuation">➝</span> <span class="bool">false</span> | <span class="bool">false</span> |
+| result                                                   | out                              |
+| -------------------------------------------------------- | -------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="bool">true</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="false">false</span> |
 
-## Result <span class="punctuation">➝</span> Iter
+### [is_err](https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err)
 
-### `iter`
+| result                                                   | out                              |
+| -------------------------------------------------------- | -------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="false">false</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="bool">true</span>   |
 
-| left                                                        | right                               |
-| ----------------------------------------------------------- | ----------------------------------- |
-| <span class="Ok">Ok</span> <span class="T param">T</span>   | Iter <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | iter::empty()                       |
+### [is_ok_and](https://doc.rust-lang.org/std/result/enum.Result.html#method.is_ok_and)
 
-### `iter_mut`
+| result                                                   | args                                                                | out                              |
+| -------------------------------------------------------- | ------------------------------------------------------------------- | -------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="punctuation">➝</span> <span class="bool">true</span>   | <span class="bool">true</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="punctuation">➝</span> <span class="bool">true</span>   | <span class="false">false</span> |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="punctuation">➝</span> <span class="false">false</span> | <span class="false">false</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="punctuation">➝</span> <span class="false">false</span> | <span class="false">false</span> |
 
-| left                                                        | right                                  |
-| ----------------------------------------------------------- | -------------------------------------- |
-| <span class="Ok">Ok</span> <span class="T param">T</span>   | IterMut <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | iter::empty()                          |
+### [is_err_and](https://doc.rust-lang.org/std/result/enum.Result.html#method.is_err_and)
+
+| result                                                   | args                                                                | out                              |
+| -------------------------------------------------------- | ------------------------------------------------------------------- | -------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="punctuation">➝</span> <span class="bool">true</span>   | <span class="false">false</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="punctuation">➝</span> <span class="bool">true</span>   | <span class="bool">true</span>   |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="punctuation">➝</span> <span class="false">false</span> | <span class="false">false</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="punctuation">➝</span> <span class="false">false</span> | <span class="false">false</span> |
+
+## <span class="type">Result</span> <span class="punctuation">➝</span> <span class="type">Iterator</span>
+
+### [iter](https://doc.rust-lang.org/std/result/enum.Result.html#method.iter)
+
+| result                                                   | out                              |
+| -------------------------------------------------------- | -------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | Iter <span class="type">T</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | iter::empty()                    |
+
+### [iter_mut](https://doc.rust-lang.org/std/result/enum.Result.html#method.iter_mut)
+
+| result                                                   | out                                 |
+| -------------------------------------------------------- | ----------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | IterMut <span class="type">T</span> |
+| <span class="Err">Err</span> <span class="type">E</span> | iter::empty()                       |
 
 ## Reference Manipulation
 
-### `as_deref`
+### [as_deref](https://doc.rust-lang.org/std/result/enum.Result.html#method.as_deref)
 
-|                                                        left |                                                  right |
-| ----------------------------------------------------------: | -----------------------------------------------------: |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> |   <span class="Ok">Ok</span> <span class="&">&</span>K |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="Err">Err</span> <span class="&">&</span>E |
+| result                                                   | out                                                                              |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Ok">Ok</span> <span class="&">&</span><span class="type">K</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="Err">Err</span> <span class="&">&</span><span class="type">E</span> |
 
-### `as_deref_mut`
+### [as_deref_mut](https://doc.rust-lang.org/std/result/enum.Result.html#method.as_deref_mut)
 
-|                                                   left |                                                       right |
-| -----------------------------------------------------: | ----------------------------------------------------------: |
-|   <span class="Ok">Ok</span> <span class="&">&</span>T |   <span class="Ok">Ok</span> <span class="K param">K</span> |
-| <span class="Err">Err</span> <span class="&">&</span>E | <span class="Err">Err</span> <span class="E param">E</span> |
+| result                                                                           | out                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="&">&</span><span class="type">T</span>   | <span class="Ok">Ok</span> <span class="type">K</span>   |
+| <span class="Err">Err</span> <span class="&">&</span><span class="type">E</span> | <span class="Err">Err</span> <span class="type">E</span> |
 
-### `as_mut`
+### [as_mut](https://doc.rust-lang.org/std/result/enum.Result.html#method.as_mut)
 
-|                                                                                                             left | right                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------: | ---------------------------------------------------------------------------------------------------------------- |
-|   <span class="&">&</span><span class="mut">mut</span> <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="Ok">Ok</span> <span class="&">&</span><span class="mut">mut</span> <span class="K param">K</span>   |
-| <span class="&">&</span><span class="mut">mut</span> <span class="Err">Err</span> <span class="E param">E</span> | <span class="Err">Err</span> <span class="&">&</span><span class="mut">mut</span> <span class="E param">E</span> |
+| result                                                                                                        | out                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| <span class="&">&</span><span class="mut">mut</span> <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Ok">Ok</span> <span class="&">&</span><span class="mut">mut</span> <span class="type">K</span>   |
+| <span class="&">&</span><span class="mut">mut</span> <span class="Err">Err</span> <span class="type">E</span> | <span class="Err">Err</span> <span class="&">&</span><span class="mut">mut</span> <span class="type">E</span> |
 
-### `as_ref`
+### [as_ref](https://doc.rust-lang.org/std/result/enum.Result.html#method.as_ref)
 
-|                                                                                left |                                                  right |
-| ----------------------------------------------------------------------------------: | -----------------------------------------------------: |
-|   <span class="&">&</span><span class="Ok">Ok</span> <span class="T param">T</span> |   <span class="Ok">Ok</span> <span class="&">&</span>K |
-| <span class="&">&</span><span class="Err">Err</span> <span class="E param">E</span> | <span class="Err">Err</span> <span class="&">&</span>E |
+| result                                                                           | out                                                                              |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| <span class="&">&</span><span class="Ok">Ok</span> <span class="type">T</span>   | <span class="Ok">Ok</span> <span class="&">&</span><span class="type">K</span>   |
+| <span class="&">&</span><span class="Err">Err</span> <span class="type">E</span> | <span class="Err">Err</span> <span class="&">&</span><span class="type">E</span> |
 
-### `cloned`
+### [cloned](https://doc.rust-lang.org/std/result/enum.Result.html#method.cloned)
 
 Uses Clone
 
-|                                                                                                           left |                                                       right |
-| -------------------------------------------------------------------------------------------------------------: | ----------------------------------------------------------: |
-|                                                           <span class="Ok">Ok</span> <span class="&">&</span>T |   <span class="Ok">Ok</span> <span class="K param">K</span> |
-| <span class="Ok">Ok</span> <span class="&">&</span><span class="mut">mut</span> <span class="T param">T</span> |   <span class="Ok">Ok</span> <span class="K param">K</span> |
-|                                                    <span class="Err">Err</span> <span class="E param">E</span> | <span class="Err">Err</span> <span class="E param">E</span> |
+| result                                                                                                      | out                                                      |
+| ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="&">&</span><span class="type">T</span>                              | <span class="Ok">Ok</span> <span class="type">K</span>   |
+| <span class="Ok">Ok</span> <span class="&">&</span><span class="mut">mut</span> <span class="type">T</span> | <span class="Ok">Ok</span> <span class="type">K</span>   |
+| <span class="Err">Err</span> <span class="type">E</span>                                                    | <span class="Err">Err</span> <span class="type">E</span> |
 
-### `copied`
+### [copied](https://doc.rust-lang.org/std/result/enum.Result.html#method.copied)
 
 Uses Copy
 
-|                                                                                                           left |                                                       right |
-| -------------------------------------------------------------------------------------------------------------: | ----------------------------------------------------------: |
-|                                                           <span class="Ok">Ok</span> <span class="&">&</span>T |   <span class="Ok">Ok</span> <span class="K param">K</span> |
-| <span class="Ok">Ok</span> <span class="&">&</span><span class="mut">mut</span> <span class="T param">T</span> |   <span class="Ok">Ok</span> <span class="K param">K</span> |
-|                                                    <span class="Err">Err</span> <span class="E param">E</span> | <span class="Err">Err</span> <span class="E param">E</span> |
+| result                                                                                                      | out                                                      |
+| ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="&">&</span><span class="type">T</span>                              | <span class="Ok">Ok</span> <span class="type">K</span>   |
+| <span class="Ok">Ok</span> <span class="&">&</span><span class="mut">mut</span> <span class="type">T</span> | <span class="Ok">Ok</span> <span class="type">K</span>   |
+| <span class="Err">Err</span> <span class="type">E</span>                                                    | <span class="Err">Err</span> <span class="type">E</span> |
 
 ## Debugging
 
-### `inspect`
+### [inspect](https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect)
 
 Calls a function with a reference to the contained value if <span class="Ok">Ok</span>.
 
-|                                                        left | input                                                                |                                                       right |
-| ----------------------------------------------------------: | -------------------------------------------------------------------- | ----------------------------------------------------------: |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | <span class="T param">T</span> <span class="punctuation">➝</span> () |   <span class="Ok">Ok</span> <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | _does nothing_                                                       | <span class="Err">Err</span> <span class="E param">E</span> |
+| result                                                   | args                                                                                        | out                                                      |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | <span class="type">T</span> <span class="punctuation">➝</span> <span class="unit">()</span> | <span class="Ok">Ok</span> <span class="type">T</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | _does nothing_                                                                              | <span class="Err">Err</span> <span class="type">E</span> |
 
-### `inspect_err`
+### [inspect_err](https://doc.rust-lang.org/std/result/enum.Result.html#method.inspect_err)
 
 Calls a function with a reference to the contained value if <span class="Err">Err</span>.
 
-|                                                        left | input                                                                                          |                                                       right |
-| ----------------------------------------------------------: | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------: |
-|   <span class="Ok">Ok</span> <span class="T param">T</span> | _does nothing_                                                                                 |   <span class="Ok">Ok</span> <span class="T param">T</span> |
-| <span class="Err">Err</span> <span class="E param">E</span> | <span class="E param">E</span> <span class="punctuation">➝</span> <span class="unit">()</span> | <span class="Err">Err</span> <span class="E param">E</span> |
+| result                                                   | args                                                                                        | out                                                      |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| <span class="Ok">Ok</span> <span class="type">T</span>   | _does nothing_                                                                              | <span class="Ok">Ok</span> <span class="type">T</span>   |
+| <span class="Err">Err</span> <span class="type">E</span> | <span class="type">E</span> <span class="punctuation">➝</span> <span class="unit">()</span> | <span class="Err">Err</span> <span class="type">E</span> |
