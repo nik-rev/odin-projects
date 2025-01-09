@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block content %}
+<h1 class="title">🦀 {{ section.title }}</h1>
+<ul class="cheatsheet-list">
+  {% for page in section.pages %}
+    <li>
+      <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+    </li>
+  {% endfor %}
+  <li>Option: Coming Soon</li>
+  <li>Iterators: Coming Soon</li>
+</ul>
+<a href="https://github.com/nik-rev/rust-cheatsheets"><img id="stars" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/nik-rev/rust-cheatsheets" height="16px"></a>
+{% endblock content %}
