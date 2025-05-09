@@ -18,3 +18,7 @@
 1. Clone this repository.
 2. Run `npm ci` to install the dependencies.
 3. Run `npm run start` and the project will open up in your browser.
+
+## Preview
+
+![preview](preview.png)
