@@ -14,6 +14,6 @@
 2. Open `index.html` in your browser.
 3. Open the console to interact with the linked list.
 
-## Screenshots
+## Preview
 
-![image](https://github.com/user-attachments/assets/7fc53188-f5c4-4eda-9c39-2a0a1028070f)
+![preview](preview.png)

@@ -18,8 +18,3 @@
 1. Clone this repository.
 2. Run `npm ci` to install the dependencies.
 3. Run `npm run start` and the project will open up in your browser.
-
-## Screenshots
-
-![image](https://github.com/nikitarevenco/todo/assets/154856872/0aac5874-e7c8-4f51-a838-8dca14b4513a)
-![image](https://github.com/nikitarevenco/todo/assets/154856872/f8344ca4-ad2f-465a-8d8b-618a3ed7adb3)

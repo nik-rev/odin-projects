@@ -20,6 +20,6 @@
 2. Run `npm ci` to install the dependencies.
 3. Run `npm run start` and the project will open up in your browser.
 
-## Screenshots
+## Preview
 
-![image](https://github.com/user-attachments/assets/df45e6ce-7b70-4d38-9a92-e559aaaeead0)
+![preview](preview.png)

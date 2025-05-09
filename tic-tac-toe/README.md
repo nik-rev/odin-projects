@@ -18,7 +18,6 @@ Live: https://nikitarevenco.github.io/odin-project-tic-tac-toe
 1. Clone this repository.
 2. Open `index.html` in your browser.
 
-## Screenshots
+## Preview
 
-![image](https://github.com/user-attachments/assets/48a8e8fc-5aca-4d98-a46e-8f7f3044dcbe)
-![image](https://github.com/user-attachments/assets/cfdb30c9-e7d6-411e-90b5-1d57cecd6faa)
+![preview](preview.png)

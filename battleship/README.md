@@ -19,6 +19,6 @@
 2. Run `npm ci` to install the dependencies.
 3. Run `npm run start` and the project will open in your browser.
 
-## Screenshots
+## Preview
 
-![image](https://github.com/nikitarevenco/battleship/assets/154856872/3e1e9c82-3ef4-4874-a68c-99dd1d843934)
+![preview](preview.png)

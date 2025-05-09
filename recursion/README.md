@@ -15,6 +15,6 @@
 1. Clone this repository.
 2. Open `index.html` in your browser.
 
-## Screenshots
+## Preview
 
-![image](https://github.com/user-attachments/assets/c0a33960-7ae6-4ffb-b4eb-e096e1d9e015)
+![preview](preview.png)

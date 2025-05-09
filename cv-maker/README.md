@@ -19,6 +19,6 @@
 2. Run `npm ci` to install all of the dependencies.
 3. Run `npm run build` and head over to `localhost:5173`.
 
-## Screenshots
+## Preview
 
-![image](https://github.com/user-attachments/assets/7840b454-df4d-4ad2-9414-d19b2e9c8e90)
+![preview](preview.png)

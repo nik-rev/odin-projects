@@ -13,7 +13,6 @@
 1. Clone this repository.
 2. Open `index.html` in your browser.
 
-## Screenshots
+## Preview
 
-![image](https://github.com/user-attachments/assets/813c4faf-9be5-4385-932f-ac171eea6a05)
-![image](https://github.com/user-attachments/assets/fb521b26-5aa7-4ef6-a657-39778c40b3ea)
+![preview](preview.png)

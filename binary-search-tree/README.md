@@ -16,6 +16,6 @@
 2. Open `index.html` in your browser.
 3. Use the console to interact with the binary search tree.
 
-## Screenshots
+## Preview
 
-![image](https://github.com/user-attachments/assets/491da1a9-3137-4d31-9aaa-837bfd7900a3)
+![preview](preview.png)
